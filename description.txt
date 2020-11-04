@@ -1,0 +1,8 @@
+With Creative tools you can toggle several different events and game states with a single click of a button, move NPC's and Items with your mouse, display lots of Information on the screen and much more!
+
+For a complete Changlog and more information visit my homepage!
+
+Latest Changes:
+v2.9.0.2 - Hotfix #2
+        + Rewritten lots of code, please report any bugs on the homepage or contact me via discord: TheLonelySheep#7696
+        + Fixed transparency and 1 pixel in the icon

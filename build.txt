@@ -1,0 +1,8 @@
+displayName = Creative tools
+author = TheLonelySheep
+version = 2.9.0.2
+hideCode = true
+hideResources = false
+includeSource = false
+buildIgnore = vs/*, *.csproj, *.sln, *.pidb, *.userprefs, *.user, obj/*, bin/*
+homepage = https://forums.terraria.org/index.php?threads/creative-tools.88374/
