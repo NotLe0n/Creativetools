@@ -22,27 +22,11 @@ namespace Creativetools.src.UI
         UIFloatRangedDataValue SizeDataProperty;
         public override void OnInitialize()
         {
-            UIPanel ItemMenu = new UIPanel();
-            ItemMenu.SetPadding(0);
+            TabPanel ItemMenu = new TabPanel(450, 500, new Tab("Change Item", this), new Tab("Change Player", new PlayerModUI()));
             ItemMenu.VAlign = 0.6f;
             ItemMenu.HAlign = 0.2f;
-            ItemMenu.Width.Set(450f, 0f);
-            ItemMenu.Height.Set(500f, 0f);
-            ItemMenu.BackgroundColor = new Color(73, 94, 171);
+            ItemMenu.OnCloseBtnClicked += () => GetInstance<Creativetools>().UserInterface.SetState(new MainUI());
             Append(ItemMenu);
-
-            ItemMenu.Append(new UIText("Change Held Item Properties") { HAlign = 0.5f, MarginTop = 15 });
-            BackButton(ItemMenu, 370, 460);
-
-            UITextPanel<string> NextButton = new UITextPanel<string>(Language.GetTextValue(">"));
-            NextButton.HAlign = 0.5f;
-            NextButton.MarginTop = 440;
-            NextButton.OnClick += (evt, elm) =>
-            {
-                GetInstance<Creativetools>().UserInterface.SetState(new PlayerModUI());
-                Main.PlaySound(SoundID.MenuOpen);
-            }; ;
-            ItemMenu.Append(NextButton);
 
             var DamageSlider = MakeSlider(new UIIntRangedDataValue("", 0, 0, 999), out DamageDataProperty, ItemMenu, top: 50, left: -10);
             SliderButtons("Set Damage", DamageSlider, button => button.OnClick += (evt, elm) => ModifyItem.ChangeDamage(DamageDataProperty.Data));

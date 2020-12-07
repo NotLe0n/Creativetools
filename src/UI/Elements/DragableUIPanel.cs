@@ -43,6 +43,7 @@ namespace Creativetools.src.UI.Elements
 
         private Vector2 offset;
         public bool dragging;
+        public static Vector2 lastPos = new Vector2(600, 200);
         public void Header_OnMouseDown(UIMouseEvent evt, UIElement elm)
         {
             base.MouseDown(evt);
@@ -74,6 +75,8 @@ namespace Creativetools.src.UI.Elements
                 Left.Set(Main.mouseX - offset.X, 0f);
                 Top.Set(Main.mouseY - offset.Y, 0f);
                 Recalculate();
+
+                lastPos = new Vector2(Left.Pixels, Top.Pixels);
             }
 
             // Here we check if the DragableUIPanel is outside the Parent UIElement rectangle. 
