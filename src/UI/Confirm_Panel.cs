@@ -1,5 +1,4 @@
-﻿using Creativetools.src.UI.UIElements;
-using Microsoft.Xna.Framework;
+﻿using Creativetools.src.UI.Elements;
 using Terraria;
 using Terraria.GameContent.UI.Elements;
 using Terraria.ID;

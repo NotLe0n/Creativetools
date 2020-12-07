@@ -12,19 +12,15 @@ namespace Creativetools.src.UI
 {
     class WeatherControl : UIState
     {
-        private UIPanel WeatherMenu;
+        private DragableUIPanel WeatherMenu;
         UIIntRangedDataValue Time;
         public override void OnInitialize()
         {
-            WeatherMenu = new UIPanel();
+            WeatherMenu = new DragableUIPanel("Weather Control", 500f, 200f);
             WeatherMenu.VAlign = 0.6f;
             WeatherMenu.HAlign = 0.2f;
-            WeatherMenu.Width.Set(500f, 0f);
-            WeatherMenu.Height.Set(200f, 0f);
-            WeatherMenu.BackgroundColor = new Color(73, 94, 171);
             Append(WeatherMenu);
 
-            WeatherMenu.Append(new UIText("Weather Control") { HAlign = 0.5f, MarginTop = 15 });
             BackButton(WeatherMenu, 415, 155);
 
             var TimeSlider = MakeSlider(new UIIntRangedDataValue("Time Control:", 0, 0, 86399), out Time, WeatherMenu, top: 50);

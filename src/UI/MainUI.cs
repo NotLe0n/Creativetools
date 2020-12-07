@@ -1,7 +1,5 @@
 ﻿using Creativetools.src.UI.Elements;
-using Creativetools.src.UI.UIElements;
 using Microsoft.Xna.Framework;
-using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.GameContent.Events;
@@ -117,14 +115,6 @@ namespace Creativetools.src.UI
             AppendButtons(new UIHoverImageButton("Creativetools/UI Assets/Info", "Display Info"), (evt, element) => Info.Visible = !Info.Visible);
             AppendButtons(new UIHoverImageButton("Creativetools/UI Assets/weatherControl", "Weather Control"), (evt, element) => GetInstance<Creativetools>().UserInterface.SetState(new WeatherControl()), true);
             AppendButtons(new UIHoverImageButton("Creativetools/UI Assets/playSound", "Play Sound"), (evt, element) => GetInstance<Creativetools>().UserInterface.SetState(new PlaySoundUI()), true);
-            /*row += 54;
-            AppendButtons(new UIHoverImageButton("Creativetools/UI Assets/playSound", "Camera Control"), button => button.OnClick += (evt, element) =>
-            {
-                Main.playerInventory = false;
-                Creativetools.ZoomValue = 1f;
-                GetInstance<Creativetools>().UserInterface.SetState(null);
-                CameraControlUI.Visible = !CameraControlUI.Visible;
-            }, true);*/
             #endregion
 
             for (int i = 0; i < ButtonList.Count; i++)

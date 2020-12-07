@@ -1,13 +1,10 @@
 ﻿using Microsoft.Xna.Framework;
 using System;
-using System.Linq;
 using Terraria;
 using Terraria.GameContent.UI.Elements;
-using Terraria.ID;
 using Terraria.UI;
-using static Terraria.ModLoader.ModContent;
 
-namespace Creativetools.src.UI.UIElements
+namespace Creativetools.src.UI.Elements
 {
     public class DragableUIPanel : UIPanel
     {

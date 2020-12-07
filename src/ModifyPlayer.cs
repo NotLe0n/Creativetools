@@ -6,7 +6,6 @@ using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameInput;
 using Terraria.ModLoader;
-using static Creativetools.src.Creativetools;
 
 namespace Creativetools.src
 {
@@ -105,25 +104,6 @@ namespace Creativetools.src
         {
             SizePlayerRender.visible = true;
             layers.Add(SizePlayerRender);
-        }
-        public override void SyncPlayer(int toWho, int fromWho, bool newPlayer)
-        {
-            ModPacket packet = mod.GetPacket();
-            packet.Write((byte)SyncMessageType.SyncPlayer);
-            packet.Write((byte)player.whoAmI);
-            packet.Write(CreativeFly); // While we sync CreativeFly in SendClientChanges, we still need to send it here as well so newly joining players will receive the correct value.
-            packet.Send(toWho, fromWho);
-        }
-        public override void SendClientChanges(ModPlayer clientPlayer)
-        {
-            // Here we would sync something like an RPG stat whenever the player changes it.
-            ModifyPlayer clone = clientPlayer as ModifyPlayer;
-            // Send a Mod Packet with the changes.
-            var packet = mod.GetPacket();
-            packet.Write((byte)SyncMessageType.SyncCreativeFly);
-            packet.Write((byte)player.whoAmI);
-            packet.Write(CreativeFly);
-            packet.Send();
         }
     }
 }
