@@ -1,5 +1,4 @@
-﻿using Creativetools.cItem;
-using Creativetools.src.UI.Elements;
+﻿using Creativetools.src.UI.Elements;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Windows.Forms;
@@ -116,7 +115,7 @@ namespace Creativetools.src.UI
             ModifyItem.cScale = ScaleDataProperty.Data;
             ModifyItem.cUseTime = UseTimeDataProperty.Data;
             ModifyItem.createitem = true;
-            Main.LocalPlayer.QuickSpawnItem(ItemType<CustomItem>());
+            Main.LocalPlayer.QuickSpawnItem(ItemType<cItem.CustomItem>());
             Main.PlaySound(SoundID.MenuTick);
         }
         private void CodeButtonClicked(UIMouseEvent evt, UIElement listeningElement)

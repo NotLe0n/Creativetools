@@ -10,7 +10,7 @@ namespace Creativetools.src.UI
     {
         public override void OnInitialize()
         {
-            UIHoverImageButton Menu_button = new UIHoverImageButton("Creativetools/UI/UI Assets/MenuButton", "Open Menu");
+            UIHoverImageButton Menu_button = new UIHoverImageButton("Creativetools/UI Assets/MenuButton", "Open Menu");
             Menu_button.MarginTop = 260;
             Menu_button.MarginLeft = 20;
             Menu_button.OnClick += new MouseEvent(Menu_buttonClicked);

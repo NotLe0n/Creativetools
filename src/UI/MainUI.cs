@@ -37,33 +37,20 @@ namespace Creativetools.src.UI
         }
         public override void OnInitialize()
         {
-            MenuPanel = new DragableUIPanel(442f, 212f) { VAlign = 0.5f, HAlign = 0.1f };
-            MenuPanel.SetPadding(0);
+            MenuPanel = new DragableUIPanel("Creativetools Menu", 442f, 212f) { VAlign = 0.5f, HAlign = 0.1f };
+            MenuPanel.OnCloseBtnClicked += () => { GetInstance<Creativetools>().UserInterface.SetState(null); Main.PlaySound(SoundID.MenuClose); };
             Append(MenuPanel);
-            MenuPanel.Append(new UIText("Creativetools Menu") { HAlign = 0.5f, MarginTop = 15 });
-
-            UITextPanel<string> backButton = new UITextPanel<string>(Language.GetTextValue(" X "));
-            backButton.SetPadding(4);
-            backButton.Width.Set(10, 0f);
-            backButton.MarginLeft = 400;
-            backButton.MarginTop = 10;
-            backButton.OnClick += (evt, element) =>
-            {
-                GetInstance<Creativetools>().UserInterface.SetState(null);
-                Main.PlaySound(SoundID.MenuClose);
-            };
-            MenuPanel.Append(backButton);
 
             #region buttons
-            AppendButtons(new UIHoverImageButton("Creativetools/UI/UI Assets/bloodmoonToggle", "Toggle bloodmoon"), button => button.OnClick += (evt, element) => Main.bloodMoon = !Main.bloodMoon);
+            AppendButtons(new UIHoverImageButton("Creativetools/UI Assets/bloodmoonToggle", "Toggle bloodmoon"), button => button.OnClick += (evt, element) => Main.bloodMoon = !Main.bloodMoon);
             row += 54;
-            AppendButtons(new UIHoverImageButton("Creativetools/UI/UI Assets/frostmoonToggle", "Toggle Frost moon"), button => button.OnClick += (evt, element) => { if (Main.snowMoon) Main.stopMoonEvent(); else Main.startSnowMoon(); });
+            AppendButtons(new UIHoverImageButton("Creativetools/UI Assets/frostmoonToggle", "Toggle Frost moon"), button => button.OnClick += (evt, element) => { if (Main.snowMoon) Main.stopMoonEvent(); else Main.startSnowMoon(); });
             row += 54;
-            AppendButtons(new UIHoverImageButton("Creativetools/UI/UI Assets/pumpkinmoonToggle", "Toggle Pumpkin moon"), button => button.OnClick += (evt, element) => { if (Main.pumpkinMoon) Main.stopMoonEvent(); else Main.startPumpkinMoon(); });
+            AppendButtons(new UIHoverImageButton("Creativetools/UI Assets/pumpkinmoonToggle", "Toggle Pumpkin moon"), button => button.OnClick += (evt, element) => { if (Main.pumpkinMoon) Main.stopMoonEvent(); else Main.startPumpkinMoon(); });
             row += 54;
-            AppendButtons(new UIHoverImageButton("Creativetools/UI/UI Assets/solareclipseToggle", "Toggle Solar Eclipse"), button => button.OnClick += (evt, element) => Main.eclipse = !Main.eclipse);
+            AppendButtons(new UIHoverImageButton("Creativetools/UI Assets/solareclipseToggle", "Toggle Solar Eclipse"), button => button.OnClick += (evt, element) => Main.eclipse = !Main.eclipse);
             row += 54;
-            AppendButtons(new UIHoverImageButton("Creativetools/UI/UI Assets/pirateInvasionToggle", "Toggle Pirate invasion"), button => button.OnClick += (evt, element) =>
+            AppendButtons(new UIHoverImageButton("Creativetools/UI Assets/pirateInvasionToggle", "Toggle Pirate invasion"), button => button.OnClick += (evt, element) =>
                 {
                     if (Main.invasionType == InvasionID.None)
                     {
@@ -77,7 +64,7 @@ namespace Creativetools.src.UI
                     }
                 });
             row += 54;
-            AppendButtons(new UIHoverImageButton("Creativetools/UI/UI Assets/goblinInvasionToggle", "Toggle Goblin invasion"), button => button.OnClick += (evt, element) =>
+            AppendButtons(new UIHoverImageButton("Creativetools/UI Assets/goblinInvasionToggle", "Toggle Goblin invasion"), button => button.OnClick += (evt, element) =>
                 {
                     if (Main.invasionType == InvasionID.None)
                     {
@@ -91,7 +78,7 @@ namespace Creativetools.src.UI
                     }
                 });
             row += 54;
-            AppendButtons(new UIHoverImageButton("Creativetools/UI/UI Assets/alienInvasionToggle", "Toggle Martian Madness"), button => button.OnClick += (evt, element) =>
+            AppendButtons(new UIHoverImageButton("Creativetools/UI Assets/alienInvasionToggle", "Toggle Martian Madness"), button => button.OnClick += (evt, element) =>
                 {
                     if (Main.invasionType == InvasionID.None)
                     {
@@ -105,7 +92,7 @@ namespace Creativetools.src.UI
                     }
                 });
             row += 54;
-            AppendButtons(new UIHoverImageButton("Creativetools/UI/UI Assets/frostLegionToggle", "Toggle Frost Legion"), button => button.OnClick += (evt, element) =>
+            AppendButtons(new UIHoverImageButton("Creativetools/UI Assets/frostLegionToggle", "Toggle Frost Legion"), button => button.OnClick += (evt, element) =>
                  {
                      if (Main.invasionType == InvasionID.None)
                      {
@@ -120,38 +107,38 @@ namespace Creativetools.src.UI
                  });
             row = 10;
             collumn += 54;
-            AppendButtons(new UIHoverImageButton("Creativetools/UI/UI Assets/hardmodeToggle", "Toggle hardmode"), button => button.OnClick += (evt, element) => Main.hardMode = !Main.hardMode);
+            AppendButtons(new UIHoverImageButton("Creativetools/UI Assets/hardmodeToggle", "Toggle hardmode"), button => button.OnClick += (evt, element) => Main.hardMode = !Main.hardMode);
             row += 54;
-            AppendButtons(new UIHoverImageButton("Creativetools/UI/UI Assets/expertModeToggle", "Toggle Expert Mode"), button => button.OnClick += (evt, element) => Main.expertMode = !Main.expertMode);
+            AppendButtons(new UIHoverImageButton("Creativetools/UI Assets/expertModeToggle", "Toggle Expert Mode"), button => button.OnClick += (evt, element) => Main.expertMode = !Main.expertMode);
             row += 54;
-            AppendButtons(new UIHoverImageButton("Creativetools/UI/UI Assets/halloweenToggle", "Toggle halloween"), button => button.OnClick += (evt, element) => Main.halloween = !Main.halloween);
+            AppendButtons(new UIHoverImageButton("Creativetools/UI Assets/halloweenToggle", "Toggle halloween"), button => button.OnClick += (evt, element) => Main.halloween = !Main.halloween);
             row += 54;
-            AppendButtons(new UIHoverImageButton("Creativetools/UI/UI Assets/xmasToggle", "Toggle Christmas"), button => button.OnClick += (evt, element) => Main.xMas = !Main.xMas);
+            AppendButtons(new UIHoverImageButton("Creativetools/UI Assets/xmasToggle", "Toggle Christmas"), button => button.OnClick += (evt, element) => Main.xMas = !Main.xMas);
             row += 54;
-            AppendButtons(new UIHoverImageButton("Creativetools/UI/UI Assets/partyToggle", "Toggle party"), button => button.OnClick += (evt, element) => BirthdayParty.GenuineParty = !BirthdayParty.PartyIsUp);
+            AppendButtons(new UIHoverImageButton("Creativetools/UI Assets/partyToggle", "Toggle party"), button => button.OnClick += (evt, element) => BirthdayParty.GenuineParty = !BirthdayParty.PartyIsUp);
             row += 54;
-            AppendButtons(new UIHoverImageButton("Creativetools/UI/UI Assets/slimerainToggle", "Toggle Slime Rain"), button => { button.OnClick += (evt, element) => { if (Main.slimeRain) Main.StopSlimeRain(announce: true); else Main.StartSlimeRain(announce: true); }; });
+            AppendButtons(new UIHoverImageButton("Creativetools/UI Assets/slimerainToggle", "Toggle Slime Rain"), button => { button.OnClick += (evt, element) => { if (Main.slimeRain) Main.StopSlimeRain(announce: true); else Main.StartSlimeRain(announce: true); }; });
             row += 54;
-            AppendButtons(new UIHoverImageButton("Creativetools/UI/UI Assets/spawnMeteor", "spawn Meteor"), button => button.OnClick += (evt, element) => WorldGen.dropMeteor());
+            AppendButtons(new UIHoverImageButton("Creativetools/UI Assets/spawnMeteor", "spawn Meteor"), button => button.OnClick += (evt, element) => WorldGen.dropMeteor());
             row += 54;
-            AppendButtons(new UIHoverImageButton("Creativetools/UI/UI Assets/clearInventory", "Clear inventory"), button => button.OnClick += (evt, element) => Confirm_Panel.Visible = true, true);
+            AppendButtons(new UIHoverImageButton("Creativetools/UI Assets/clearInventory", "Clear inventory"), button => button.OnClick += (evt, element) => Confirm_Panel.Visible = true, true);
             collumn += 54;
             row = 10;
-            AppendButtons(new UIHoverImageButton("Creativetools/UI/UI Assets/modifyItem", "Modify Item/Player"), button => button.OnClick += (evt, element) => GetInstance<Creativetools>().UserInterface.SetState(new ItemModUI()), true);
+            AppendButtons(new UIHoverImageButton("Creativetools/UI Assets/modifyItem", "Modify Item/Player"), button => button.OnClick += (evt, element) => GetInstance<Creativetools>().UserInterface.SetState(new ItemModUI()), true);
             row += 54;
-            AppendButtons(new UIHoverImageButton("Creativetools/UI/UI Assets/custom", "Custom Item/NPC"), button => button.OnClick += (evt, element) => GetInstance<Creativetools>().UserInterface.SetState(new CustomNPCUI()), true);
+            AppendButtons(new UIHoverImageButton("Creativetools/UI Assets/custom", "Custom Item/NPC"), button => button.OnClick += (evt, element) => GetInstance<Creativetools>().UserInterface.SetState(new CustomNPCUI()), true);
             row += 54;
-            AppendButtons(new UIHoverImageButton("Creativetools/UI/UI Assets/creativeFly", "Creative Fly"), button => button.OnClick += (evt, element) => ModifyPlayer.CreativeFly = !ModifyPlayer.CreativeFly);
+            AppendButtons(new UIHoverImageButton("Creativetools/UI Assets/creativeFly", "Creative Fly"), button => button.OnClick += (evt, element) => ModifyPlayer.CreativeFly = !ModifyPlayer.CreativeFly);
             row += 54;
-            AppendButtons(new UIHoverImageButton("Creativetools/UI/UI Assets/magicCursor", "Magic Cursor"), button => button.OnClick += (evt, element) => MagicCursor = !MagicCursor);
+            AppendButtons(new UIHoverImageButton("Creativetools/UI Assets/magicCursor", "Magic Cursor"), button => button.OnClick += (evt, element) => MagicCursor = !MagicCursor);
             row += 54;
-            AppendButtons(new UIHoverImageButton("Creativetools/UI/UI Assets/Info", "Display Info"), button => button.OnClick += (evt, element) => Info.Visible = !Info.Visible);
+            AppendButtons(new UIHoverImageButton("Creativetools/UI Assets/Info", "Display Info"), button => button.OnClick += (evt, element) => Info.Visible = !Info.Visible);
             row += 54;
-            AppendButtons(new UIHoverImageButton("Creativetools/UI/UI Assets/weatherControl", "Weather Control"), button => button.OnClick += (evt, element) => GetInstance<Creativetools>().UserInterface.SetState(new WeatherControl()), true);
+            AppendButtons(new UIHoverImageButton("Creativetools/UI Assets/weatherControl", "Weather Control"), button => button.OnClick += (evt, element) => GetInstance<Creativetools>().UserInterface.SetState(new WeatherControl()), true);
             row += 54;
-            AppendButtons(new UIHoverImageButton("Creativetools/UI/UI Assets/playSound", "Play Sound"), button => button.OnClick += (evt, element) => GetInstance<Creativetools>().UserInterface.SetState(new PlaySoundUI()), true);
+            AppendButtons(new UIHoverImageButton("Creativetools/UI Assets/playSound", "Play Sound"), button => button.OnClick += (evt, element) => GetInstance<Creativetools>().UserInterface.SetState(new PlaySoundUI()), true);
             /*row += 54;
-            AppendButtons(new UIHoverImageButton("Creativetools/UI/UI Assets/playSound", "Camera Control"), button => button.OnClick += (evt, element) =>
+            AppendButtons(new UIHoverImageButton("Creativetools/UI Assets/playSound", "Camera Control"), button => button.OnClick += (evt, element) =>
             {
                 Main.playerInventory = false;
                 Creativetools.ZoomValue = 1f;
@@ -162,7 +149,7 @@ namespace Creativetools.src.UI
 
             for (int i = 0; i < ButtonList.Count; i++)
             {
-                UIImage Selected = new UIImage(GetTexture("Creativetools/UI/UI Assets/selected"));
+                UIImage Selected = new UIImage(GetTexture("Creativetools/UI Assets/selected"));
                 Selected.MarginTop = -10000;
                 ButtonList[i].Append(Selected);
                 selectList.Add(Selected);

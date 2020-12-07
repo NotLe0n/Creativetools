@@ -1,5 +1,5 @@
-﻿using Creativetools.src.UI.Elements;
-using Creativetools.src.UI.UIElements;
+﻿using Creativetools.src.UI.UIElements;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.GameContent.UI.Elements;
 using Terraria.ID;
@@ -12,12 +12,11 @@ namespace Creativetools.src.UI
         public static bool Visible;
         public override void OnInitialize()
         {
-            DragableUIPanel ConfirmPanel = new DragableUIPanel(550f, 100f);
+            DragableUIPanel ConfirmPanel = new DragableUIPanel("Are you sure you want to delete all your items?", 550f, 100f);
             ConfirmPanel.SetPadding(0);
             ConfirmPanel.VAlign = ConfirmPanel.HAlign = 0.5f;
+            ConfirmPanel.OnCloseBtnClicked += () => Visible = false;
             Append(ConfirmPanel);
-
-            ConfirmPanel.Append(new UIText("ARE YOU SURE YOU WANT TO DELETE ALL YOUR ITEMS?!") { HAlign = 0.5f, MarginTop = 15 });
 
             UIPanel YEPbutton = new UIPanel();
             YEPbutton.Width.Set(100, 0);

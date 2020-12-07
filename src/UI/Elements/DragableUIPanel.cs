@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using System;
 using System.Linq;
 using Terraria;
 using Terraria.GameContent.UI.Elements;
@@ -11,7 +12,9 @@ namespace Creativetools.src.UI.UIElements
     public class DragableUIPanel : UIPanel
     {
         public bool active = false;
-        public DragableUIPanel(float width, float height)
+        public event Action OnCloseBtnClicked;
+
+        public DragableUIPanel(string headingtext, float width, float height)
         {
             Width.Set(width, 0f);
             Height.Set(height, 0f);
@@ -26,22 +29,20 @@ namespace Creativetools.src.UI.UIElements
             header.OnMouseUp += Header_OnMouseUp;
             Append(header);
 
+            var heading = new UIText(headingtext, 0.9f);
+            heading.VAlign = 0.5f;
+            heading.MarginLeft = 16f;
+            header.Append(heading);
+
             var closeBtn = new UITextPanel<char>('X');
             closeBtn.SetPadding(7);
             closeBtn.Width.Set(40, 0);
-            closeBtn.Left.Set(0, 0.9f);
+            closeBtn.Left.Set(-40, 1f);
             closeBtn.BackgroundColor.A = 255;
-            closeBtn.OnClick += (evt, elm) => { Remove(); };
+            closeBtn.OnClick += (evt, elm) => OnCloseBtnClicked?.Invoke();
             header.Append(closeBtn);
         }
         #region Drag code yoiked from ExampleMod 
-        public override void OnDeactivate()
-        {
-            active = false;
-            RemoveAllChildren();
-            Remove();
-        }
-        public override void OnActivate() => active = true;
 
         private Vector2 offset;
         public bool dragging;

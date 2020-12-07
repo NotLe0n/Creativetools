@@ -1,7 +1,7 @@
 ﻿using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Creativetools.cItem
+namespace Creativetools.src.cItem
 {
     public class CustomItem : ModItem
     {

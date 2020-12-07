@@ -1,5 +1,4 @@
-﻿using Creativetools.cItem;
-using Creativetools.src.UI;
+﻿using Creativetools.src.UI;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ModLoader;
@@ -22,11 +21,11 @@ namespace Creativetools.src
         public static int cUseTime = 10;
         public static bool cAutoSwing = false;
         public static bool cTurnAround = false;
-        public static Texture2D ctexture = GetTexture("Creativetools/cItem/CustomItem");
+        public static Texture2D ctexture = GetTexture("Creativetools/src/cItem/CustomItem");
 
         public override void SetDefaults(Item item)
         {
-            if (item.type == ItemType<CustomItem>() && createitem)
+            if (item.type == ItemType<cItem.CustomItem>() && createitem)
             {
                 item.SetNameOverride(cName);
                 item.knockBack = cKnockback;
