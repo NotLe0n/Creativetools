@@ -31,28 +31,28 @@ namespace Creativetools.src.UI
             WeatherMenu.Append(new UIText(Language.GetTextValue("LegacyInterface.102") + ":", 0.85f) { MarginTop = 105, MarginLeft = 20 });
 
             float pos = 0.3f;
-            ImageButtons(new UIHoverImageButton("Creativetools/UI/UI Assets/FullMoon", Language.GetTextValue("GameUI.FullMoon")),
+            ImageButtons(new UIHoverImageButton("Creativetools/UI Assets/FullMoon", Language.GetTextValue("GameUI.FullMoon")),
                 WeatherMenu, button => button.OnClick += (evt, elm) => Main.moonPhase = 0, MarginTop: 100, HAllign: pos);
             pos += 0.1f;
-            ImageButtons(new UIHoverImageButton("Creativetools/UI/UI Assets/WaningGibbous", Language.GetTextValue("GameUI.WaningGibbous")),
+            ImageButtons(new UIHoverImageButton("Creativetools/UI Assets/WaningGibbous", Language.GetTextValue("GameUI.WaningGibbous")),
                 WeatherMenu, button => button.OnClick += (evt, elm) => Main.moonPhase = 1, MarginTop: 100, HAllign: pos);
             pos += 0.1f;
-            ImageButtons(new UIHoverImageButton("Creativetools/UI/UI Assets/ThirdQuarter", Language.GetTextValue("GameUI.ThirdQuarter")),
+            ImageButtons(new UIHoverImageButton("Creativetools/UI Assets/ThirdQuarter", Language.GetTextValue("GameUI.ThirdQuarter")),
                 WeatherMenu, button => button.OnClick += (evt, elm) => Main.moonPhase = 2, MarginTop: 100, HAllign: pos);
             pos += 0.1f;
-            ImageButtons(new UIHoverImageButton("Creativetools/UI/UI Assets/WaningCrescent", Language.GetTextValue("GameUI.WaningCrescent")),
+            ImageButtons(new UIHoverImageButton("Creativetools/UI Assets/WaningCrescent", Language.GetTextValue("GameUI.WaningCrescent")),
                 WeatherMenu, button => button.OnClick += (evt, elm) => Main.moonPhase = 3, MarginTop: 100, HAllign: pos);
             pos += 0.1f;
-            ImageButtons(new UIHoverImageButton("Creativetools/UI/UI Assets/NewMoon", Language.GetTextValue("GameUI.NewMoon")),
+            ImageButtons(new UIHoverImageButton("Creativetools/UI Assets/NewMoon", Language.GetTextValue("GameUI.NewMoon")),
                 WeatherMenu, button => button.OnClick += (evt, elm) => Main.moonPhase = 4, MarginTop: 100, HAllign: pos);
             pos += 0.1f;
-            ImageButtons(new UIHoverImageButton("Creativetools/UI/UI Assets/waxingCrescent", Language.GetTextValue("GameUI.waxingCrescent")),
+            ImageButtons(new UIHoverImageButton("Creativetools/UI Assets/waxingCrescent", Language.GetTextValue("GameUI.waxingCrescent")),
                 WeatherMenu, button => button.OnClick += (evt, elm) => Main.moonPhase = 5, MarginTop: 100, HAllign: pos);
             pos += 0.1f;
-            ImageButtons(new UIHoverImageButton("Creativetools/UI/UI Assets/FirstQuarter", Language.GetTextValue("GameUI.FirstQuarter")),
+            ImageButtons(new UIHoverImageButton("Creativetools/UI Assets/FirstQuarter", Language.GetTextValue("GameUI.FirstQuarter")),
                 WeatherMenu, button => button.OnClick += (evt, elm) => Main.moonPhase = 6, MarginTop: 100, HAllign: pos);
             pos += 0.1f;
-            ImageButtons(new UIHoverImageButton("Creativetools/UI/UI Assets/WaxingGibbous", Language.GetTextValue("GameUI.WaxingGibbous")),
+            ImageButtons(new UIHoverImageButton("Creativetools/UI Assets/WaxingGibbous", Language.GetTextValue("GameUI.WaxingGibbous")),
                 WeatherMenu, button => button.OnClick += (evt, elm) => Main.moonPhase = 7, MarginTop: 100, HAllign: pos);
 
         }
