@@ -1,5 +1,4 @@
 ﻿using Creativetools.src.UI.Elements;
-using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Windows.Forms;
 using Terraria;
@@ -26,16 +25,11 @@ namespace Creativetools.src.UI
 
         public override void OnInitialize()
         {
-            UIPanel Menu = new UIPanel();
+            TabPanel Menu = new TabPanel(450, 600, new Tab("Custom NPC", new CustomNPCUI()), new Tab(" Custom Item", this));
             Menu.VAlign = 0.7f;
             Menu.HAlign = 0.2f;
-            Menu.Width.Set(500f, 0f);
-            Menu.Height.Set(600f, 0f);
-            Menu.BackgroundColor = new Color(73, 94, 171);
+            Menu.OnCloseBtnClicked += () => GetInstance<Creativetools>().UserInterface.SetState(new MainUI());
             Append(Menu);
-
-            Menu.Append(new UIText("Create Item") { HAlign = 0.5f, MarginTop = 15 });
-            BackButton(Menu, 0, 555, 0.95f);
 
             UITextPanel<string> CreateButton = new UITextPanel<string>(Language.GetTextValue("Create"));
             CreateButton.SetPadding(4);
@@ -50,16 +44,6 @@ namespace Creativetools.src.UI
             CodeButton.MarginTop = 555;
             CodeButton.OnClick += CodeButtonClicked;
             Menu.Append(CodeButton);
-
-            UITextPanel<string> PrevButton = new UITextPanel<string>(Language.GetTextValue("<"));
-            PrevButton.HAlign = 0.5f;
-            PrevButton.MarginTop = 540;
-            PrevButton.OnClick += (evt, elm) =>
-            {
-                GetInstance<Creativetools>().UserInterface.SetState(new CustomNPCUI());
-                Main.PlaySound(SoundID.MenuOpen);
-            };
-            Menu.Append(PrevButton);
 
             UITextPanel<string> FileButton = new UITextPanel<string>(Language.GetTextValue("Select Texture"));
             FileButton.SetPadding(4);

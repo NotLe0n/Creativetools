@@ -1,9 +1,6 @@
 ﻿using Creativetools.src.UI.Elements;
-using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
-using Terraria.GameContent.UI.Elements;
-using Terraria.ID;
 using Terraria.UI;
 using static Creativetools.src.UI.UIHelper;
 using static Terraria.ModLoader.ModContent;
@@ -12,7 +9,7 @@ namespace Creativetools.src.UI
 {
     class PlayerModUI : UIState
     {
-        private UIPanel PlayerMenu;
+        private TabPanel PlayerMenu;
         UIIntRangedDataValue LifeDataProperty;
         UIIntRangedDataValue ManaDataProperty;
         UIIntRangedDataValue MaxLifeDataProperty;
@@ -21,25 +18,11 @@ namespace Creativetools.src.UI
 
         public override void OnInitialize()
         {
-            PlayerMenu = new UIPanel();
-            PlayerMenu.SetPadding(0);
+            PlayerMenu = new TabPanel(450, 300, new Tab("Change Item", new ItemModUI()), new Tab(" Change Player", this));
             PlayerMenu.VAlign = 0.6f;
             PlayerMenu.HAlign = 0.2f;
-            PlayerMenu.Width.Set(450f, 0f);
-            PlayerMenu.Height.Set(350f, 0f);
-            PlayerMenu.BackgroundColor = new Color(73, 94, 171);
+            PlayerMenu.OnCloseBtnClicked += () => GetInstance<Creativetools>().UserInterface.SetState(new MainUI());
             Append(PlayerMenu);
-
-            PlayerMenu.Append(new UIText("Change Player Properties") { HAlign = 0.5f, MarginTop = 15 });
-            BackButton(PlayerMenu, 370, 310);
-
-            UITextPanel<string> PrevButton = new UITextPanel<string>("<") { HAlign = 0.5f, MarginTop = 290 };
-            PrevButton.OnClick += (evt, elm) =>
-            {
-                GetInstance<Creativetools>().UserInterface.SetState(new ItemModUI());
-                Main.PlaySound(SoundID.MenuOpen);
-            };
-            PlayerMenu.Append(PrevButton);
 
             var LifeSlider = MakeSlider(new UIIntRangedDataValue("", 0, 0, 999), out LifeDataProperty, PlayerMenu, top: 50, left: -10);
             SliderButtons("Set Life", LifeSlider, button => button.OnClick += (evt, element) => Main.LocalPlayer.statLife = LifeDataProperty.Data);

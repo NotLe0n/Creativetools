@@ -5,6 +5,7 @@ using System;
 using Terraria;
 using Terraria.GameContent.UI.Elements;
 using Terraria.Localization;
+using Terraria.ModLoader;
 using Terraria.UI;
 using static Creativetools.src.UI.UIHelper;
 
@@ -19,9 +20,8 @@ namespace Creativetools.src.UI
             WeatherMenu = new DragableUIPanel("Weather Control", 500f, 200f);
             WeatherMenu.VAlign = 0.6f;
             WeatherMenu.HAlign = 0.2f;
+            WeatherMenu.OnCloseBtnClicked += () => ModContent.GetInstance<Creativetools>().UserInterface.SetState(new MainUI());
             Append(WeatherMenu);
-
-            BackButton(WeatherMenu, 415, 155);
 
             var TimeSlider = MakeSlider(new UIIntRangedDataValue("Time Control:", 0, 0, 86399), out Time, WeatherMenu, top: 50);
             WeatherMenu.Append(new UIText(Language.GetTextValue("LegacyInterface.102") + ":", 0.85f) { MarginTop = 105, MarginLeft = 20 });
@@ -50,7 +50,6 @@ namespace Creativetools.src.UI
             pos += 0.1f;
             ImageButtons(new UIHoverImageButton("Creativetools/UI Assets/WaxingGibbous", Language.GetTextValue("GameUI.WaxingGibbous")),
                 WeatherMenu, button => button.OnClick += (evt, elm) => Main.moonPhase = 7, MarginTop: 100, HAllign: pos);
-
         }
 
         public override void Update(GameTime gameTime)

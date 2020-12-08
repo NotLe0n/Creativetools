@@ -7,6 +7,7 @@ using Terraria;
 using Terraria.Audio;
 using Terraria.GameContent.UI.Elements;
 using Terraria.ID;
+using Terraria.ModLoader;
 using Terraria.UI;
 using static Creativetools.src.UI.UIHelper;
 
@@ -23,16 +24,11 @@ namespace Creativetools.src.UI
         public static bool playmusic;
         public override void OnInitialize()
         {
-            UIPanel Menu = new UIPanel();
+            DragableUIPanel Menu = new DragableUIPanel("Play Sound", 500, 220);
             Menu.VAlign = 0.6f;
             Menu.HAlign = 0.2f;
-            Menu.Width.Set(500f, 0f);
-            Menu.Height.Set(220f, 0f);
-            Menu.BackgroundColor = new Color(73, 94, 171);
+            Menu.OnCloseBtnClicked += () => ModContent.GetInstance<Creativetools>().UserInterface.SetState(new MainUI());
             Append(Menu);
-
-            Menu.Append(new UIText("Play Sound") { HAlign = 0.5f, MarginTop = 15 });
-            BackButton(Menu, 420, 175);
 
             //////////////////Sound/////////////////////
             var SoundSlider = MakeSlider(new UIIntRangedDataValue("", 0, 0, 42), out ID, Menu, top: 50, left: -10);

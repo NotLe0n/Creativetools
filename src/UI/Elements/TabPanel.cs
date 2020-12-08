@@ -1,5 +1,4 @@
 ﻿using Microsoft.Xna.Framework;
-using System.Linq;
 using Terraria;
 using Terraria.GameContent.UI.Elements;
 using Terraria.ID;
@@ -11,11 +10,6 @@ namespace Creativetools.src.UI.Elements
     class Tab : UITextPanel<string>
     {
         public UIState _changeStateTo;
-        public static UIState lastTab;
-        /// <summary>
-        /// List of all Tabs
-        /// </summary>
-        public static Tab[] tabs = { };
 
         /// <summary>
         /// Creates a new Tab
@@ -25,31 +19,24 @@ namespace Creativetools.src.UI.Elements
         public Tab(string text, UIState changeStateTo) : base(text)
         {
             _changeStateTo = changeStateTo;
-            tabs.ToList().Add(this);
         }
         public override void OnInitialize()
         {
             SetPadding(7);
-            BackgroundColor.A = 255;
-
-            for (int i = 0; i < tabs.Length; i++)
-            {
-                if (i > 0 && tabs[i - 1] != null)
-                {
-                    tabs[i].Left.Set(tabs[i - 1].GetDimensions().Width - 16f, 0f);
-                }
-                Recalculate();
-            }
+            BackgroundColor.A = 255; // solid color
         }
         public override void Click(UIMouseEvent evt)
         {
-            lastTab = _changeStateTo;
+            // update Last tab
+            TabPanel.lastTab = _changeStateTo;
+
+            // change UIState and play click sound
             GetInstance<Creativetools>().UserInterface.SetState(_changeStateTo);
             Main.PlaySound(SoundID.MenuTick);
         }
         public override void Update(GameTime gameTime)
         {
-            base.Update(gameTime);
+            // Highlight
             if (GetInstance<Creativetools>().UserInterface.CurrentState == _changeStateTo)
             {
                 BackgroundColor = new Color(73, 94, 171);
@@ -60,6 +47,13 @@ namespace Creativetools.src.UI.Elements
     class TabPanel : DragableUIPanel
     {
         /// <summary>
+        /// List of all Tabs
+        /// </summary>
+        public Tab[] Tabs;
+
+        public static UIState lastTab;
+
+        /// <summary>
         /// Creates a new Tab Panel
         /// </summary>
         /// <param name="width">The width of the panel</param>
@@ -69,13 +63,21 @@ namespace Creativetools.src.UI.Elements
         {
             Width.Pixels = width;
             Height.Pixels = height;
-            Tab.tabs = tabs;
+            Tabs = tabs;
         }
         public override void OnInitialize()
         {
-            SetPadding(0);
-            for (int i = Tab.tabs.Length - 1; i >= 0; i--)
-                Append(Tab.tabs[i]);
+            // set correct position for all tabs
+            for (int i = 0; i < Tabs.Length; i++)
+            {
+                if (i > 0 && Tabs[i - 1] != null)
+                {
+                    Tabs[i].Left.Set(Tabs[i - 1].MinWidth.Pixels - 24, 0f);
+                }
+            }
+            // append all tabs
+            for (int i = Tabs.Length - 1; i >= 0; i--)
+                header.Append(Tabs[i]);
         }
     }
 }

@@ -1,10 +1,8 @@
 ﻿using Creativetools.src.UI.Elements;
-using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.GameContent.UI.Elements;
 using Terraria.ID;
-using Terraria.Localization;
 using Terraria.UI;
 using static Creativetools.src.UI.UIHelper;
 using static Terraria.ModLoader.ModContent;
@@ -22,7 +20,7 @@ namespace Creativetools.src.UI
         UIFloatRangedDataValue SizeDataProperty;
         public override void OnInitialize()
         {
-            TabPanel ItemMenu = new TabPanel(450, 500, new Tab("Change Item", this), new Tab("Change Player", new PlayerModUI()));
+            TabPanel ItemMenu = new TabPanel(450, 450, new Tab("Change Item", this), new Tab(" Change Player", new PlayerModUI()));
             ItemMenu.VAlign = 0.6f;
             ItemMenu.HAlign = 0.2f;
             ItemMenu.OnCloseBtnClicked += () => GetInstance<Creativetools>().UserInterface.SetState(new MainUI());

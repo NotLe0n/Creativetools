@@ -3,9 +3,7 @@ using System;
 using Terraria;
 using Terraria.GameContent.UI.Elements;
 using Terraria.ID;
-using Terraria.Localization;
 using Terraria.UI;
-using static Terraria.ModLoader.ModContent;
 
 namespace Creativetools.src.UI
 {
@@ -35,32 +33,6 @@ namespace Creativetools.src.UI
             element.VAlign = VAllign;
 
             return element;
-        }
-        /// <summary>
-        /// Creates a button to close the current UIState and open the Creative Tools Menu
-        /// </summary>
-        /// <param name="AppendTo">The UIElement it should be appended to</param>
-        /// <param name="MarginLeft">X Position relative to appendTo (0 is left most pixel)</param>
-        /// <param name="MarginTop">Y Position relative to appendTo (0 is top most pixel)</param>
-        /// <param name="HAllign">percentage X Position relative to appendTo (0 is left most pixel, 1 is right most pixel)</param>
-        /// <param name="VAllign">percentage Y Position (in percent) relative to appendTo (0 is top most pixel, 1 is bottom most pixel)</param>
-        public static UIElement BackButton(UIElement AppendTo, float MarginLeft = 0, float MarginTop = 0, float HAllign = 0, float VAllign = 0)
-        {
-            UITextPanel<string> backButton = new UITextPanel<string>(Language.GetTextValue("UI.Back"));
-            backButton.SetPadding(4);
-            backButton.Width.Set(10, 0f);
-            backButton.MarginLeft = MarginLeft;
-            backButton.MarginTop = MarginTop;
-            backButton.HAlign = HAllign;
-            backButton.VAlign = VAllign;
-            backButton.OnClick += (evt, elm) =>
-            {
-                GetInstance<Creativetools>().UserInterface.SetState(new MainUI());
-                Main.PlaySound(SoundID.MenuOpen);
-            };
-            AppendTo.Append(backButton);
-
-            return backButton;
         }
         /// <summary>
         /// Creates a UITextPanel with a click event, used with sliders

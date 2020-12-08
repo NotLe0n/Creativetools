@@ -10,6 +10,7 @@ namespace Creativetools.src.UI.Elements
     {
         public bool active = false;
         public event Action OnCloseBtnClicked;
+        internal UIPanel header;
 
         public DragableUIPanel(string headingtext, float width, float height)
         {
@@ -17,7 +18,7 @@ namespace Creativetools.src.UI.Elements
             Height.Set(height, 0f);
             SetPadding(0);
 
-            var header = new UIPanel();
+            header = new UIPanel();
             header.SetPadding(0);
             header.Width = Width;
             header.Height.Set(30, 0f);
