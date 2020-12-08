@@ -14,16 +14,13 @@ namespace Creativetools.src.UI
     class MainUI : UIState
     {
         public static bool MagicCursor;
-        public DragableUIPanel MenuPanel;
-        public List<UIHoverImageButton> ButtonList = new List<UIHoverImageButton> { };
         public List<UIImage> selectList = new List<UIImage> { };
-        UIGrid buttonGrid;
+        private UIGrid buttonGrid;
 
         private void AppendButtons(UIHoverImageButton element, MouseEvent clickEvent, bool openmenu = false)
         {
             element.OnClick += clickEvent;
             buttonGrid.Add(element);
-            ButtonList.Add(element);
 
             // should button make click sound?
             if (openmenu)
@@ -31,7 +28,7 @@ namespace Creativetools.src.UI
         }
         public override void OnInitialize()
         {
-            MenuPanel = new DragableUIPanel("Creativetools Menu", 442f, 212f) { VAlign = 0.5f, HAlign = 0.1f };
+            DragableUIPanel MenuPanel = new DragableUIPanel("Creativetools Menu", 442f, 212f) { VAlign = 0.5f, HAlign = 0.1f };
             MenuPanel.OnCloseBtnClicked += () => { GetInstance<Creativetools>().UserInterface.SetState(null); Main.PlaySound(SoundID.MenuClose); };
             Append(MenuPanel);
 
@@ -117,11 +114,11 @@ namespace Creativetools.src.UI
             AppendButtons(new UIHoverImageButton("Creativetools/UI Assets/playSound", "Play Sound"), (evt, element) => GetInstance<Creativetools>().UserInterface.SetState(new PlaySoundUI()), true);
             #endregion
 
-            for (int i = 0; i < ButtonList.Count; i++)
+            for (int i = 0; i < buttonGrid.items.Count; i++)
             {
                 UIImage Selected = new UIImage(GetTexture("Creativetools/UI Assets/selected"));
                 Selected.MarginTop = -10000;
-                ButtonList[i].Append(Selected);
+                buttonGrid.items[i].Append(Selected);
                 selectList.Add(Selected);
             }
         }
