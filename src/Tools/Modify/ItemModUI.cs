@@ -1,5 +1,5 @@
-﻿using Creativetools.src.UI.Elements;
-using Microsoft.Xna.Framework.Graphics;
+﻿using Creativetools.src.UI;
+using Creativetools.src.UI.Elements;
 using Terraria;
 using Terraria.GameContent.UI.Elements;
 using Terraria.ID;
@@ -7,7 +7,7 @@ using Terraria.UI;
 using static Creativetools.src.UI.UIHelper;
 using static Terraria.ModLoader.ModContent;
 
-namespace Creativetools.src.UI
+namespace Creativetools.src.Tools.Modify
 {
     class ItemModUI : UIState
     {
@@ -27,25 +27,25 @@ namespace Creativetools.src.UI
             Append(ItemMenu);
 
             var DamageSlider = MakeSlider(new UIIntRangedDataValue("", 0, 0, 999), out DamageDataProperty, ItemMenu, top: 50, left: -10);
-            SliderButtons("Set Damage", DamageSlider, button => button.OnClick += (evt, elm) => ModifyItem.ChangeDamage(DamageDataProperty.Data));
+            SliderButtons("Set Damage", DamageSlider, button => button.OnClick += (evt, elm) => ChangeDamage(DamageDataProperty.Data));
 
             var CritSlider = MakeSlider(new UIIntRangedDataValue("", 0, 0, 100), out CritDataProperty, ItemMenu, top: 100, left: -10);
-            SliderButtons("Set Crit", CritSlider, button => button.OnClick += (evt, elm) => ModifyItem.ChangeCrit(CritDataProperty.Data));
+            SliderButtons("Set Crit", CritSlider, button => button.OnClick += (evt, elm) => ChangeCrit(CritDataProperty.Data));
 
             var KnockSlider = MakeSlider(new UIFloatRangedDataValue("", 0, 0, 100), out KnockbackDataProperty, ItemMenu, top: 150, left: -10);
-            SliderButtons("Set Knockback", KnockSlider, button => button.OnClick += (evt, elm) => ModifyItem.ChangeKnock(KnockbackDataProperty.Data));
+            SliderButtons("Set Knockback", KnockSlider, button => button.OnClick += (evt, elm) => ChangeKnock(KnockbackDataProperty.Data));
 
             var UsetimeSlider = MakeSlider(new UIIntRangedDataValue("", 0, 0, 50), out UsetimeDataProperty, ItemMenu, top: 200, left: -10);
-            SliderButtons("Set Usetime", UsetimeSlider, button => button.OnClick += (evt, elm) => ModifyItem.ChangeUseTime(UsetimeDataProperty.Data));
+            SliderButtons("Set Usetime", UsetimeSlider, button => button.OnClick += (evt, elm) => ChangeUseTime(UsetimeDataProperty.Data));
 
             var DefenseSlider = MakeSlider(new UIIntRangedDataValue("", 0, 0, 100), out DefenseDataProperty, ItemMenu, top: 250, left: -10);
-            SliderButtons("Set Defense", DefenseSlider, button => button.OnClick += (evt, elm) => ModifyItem.ChangeDefense(DefenseDataProperty.Data));
+            SliderButtons("Set Defense", DefenseSlider, button => button.OnClick += (evt, elm) => ChangeDefense(DefenseDataProperty.Data));
 
             var ShootSlider = MakeSlider(new UIFloatRangedDataValue("", 0, 0, 999), out ShootspeedDataProperty, ItemMenu, top: 300, left: -10);
-            SliderButtons("Set Bullet speed", ShootSlider, button => button.OnClick += (evt, elm) => ModifyItem.ChangeShoot(ShootspeedDataProperty.Data));
+            SliderButtons("Set Bullet speed", ShootSlider, button => button.OnClick += (evt, elm) => ChangeShoot(ShootspeedDataProperty.Data));
 
             var SizeSlider = MakeSlider(new UIFloatRangedDataValue("", 0, 0, 50), out SizeDataProperty, ItemMenu, top: 350, left: -10);
-            SliderButtons("Set Size", SizeSlider, button => button.OnClick += (evt, elm) => ModifyItem.ChangeSize(SizeDataProperty.Data));
+            SliderButtons("Set Size", SizeSlider, button => button.OnClick += (evt, elm) => ChangeSize(SizeDataProperty.Data));
 
             UITextPanel<string> AutoswingButton = new UITextPanel<string>("Toggle Autoswing");
             AutoswingButton.SetPadding(4);
@@ -54,7 +54,7 @@ namespace Creativetools.src.UI
             AutoswingButton.Width.Set(10, 0f);
             AutoswingButton.OnClick += (evt, elm) =>
             {
-                ModifyItem.ToggleAutoSwing();
+                ToggleAutoSwing();
                 Main.PlaySound(SoundID.MenuTick);
             };
             ItemMenu.Append(AutoswingButton);
@@ -66,16 +66,24 @@ namespace Creativetools.src.UI
             TurnaroundButton.Width.Set(10, 0f);
             TurnaroundButton.OnClick += (evt, elm) =>
             {
-                ModifyItem.ToggleTurnAround();
+                ToggleTurnAround();
                 Main.PlaySound(SoundID.MenuTick);
             };
             ItemMenu.Append(TurnaroundButton);
         }
-        // so you can't use items when clicking on the button
-        protected override void DrawSelf(SpriteBatch spriteBatch)
+
+        public static void ChangeDamage(int change) => Main.LocalPlayer.HeldItem.damage = change;
+        public static void ChangeCrit(int change) => Main.LocalPlayer.HeldItem.crit = change - 4;
+        public static void ChangeKnock(float change) => Main.LocalPlayer.HeldItem.knockBack = change;
+        public static void ChangeUseTime(int change)
         {
-            if (ContainsPoint(Main.MouseScreen))
-                Main.LocalPlayer.mouseInterface = true;
+            Main.LocalPlayer.HeldItem.useTime = change;
+            Main.LocalPlayer.HeldItem.useAnimation = change;
         }
+        public static void ChangeDefense(int change) => Main.LocalPlayer.HeldItem.defense = change;
+        public static void ChangeShoot(float change) => Main.LocalPlayer.HeldItem.shootSpeed = change;
+        public static void ChangeSize(float change) => Main.LocalPlayer.HeldItem.scale = change;
+        public static void ToggleAutoSwing() => Main.LocalPlayer.HeldItem.autoReuse = !Main.LocalPlayer.HeldItem.autoReuse;
+        public static void ToggleTurnAround() => Main.LocalPlayer.HeldItem.useTurn = !Main.LocalPlayer.HeldItem.useTurn;
     }
 }

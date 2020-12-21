@@ -1,11 +1,11 @@
-﻿using Creativetools.src.UI.Elements;
-using Microsoft.Xna.Framework.Graphics;
+﻿using Creativetools.src.UI;
+using Creativetools.src.UI.Elements;
 using Terraria;
 using Terraria.UI;
 using static Creativetools.src.UI.UIHelper;
 using static Terraria.ModLoader.ModContent;
 
-namespace Creativetools.src.UI
+namespace Creativetools.src.Tools.Modify
 {
     class PlayerModUI : UIState
     {
@@ -38,15 +38,6 @@ namespace Creativetools.src.UI
 
             var SizeSlider = MakeSlider(new UIFloatRangedDataValue("", 0.1f, 0.1f, 4), out SizeDataProperty, PlayerMenu, top: 250, left: -10);
             SliderButtons("Set Size", SizeSlider, button => button.OnClick += (evt, element) => ModifyPlayer.playerSize = SizeDataProperty.Data);
-        }
-
-        // so you can't use items when clicking on the button
-        protected override void DrawSelf(SpriteBatch spriteBatch)
-        {
-            if (ContainsPoint(Main.MouseScreen))
-            {
-                Main.LocalPlayer.mouseInterface = true;
-            }
         }
     }
 }

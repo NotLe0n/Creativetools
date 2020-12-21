@@ -1,4 +1,5 @@
-﻿using Creativetools.src.UI.Elements;
+﻿using Creativetools.src.UI;
+using Creativetools.src.UI.Elements;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -9,9 +10,9 @@ using Terraria.ModLoader;
 using Terraria.UI;
 using static Creativetools.src.UI.UIHelper;
 
-namespace Creativetools.src.UI
+namespace Creativetools.src.Tools.WeatherControl
 {
-    class WeatherControl : UIState
+    class WeatherControlUI : UIState
     {
         private DragableUIPanel WeatherMenu;
         UIIntRangedDataValue Time;

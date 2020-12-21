@@ -1,6 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.GameContent.UI.Elements;
@@ -172,7 +171,7 @@ namespace Creativetools.src.UI.Elements
 
         public void UpdateOrder()
         {
-            items.Sort(new Comparison<UIElement>(SortMethod));
+            //items.Sort(new Comparison<UIElement>(SortMethod));
             UpdateScrollbar();
         }
 
@@ -184,8 +183,7 @@ namespace Creativetools.src.UI.Elements
         public override List<SnapPoint> GetSnapPoints()
         {
             List<SnapPoint> list = new List<SnapPoint>();
-            SnapPoint item;
-            if (GetSnapPoint(out item))
+            if (GetSnapPoint(out SnapPoint item))
             {
                 list.Add(item);
             }

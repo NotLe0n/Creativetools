@@ -1,4 +1,5 @@
-﻿using Creativetools.src.cNPC;
+﻿using Creativetools.src.Tools.CustomItem;
+using Creativetools.src.UI;
 using Creativetools.src.UI.Elements;
 using Microsoft.Xna.Framework.Graphics;
 using System.Windows.Forms;
@@ -10,7 +11,7 @@ using Terraria.UI;
 using static Creativetools.src.UI.UIHelper;
 using static Terraria.ModLoader.ModContent;
 
-namespace Creativetools.src.UI
+namespace Creativetools.src.Tools.CustomNPC
 {
     class CustomNPCUI : UIState
     {
@@ -30,7 +31,7 @@ namespace Creativetools.src.UI
             Menu.OnCloseBtnClicked += () => GetInstance<Creativetools>().UserInterface.SetState(new MainUI());
             Append(Menu);
 
-            UITextPanel<string> CreateButton = new UITextPanel<string>(Language.GetTextValue("Create"));
+            UITextPanel<string> CreateButton = new UITextPanel<string>(Language.GetTextValue("Create NPC"));
             CreateButton.SetPadding(4);
             CreateButton.HAlign = 0.05f;
             CreateButton.MarginTop = 460;
@@ -39,14 +40,14 @@ namespace Creativetools.src.UI
 
             UITextPanel<string> CodeButton = new UITextPanel<string>(Language.GetTextValue("Copy Code"));
             CodeButton.SetPadding(4);
-            CodeButton.HAlign = 0.25f;
+            CodeButton.HAlign = 0.5f;
             CodeButton.MarginTop = 460;
             CodeButton.OnClick += CodeButtonClicked;
             Menu.Append(CodeButton);
 
             UITextPanel<string> FileButton = new UITextPanel<string>(Language.GetTextValue("Select Texture"));
             FileButton.SetPadding(4);
-            FileButton.HAlign = 0.75f;
+            FileButton.HAlign = 0.9f;
             FileButton.MarginTop = 460;
             FileButton.OnClick += FileButtonClicked;
             Menu.Append(FileButton);

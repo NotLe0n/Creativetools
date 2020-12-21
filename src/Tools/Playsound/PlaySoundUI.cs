@@ -1,4 +1,5 @@
-﻿using Creativetools.src.UI.Elements;
+﻿using Creativetools.src.UI;
+using Creativetools.src.UI.Elements;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
@@ -11,7 +12,7 @@ using Terraria.ModLoader;
 using Terraria.UI;
 using static Creativetools.src.UI.UIHelper;
 
-namespace Creativetools.src.UI
+namespace Creativetools.src.Tools.PlaySound
 {
     class PlaySoundUI : UIState
     {

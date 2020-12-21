@@ -1,7 +1,7 @@
 ﻿using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Creativetools.src.cItem
+namespace Creativetools.src.Tools.CustomItem
 {
     public class CustomItem : ModItem
     {
@@ -19,7 +19,7 @@ namespace Creativetools.src.cItem
             item.damage = 69;
             item.defense = 69;
             item.scale = 1f;
-            item.shoot = 0;
+            item.shoot = ProjectileID.None;
             item.shootSpeed = 1f;
             item.crit = 69 - 4;
             item.useTime = 10;

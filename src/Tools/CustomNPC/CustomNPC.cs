@@ -3,7 +3,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Creativetools.src.cNPC
+namespace Creativetools.src.Tools.CustomNPC
 {
     public class CustomNPC : ModNPC
     {
@@ -16,7 +16,7 @@ namespace Creativetools.src.cNPC
         public static float cScale = 1f;
         public static bool cNoCollide = false;
         public static bool cImmortal = false;
-        public static Texture2D ctexture = ModContent.GetTexture("Creativetools/src/cNPC/CustomNPC");
+        public static Texture2D ctexture = ModContent.GetTexture("Creativetools/src/Tools/CustomNPC/CustomNPC");
         public static int cFramecount = 1;
 
         public override void SetStaticDefaults()

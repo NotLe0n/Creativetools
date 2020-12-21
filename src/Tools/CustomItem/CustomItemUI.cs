@@ -1,4 +1,6 @@
-﻿using Creativetools.src.UI.Elements;
+﻿using Creativetools.src.Tools.CustomNPC;
+using Creativetools.src.UI;
+using Creativetools.src.UI.Elements;
 using Microsoft.Xna.Framework.Graphics;
 using System.Windows.Forms;
 using Terraria;
@@ -9,7 +11,7 @@ using Terraria.UI;
 using static Creativetools.src.UI.UIHelper;
 using static Terraria.ModLoader.ModContent;
 
-namespace Creativetools.src.UI
+namespace Creativetools.src.Tools.CustomItem
 {
     class CustomItemUI : UIState
     {
@@ -31,7 +33,7 @@ namespace Creativetools.src.UI
             Menu.OnCloseBtnClicked += () => GetInstance<Creativetools>().UserInterface.SetState(new MainUI());
             Append(Menu);
 
-            UITextPanel<string> CreateButton = new UITextPanel<string>(Language.GetTextValue("Create"));
+            UITextPanel<string> CreateButton = new UITextPanel<string>(Language.GetTextValue("Create Item"));
             CreateButton.SetPadding(4);
             CreateButton.HAlign = 0.05f;
             CreateButton.MarginTop = 555;
@@ -40,14 +42,14 @@ namespace Creativetools.src.UI
 
             UITextPanel<string> CodeButton = new UITextPanel<string>(Language.GetTextValue("Copy Code"));
             CodeButton.SetPadding(4);
-            CodeButton.HAlign = 0.25f;
+            CodeButton.HAlign = 0.5f;
             CodeButton.MarginTop = 555;
             CodeButton.OnClick += CodeButtonClicked;
             Menu.Append(CodeButton);
 
             UITextPanel<string> FileButton = new UITextPanel<string>(Language.GetTextValue("Select Texture"));
             FileButton.SetPadding(4);
-            FileButton.HAlign = 0.75f;
+            FileButton.HAlign = 0.9f;
             FileButton.MarginTop = 555;
             FileButton.OnClick += FileButtonClicked;
             Menu.Append(FileButton);
@@ -72,8 +74,8 @@ namespace Creativetools.src.UI
             AutoSwingButton.MarginTop = 500;
             AutoSwingButton.OnClick += (evt, listeningelement) =>
             {
-                ModifyItem.cAutoSwing = !ModifyItem.cAutoSwing;
-                AutoSwingButton.SetText("Autoswing: " + ModifyItem.cAutoSwing);
+                Global.cAutoSwing = !Global.cAutoSwing;
+                AutoSwingButton.SetText("Autoswing: " + Global.cAutoSwing);
             };
             Menu.Append(AutoSwingButton);
 
@@ -82,24 +84,24 @@ namespace Creativetools.src.UI
             TurnAroundButton.MarginTop = 500;
             TurnAroundButton.OnClick += (evt, listeningelement) =>
             {
-                ModifyItem.cTurnAround = !ModifyItem.cTurnAround;
-                TurnAroundButton.SetText("Turnaround: " + ModifyItem.cTurnAround);
+                Global.cTurnAround = !Global.cTurnAround;
+                TurnAroundButton.SetText("Turnaround: " + Global.cTurnAround);
             };
             Menu.Append(TurnAroundButton);
         }
         private void CreateButtonClicked(UIMouseEvent evt, UIElement listeningElement)
         {
-            ModifyItem.cName = nametext.Text;
-            ModifyItem.cDamage = DamageDataProperty.Data;
-            ModifyItem.cCrit = CritDataProperty.Data;
-            ModifyItem.cDefense = DefenseDataProperty.Data;
-            ModifyItem.cShoot = ShootDataProperty.Data;
-            ModifyItem.cShootSpeed = ShootSpeedDataProperty.Data;
-            ModifyItem.cKnockback = KnockbackDataProperty.Data;
-            ModifyItem.cScale = ScaleDataProperty.Data;
-            ModifyItem.cUseTime = UseTimeDataProperty.Data;
-            ModifyItem.createitem = true;
-            Main.LocalPlayer.QuickSpawnItem(ItemType<cItem.CustomItem>());
+            Global.cName = nametext.Text;
+            Global.cDamage = DamageDataProperty.Data;
+            Global.cCrit = CritDataProperty.Data;
+            Global.cDefense = DefenseDataProperty.Data;
+            Global.cShoot = ShootDataProperty.Data;
+            Global.cShootSpeed = ShootSpeedDataProperty.Data;
+            Global.cKnockback = KnockbackDataProperty.Data;
+            Global.cScale = ScaleDataProperty.Data;
+            Global.cUseTime = UseTimeDataProperty.Data;
+            Global.createitem = true;
+            Main.LocalPlayer.QuickSpawnItem(ItemType<CustomItem>());
             Main.PlaySound(SoundID.MenuTick);
         }
         private void CodeButtonClicked(UIMouseEvent evt, UIElement listeningElement)
@@ -115,26 +117,26 @@ namespace YourMod
     {{
         public override void SetStaticDefaults()
         {{
-            DisplayName.SetDefault(""{ModifyItem.cName}"");
+            DisplayName.SetDefault(""{Global.cName}"");
         }}
 
         public override void SetDefaults()
         {{ 
-            item.SetNameOverride(""{ModifyItem.cName}"");
+            item.SetNameOverride(""{Global.cName}"");
             item.width = 32;
             item.height = 32;
             item.melee = true;
-            item.knockBack = {ModifyItem.cKnockback};
-            item.damage = {ModifyItem.cDamage};
-            item.defense = {ModifyItem.cDefense};
-            item.scale = {ModifyItem.cScale};
-            item.shoot = {ModifyItem.cShoot};
-            item.shootSpeed = {ModifyItem.cShootSpeed};
-            item.crit = {ModifyItem.cCrit} - 4;
-            item.useTime = {ModifyItem.cUseTime};
-            item.useAnimation = {ModifyItem.cUseTime};
-            item.autoReuse = {ModifyItem.cAutoSwing};
-            item.useTurn = {ModifyItem.cTurnAround};
+            item.knockBack = {Global.cKnockback};
+            item.damage = {Global.cDamage};
+            item.defense = {Global.cDefense};
+            item.scale = {Global.cScale};
+            item.shoot = {Global.cShoot};
+            item.shootSpeed = {Global.cShootSpeed};
+            item.crit = {Global.cCrit} - 4;
+            item.useTime = {Global.cUseTime};
+            item.useAnimation = {Global.cUseTime};
+            item.autoReuse = {Global.cAutoSwing};
+            item.useTurn = {Global.cTurnAround};
             item.useStyle = ItemUseStyleID.SwingThrow;
             item.UseSound = SoundID.Item1;
         }}
@@ -154,7 +156,7 @@ namespace YourMod
 
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    ModifyItem.ctexture = Texture2D.FromStream(Main.graphics.GraphicsDevice, openFileDialog.OpenFile());
+                    Global.ctexture = Texture2D.FromStream(Main.graphics.GraphicsDevice, openFileDialog.OpenFile());
                 }
             }
         }

@@ -4,7 +4,7 @@ using Terraria.GameContent.UI.Elements;
 using Terraria.ID;
 using Terraria.UI;
 
-namespace Creativetools.src.UI
+namespace Creativetools.src.Tools.ClearInventory
 {
     class Confirm_Panel : UIState
     {

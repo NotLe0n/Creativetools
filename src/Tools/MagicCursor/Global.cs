@@ -5,7 +5,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using static Creativetools.src.NearestToMouse;
 
-namespace Creativetools.src
+namespace Creativetools.src.Tools.MagicCursor
 {
     class ModifyNPC : GlobalNPC
     {
@@ -33,6 +33,13 @@ namespace Creativetools.src
                 }
             }
             //if (Main.npc[NPC.FindFirstNPC(target)].Hitbox.Contains((int)Main.MouseWorld.X, (int)Main.MouseWorld.Y))
+        }
+    }
+    class ModifyItem : GlobalItem
+    {
+        public override void Update(Item item, ref float gravity, ref float maxFallSpeed)
+        {
+            if (MainUI.MagicCursor && Main.mouseMiddle && Main.item[GetItemMouseClosest()].Hitbox.Distance(Main.MouseWorld) < 500) Main.item[GetItemMouseClosest()].position = Main.MouseWorld;
         }
     }
 }

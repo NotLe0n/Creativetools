@@ -5,9 +5,9 @@ using Terraria.GameContent.UI.Elements;
 using Terraria.UI;
 using static Creativetools.src.NearestToMouse;
 
-namespace Creativetools.src.UI
+namespace Creativetools.src.Tools.GameInfo
 {
-    class Info : UIState
+    class GameInfo : UIState
     {
         #region vars
         public static bool Visible;

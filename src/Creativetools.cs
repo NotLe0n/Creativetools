@@ -1,3 +1,6 @@
+using Creativetools.src.Tools.ClearInventory;
+using Creativetools.src.Tools.GameInfo;
+using Creativetools.src.Tools.PlaySound;
 using Creativetools.src.UI;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
@@ -14,14 +17,14 @@ namespace Creativetools.src
         private UserInterface ButtonUserInterface;
         private UserInterface ConfirmPanelUserInterface;
         /////////////////////////////
-        internal Info InfoUI;
+        internal GameInfo InfoUI;
         internal ButtonUI ButtonUI;
         internal Confirm_Panel ConfirmPanelUI;
         public override void Load()
         {
             if (!Main.dedServ)
             {
-                InfoUI = new Info();
+                InfoUI = new GameInfo();
                 InfoUI.Activate();
                 ButtonUI = new ButtonUI();
                 ButtonUI.Activate();
@@ -65,7 +68,7 @@ namespace Creativetools.src
                     }
                 }
             }
-            if (Info.Visible)
+            if (GameInfo.Visible)
             {
                 InfoUserInterface.Update(gameTime);
             }
@@ -91,7 +94,7 @@ namespace Creativetools.src
                                 }
                             }
                         }
-                        if (Info.Visible)
+                        if (GameInfo.Visible)
                         {
                             InfoUserInterface.Draw(Main.spriteBatch, _lastUpdateUiGameTime);
                         }
@@ -106,9 +109,9 @@ namespace Creativetools.src
                     "ModdersToolkit: Tools Game Scale",
                     delegate
                     {
-                        if (Info.Visible)
+                        if (GameInfo.Visible)
                         {
-                            Info.WorldDraw();
+                            GameInfo.WorldDraw();
                         }
                         return true;
                     },
