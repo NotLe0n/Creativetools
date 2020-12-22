@@ -1,18 +1,29 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.GameContent.UI.Elements;
 using static Terraria.ModLoader.ModContent;
 
 namespace Creativetools.src.UI.Elements
 {
-    class MenuButton : UIToggleImage
+    class MenuButton : UIImage
     {
         public string HoverText;
-        public MenuButton(string texture, string hoverText, MouseEvent mouseEvent) : base(GetTexture("Creativetools/UI Assets/" + texture), 44, 44, new Point(45, 0), new Point(0, 0))
+        private UIImage frame = new UIImage(GetTexture("Creativetools/UI Assets/selected"));
+        public MenuButton(string texture, string hoverText, MouseEvent mouseEvent) : base(GetTexture("Creativetools/UI Assets/" + texture))
         {
             OnClick += mouseEvent;
             HoverText = hoverText;
+        }
+        public void SetState(bool value)
+        {
+            if (value)
+            {
+                Append(frame);
+            }
+            else
+            {
+                frame.Remove();
+            }
         }
         protected override void DrawSelf(SpriteBatch spriteBatch)
         {

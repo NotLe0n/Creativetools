@@ -9,7 +9,6 @@ using Creativetools.src.UI.Elements;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.GameContent.Events;
-using Terraria.GameContent.UI.Elements;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.UI;
@@ -78,7 +77,7 @@ namespace Creativetools.src.UI
 
             for (int i = 0; i < buttonGrid.Count; i++)
             {
-                ((UIToggleImage)buttonGrid.items[i]).SetState(check[i]);
+                ((MenuButton)buttonGrid.items[i]).SetState(check[i]);
             }
         }
         private void ToggleInvasion(short type)
