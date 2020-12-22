@@ -3,6 +3,8 @@ With Creative tools you can toggle several different events and game states with
 For a complete Changlog and more information visit my homepage!
 
 Latest Changes:
-v2.9.0.2 - Hotfix #2
-        + Rewritten lots of code, please report any bugs on the homepage or contact me via discord: TheLonelySheep#7696
-        + Fixed transparency and 1 pixel in the icon
+v3.0 - UI Overhaul
+     + new cleaner UI
+     + You can drag the Modify Item/Player, Custom Item/NPC, Weather Control menu now
+     + Better sprites
+     + Other internal changes

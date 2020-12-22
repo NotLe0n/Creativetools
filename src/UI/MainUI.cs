@@ -60,7 +60,7 @@ namespace Creativetools.src.UI
             buttonGrid.Add(new MenuButton("custom", "Custom Item/NPC", (evt, element) => GetInstance<Creativetools>().UserInterface.SetState(new CustomNPCUI())));
             buttonGrid.Add(new MenuButton("creativeFly", "Creative Fly", (evt, element) => MovePlayer.CreativeFly = !MovePlayer.CreativeFly));
             buttonGrid.Add(new MenuButton("magicCursor", "Magic Cursor", (evt, element) => MagicCursor = !MagicCursor));
-            buttonGrid.Add(new MenuButton("Info", "Display Info", (evt, element) => GameInfo.Visible = !GameInfo.Visible));
+            buttonGrid.Add(new MenuButton("Info", "Game Info", (evt, element) => GameInfo.Visible = !GameInfo.Visible));
             buttonGrid.Add(new MenuButton("weatherControl", "Weather Control", (evt, element) => GetInstance<Creativetools>().UserInterface.SetState(new WeatherControlUI())));
             buttonGrid.Add(new MenuButton("playSound", "Play Sound", (evt, element) => GetInstance<Creativetools>().UserInterface.SetState(new PlaySoundUI())));
         }
