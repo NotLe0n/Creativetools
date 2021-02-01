@@ -79,7 +79,7 @@ namespace Creativetools.src.Tools.CustomItem
             };
             Menu.Append(AutoSwingButton);
 
-            UITextPanel<string> TurnAroundButton = new UITextPanel<string>("Turaround: false");
+            UITextPanel<string> TurnAroundButton = new UITextPanel<string>("Turnaround: false");
             TurnAroundButton.HAlign = 0.95f;
             TurnAroundButton.MarginTop = 500;
             TurnAroundButton.OnClick += (evt, listeningelement) =>

@@ -25,7 +25,6 @@ namespace Creativetools.src.UI
             }
             else
             {
-
                 GetInstance<Creativetools>().UserInterface.SetState(new MainUI());
                 Main.PlaySound(SoundID.MenuOpen);
             }

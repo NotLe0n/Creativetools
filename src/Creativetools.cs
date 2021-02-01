@@ -106,7 +106,7 @@ namespace Creativetools.src
             if (rulerLayerIndex != -1)
             {
                 layers.Insert(rulerLayerIndex, new LegacyGameInterfaceLayer(
-                    "ModdersToolkit: Tools Game Scale",
+                    "Creative tools: Scale fix",
                     delegate
                     {
                         if (GameInfo.Visible)

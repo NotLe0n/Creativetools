@@ -1,5 +1,5 @@
 displayName = Creative tools
-author = TheLonelySheep
+author = NotLe0n
 version = 3.0
 hideCode = true
 hideResources = false
