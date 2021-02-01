@@ -3,8 +3,6 @@ With Creative tools you can toggle several different events and game states with
 For a complete Changlog and more information visit my homepage!
 
 Latest Changes:
-v3.0 - UI Overhaul
-     + new cleaner UI
-     + You can drag the Modify Item/Player, Custom Item/NPC, Weather Control menu now
-     + Better sprites
-     + Other internal changes
+v3.0.1 - nothing
+     + Fixed Typo
+     + Changed my name
