@@ -1,6 +1,7 @@
 ﻿using Creativetools.src.Tools.ClearInventory;
 using Creativetools.src.Tools.CreativeFly;
 using Creativetools.src.Tools.CustomNPC;
+using Creativetools.src.Tools.DownedBossToggle;
 using Creativetools.src.Tools.GameInfo;
 using Creativetools.src.Tools.Modify;
 using Creativetools.src.Tools.PlaySound;
@@ -63,6 +64,7 @@ namespace Creativetools.src.UI
             buttonGrid.Add(new MenuButton("Info", "Game Info", (evt, element) => GameInfo.Visible = !GameInfo.Visible));
             buttonGrid.Add(new MenuButton("weatherControl", "Weather Control", (evt, element) => GetInstance<Creativetools>().UserInterface.SetState(new WeatherControlUI())));
             buttonGrid.Add(new MenuButton("playSound", "Play Sound", (evt, element) => GetInstance<Creativetools>().UserInterface.SetState(new PlaySoundUI())));
+            buttonGrid.Add(new MenuButton("DownedBossToggle", "DownedBoss Toggle", (evt, element) => GetInstance<Creativetools>().UserInterface.SetState(new DownedBossToggleUI())));
         }
         public override void Update(GameTime gameTime)
         {
@@ -73,7 +75,7 @@ namespace Creativetools.src.UI
                 Main.invasionType == InvasionID.MartianMadness,
                 Main.invasionType == InvasionID.SnowLegion,
                 Main.hardMode, Main.expertMode, Main.halloween, Main.xMas, BirthdayParty.PartyIsUp, Main.slimeRain, WorldGen.spawnMeteor,
-                false, false, false, MovePlayer.CreativeFly, MagicCursor, false, false, false };
+                false, false, false, MovePlayer.CreativeFly, MagicCursor, false, false, false, false };
 
             for (int i = 0; i < buttonGrid.Count; i++)
             {

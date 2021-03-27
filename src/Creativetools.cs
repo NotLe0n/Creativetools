@@ -12,7 +12,7 @@ namespace Creativetools.src
 {
     public class Creativetools : Mod
     {
-        internal UserInterface UserInterface;
+        public UserInterface UserInterface;
         private UserInterface InfoUserInterface;
         private UserInterface ButtonUserInterface;
         private UserInterface ConfirmPanelUserInterface;
