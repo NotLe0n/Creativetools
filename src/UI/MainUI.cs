@@ -82,6 +82,7 @@ namespace Creativetools.src.UI
                 ((MenuButton)buttonGrid.items[i]).SetState(check[i]);
             }
         }
+
         private void ToggleInvasion(short type)
         {
             string[] text = { "", "LegacyMisc.0", "LegacyMisc.4", "LegacyMisc.24", "LegacyMisc.42" };

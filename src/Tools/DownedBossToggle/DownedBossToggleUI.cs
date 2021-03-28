@@ -51,36 +51,34 @@ namespace Creativetools.src.Tools.DownedBossToggle
             textList.SetScrollbar(scrollbar);
             panel.Append(textList);
 
-            BindingFlags flags = BindingFlags.Public | BindingFlags.Static;
-
-            AddToggle(typeof(NPC).GetField("downedBoss1", flags), "(EoC)");
-            AddToggle(typeof(NPC).GetField("downedBoss2", flags), "(BoC/EoW)");
-            AddToggle(typeof(NPC).GetField("downedBoss3", flags), "(Skeletron)");
-            AddToggle(typeof(NPC).GetField("downedQueenBee", flags));
-            AddToggle(typeof(NPC).GetField("downedSlimeKing", flags));
-            AddToggle(typeof(NPC).GetField("downedGoblins", flags));
-            AddToggle(typeof(NPC).GetField("downedFrost", flags));
-            AddToggle(typeof(NPC).GetField("downedPirates", flags));
-            AddToggle(typeof(NPC).GetField("downedClown", flags));
-            AddToggle(typeof(NPC).GetField("downedPlantBoss", flags));
-            AddToggle(typeof(NPC).GetField("downedGolemBoss", flags));
-            AddToggle(typeof(NPC).GetField("downedMartians", flags));
-            AddToggle(typeof(NPC).GetField("downedFishron", flags));
-            AddToggle(typeof(NPC).GetField("downedHalloweenTree", flags));
-            AddToggle(typeof(NPC).GetField("downedHalloweenKing", flags));
-            AddToggle(typeof(NPC).GetField("downedChristmasIceQueen", flags));
-            AddToggle(typeof(NPC).GetField("downedChristmasTree", flags));
-            AddToggle(typeof(NPC).GetField("downedChristmasSantank", flags));
-            AddToggle(typeof(NPC).GetField("downedAncientCultist", flags));
-            AddToggle(typeof(NPC).GetField("downedMoonlord", flags));
-            AddToggle(typeof(NPC).GetField("downedTowerSolar", flags));
-            AddToggle(typeof(NPC).GetField("downedTowerVortex", flags));
-            AddToggle(typeof(NPC).GetField("downedTowerNebula", flags));
-            AddToggle(typeof(NPC).GetField("downedTowerStardust", flags));
-            AddToggle(typeof(NPC).GetField("downedMechBossAny", flags));
-            AddToggle(typeof(NPC).GetField("downedMechBoss1", flags), "(The Destroyer)");
-            AddToggle(typeof(NPC).GetField("downedMechBoss2", flags), "(The Twins)");
-            AddToggle(typeof(NPC).GetField("downedMechBoss3", flags), "(Skeletron Prime)");
+            AddToggle("downedBoss1", "(EoC)");
+            AddToggle("downedBoss2", "(BoC/EoW)");
+            AddToggle("downedBoss3", "(Skeletron)");
+            AddToggle("downedQueenBee");
+            AddToggle("downedSlimeKing");
+            AddToggle("downedGoblins");
+            AddToggle("downedFrost");
+            AddToggle("downedPirates");
+            AddToggle("downedClown");
+            AddToggle("downedPlantBoss");
+            AddToggle("downedGolemBoss");
+            AddToggle("downedMartians");
+            AddToggle("downedFishron");
+            AddToggle("downedHalloweenTree");
+            AddToggle("downedHalloweenKing");
+            AddToggle("downedChristmasIceQueen");
+            AddToggle("downedChristmasTree");
+            AddToggle("downedChristmasSantank");
+            AddToggle("downedAncientCultist");
+            AddToggle("downedMoonlord");
+            AddToggle("downedTowerSolar");
+            AddToggle("downedTowerVortex");
+            AddToggle("downedTowerNebula");
+            AddToggle("downedTowerStardust");
+            AddToggle("downedMechBossAny");
+            AddToggle("downedMechBoss1", "(The Destroyer)");
+            AddToggle("downedMechBoss2", "(The Twins)");
+            AddToggle("downedMechBoss3", "(Skeletron Prime)");
 
             var resetBtn = new UITextPanel<string>("Uncheck all");
             resetBtn.SetPadding(4);
@@ -101,14 +99,20 @@ namespace Creativetools.src.Tools.DownedBossToggle
             base.OnInitialize();
         }
 
-        private void AddToggle(FieldInfo field, string additionalInfo = "")
+        private void AddToggle(string fieldName, string additionalInfo = "")
         {
+            // get field
+            Type type = typeof(NPC);
+            var field = type.GetField(fieldName, BindingFlags.Public | BindingFlags.Static);
+
+            // append toggle
             var toggle = new UIToggleImage(TextureManager.Load("Images/UI/Settings_Toggle"), 13, 13, new Point(17, 1), new Point(1, 1));
-            toggle.SetState((bool)field.GetValue(typeof(NPC)));
-            toggle.OnClick += (evt, elm) => field.SetValue(typeof(NPC), toggle.IsOn);
+            toggle.SetState((bool)field.GetValue(type));
+            toggle.OnClick += (evt, elm) => field.SetValue(type, toggle.IsOn);
             toggleList.Add(toggle);
 
-            var text = new UIText($"Toggle NPC.{field.Name} {additionalInfo}");
+            // append text
+            var text = new UIText($"Toggle NPC.{fieldName} {additionalInfo}");
             textList.Add(text);
         }
 

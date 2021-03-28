@@ -1,6 +1,8 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.GameContent.UI.Elements;
+using Terraria.ID;
+using Terraria.UI;
 using static Terraria.ModLoader.ModContent;
 
 namespace Creativetools.src.UI.Elements
@@ -24,6 +26,11 @@ namespace Creativetools.src.UI.Elements
             {
                 frame.Remove();
             }
+        }
+        public override void Click(UIMouseEvent evt)
+        {
+            Main.PlaySound(SoundID.MenuTick);
+            base.Click(evt);
         }
         protected override void DrawSelf(SpriteBatch spriteBatch)
         {

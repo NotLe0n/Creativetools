@@ -43,7 +43,7 @@ namespace Creativetools.src.Tools.WeatherControl
             ImageButtons(new UIHoverImageButton("Creativetools/UI Assets/NewMoon", Language.GetTextValue("GameUI.NewMoon")),
                 WeatherMenu, button => button.OnClick += (evt, elm) => Main.moonPhase = 4, MarginTop: 100, HAllign: pos);
             pos += 0.1f;
-            ImageButtons(new UIHoverImageButton("Creativetools/UI Assets/waxingCrescent", Language.GetTextValue("GameUI.waxingCrescent")),
+            ImageButtons(new UIHoverImageButton("Creativetools/UI Assets/waxingCrescent", Language.GetTextValue("GameUI.WaxingCrescent")),
                 WeatherMenu, button => button.OnClick += (evt, elm) => Main.moonPhase = 5, MarginTop: 100, HAllign: pos);
             pos += 0.1f;
             ImageButtons(new UIHoverImageButton("Creativetools/UI Assets/FirstQuarter", Language.GetTextValue("GameUI.FirstQuarter")),

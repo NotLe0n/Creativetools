@@ -1,6 +1,84 @@
-With Creative tools you can toggle several different events and game states with a single click of a button, move NPC's and Items with your mouse, display lots of Information on the screen and much more!
+[c/FFE900:With Creative tools you can toggle different events]
+[c/FFE900:and game states with a single click of a button,]
+[c/FFE900:move NPC's and Items with your mouse, display]
+[c/FFE900:lots of Information on the screen and much more!]
 
 For a complete Changlog and more information visit my homepage!
 
+[c/66EEFF:Thanks to Pyroknight for drawing the sprites.]
+
 Latest Changes:
-v3.1 - Added DownedBoss Toggle
+v3.2 - Sprite Overhaul
+    + Pyroknight redrew all sprites
+    + Made Description more informative
+    + fixed WeatherControl button text
+
+_________________________
+
+[c/FFE900:Content:]
+_________________________
+
+Things you can toggle:
+    [c/C4C4C4:- Bloodmoon]        [c/C4C4C4:- Frost Legion]
+    [c/C4C4C4:- Frostmoon]        [c/C4C4C4:- Hardmode]
+    [c/C4C4C4:- Pumpkinmoon]      [c/C4C4C4:- Expert Mode]
+    [c/C4C4C4:- Solar eclipse]    [c/C4C4C4:- Halloween]
+    [c/C4C4C4:- Pirate invasion]  [c/C4C4C4:- Christmas]
+    [c/C4C4C4:- Goblin Army]      [c/C4C4C4:- Party]
+    [c/C4C4C4:- Martian Madness]  [c/C4C4C4:- Slime Rain] 
+
+Clear Inventory:
+    [c/C4C4C4:Clear inventory or delete non-favorited items!] 
+    (inventory-, ammo- and moneyslots).
+
+Modify held Item: 
+    [c/C4C4C4:Change some properties of your held Item]
+    [c/FF0000:Changes are not saved with the player]
+
+Modify Player:
+    [c/C4C4C4:Change some properties of your player]
+    [c/FF0000:Changes are not saved with the player]
+
+Custom NPC:
+    [c/C4C4C4:Create your own basic NPC]
+
+Custom Item: 
+    [c/C4C4C4:Create your own basic Item]
+
+Creative Fly:
+    [c/C4C4C4:Toggle to Fly in the air or through blocks!]
+    control with WASD, SHIFT to go faster and CTRL to go slower
+
+Magic Cursor:
+    [c/C4C4C4:Move NPCs and Items with your mouse]
+    [c/C4C4C4:hold middle click and drag to move them]
+    (only works for one npc of a type)
+
+Game Info:
+    Information you can display on the screen:
+    [c/C4C4C4:- Mouse position relative to the World]
+    [c/C4C4C4:- Mouse position relative to the screen]
+    [c/C4C4C4:- Mouse and Mouse border Color]
+
+    [c/C4C4C4:- Player name, whoAmI id, position, velocity, ect]
+    [c/C4C4C4:- NPC position, velocity, name, type, aiStyle]
+    [c/C4C4C4:- Item position, name, type, Distance to Mouse]
+    [c/C4C4C4:- Projectile position, velocity, name, type]
+    [c/C4C4C4:- Screen position, Screen Zoom]
+    [c/C4C4C4:- Time, Global time, Rain Timer]
+    [c/C4C4C4:- Hitboxes]
+
+Weather Contol:
+    [c/C4C4C4:Contol what time it is and change the moonphase]
+
+Play Sound:
+    [c/C4C4C4:Play any sound or Music and find their ID]
+    (useful for modders)
+
+DownedBoss Toggle:
+    [c/C4C4C4:Toggle what bosses you have killed already.]
+    Example: You can only enter the dungeon when skeleton has been defeated. Instead of having to fight him you can just tick NPC.downedBoss3.
+
+Summon Meteor:
+    [c/C4C4C4:You can summon a Meteor.]
+    (only 1 meteor can exist in a world. If you want two, destroy the first one)
