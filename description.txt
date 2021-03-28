@@ -3,6 +3,4 @@ With Creative tools you can toggle several different events and game states with
 For a complete Changlog and more information visit my homepage!
 
 Latest Changes:
-v3.0.1 - nothing
-     + Fixed Typo
-     + Changed my name
+v3.1 - Added DownedBoss Toggle
