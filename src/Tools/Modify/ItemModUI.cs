@@ -6,7 +6,6 @@ using Terraria.GameContent.UI.Elements;
 using Terraria.ID;
 using Terraria.UI;
 using static Creativetools.src.UI.UIHelper;
-using static Terraria.ModLoader.ModContent;
 
 namespace Creativetools.src.Tools.Modify
 {
@@ -24,7 +23,7 @@ namespace Creativetools.src.Tools.Modify
             TabPanel ItemMenu = new TabPanel(450, 450, new Tab("Change Item", this), new Tab(" Change Player", new PlayerModUI()));
             ItemMenu.VAlign = 0.6f;
             ItemMenu.HAlign = 0.2f;
-            ItemMenu.OnCloseBtnClicked += () => GetInstance<UISystem>().UserInterface.SetState(new MainUI());
+            ItemMenu.OnCloseBtnClicked += () => UISystem.UserInterface.SetState(new MainUI());
             Append(ItemMenu);
 
             var DamageSlider = MakeSlider(new UIIntRangedDataValue("", 0, 0, 999), out DamageDataProperty, ItemMenu, top: 50, left: -10);

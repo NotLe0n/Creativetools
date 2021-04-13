@@ -4,7 +4,6 @@ using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
 using Terraria.UI;
-using static Terraria.ModLoader.ModContent;
 
 namespace Creativetools.src.UI
 {
@@ -21,14 +20,14 @@ namespace Creativetools.src.UI
 
         private void MenuButtonClicked(UIMouseEvent evt, UIElement listeningElement)
         {
-            if (GetInstance<UISystem>().UserInterface.CurrentState != null)
+            if (UISystem.UserInterface.CurrentState != null)
             {
-                GetInstance<UISystem>().UserInterface.SetState(null);
+                UISystem.UserInterface.SetState(null);
                 SoundEngine.PlaySound(SoundID.MenuClose);
             }
             else
             {
-                GetInstance<UISystem>().UserInterface.SetState(new MainUI());
+                UISystem.UserInterface.SetState(new MainUI());
                 SoundEngine.PlaySound(SoundID.MenuOpen);
             }
         }

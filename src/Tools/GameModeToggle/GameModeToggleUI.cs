@@ -3,7 +3,6 @@ using Creativetools.src.UI.Elements;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.GameContent.UI.Elements;
-using Terraria.ModLoader;
 using Terraria.UI;
 
 namespace Creativetools.src.Tools.GameModeToggle
@@ -25,7 +24,7 @@ namespace Creativetools.src.Tools.GameModeToggle
             var panel = new DragableUIPanel("Game Mode Toggle", 400, 100);
             panel.VAlign = 0.4f;
             panel.HAlign = 0.3f;
-            panel.OnCloseBtnClicked += () => ModContent.GetInstance<UISystem>().UserInterface.SetState(new MainUI());
+            panel.OnCloseBtnClicked += () => UISystem.UserInterface.SetState(new MainUI());
             Append(panel);
 
             UIHelper.MakeSlider(new UIIntRangedDataValue("Game mode", Main.GameMode, 0, 3), out gameMode, panel, top: 50);

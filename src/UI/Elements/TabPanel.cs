@@ -3,7 +3,6 @@ using Terraria.Audio;
 using Terraria.GameContent;
 using Terraria.GameContent.UI.Elements;
 using Terraria.ID;
-using Terraria.ModLoader;
 using Terraria.UI;
 
 namespace Creativetools.src.UI.Elements
@@ -31,13 +30,13 @@ namespace Creativetools.src.UI.Elements
             TabPanel.lastTab = _changeStateTo;
 
             // change UIState and play click sound
-            ModContent.GetInstance<UISystem>().UserInterface.SetState(_changeStateTo);
+            UISystem.UserInterface.SetState(_changeStateTo);
             SoundEngine.PlaySound(SoundID.MenuTick);
         }
         public override void Update(GameTime gameTime)
         {
             // Highlight
-            if (ModContent.GetInstance<UISystem>().UserInterface.CurrentState == _changeStateTo)
+            if (UISystem.UserInterface.CurrentState == _changeStateTo)
             {
                 BackgroundColor = new Color(73, 94, 171);
             }

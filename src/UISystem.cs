@@ -11,7 +11,7 @@ namespace Creativetools.src
 {
     class UISystem : ModSystem
     {
-        public UserInterface UserInterface;
+        public static UserInterface UserInterface;
         private UserInterface InfoUserInterface;
         private UserInterface ButtonUserInterface;
         private UserInterface ConfirmPanelUserInterface;
@@ -50,6 +50,8 @@ namespace Creativetools.src
             InfoUserInterface = null;
             ButtonUserInterface = null;
             ConfirmPanelUserInterface = null;
+
+            UserInterface = null;
         }
 
         private GameTime _lastUpdateUiGameTime;

@@ -31,7 +31,7 @@ namespace Creativetools.src.Tools.CustomItem
             TabPanel Menu = new TabPanel(450, 600, new Tab("Custom NPC", new CustomNPCUI()), new Tab(" Custom Item", this));
             Menu.VAlign = 0.7f;
             Menu.HAlign = 0.2f;
-            Menu.OnCloseBtnClicked += () => GetInstance<UISystem>().UserInterface.SetState(new MainUI());
+            Menu.OnCloseBtnClicked += () => UISystem.UserInterface.SetState(new MainUI());
             Append(Menu);
 
             UITextPanel<string> CreateButton = new UITextPanel<string>(Language.GetTextValue("Create Item"));

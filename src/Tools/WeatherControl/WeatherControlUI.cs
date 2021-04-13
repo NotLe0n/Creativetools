@@ -7,7 +7,6 @@ using Terraria;
 using Terraria.GameContent.UI.Elements;
 using Terraria.ID;
 using Terraria.Localization;
-using Terraria.ModLoader;
 using Terraria.UI;
 using static Creativetools.src.UI.UIHelper;
 
@@ -22,7 +21,7 @@ namespace Creativetools.src.Tools.WeatherControl
             WeatherMenu = new DragableUIPanel("Weather Control", 500f, 200f);
             WeatherMenu.VAlign = 0.6f;
             WeatherMenu.HAlign = 0.2f;
-            WeatherMenu.OnCloseBtnClicked += () => ModContent.GetInstance<UISystem>().UserInterface.SetState(new MainUI());
+            WeatherMenu.OnCloseBtnClicked += () => UISystem.UserInterface.SetState(new MainUI());
             Append(WeatherMenu);
 
             var TimeSlider = MakeSlider(new UIIntRangedDataValue("Time Control:", 0, 0, 86399), out Time, WeatherMenu, top: 50);

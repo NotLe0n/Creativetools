@@ -4,6 +4,7 @@ using Creativetools.src.Tools.CustomNPC;
 using Creativetools.src.Tools.DownedBossToggle;
 using Creativetools.src.Tools.GameInfo;
 using Creativetools.src.Tools.GameModeToggle;
+using Creativetools.src.Tools.MagicCursor;
 using Creativetools.src.Tools.Modify;
 using Creativetools.src.Tools.PlaySound;
 using Creativetools.src.Tools.WeatherControl;
@@ -14,19 +15,17 @@ using Terraria.Audio;
 using Terraria.GameContent.Events;
 using Terraria.ID;
 using Terraria.UI;
-using static Terraria.ModLoader.ModContent;
 
 namespace Creativetools.src.UI
 {
     class MainUI : UIState
     {
-        public static bool MagicCursor;
         private UIGrid buttonGrid;
 
         public override void OnInitialize()
         {
             DragableUIPanel MenuPanel = new DragableUIPanel("Creativetools Menu", 442f, 212f) { VAlign = 0.5f, HAlign = 0.1f };
-            MenuPanel.OnCloseBtnClicked += () => { GetInstance<UISystem>().UserInterface.SetState(null); SoundEngine.PlaySound(SoundID.MenuClose); };
+            MenuPanel.OnCloseBtnClicked += () => { UISystem.UserInterface.SetState(null); SoundEngine.PlaySound(SoundID.MenuClose); };
             Append(MenuPanel);
 
             buttonGrid = new UIGrid(8);
@@ -49,7 +48,7 @@ namespace Creativetools.src.UI
 
             // 2. Zeile
             buttonGrid.Add(new MenuButton("hardmodeToggle", "Toggle hardmode", (evt, element) => Main.hardMode = !Main.hardMode));
-            buttonGrid.Add(new MenuButton("expertModeToggle", "Toggle Game Mode", (evt, element) => GetInstance<UISystem>().UserInterface.SetState(new GameModeToggleUI())));
+            buttonGrid.Add(new MenuButton("expertModeToggle", "Toggle Game Mode", (evt, element) => UISystem.UserInterface.SetState(new GameModeToggleUI())));
             buttonGrid.Add(new MenuButton("halloweenToggle", "Toggle halloween", (evt, element) => Main.halloween = !Main.halloween));
             buttonGrid.Add(new MenuButton("xmasToggle", "Toggle Christmas", (evt, element) => Main.xMas = !Main.xMas));
             buttonGrid.Add(new MenuButton("partyToggle", "Toggle party", (evt, element) => BirthdayParty.GenuineParty = !BirthdayParty.PartyIsUp));
@@ -58,14 +57,14 @@ namespace Creativetools.src.UI
             buttonGrid.Add(new MenuButton("clearInventory", "Clear inventory", (evt, element) => Confirm_Panel.Visible = true));
 
             // 3. Zeile
-            buttonGrid.Add(new MenuButton("modifyItem", "Modify Item/Player", (evt, element) => GetInstance<UISystem>().UserInterface.SetState(new ItemModUI())));
-            buttonGrid.Add(new MenuButton("custom", "Custom Item/NPC", (evt, element) => GetInstance<UISystem>().UserInterface.SetState(new CustomNPCUI())));
+            buttonGrid.Add(new MenuButton("modifyItem", "Modify Item/Player", (evt, element) => UISystem.UserInterface.SetState(new ItemModUI())));
+            buttonGrid.Add(new MenuButton("custom", "Custom Item/NPC", (evt, element) => UISystem.UserInterface.SetState(new CustomNPCUI())));
             buttonGrid.Add(new MenuButton("creativeFly", "Creative Fly", (evt, element) => MovePlayer.CreativeFly = !MovePlayer.CreativeFly));
-            buttonGrid.Add(new MenuButton("magicCursor", "Magic Cursor", (evt, element) => MagicCursor = !MagicCursor));
+            buttonGrid.Add(new MenuButton("magicCursor", "Magic Cursor", (evt, element) => MagicCursorNPC.MagicCursor = !MagicCursorNPC.MagicCursor));
             buttonGrid.Add(new MenuButton("Info", "Game Info", (evt, element) => GameInfo.Visible = !GameInfo.Visible));
-            buttonGrid.Add(new MenuButton("weatherControl", "Weather Control", (evt, element) => GetInstance<UISystem>().UserInterface.SetState(new WeatherControlUI())));
-            buttonGrid.Add(new MenuButton("playSound", "Play Sound", (evt, element) => GetInstance<UISystem>().UserInterface.SetState(new PlaySoundUI())));
-            buttonGrid.Add(new MenuButton("DownedBossToggle", "DownedBoss Toggle", (evt, element) => GetInstance<UISystem>().UserInterface.SetState(new DownedBossToggleUI())));
+            buttonGrid.Add(new MenuButton("weatherControl", "Weather Control", (evt, element) => UISystem.UserInterface.SetState(new WeatherControlUI())));
+            buttonGrid.Add(new MenuButton("playSound", "Play Sound", (evt, element) => UISystem.UserInterface.SetState(new PlaySoundUI())));
+            buttonGrid.Add(new MenuButton("DownedBossToggle", "DownedBoss Toggle", (evt, element) => UISystem.UserInterface.SetState(new DownedBossToggleUI())));
         }
         public override void Update(GameTime gameTime)
         {
@@ -76,7 +75,7 @@ namespace Creativetools.src.UI
                 Main.invasionType == InvasionID.MartianMadness,
                 Main.invasionType == InvasionID.SnowLegion,
                 Main.hardMode, false, Main.halloween, Main.xMas, BirthdayParty.PartyIsUp, Main.slimeRain, WorldGen.spawnMeteor,
-                false, false, false, MovePlayer.CreativeFly, MagicCursor, false, false, false, false };
+                false, false, false, MovePlayer.CreativeFly, MagicCursorNPC.MagicCursor, false, false, false, false };
 
             for (int i = 0; i < buttonGrid.Count; i++)
             {

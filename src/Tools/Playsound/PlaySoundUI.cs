@@ -9,7 +9,6 @@ using Terraria;
 using Terraria.Audio;
 using Terraria.GameContent.UI.Elements;
 using Terraria.ID;
-using Terraria.ModLoader;
 using Terraria.UI;
 using static Creativetools.src.UI.UIHelper;
 
@@ -38,7 +37,7 @@ namespace Creativetools.src.Tools.PlaySound
             DragableUIPanel Menu = new DragableUIPanel("Play Sound", 500, 180);
             Menu.VAlign = 0.6f;
             Menu.HAlign = 0.2f;
-            Menu.OnCloseBtnClicked += () => ModContent.GetInstance<UISystem>().UserInterface.SetState(new MainUI());
+            Menu.OnCloseBtnClicked += () => UISystem.UserInterface.SetState(new MainUI());
             Append(Menu);
 
             //////////////////Sound/////////////////////

@@ -29,7 +29,7 @@ namespace Creativetools.src.Tools.CustomNPC
             TabPanel Menu = new TabPanel(450, 500, new Tab("Custom NPC", this), new Tab(" Custom Item", new CustomItemUI()));
             Menu.VAlign = 0.6f;
             Menu.HAlign = 0.2f;
-            Menu.OnCloseBtnClicked += () => GetInstance<UISystem>().UserInterface.SetState(new MainUI());
+            Menu.OnCloseBtnClicked += () => UISystem.UserInterface.SetState(new MainUI());
             Append(Menu);
 
             UITextPanel<string> CreateButton = new UITextPanel<string>(Language.GetTextValue("Create NPC"));

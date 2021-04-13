@@ -3,7 +3,6 @@ using Creativetools.src.UI.Elements;
 using Terraria;
 using Terraria.UI;
 using static Creativetools.src.UI.UIHelper;
-using static Terraria.ModLoader.ModContent;
 
 namespace Creativetools.src.Tools.Modify
 {
@@ -21,7 +20,7 @@ namespace Creativetools.src.Tools.Modify
             PlayerMenu = new TabPanel(450, 300, new Tab("Change Item", new ItemModUI()), new Tab(" Change Player", this));
             PlayerMenu.VAlign = 0.6f;
             PlayerMenu.HAlign = 0.2f;
-            PlayerMenu.OnCloseBtnClicked += () => GetInstance<UISystem>().UserInterface.SetState(new MainUI());
+            PlayerMenu.OnCloseBtnClicked += () => UISystem.UserInterface.SetState(new MainUI());
             Append(PlayerMenu);
 
             var LifeSlider = MakeSlider(new UIIntRangedDataValue("", 0, 0, 999), out LifeDataProperty, PlayerMenu, top: 50, left: -10);

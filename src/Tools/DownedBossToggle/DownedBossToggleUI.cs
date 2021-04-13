@@ -6,7 +6,6 @@ using System;
 using System.Reflection;
 using Terraria;
 using Terraria.GameContent.UI.Elements;
-using Terraria.ModLoader;
 using Terraria.UI;
 
 namespace Creativetools.src.Tools.DownedBossToggle
@@ -19,7 +18,7 @@ namespace Creativetools.src.Tools.DownedBossToggle
             var panel = new DragableUIPanel("DownedBoss Toggle", 600, 430);
             panel.VAlign = 0.6f;
             panel.HAlign = 0.2f;
-            panel.OnCloseBtnClicked += () => ModContent.GetInstance<UISystem>().UserInterface.SetState(new MainUI());
+            panel.OnCloseBtnClicked += () => UISystem.UserInterface.SetState(new MainUI());
             Append(panel);
 
             var scrollbar = new UIScrollbar();
@@ -122,7 +121,7 @@ namespace Creativetools.src.Tools.DownedBossToggle
             NPC.downedChristmasSantank = NPC.downedAncientCultist = NPC.downedMoonlord = NPC.downedTowerSolar = NPC.downedTowerVortex = NPC.downedTowerNebula = NPC.downedTowerStardust =
             NPC.downedMechBossAny = NPC.downedMechBoss1 = NPC.downedMechBoss2 = NPC.downedAncientCultist = NPC.downedMechBoss3 = NPC.downedEmpressOfLight = NPC.downedQueenSlime = state;
 
-            ModContent.GetInstance<UISystem>().UserInterface.SetState(new DownedBossToggleUI());
+            UISystem.UserInterface.SetState(new DownedBossToggleUI());
         }
     }
 }
