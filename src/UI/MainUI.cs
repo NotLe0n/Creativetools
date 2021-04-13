@@ -41,10 +41,10 @@ namespace Creativetools.src.UI
             buttonGrid.Add(new MenuButton("frostmoonToggle", "Toggle Frost moon", (evt, element) => { if (Main.snowMoon) Main.stopMoonEvent(); else Main.startSnowMoon(); }));
             buttonGrid.Add(new MenuButton("pumpkinmoonToggle", "Toggle Pumpkin moon", (evt, element) => { if (Main.pumpkinMoon) Main.stopMoonEvent(); else Main.startPumpkinMoon(); }));
             buttonGrid.Add(new MenuButton("solareclipseToggle", "Toggle Solar Eclipse", (evt, element) => Main.eclipse = !Main.eclipse));
-            buttonGrid.Add(new MenuButton("pirateInvasionToggle", "Toggle Pirate invasion", (evt, element) => Main.StartInvasion(InvasionID.PirateInvasion)));
-            buttonGrid.Add(new MenuButton("goblinInvasionToggle", "Toggle Goblin invasion", (evt, element) => Main.StartInvasion(InvasionID.GoblinArmy)));
-            buttonGrid.Add(new MenuButton("alienInvasionToggle", "Toggle Martian Madness", (evt, element) => Main.StartInvasion(InvasionID.MartianMadness)));
-            buttonGrid.Add(new MenuButton("frostLegionToggle", "Toggle Frost Legion", (evt, element) => Main.StartInvasion(InvasionID.SnowLegion)));
+            buttonGrid.Add(new MenuButton("pirateInvasionToggle", "Toggle Pirate invasion", (evt, element) => ToggleInvasion(InvasionID.PirateInvasion)));
+            buttonGrid.Add(new MenuButton("goblinInvasionToggle", "Toggle Goblin invasion", (evt, element) => ToggleInvasion(InvasionID.GoblinArmy)));
+            buttonGrid.Add(new MenuButton("alienInvasionToggle", "Toggle Martian Madness", (evt, element) => ToggleInvasion(InvasionID.MartianMadness)));
+            buttonGrid.Add(new MenuButton("frostLegionToggle", "Toggle Frost Legion", (evt, element) => ToggleInvasion(InvasionID.SnowLegion)));
 
             // 2. Zeile
             buttonGrid.Add(new MenuButton("hardmodeToggle", "Toggle hardmode", (evt, element) => Main.hardMode = !Main.hardMode));
@@ -92,11 +92,11 @@ namespace Creativetools.src.UI
                 Main.StartInvasion(type: type);
                 Main.invasionType = type;
             }
-            /*else
+            else
             {
                 Main.invasionType = InvasionID.None;
-                Main.NewText(Language.GetTextValue(text[type]), 143, 61, 209);
-            }*/
+                Main.NewText(Terraria.Localization.Language.GetTextValue(text[type]), 143, 61, 209);
+            }
         }
     }
 }

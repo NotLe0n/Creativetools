@@ -9,7 +9,7 @@ namespace Creativetools.src.Tools.Modify
     class ModifyPlayer : ModPlayer
     {
         public static float playerSize = 1f;
-        private static Texture2D[] WingsExtraTexOccupied = { TextureAssets.ItemFlame[1866].Value, TextureAssets.Extra[38].Value, TextureAssets.Flames[8].Value, TextureAssets.GlowMask[92].Value, TextureAssets.GlowMask[181].Value, TextureAssets.GlowMask[213].Value, TextureAssets.GlowMask[183].Value };
+        private Texture2D[] WingsExtraTexOccupied = { TextureAssets.ItemFlame[1866].Value, TextureAssets.Extra[38].Value, TextureAssets.Flames[8].Value, TextureAssets.GlowMask[92].Value, TextureAssets.GlowMask[181].Value, TextureAssets.GlowMask[213].Value, TextureAssets.GlowMask[183].Value };
         public override void PreUpdate()
         {
             if (Player.active && playerSize != 1f)
