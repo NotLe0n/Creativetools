@@ -81,26 +81,16 @@ namespace Creativetools.src.Tools.PlaySound
             base.Update(gameTime);
             SoundName.SetText("SoundID." + Sounds[ID.Data].Name);
 
-            if (MusicSound.Data == 0)
+            List<string> MusicNames = new List<string>(Music.Length);
+            for (int i = 0; i < MusicNames.Capacity; i++)
             {
-                MusicName.SetText("No Music");
+                MusicNames.Add("MusicID." + Music[i].Name);
             }
-            else if (MusicSound.Data == 45)
-            {
-                MusicName.SetText("Unused");
-            }
-            else if (MusicSound.Data > 45 && MusicSound.Data < 51)
-            {
-                MusicName.SetText("MusicID." + Music[MusicSound.Data - 2].Name);
-            }
-            //else if(MusicSound.Data > 51)
-            //{
-            //    MusicName.SetText("MusicID." + Music[MusicSound.Data - 1].Name);
-            //}
-            else
-            {
-                MusicName.SetText("MusicID." + Music[MusicSound.Data - 1].Name);
-            }
+            MusicNames.Insert(0, "No Music");
+            MusicNames.Insert(45, "Unused");
+
+            MusicName.SetText(MusicNames[MusicSound.Data]);
+            
         }
         // so you can't use items when clicking on the button
         protected override void DrawSelf(SpriteBatch spriteBatch)

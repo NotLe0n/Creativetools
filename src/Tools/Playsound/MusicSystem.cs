@@ -8,7 +8,15 @@ namespace Creativetools.src.Tools.PlaySound
         {
             if (PlaySoundUI.playmusic)
             {
-                music = PlaySoundUI.MusicSound.Data;
+                if (PlaySoundUI.MusicSound.Data < 50)
+                {
+                    music = PlaySoundUI.MusicSound.Data;
+                }
+                else
+                {
+                    music = PlaySoundUI.MusicSound.Data + 1;
+                }
+
                 priority = MusicPriority.BiomeHigh;
             }
         }
