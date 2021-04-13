@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
+using Terraria.GameContent;
 using Terraria.GameContent.UI.Elements;
 using Terraria.UI;
 using static Creativetools.src.NearestToMouse;
@@ -84,7 +85,7 @@ namespace Creativetools.src.Tools.GameInfo
 
             //Game information
             Gameinfo.MarginTop = Main.screenHeight - 20;
-            Gameinfo.SetText(!Config.Instance.HideGame ? $"Time: {Main.time}, Global Timer: {Main.GlobalTime}, Rain Time: {Main.rainTime}" : "");
+            Gameinfo.SetText(!Config.Instance.HideGame ? $"Time: {Main.time}, Global Timer: {Main.GlobalTimeWrappedHourly}, Rain Time: {Main.rainTime}" : "");
         }
 
         public static void WorldDraw()
@@ -107,16 +108,16 @@ namespace Creativetools.src.Tools.GameInfo
 
             if (!Config.Instance.Hitboxes)
             {
-                if (!Config.Instance.HidePlayer) Main.spriteBatch.Draw(Main.magicPixel, playerRect, Color.Firebrick * 0.5f);
-                if (!Config.Instance.HideNPC) Main.spriteBatch.Draw(Main.magicPixel, npcRect, Color.Salmon * 0.5f);
-                if (!Config.Instance.HideProjectile) Main.spriteBatch.Draw(Main.magicPixel, projRect, Color.HotPink * 0.5f);
-                if (!Config.Instance.HideItem) Main.spriteBatch.Draw(Main.magicPixel, itemRect, Color.DodgerBlue * 0.5f);
+                if (!Config.Instance.HidePlayer) Main.spriteBatch.Draw(TextureAssets.MagicPixel.Value, playerRect, Color.Firebrick * 0.5f);
+                if (!Config.Instance.HideNPC) Main.spriteBatch.Draw(TextureAssets.MagicPixel.Value, npcRect, Color.Salmon * 0.5f);
+                if (!Config.Instance.HideProjectile) Main.spriteBatch.Draw(TextureAssets.MagicPixel.Value, projRect, Color.HotPink * 0.5f);
+                if (!Config.Instance.HideItem) Main.spriteBatch.Draw(TextureAssets.MagicPixel.Value, itemRect, Color.DodgerBlue * 0.5f);
             }
         }
         protected override void DrawSelf(SpriteBatch spriteBatch)
         {
             base.DrawSelf(spriteBatch);
-            if (!Config.Instance.Hitboxes && !Config.Instance.HideMouse) Main.spriteBatch.Draw(Main.magicPixel, new Rectangle(Main.mouseX, Main.mouseY, Main.ThickMouse ? (int)(14 * 1.1f) : 14, Main.ThickMouse ? (int)(14 * 1.1f) : 14), Color.AntiqueWhite * 0.5f);
+            if (!Config.Instance.Hitboxes && !Config.Instance.HideMouse) Main.spriteBatch.Draw(TextureAssets.MagicPixel.Value, new Rectangle(Main.mouseX, Main.mouseY, Main.ThickMouse ? (int)(14 * 1.1f) : 14, Main.ThickMouse ? (int)(14 * 1.1f) : 14), Color.AntiqueWhite * 0.5f);
         }
     }
 }

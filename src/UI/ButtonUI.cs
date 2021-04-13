@@ -1,5 +1,7 @@
 ﻿using Creativetools.src.UI.Elements;
+using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.Audio;
 using Terraria.ID;
 using Terraria.UI;
 using static Terraria.ModLoader.ModContent;
@@ -8,26 +10,33 @@ namespace Creativetools.src.UI
 {
     class ButtonUI : UIState
     {
+        private UIHoverImageButton MenuButton;
         public override void OnInitialize()
         {
-            UIHoverImageButton Menu_button = new UIHoverImageButton("Creativetools/UI Assets/MenuButton", "Open Menu");
-            Menu_button.MarginTop = 260;
-            Menu_button.MarginLeft = 20;
-            Menu_button.OnClick += new MouseEvent(Menu_buttonClicked);
-            Append(Menu_button);
+            MenuButton = new UIHoverImageButton("Creativetools/UI Assets/MenuButton", "Open Menu");
+            MenuButton.Top.Set(260, 0);
+            MenuButton.OnClick += new MouseEvent(MenuButtonClicked);
+            Append(MenuButton);
         }
-        private void Menu_buttonClicked(UIMouseEvent evt, UIElement listeningElement)
+
+        private void MenuButtonClicked(UIMouseEvent evt, UIElement listeningElement)
         {
-            if (GetInstance<Creativetools>().UserInterface.CurrentState != null)
+            if (GetInstance<UISystem>().UserInterface.CurrentState != null)
             {
-                GetInstance<Creativetools>().UserInterface.SetState(null);
-                Main.PlaySound(SoundID.MenuClose);
+                GetInstance<UISystem>().UserInterface.SetState(null);
+                SoundEngine.PlaySound(SoundID.MenuClose);
             }
             else
             {
-                GetInstance<Creativetools>().UserInterface.SetState(new MainUI());
-                Main.PlaySound(SoundID.MenuOpen);
+                GetInstance<UISystem>().UserInterface.SetState(new MainUI());
+                SoundEngine.PlaySound(SoundID.MenuOpen);
             }
+        }
+
+        public override void Update(GameTime gameTime)
+        {
+            MenuButton.Left.Set(Main.GameModeInfo.IsJourneyMode ? 67 : 20, 0);
+            base.Update(gameTime);
         }
     }
 }

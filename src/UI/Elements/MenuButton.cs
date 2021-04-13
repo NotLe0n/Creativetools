@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
 using Terraria;
+using Terraria.Audio;
 using Terraria.GameContent.UI.Elements;
 using Terraria.ID;
 using Terraria.UI;
@@ -29,7 +30,7 @@ namespace Creativetools.src.UI.Elements
         }
         public override void Click(UIMouseEvent evt)
         {
-            Main.PlaySound(SoundID.MenuTick);
+            SoundEngine.PlaySound(SoundID.MenuTick);
             base.Click(evt);
         }
         protected override void DrawSelf(SpriteBatch spriteBatch)

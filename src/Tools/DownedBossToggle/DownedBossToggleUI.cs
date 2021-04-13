@@ -1,17 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Terraria.GameContent.UI;
-using Terraria.UI;
+﻿using Creativetools.src.UI;
 using Creativetools.src.UI.Elements;
-using Terraria.GameContent.UI.Elements;
-using Creativetools.src.UI;
 using Microsoft.Xna.Framework;
-using Terraria.Graphics;
-using Terraria.ModLoader;
-using Terraria;
+using Microsoft.Xna.Framework.Graphics;
+using System;
 using System.Reflection;
+using Terraria;
+using Terraria.GameContent.UI.Elements;
+using Terraria.ModLoader;
+using Terraria.UI;
 
 namespace Creativetools.src.Tools.DownedBossToggle
 {
@@ -23,7 +19,7 @@ namespace Creativetools.src.Tools.DownedBossToggle
             var panel = new DragableUIPanel("DownedBoss Toggle", 600, 430);
             panel.VAlign = 0.6f;
             panel.HAlign = 0.2f;
-            panel.OnCloseBtnClicked += () => ModContent.GetInstance<Creativetools>().UserInterface.SetState(new MainUI());
+            panel.OnCloseBtnClicked += () => ModContent.GetInstance<UISystem>().UserInterface.SetState(new MainUI());
             Append(panel);
 
             var scrollbar = new UIScrollbar();
@@ -33,7 +29,7 @@ namespace Creativetools.src.Tools.DownedBossToggle
             scrollbar.Top.Set(0, 0.1f);
             panel.Append(scrollbar);
 
-            toggleList = new BetterUIList();
+            toggleList = new UIList();
             toggleList.Width.Set(0, 0.1f);
             toggleList.Height.Set(340, 0);
             toggleList.Left.Set(0, 0.1f);
@@ -42,7 +38,7 @@ namespace Creativetools.src.Tools.DownedBossToggle
             toggleList.SetScrollbar(scrollbar);
             panel.Append(toggleList);
 
-            textList = new BetterUIList();
+            textList = new UIList();
             textList.Width.Set(0, 0.9f);
             textList.Height.Set(340, 0);
             textList.Left.Set(0, 0.2f);
@@ -60,8 +56,14 @@ namespace Creativetools.src.Tools.DownedBossToggle
             AddToggle("downedFrost");
             AddToggle("downedPirates");
             AddToggle("downedClown");
+            AddToggle("downedQueenSlime");
+            AddToggle("downedMechBossAny");
+            AddToggle("downedMechBoss1", "(The Destroyer)");
+            AddToggle("downedMechBoss2", "(The Twins)");
+            AddToggle("downedMechBoss3", "(Skeletron Prime)");
             AddToggle("downedPlantBoss");
             AddToggle("downedGolemBoss");
+            AddToggle("downedEmpressOfLight");
             AddToggle("downedMartians");
             AddToggle("downedFishron");
             AddToggle("downedHalloweenTree");
@@ -70,15 +72,11 @@ namespace Creativetools.src.Tools.DownedBossToggle
             AddToggle("downedChristmasTree");
             AddToggle("downedChristmasSantank");
             AddToggle("downedAncientCultist");
-            AddToggle("downedMoonlord");
             AddToggle("downedTowerSolar");
             AddToggle("downedTowerVortex");
             AddToggle("downedTowerNebula");
             AddToggle("downedTowerStardust");
-            AddToggle("downedMechBossAny");
-            AddToggle("downedMechBoss1", "(The Destroyer)");
-            AddToggle("downedMechBoss2", "(The Twins)");
-            AddToggle("downedMechBoss3", "(Skeletron Prime)");
+            AddToggle("downedMoonlord");
 
             var resetBtn = new UITextPanel<string>("Uncheck all");
             resetBtn.SetPadding(4);
@@ -106,7 +104,7 @@ namespace Creativetools.src.Tools.DownedBossToggle
             var field = type.GetField(fieldName, BindingFlags.Public | BindingFlags.Static);
 
             // append toggle
-            var toggle = new UIToggleImage(TextureManager.Load("Images/UI/Settings_Toggle"), 13, 13, new Point(17, 1), new Point(1, 1));
+            var toggle = new UIToggleImage(Main.Assets.Request<Texture2D>("Images\\UI\\Settings_Toggle"), 13, 13, new Point(17, 1), new Point(1, 1));
             toggle.SetState((bool)field.GetValue(type));
             toggle.OnClick += (evt, elm) => field.SetValue(type, toggle.IsOn);
             toggleList.Add(toggle);
@@ -122,9 +120,9 @@ namespace Creativetools.src.Tools.DownedBossToggle
             NPC.downedFrost = NPC.downedPirates = NPC.downedClown = NPC.downedPlantBoss = NPC.downedGolemBoss = NPC.downedGolemBoss = NPC.downedMartians = NPC.downedFishron =
             NPC.downedHalloweenTree = NPC.downedHalloweenKing = NPC.downedChristmasIceQueen = NPC.downedChristmasTree = NPC.downedChristmasIceQueen = NPC.downedChristmasTree =
             NPC.downedChristmasSantank = NPC.downedAncientCultist = NPC.downedMoonlord = NPC.downedTowerSolar = NPC.downedTowerVortex = NPC.downedTowerNebula = NPC.downedTowerStardust =
-            NPC.downedMechBossAny = NPC.downedMechBoss1 = NPC.downedMechBoss2 = NPC.downedAncientCultist = NPC.downedMechBoss3 = state;
+            NPC.downedMechBossAny = NPC.downedMechBoss1 = NPC.downedMechBoss2 = NPC.downedAncientCultist = NPC.downedMechBoss3 = NPC.downedEmpressOfLight = NPC.downedQueenSlime = state;
 
-            ModContent.GetInstance<Creativetools>().UserInterface.SetState(new DownedBossToggleUI());
+            ModContent.GetInstance<UISystem>().UserInterface.SetState(new DownedBossToggleUI());
         }
     }
 }

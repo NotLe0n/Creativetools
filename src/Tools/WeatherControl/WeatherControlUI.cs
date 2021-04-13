@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
 using Terraria.GameContent.UI.Elements;
+using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.UI;
@@ -21,7 +22,7 @@ namespace Creativetools.src.Tools.WeatherControl
             WeatherMenu = new DragableUIPanel("Weather Control", 500f, 200f);
             WeatherMenu.VAlign = 0.6f;
             WeatherMenu.HAlign = 0.2f;
-            WeatherMenu.OnCloseBtnClicked += () => ModContent.GetInstance<Creativetools>().UserInterface.SetState(new MainUI());
+            WeatherMenu.OnCloseBtnClicked += () => ModContent.GetInstance<UISystem>().UserInterface.SetState(new MainUI());
             Append(WeatherMenu);
 
             var TimeSlider = MakeSlider(new UIIntRangedDataValue("Time Control:", 0, 0, 86399), out Time, WeatherMenu, top: 50);
@@ -57,6 +58,11 @@ namespace Creativetools.src.Tools.WeatherControl
         {
             base.Update(gameTime);
             Main.time = !(Main.dayTime = Time.Data <= 54000) ? Math.Abs(Time.Data - 54000) : Time.Data;
+
+            if (Main.netMode == NetmodeID.MultiplayerClient)
+            {
+                NetMessage.SendData(MessageID.WorldData);
+            }
         }
 
         // so you can't use items when clicking on the button

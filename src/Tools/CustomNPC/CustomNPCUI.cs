@@ -4,6 +4,7 @@ using Creativetools.src.UI.Elements;
 using Microsoft.Xna.Framework.Graphics;
 using System.Windows.Forms;
 using Terraria;
+using Terraria.Audio;
 using Terraria.GameContent.UI.Elements;
 using Terraria.ID;
 using Terraria.Localization;
@@ -28,7 +29,7 @@ namespace Creativetools.src.Tools.CustomNPC
             TabPanel Menu = new TabPanel(450, 500, new Tab("Custom NPC", this), new Tab(" Custom Item", new CustomItemUI()));
             Menu.VAlign = 0.6f;
             Menu.HAlign = 0.2f;
-            Menu.OnCloseBtnClicked += () => GetInstance<Creativetools>().UserInterface.SetState(new MainUI());
+            Menu.OnCloseBtnClicked += () => GetInstance<UISystem>().UserInterface.SetState(new MainUI());
             Append(Menu);
 
             UITextPanel<string> CreateButton = new UITextPanel<string>(Language.GetTextValue("Create NPC"));
@@ -100,7 +101,7 @@ namespace Creativetools.src.Tools.CustomNPC
             CustomNPC.cFramecount = FrameDataProperty.Data;
             Player player = Main.LocalPlayer;
             NPC.NewNPC((int)player.position.X, (int)player.position.Y, NPCType<CustomNPC>());
-            Main.PlaySound(SoundID.MenuTick);
+            SoundEngine.PlaySound(SoundID.MenuTick);
         }
         private void CodeButtonClicked(UIMouseEvent evt, UIElement listeningElement) => Clipboard.SetText(
 $@"using Terraria.ID;

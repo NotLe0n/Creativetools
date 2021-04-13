@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Reflection;
 using Terraria.GameContent.UI.Elements;
 using Terraria.UI;
 
@@ -26,7 +21,7 @@ namespace Creativetools.src.UI.Elements
 
         public override void Add(UIElement item)
         {
-            _items.Add(item);
+            Elements.Add(item);
             method_uiElementAppend.Invoke(field_innerList.GetValue(this), new object[] { item });
             method_uiElementRecalcuate.Invoke(field_innerList.GetValue(this), null);
         }
@@ -34,7 +29,7 @@ namespace Creativetools.src.UI.Elements
         public override bool Remove(UIElement item)
         {
             method_uiElementRemoveChild.Invoke(field_innerList.GetValue(this), new object[] { item });
-            return _items.Remove(item);
+            return Elements.Remove(item);
         }
     }
 }

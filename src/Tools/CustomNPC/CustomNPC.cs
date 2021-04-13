@@ -16,33 +16,33 @@ namespace Creativetools.src.Tools.CustomNPC
         public static float cScale = 1f;
         public static bool cNoCollide = false;
         public static bool cImmortal = false;
-        public static Texture2D ctexture = ModContent.GetTexture("Creativetools/src/Tools/CustomNPC/CustomNPC");
+        public static Texture2D ctexture = ModContent.GetTexture("Creativetools/src/Tools/CustomNPC/CustomNPC").Value;
         public static int cFramecount = 1;
 
         public override void SetStaticDefaults()
         {
             DisplayName.SetDefault(cName);
-            Main.npcFrameCount[npc.type] = 1;
+            Main.npcFrameCount[NPC.type] = 1;
         }
         public override void SetDefaults()
         {
-            npc.GivenName = cName;
-            npc.width = 32;
-            npc.height = 32;
-            npc.aiStyle = cAistyle;
-            npc.knockBackResist = cKnockback;
-            npc.damage = cDamage;
-            npc.defense = cDefense;
-            npc.lifeMax = cLifeMax;
-            npc.HitSound = SoundID.NPCHit1;
-            npc.DeathSound = SoundID.NPCDeath1;
-            npc.value = 25f;
-            npc.scale = cScale;
-            npc.noTileCollide = cNoCollide;
-            npc.immortal = cImmortal;
-            npc.dontTakeDamage = cImmortal;
-            Main.npcTexture[npc.type] = ctexture;
-            Main.npcFrameCount[npc.type] = cFramecount;
+            NPC.GivenName = cName;
+            NPC.width = 32;
+            NPC.height = 32;
+            NPC.aiStyle = cAistyle;
+            NPC.knockBackResist = cKnockback;
+            NPC.damage = cDamage;
+            NPC.defense = cDefense;
+            NPC.lifeMax = cLifeMax;
+            NPC.HitSound = SoundID.NPCHit1;
+            NPC.DeathSound = SoundID.NPCDeath1;
+            NPC.value = 25f;
+            NPC.scale = cScale;
+            NPC.noTileCollide = cNoCollide;
+            NPC.immortal = cImmortal;
+            NPC.dontTakeDamage = cImmortal;
+            //Main.npcTexture[NPC.type] = ctexture;
+            Main.npcFrameCount[NPC.type] = cFramecount;
         }
     }
 }

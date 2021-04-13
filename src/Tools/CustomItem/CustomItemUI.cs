@@ -4,6 +4,7 @@ using Creativetools.src.UI.Elements;
 using Microsoft.Xna.Framework.Graphics;
 using System.Windows.Forms;
 using Terraria;
+using Terraria.Audio;
 using Terraria.GameContent.UI.Elements;
 using Terraria.ID;
 using Terraria.Localization;
@@ -30,7 +31,7 @@ namespace Creativetools.src.Tools.CustomItem
             TabPanel Menu = new TabPanel(450, 600, new Tab("Custom NPC", new CustomNPCUI()), new Tab(" Custom Item", this));
             Menu.VAlign = 0.7f;
             Menu.HAlign = 0.2f;
-            Menu.OnCloseBtnClicked += () => GetInstance<Creativetools>().UserInterface.SetState(new MainUI());
+            Menu.OnCloseBtnClicked += () => GetInstance<UISystem>().UserInterface.SetState(new MainUI());
             Append(Menu);
 
             UITextPanel<string> CreateButton = new UITextPanel<string>(Language.GetTextValue("Create Item"));
@@ -102,7 +103,7 @@ namespace Creativetools.src.Tools.CustomItem
             Global.cUseTime = UseTimeDataProperty.Data;
             Global.createitem = true;
             Main.LocalPlayer.QuickSpawnItem(ItemType<CustomItem>());
-            Main.PlaySound(SoundID.MenuTick);
+            SoundEngine.PlaySound(SoundID.MenuTick);
         }
         private void CodeButtonClicked(UIMouseEvent evt, UIElement listeningElement)
         {
@@ -122,23 +123,23 @@ namespace YourMod
 
         public override void SetDefaults()
         {{ 
-            item.SetNameOverride(""{Global.cName}"");
-            item.width = 32;
-            item.height = 32;
-            item.melee = true;
-            item.knockBack = {Global.cKnockback};
-            item.damage = {Global.cDamage};
-            item.defense = {Global.cDefense};
-            item.scale = {Global.cScale};
-            item.shoot = {Global.cShoot};
-            item.shootSpeed = {Global.cShootSpeed};
-            item.crit = {Global.cCrit} - 4;
-            item.useTime = {Global.cUseTime};
-            item.useAnimation = {Global.cUseTime};
-            item.autoReuse = {Global.cAutoSwing};
-            item.useTurn = {Global.cTurnAround};
-            item.useStyle = ItemUseStyleID.SwingThrow;
-            item.UseSound = SoundID.Item1;
+            Item.SetNameOverride(""{Global.cName}"");
+            Item.width = 32;
+            Item.height = 32;
+            Item.melee = true;
+            Item.knockBack = {Global.cKnockback};
+            Item.damage = {Global.cDamage};
+            Item.defense = {Global.cDefense};
+            Item.scale = {Global.cScale};
+            Item.shoot = {Global.cShoot};
+            Item.shootSpeed = {Global.cShootSpeed};
+            Item.crit = {Global.cCrit} - 4;
+            Item.useTime = {Global.cUseTime};
+            Item.useAnimation = {Global.cUseTime};
+            Item.autoReuse = {Global.cAutoSwing};
+            Item.useTurn = {Global.cTurnAround};
+            Item.useStyle = ItemUseStyleID.SwingThrow;
+            Item.UseSound = SoundID.Item1;
         }}
     }}
 }}"

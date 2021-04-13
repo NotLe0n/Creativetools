@@ -1,6 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
-using ReLogic.Graphics;
-using Terraria;
+using Terraria.Audio;
+using Terraria.GameContent;
 using Terraria.GameContent.UI.Elements;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -31,13 +31,13 @@ namespace Creativetools.src.UI.Elements
             TabPanel.lastTab = _changeStateTo;
 
             // change UIState and play click sound
-            ModContent.GetInstance<Creativetools>().UserInterface.SetState(_changeStateTo);
-            Main.PlaySound(SoundID.MenuTick);
+            ModContent.GetInstance<UISystem>().UserInterface.SetState(_changeStateTo);
+            SoundEngine.PlaySound(SoundID.MenuTick);
         }
         public override void Update(GameTime gameTime)
         {
             // Highlight
-            if (ModContent.GetInstance<Creativetools>().UserInterface.CurrentState == _changeStateTo)
+            if (ModContent.GetInstance<UISystem>().UserInterface.CurrentState == _changeStateTo)
             {
                 BackgroundColor = new Color(73, 94, 171);
             }
@@ -72,7 +72,7 @@ namespace Creativetools.src.UI.Elements
             {
                 if (i > 0 && Tabs[i - 1] != null)
                 {
-                    Tabs[i].Left.Set(Main.fontMouseText.MeasureString(Tabs[i - 1].Text).X, 0f);
+                    Tabs[i].Left.Set(FontAssets.MouseText.Value.MeasureString(Tabs[i - 1].Text).X, 0f);
                 }
             }
             // append all tabs

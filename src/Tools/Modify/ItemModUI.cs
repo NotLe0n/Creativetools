@@ -1,6 +1,7 @@
 ﻿using Creativetools.src.UI;
 using Creativetools.src.UI.Elements;
 using Terraria;
+using Terraria.Audio;
 using Terraria.GameContent.UI.Elements;
 using Terraria.ID;
 using Terraria.UI;
@@ -23,7 +24,7 @@ namespace Creativetools.src.Tools.Modify
             TabPanel ItemMenu = new TabPanel(450, 450, new Tab("Change Item", this), new Tab(" Change Player", new PlayerModUI()));
             ItemMenu.VAlign = 0.6f;
             ItemMenu.HAlign = 0.2f;
-            ItemMenu.OnCloseBtnClicked += () => GetInstance<Creativetools>().UserInterface.SetState(new MainUI());
+            ItemMenu.OnCloseBtnClicked += () => GetInstance<UISystem>().UserInterface.SetState(new MainUI());
             Append(ItemMenu);
 
             var DamageSlider = MakeSlider(new UIIntRangedDataValue("", 0, 0, 999), out DamageDataProperty, ItemMenu, top: 50, left: -10);
@@ -55,7 +56,7 @@ namespace Creativetools.src.Tools.Modify
             AutoswingButton.OnClick += (evt, elm) =>
             {
                 ToggleAutoSwing();
-                Main.PlaySound(SoundID.MenuTick);
+                SoundEngine.PlaySound(SoundID.MenuTick);
             };
             ItemMenu.Append(AutoswingButton);
 
@@ -67,7 +68,7 @@ namespace Creativetools.src.Tools.Modify
             TurnaroundButton.OnClick += (evt, elm) =>
             {
                 ToggleTurnAround();
-                Main.PlaySound(SoundID.MenuTick);
+                SoundEngine.PlaySound(SoundID.MenuTick);
             };
             ItemMenu.Append(TurnaroundButton);
         }

@@ -1,6 +1,6 @@
 ﻿using Creativetools.src.UI.Elements;
 using System;
-using Terraria;
+using Terraria.Audio;
 using Terraria.GameContent.UI.Elements;
 using Terraria.ID;
 using Terraria.UI;
@@ -48,7 +48,7 @@ namespace Creativetools.src.UI
             button.MarginLeft = 20;
             button.Width.Set(10, 0f);
 
-            if (tick) button.OnClick += (evt, elm) => Main.PlaySound(SoundID.MenuTick);
+            if (tick) button.OnClick += (evt, elm) => SoundEngine.PlaySound(SoundID.MenuTick);
             appendTo.Append(button);
             action(button);
 

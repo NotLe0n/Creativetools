@@ -1,7 +1,6 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ModLoader;
-using static Terraria.ModLoader.ModContent;
 
 namespace Creativetools.src.Tools.CustomItem
 {
@@ -19,11 +18,11 @@ namespace Creativetools.src.Tools.CustomItem
         public static int cUseTime = 10;
         public static bool cAutoSwing = false;
         public static bool cTurnAround = false;
-        public static Texture2D ctexture = GetTexture("Creativetools/src/Tools/CustomItem/CustomItem");
+        public static Texture2D ctexture = ModContent.GetTexture("Creativetools/src/Tools/CustomItem/CustomItem").Value;
 
         public override void SetDefaults(Item item)
         {
-            if (item.type == ItemType<CustomItem>() && createitem)
+            if (item.type == ModContent.ItemType<CustomItem>() && createitem)
             {
                 item.SetNameOverride(cName);
                 item.knockBack = cKnockback;
@@ -37,7 +36,7 @@ namespace Creativetools.src.Tools.CustomItem
                 item.useAnimation = cUseTime;
                 item.autoReuse = cAutoSwing;
                 item.useTurn = cTurnAround;
-                Main.itemTexture[item.type] = ctexture;
+                //TextureAssets.Item[item.type] = ctexture;
                 createitem = false;
             }
         }

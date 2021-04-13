@@ -11,23 +11,23 @@ namespace Creativetools.src.Tools.CustomItem
         }
         public override void SetDefaults()
         {
-            item.SetNameOverride("Customitem");
-            item.width = 32;
-            item.height = 32;
-            item.melee = true;
-            item.knockBack = 69f;
-            item.damage = 69;
-            item.defense = 69;
-            item.scale = 1f;
-            item.shoot = ProjectileID.None;
-            item.shootSpeed = 1f;
-            item.crit = 69 - 4;
-            item.useTime = 10;
-            item.useAnimation = 10;
-            item.autoReuse = false;
-            item.useTurn = false;
-            item.useStyle = ItemUseStyleID.SwingThrow;
-            item.UseSound = SoundID.Item1;
+            Item.SetNameOverride("Customitem");
+            Item.width = 32;
+            Item.height = 32;
+            Item.DamageType = DamageClass.Melee;
+            Item.knockBack = 69f;
+            Item.damage = 69;
+            Item.defense = 69;
+            Item.scale = 1f;
+            Item.shoot = ProjectileID.None;
+            Item.shootSpeed = 1f;
+            Item.crit = 69 - 4;
+            Item.useTime = 10;
+            Item.useAnimation = 10;
+            Item.autoReuse = false;
+            Item.useTurn = false;
+            Item.useStyle = ItemUseStyleID.Swing;
+            Item.UseSound = SoundID.Item1;
         }
     }
 }

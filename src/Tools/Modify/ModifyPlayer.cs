@@ -1,8 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System.Collections.Generic;
 using Terraria;
-using Terraria.DataStructures;
+using Terraria.GameContent;
 using Terraria.ModLoader;
 
 namespace Creativetools.src.Tools.Modify
@@ -10,19 +9,19 @@ namespace Creativetools.src.Tools.Modify
     class ModifyPlayer : ModPlayer
     {
         public static float playerSize = 1f;
-        private static Texture2D[] WingsExtraTexOccupied = { Main.itemFlameTexture[1866], Main.extraTexture[38], Main.FlameTexture[8], Main.glowMaskTexture[92], Main.glowMaskTexture[181], Main.glowMaskTexture[213], Main.glowMaskTexture[183] };
+        private static Texture2D[] WingsExtraTexOccupied = { TextureAssets.ItemFlame[1866].Value, TextureAssets.Extra[38].Value, TextureAssets.Flames[8].Value, TextureAssets.GlowMask[92].Value, TextureAssets.GlowMask[181].Value, TextureAssets.GlowMask[213].Value, TextureAssets.GlowMask[183].Value };
         public override void PreUpdate()
         {
-            if (player.active && playerSize != 1f)
+            if (Player.active && playerSize != 1f)
             {
                 // Change player hitbox size
-                player.position = player.Bottom;
-                player.Size = new Vector2(Player.defaultWidth * playerSize, Player.defaultHeight * playerSize);
-                player.Bottom = player.position;
+                Player.position = Player.Bottom;
+                Player.Size = new Vector2(Player.defaultWidth * playerSize, Player.defaultHeight * playerSize);
+                Player.Bottom = Player.position;
             }
         }
         // Change player render size
-        public static readonly PlayerLayer SizePlayerRender = new PlayerLayer("CreativeTools", "ChangeSize", delegate (PlayerDrawInfo drawInfo)
+        /*public static readonly PlayerLayer SizePlayerRender = new PlayerLayer("CreativeTools", "ChangeSize", delegate (PlayerDrawInfo drawInfo)
         {
             if (!Main.gameMenu && playerSize != 1f)
             {
@@ -56,10 +55,10 @@ namespace Creativetools.src.Tools.Modify
                 }
             }
         });
-        public override void ModifyDrawLayers(List<PlayerLayer> layers)
+        public override void ModifyDrawLayerOrdering(IDictionary<PlayerDrawLayer, PlayerDrawLayer.Position> positions)
         {
             SizePlayerRender.visible = true;
-            layers.Add(SizePlayerRender);
-        }
+            positions.Add(SizePlayerRender);
+        }*/
     }
 }

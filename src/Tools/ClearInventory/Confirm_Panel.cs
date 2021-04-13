@@ -1,5 +1,6 @@
 ﻿using Creativetools.src.UI.Elements;
 using Terraria;
+using Terraria.Audio;
 using Terraria.GameContent.UI.Elements;
 using Terraria.ID;
 using Terraria.UI;
@@ -48,32 +49,32 @@ namespace Creativetools.src.Tools.ClearInventory
         private void YEPClicked(UIMouseEvent evt, UIElement listeningElement)
         {
             //delete all items in the inventory
-            for (int i = 0; i < Main.maxInventory; i++)
+            for (int i = 0; i < Main.InventorySlotsTotal; i++)
             {
                 Main.LocalPlayer.inventory[i].TurnToAir();
-                Main.PlaySound(SoundID.Grab);
+                SoundEngine.PlaySound(SoundID.Grab);
             }
             Visible = false; //close
-            Main.PlaySound(SoundID.MenuClose);
+            SoundEngine.PlaySound(SoundID.MenuClose);
         }
         private void DelFavClicked(UIMouseEvent evt, UIElement listeningElement)
         {
             //delete all exept favorited items
-            for (int i = 0; i < Main.maxInventory; i++)
+            for (int i = 0; i < Main.InventorySlotsTotal; i++)
             {
                 if (!Main.LocalPlayer.inventory[i].favorited)
                 {
                     Main.LocalPlayer.inventory[i].TurnToAir();
-                    Main.PlaySound(SoundID.Grab);
+                    SoundEngine.PlaySound(SoundID.Grab);
                 }
             }
             Visible = false; //close
-            Main.PlaySound(SoundID.MenuClose);
+            SoundEngine.PlaySound(SoundID.MenuClose);
         }
         private void NOClicked(UIMouseEvent evt, UIElement listeningElement)
         {
             Visible = false; //close
-            Main.PlaySound(SoundID.MenuClose);
+            SoundEngine.PlaySound(SoundID.MenuClose);
         }
     }
 }
