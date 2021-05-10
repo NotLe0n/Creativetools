@@ -36,14 +36,4 @@ namespace Creativetools.src.Tools.MagicCursor
             //if (Main.npc[NPC.FindFirstNPC(target)].Hitbox.Contains((int)Main.MouseWorld.X, (int)Main.MouseWorld.Y))
         }
     }
-    class ModifyItem : GlobalItem
-    {
-        public override void Update(Item item, ref float gravity, ref float maxFallSpeed)
-        {
-            if (MagicCursorNPC.MagicCursor && Main.mouseMiddle && Main.item[GetItemMouseClosest()].Hitbox.Distance(Main.MouseWorld) < 500)
-            {
-                Main.item[GetItemMouseClosest()].position = Main.MouseWorld;
-            }
-        }
-    }
 }

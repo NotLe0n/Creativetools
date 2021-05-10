@@ -107,7 +107,7 @@ namespace Creativetools.src.Tools.CustomItem
         }
         private void CodeButtonClicked(UIMouseEvent evt, UIElement listeningElement)
         {
-            Clipboard.SetText(
+            /*Clipboard.SetText(
             #region code
 $@"using Terraria.ID;
 using Terraria.ModLoader;
@@ -144,11 +144,11 @@ namespace YourMod
     }}
 }}"
             #endregion
-            );
+            );*/
         }
         private void FileButtonClicked(UIMouseEvent evt, UIElement listeningElement)
         {
-            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            /*using (OpenFileDialog openFileDialog = new OpenFileDialog())
             {
                 openFileDialog.InitialDirectory = "c:\\";   //start at c:\\ directory
                 openFileDialog.Filter = "PNG (*.png)|*.png|All files (*.*)|*.*";    //supported file types
@@ -159,7 +159,7 @@ namespace YourMod
                 {
                     Global.ctexture = Texture2D.FromStream(Main.graphics.GraphicsDevice, openFileDialog.OpenFile());
                 }
-            }
+            }*/
         }
         // so you can't use items when clicking on the button
         protected override void DrawSelf(SpriteBatch spriteBatch)

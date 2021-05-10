@@ -103,7 +103,9 @@ namespace Creativetools.src.Tools.CustomNPC
             NPC.NewNPC((int)player.position.X, (int)player.position.Y, NPCType<CustomNPC>());
             SoundEngine.PlaySound(SoundID.MenuTick);
         }
-        private void CodeButtonClicked(UIMouseEvent evt, UIElement listeningElement) => Clipboard.SetText(
+        private void CodeButtonClicked(UIMouseEvent evt, UIElement listeningElement)
+        {
+            /*Clipboard.SetText(
 $@"using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -136,10 +138,12 @@ namespace YourMod
             npc.dontTakeDamage = {CustomNPC.cImmortal};
         }}
     }}
-}}");
+}}");*/
+        }
+
         private void FileButtonClicked(UIMouseEvent evt, UIElement listeningElement)
         {
-            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            /*using (OpenFileDialog openFileDialog = new OpenFileDialog())
             {
                 openFileDialog.InitialDirectory = "c:\\";
                 openFileDialog.Filter = "PNG (*.png)|*.png|All files (*.*)|*.*";
@@ -150,7 +154,7 @@ namespace YourMod
                 {
                     CustomNPC.ctexture = Texture2D.FromStream(Main.graphics.GraphicsDevice, openFileDialog.OpenFile());
                 }
-            }
+            }*/
         }
         // so you can't use items when clicking on the button
         protected override void DrawSelf(SpriteBatch spriteBatch)
