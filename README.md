@@ -7,3 +7,4 @@ https://forums.terraria.org/index.php?threads/creative-tools.88374/
 - Open File Dialog doesn't work
 - Toggle Invasion doesn't work
 - DownedBoss toggle list is unordered
+- Changing player size doesn't change the sprite size
