@@ -6,3 +6,4 @@ https://forums.terraria.org/index.php?threads/creative-tools.88374/
 - Copy Code doesn't work
 - Open File Dialog doesn't work
 - Toggle Invasion doesn't work
+- DownedBoss toggle list is unordered
