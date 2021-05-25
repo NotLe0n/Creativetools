@@ -9,6 +9,7 @@ using static Terraria.ModLoader.ModContent;
 
 namespace Creativetools.src.UI.Elements
 {
+    // thanks jopojelly
     class UIRange<T> : UIElement
     {
         internal UIText label;
@@ -46,6 +47,7 @@ namespace Creativetools.src.UI.Elements
             input.SetPadding(0);
             input.OnUnfocus += () => data.ParseValue(input.Text);
             input.Width.Set(0, .16f);
+            input.Height.Set(20, 0);
             input.HAlign = 1f;
             input.VAlign = 0.5f;
             Append(input);
@@ -133,6 +135,7 @@ namespace Creativetools.src.UI.Elements
                 input.OnUnfocus += validateInput;
                 //input.PaddingLeft = 12;
                 input.Width.Set(0, .25f);
+                input.Height.Set(20, 0);
                 input.Left.Set(0, .75f);
                 input.VAlign = 0.5f;
                 //input.HAlign = 1f;
@@ -160,6 +163,7 @@ namespace Creativetools.src.UI.Elements
                 input.OnUnfocus += validateInput;
                 //input.PaddingLeft = 12;
                 input.Width.Set(0, .33f);
+                input.Height.Set(20, 0);
                 //input.HAlign = 1f;
                 input.VAlign = 0.5f;
                 input.Left.Precent = 0.66f;

@@ -43,7 +43,7 @@ namespace Creativetools.src.UI
         /// <param name="tick">if the button should make a click sound</param>
         public static UIElement SliderButtons(string text, UIElement appendTo, Action<UIElement> action, bool tick = true)
         {
-            UITextPanel<string> button = new UITextPanel<string>(text);
+            UITextPanel<string> button = new(text);
             button.SetPadding(4);
             button.MarginLeft = 20;
             button.Width.Set(10, 0f);

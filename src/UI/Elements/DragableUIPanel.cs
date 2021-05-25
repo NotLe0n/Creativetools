@@ -44,7 +44,7 @@ namespace Creativetools.src.UI.Elements
 
         private Vector2 offset;
         public bool dragging;
-        public static Vector2 lastPos = new Vector2(600, 200);
+        public static Vector2 lastPos = new(600, 200);
         public void Header_OnMouseDown(UIMouseEvent evt, UIElement elm)
         {
             base.MouseDown(evt);

@@ -12,13 +12,13 @@ namespace Creativetools.src.Tools.ClearInventory
         public static bool Visible;
         public override void OnInitialize()
         {
-            DragableUIPanel ConfirmPanel = new DragableUIPanel("Are you sure you want to delete all your items?", 550f, 100f);
+            DragableUIPanel ConfirmPanel = new("Are you sure you want to delete all your items?", 550f, 100f);
             ConfirmPanel.SetPadding(0);
             ConfirmPanel.VAlign = ConfirmPanel.HAlign = 0.5f;
             ConfirmPanel.OnCloseBtnClicked += () => Visible = false;
             Append(ConfirmPanel);
 
-            UIPanel YEPbutton = new UIPanel();
+            UIPanel YEPbutton = new();
             YEPbutton.Width.Set(100, 0);
             YEPbutton.Height.Set(50, 0);
             YEPbutton.HAlign = 0.03f;
@@ -26,7 +26,7 @@ namespace Creativetools.src.Tools.ClearInventory
             YEPbutton.OnClick += YEPClicked;
             ConfirmPanel.Append(YEPbutton);
 
-            UIPanel DelFavbutton = new UIPanel();
+            UIPanel DelFavbutton = new();
             DelFavbutton.Width.Set(300, 0);
             DelFavbutton.Height.Set(50, 0);
             DelFavbutton.HAlign = 0.5f;
@@ -34,7 +34,7 @@ namespace Creativetools.src.Tools.ClearInventory
             DelFavbutton.OnClick += DelFavClicked;
             ConfirmPanel.Append(DelFavbutton);
 
-            UIPanel NObutton = new UIPanel();
+            UIPanel NObutton = new();
             NObutton.Width.Set(100, 0);
             NObutton.Height.Set(50, 0);
             NObutton.HAlign = 0.97f;

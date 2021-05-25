@@ -34,7 +34,7 @@ namespace Creativetools.src.Tools.PlaySound
 
         public override void OnInitialize()
         {
-            DragableUIPanel Menu = new DragableUIPanel("Play Sound", 500, 180);
+            DragableUIPanel Menu = new("Play Sound", 500, 180);
             Menu.VAlign = 0.6f;
             Menu.HAlign = 0.2f;
             Menu.OnCloseBtnClicked += () => UISystem.UserInterface.SetState(new MainUI());
@@ -61,7 +61,7 @@ namespace Creativetools.src.Tools.PlaySound
             /////////////////Music////////////////////
             var MusicSlider = MakeSlider(new UIIntRangedDataValue("", 0, 0, Music.Length), out MusicSound, Menu, top: 100, left: -10);
 
-            UITextPanel<string> PlayMusic = new UITextPanel<string>(text: playmusic ? "Stop Music" : "Play Music");
+            UITextPanel<string> PlayMusic = new(text: playmusic ? "Stop Music" : "Play Music");
             PlayMusic.SetPadding(4);
             PlayMusic.MarginLeft = 20;
             PlayMusic.Width.Set(10, 0f);
@@ -81,7 +81,7 @@ namespace Creativetools.src.Tools.PlaySound
             base.Update(gameTime);
             SoundName.SetText("SoundID." + Sounds[ID.Data].Name);
 
-            List<string> MusicNames = new List<string>(Music.Length);
+            List<string> MusicNames = new(Music.Length);
             for (int i = 0; i < MusicNames.Capacity; i++)
             {
                 MusicNames.Add("MusicID." + Music[i].Name);

@@ -21,11 +21,11 @@ namespace Creativetools.src.UI.Elements
             protected override void DrawChildren(SpriteBatch spriteBatch)
             {
                 Vector2 position = Parent.GetDimensions().Position();
-                Vector2 dimensions = new Vector2(Parent.GetDimensions().Width, Parent.GetDimensions().Height);
+                Vector2 dimensions = new(Parent.GetDimensions().Width, Parent.GetDimensions().Height);
                 foreach (UIElement current in Elements)
                 {
                     Vector2 position2 = current.GetDimensions().Position();
-                    Vector2 dimensions2 = new Vector2(current.GetDimensions().Width, current.GetDimensions().Height);
+                    Vector2 dimensions2 = new(current.GetDimensions().Width, current.GetDimensions().Height);
                     if (Collision.CheckAABBvAABBCollision(position, dimensions, position2, dimensions2))
                     {
                         current.Draw(spriteBatch);
@@ -34,7 +34,7 @@ namespace Creativetools.src.UI.Elements
             }
         }
 
-        public List<UIElement> items = new List<UIElement>();
+        public List<UIElement> items = new();
         protected UIScrollbar scrollbar;
         internal UIElement innerList = new UIInnerList();
         private float innerListHeight;
@@ -182,7 +182,7 @@ namespace Creativetools.src.UI.Elements
 
         public override List<SnapPoint> GetSnapPoints()
         {
-            List<SnapPoint> list = new List<SnapPoint>();
+            List<SnapPoint> list = new();
             if (GetSnapPoint(out SnapPoint item))
             {
                 list.Add(item);
