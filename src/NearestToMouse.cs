@@ -3,7 +3,7 @@ using Terraria;
 
 namespace Creativetools.src
 {
-    class NearestToMouse
+    internal class NearestToMouse
     {
         //get the Projectile closest to your Mouse
         public static int GetProjectileMouseClosest()

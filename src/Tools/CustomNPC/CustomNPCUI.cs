@@ -2,7 +2,6 @@
 using Creativetools.src.UI;
 using Creativetools.src.UI.Elements;
 using Microsoft.Xna.Framework.Graphics;
-using System.Windows.Forms;
 using Terraria;
 using Terraria.Audio;
 using Terraria.GameContent.UI.Elements;
@@ -14,16 +13,16 @@ using static Terraria.ModLoader.ModContent;
 
 namespace Creativetools.src.Tools.CustomNPC
 {
-    class CustomNPCUI : UIState
+    internal class CustomNPCUI : UIState
     {
         private NewUITextBox nametext;
-        UIIntRangedDataValue LifeDataProperty;
-        UIIntRangedDataValue DamageDataProperty;
-        UIIntRangedDataValue DefenseDataProperty;
-        UIIntRangedDataValue AiSyleDataProperty;
-        UIFloatRangedDataValue KnockbackDataProperty;
-        UIFloatRangedDataValue ScaleDataProperty;
-        UIIntRangedDataValue FrameDataProperty;
+        private UIIntRangedDataValue LifeDataProperty;
+        private UIIntRangedDataValue DamageDataProperty;
+        private UIIntRangedDataValue DefenseDataProperty;
+        private UIIntRangedDataValue AiSyleDataProperty;
+        private UIFloatRangedDataValue KnockbackDataProperty;
+        private UIFloatRangedDataValue ScaleDataProperty;
+        private UIIntRangedDataValue FrameDataProperty;
         public override void OnInitialize()
         {
             TabPanel Menu = new(450, 500, new Tab("Custom NPC", this), new Tab(" Custom Item", new CustomItemUI()));

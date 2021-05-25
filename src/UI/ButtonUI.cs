@@ -7,7 +7,7 @@ using Terraria.UI;
 
 namespace Creativetools.src.UI
 {
-    class ButtonUI : UIState
+    internal class ButtonUI : UIState
     {
         private UIHoverImageButton MenuButton;
         public override void OnInitialize()

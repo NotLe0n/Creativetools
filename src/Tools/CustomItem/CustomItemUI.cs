@@ -2,7 +2,6 @@
 using Creativetools.src.UI;
 using Creativetools.src.UI.Elements;
 using Microsoft.Xna.Framework.Graphics;
-using System.Windows.Forms;
 using Terraria;
 using Terraria.Audio;
 using Terraria.GameContent.UI.Elements;
@@ -14,7 +13,7 @@ using static Terraria.ModLoader.ModContent;
 
 namespace Creativetools.src.Tools.CustomItem
 {
-    class CustomItemUI : UIState
+    internal class CustomItemUI : UIState
     {
         internal NewUITextBox nametext;
         public UIIntRangedDataValue DamageDataProperty;

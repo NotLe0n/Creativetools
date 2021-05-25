@@ -9,7 +9,7 @@ using Terraria.UI;
 
 namespace Creativetools.src
 {
-    class UISystem : ModSystem
+    internal class UISystem : ModSystem
     {
         public static UserInterface UserInterface;
         private UserInterface InfoUserInterface;

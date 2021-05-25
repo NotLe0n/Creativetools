@@ -9,7 +9,7 @@ using Terraria.UI;
 
 namespace Creativetools.src.UI.Elements
 {
-    class NPCTPCard : UIPanel
+    internal class NPCTPCard : UIPanel
     {
         private NPC _npc;
         private UIText _NPCPosText;
@@ -48,7 +48,7 @@ namespace Creativetools.src.UI.Elements
             Vector2 drawPosition = new(GetDimensions().X + 250 / _npc.width, GetDimensions().Y + 150 / _npc.height);
             Rectangle npcDrawRectangle = _npc.frame == default ? new(0, (npcTexture.Height / Main.npcFrameCount[_npc.type]) * frameCounter, npcTexture.Width, npcTexture.Height / Main.npcFrameCount[_npc.type]) : _npc.frame;
             Color drawColor = _npc.color == default ? Color.White : _npc.color;
-            
+
 
             spriteBatch.Draw(npcTexture, drawPosition, npcDrawRectangle, drawColor, 0, Vector2.Zero, 0.85f, SpriteEffects.None, 0);
         }

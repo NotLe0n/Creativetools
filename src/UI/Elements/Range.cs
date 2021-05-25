@@ -10,7 +10,7 @@ using static Terraria.ModLoader.ModContent;
 namespace Creativetools.src.UI.Elements
 {
     // thanks jopojelly
-    class UIRange<T> : UIElement
+    internal class UIRange<T> : UIElement
     {
         internal UIText label;
         internal UISlider slider;
@@ -56,7 +56,7 @@ namespace Creativetools.src.UI.Elements
             data.SetValue(data.Data);
         }
 
-        bool debugDraw = false;
+        private bool debugDraw = false;
         protected override void DrawSelf(SpriteBatch spriteBatch)
         {
             if (debugDraw)

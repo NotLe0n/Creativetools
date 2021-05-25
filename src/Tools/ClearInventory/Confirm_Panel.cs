@@ -7,7 +7,7 @@ using Terraria.UI;
 
 namespace Creativetools.src.Tools.ClearInventory
 {
-    class Confirm_Panel : UIState
+    internal class Confirm_Panel : UIState
     {
         public static bool Visible;
         public override void OnInitialize()

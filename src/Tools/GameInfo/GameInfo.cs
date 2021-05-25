@@ -8,7 +8,7 @@ using static Creativetools.src.NearestToMouse;
 
 namespace Creativetools.src.Tools.GameInfo
 {
-    class GameInfo : UIState
+    internal class GameInfo : UIState
     {
         #region vars
         public static bool Visible;

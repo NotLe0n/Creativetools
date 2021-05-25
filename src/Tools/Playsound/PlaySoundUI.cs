@@ -14,10 +14,10 @@ using static Creativetools.src.UI.UIHelper;
 
 namespace Creativetools.src.Tools.PlaySound
 {
-    class PlaySoundUI : UIState
+    internal class PlaySoundUI : UIState
     {
         private UIText SoundName, MusicName;
-        UIIntRangedDataValue ID;
+        private UIIntRangedDataValue ID;
         public static UIIntRangedDataValue MusicSound;
         public static bool playmusic;
 
@@ -90,7 +90,7 @@ namespace Creativetools.src.Tools.PlaySound
             MusicNames.Insert(45, "Unused");
 
             MusicName.SetText(MusicNames[MusicSound.Data]);
-            
+
         }
         // so you can't use items when clicking on the button
         protected override void DrawSelf(SpriteBatch spriteBatch)

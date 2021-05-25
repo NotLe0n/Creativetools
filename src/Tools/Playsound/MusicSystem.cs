@@ -2,7 +2,7 @@
 
 namespace Creativetools.src.Tools.PlaySound
 {
-    class MusicSystem : ModSystem
+    internal class MusicSystem : ModSystem
     {
         /*
         public override void UpdateMusic(ref int music, ref MusicPriority priority)

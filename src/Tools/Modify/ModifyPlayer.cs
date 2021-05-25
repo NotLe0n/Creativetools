@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 
 namespace Creativetools.src.Tools.Modify
 {
-    class ModifyPlayer : ModPlayer
+    internal class ModifyPlayer : ModPlayer
     {
         public static float playerSize = 1f;
         public override void PreUpdate()

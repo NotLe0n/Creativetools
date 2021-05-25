@@ -10,7 +10,7 @@ namespace Creativetools.src.UI
     /// <summary>
     /// Helps make UI code smaller and easier to work with.
     /// </summary>
-    class UIHelper
+    internal class UIHelper
     {
         /// <summary>
         /// Creates a UIHoverImageButton with a click event

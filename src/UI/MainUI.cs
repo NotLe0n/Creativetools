@@ -20,7 +20,7 @@ using Terraria.UI;
 
 namespace Creativetools.src.UI
 {
-    class MainUI : UIState
+    internal class MainUI : UIState
     {
         private UIGrid buttonGrid;
 

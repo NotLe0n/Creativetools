@@ -4,7 +4,7 @@ using Terraria;
 
 namespace Creativetools.src
 {
-    class FullFloatDataRangeProperty
+    internal class FullFloatDataRangeProperty
     {
         internal float min = 0f;
         internal float max = 5f;
@@ -44,7 +44,7 @@ namespace Creativetools.src
         }
     }
 
-    class IntDataRangeProperty
+    internal class IntDataRangeProperty
     {
         internal int max = 5;
         private int data = 1;
@@ -77,7 +77,7 @@ namespace Creativetools.src
         }
     }
 
-    class ColorDataRangeProperty
+    internal class ColorDataRangeProperty
     {
         private Color data = Color.White;
         internal Color Data

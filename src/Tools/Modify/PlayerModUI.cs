@@ -6,14 +6,14 @@ using static Creativetools.src.UI.UIHelper;
 
 namespace Creativetools.src.Tools.Modify
 {
-    class PlayerModUI : UIState
+    internal class PlayerModUI : UIState
     {
         private TabPanel PlayerMenu;
-        UIIntRangedDataValue LifeDataProperty;
-        UIIntRangedDataValue ManaDataProperty;
-        UIIntRangedDataValue MaxLifeDataProperty;
-        UIIntRangedDataValue MaxManaDataProperty;
-        UIFloatRangedDataValue SizeDataProperty;
+        private UIIntRangedDataValue LifeDataProperty;
+        private UIIntRangedDataValue ManaDataProperty;
+        private UIIntRangedDataValue MaxLifeDataProperty;
+        private UIIntRangedDataValue MaxManaDataProperty;
+        private UIFloatRangedDataValue SizeDataProperty;
 
         public override void OnInitialize()
         {

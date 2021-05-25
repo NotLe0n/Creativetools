@@ -7,7 +7,7 @@ using Terraria.UI;
 
 namespace Creativetools.src.UI.Elements
 {
-    class Tab : UITextPanel<string>
+    internal class Tab : UITextPanel<string>
     {
         public UIState _changeStateTo;
         /// <summary>
@@ -43,7 +43,7 @@ namespace Creativetools.src.UI.Elements
         }
     }
 
-    class TabPanel : DragableUIPanel
+    internal class TabPanel : DragableUIPanel
     {
         /// <summary>
         /// List of all Tabs

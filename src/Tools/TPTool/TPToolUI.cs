@@ -1,20 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Terraria.UI;
+﻿using Creativetools.src.UI;
 using Creativetools.src.UI.Elements;
-using Creativetools.src.UI;
-using Terraria.GameContent.UI.Elements;
 using Microsoft.Xna.Framework;
-using Terraria;
 using Microsoft.Xna.Framework.Graphics;
-using Terraria.GameContent;
+using System.Linq;
+using Terraria;
+using Terraria.GameContent.UI.Elements;
+using Terraria.UI;
 
 namespace Creativetools.src.Tools.TPTool
 {
-    class TPToolUI : UIState
+    internal class TPToolUI : UIState
     {
         private bool relative = false;
         private Vector2 coordinates = Vector2.Zero;

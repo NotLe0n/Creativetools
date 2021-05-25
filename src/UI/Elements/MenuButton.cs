@@ -8,7 +8,7 @@ using static Terraria.ModLoader.ModContent;
 
 namespace Creativetools.src.UI.Elements
 {
-    class MenuButton : UIImage
+    internal class MenuButton : UIImage
     {
         public string HoverText;
         private UIImage frame = new(GetTexture("Creativetools/UI Assets/selected"));

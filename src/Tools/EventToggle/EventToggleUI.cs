@@ -9,7 +9,7 @@ using Terraria.UI;
 
 namespace Creativetools.src.Tools.EventToggle
 {
-    class EventToggleUI : UIState
+    internal class EventToggleUI : UIState
     {
         private UIGrid buttonGrid;
         public override void OnInitialize()

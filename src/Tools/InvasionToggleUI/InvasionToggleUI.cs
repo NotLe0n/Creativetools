@@ -1,14 +1,14 @@
-﻿using Creativetools.src.UI.Elements;
+﻿using Creativetools.src.UI;
+using Creativetools.src.UI.Elements;
+using Microsoft.Xna.Framework;
+using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
 using Terraria.UI;
-using Terraria;
-using Microsoft.Xna.Framework;
-using Creativetools.src.UI;
 
 namespace Creativetools.src.Tools.InvasionToggleUI
 {
-    class InvasionToggleUI : UIState
+    internal class InvasionToggleUI : UIState
     {
         private UIGrid buttonGrid;
         public override void OnInitialize()

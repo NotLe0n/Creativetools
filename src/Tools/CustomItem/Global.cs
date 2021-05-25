@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 
 namespace Creativetools.src.Tools.CustomItem
 {
-    class Global : GlobalItem
+    internal class Global : GlobalItem
     {
         public static bool createitem;
         public static string cName = "Customitem";

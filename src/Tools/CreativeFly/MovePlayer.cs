@@ -5,7 +5,7 @@ using Terraria.ModLoader;
 
 namespace Creativetools.src.Tools.CreativeFly
 {
-    class MovePlayer : ModPlayer
+    internal class MovePlayer : ModPlayer
     {
         public static bool CreativeFly;
         public bool creativeFly;

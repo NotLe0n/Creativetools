@@ -9,15 +9,15 @@ using static Creativetools.src.UI.UIHelper;
 
 namespace Creativetools.src.Tools.Modify
 {
-    class ItemModUI : UIState
+    internal class ItemModUI : UIState
     {
-        UIIntRangedDataValue DamageDataProperty;
-        UIIntRangedDataValue CritDataProperty;
-        UIFloatRangedDataValue KnockbackDataProperty;
-        UIIntRangedDataValue UsetimeDataProperty;
-        UIIntRangedDataValue DefenseDataProperty;
-        UIFloatRangedDataValue ShootspeedDataProperty;
-        UIFloatRangedDataValue SizeDataProperty;
+        private UIIntRangedDataValue DamageDataProperty;
+        private UIIntRangedDataValue CritDataProperty;
+        private UIFloatRangedDataValue KnockbackDataProperty;
+        private UIIntRangedDataValue UsetimeDataProperty;
+        private UIIntRangedDataValue DefenseDataProperty;
+        private UIFloatRangedDataValue ShootspeedDataProperty;
+        private UIFloatRangedDataValue SizeDataProperty;
         public override void OnInitialize()
         {
             TabPanel ItemMenu = new(450, 450, new Tab("Change Item", this), new Tab(" Change Player", new PlayerModUI()));

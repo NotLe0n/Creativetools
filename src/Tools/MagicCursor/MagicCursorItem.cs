@@ -1,13 +1,10 @@
-﻿using Creativetools.src.UI;
-using Microsoft.Xna.Framework;
-using Terraria;
-using Terraria.ID;
+﻿using Terraria;
 using Terraria.ModLoader;
 using static Creativetools.src.NearestToMouse;
 
 namespace Creativetools.src.Tools.MagicCursor
 {
-    class ModifyItem : GlobalItem
+    internal class ModifyItem : GlobalItem
     {
         public override void Update(Item item, ref float gravity, ref float maxFallSpeed)
         {

@@ -9,7 +9,7 @@ using Terraria.UI;
 
 namespace Creativetools.src.UI.Elements
 {
-    class UISlider : UIElement
+    internal class UISlider : UIElement
     {
         private Color _color;
         private Func<string> _TextDisplayFunction;
@@ -51,8 +51,9 @@ namespace Creativetools.src.UI.Elements
             base.Click(evt);
             SoundEngine.PlaySound(SoundID.MenuTick);
         }
-        int paddingY = 4;
-        int paddingX = 5;
+
+        private int paddingY = 4;
+        private int paddingX = 5;
         protected override void DrawSelf(SpriteBatch spriteBatch)
         {
             CalculatedStyle dimensions = GetInnerDimensions();

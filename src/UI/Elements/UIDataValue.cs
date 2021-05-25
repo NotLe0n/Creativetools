@@ -5,7 +5,7 @@ namespace Creativetools.src.UI.Elements
     /// <summary>
     /// Purely a data storage
     /// </summary>
-    class UIDataValue<T>
+    internal class UIDataValue<T>
     {
         internal string label;
         internal Func<string> GetValueString;
@@ -93,14 +93,14 @@ namespace Creativetools.src.UI.Elements
         }
     }
 
-    class UIBoolDataValue : UIDataValue<bool>
+    internal class UIBoolDataValue : UIDataValue<bool>
     {
         public UIBoolDataValue(string label = "", bool defaultValue = false) : base(label, defaultValue)
         {
         }
     }
 
-    class UIBoolNDataValue : UIDataValue<bool?>
+    internal class UIBoolNDataValue : UIDataValue<bool?>
     {
         public UIBoolNDataValue(string label = "", bool? defaultValue = null) : base(label, defaultValue)
         {
@@ -108,7 +108,7 @@ namespace Creativetools.src.UI.Elements
     }
 
     // Add support for ranges, sliders
-    abstract class UIRangedDataValue<T> : UIDataValue<T>
+    internal abstract class UIRangedDataValue<T> : UIDataValue<T>
     {
         protected bool enforceMin;
         protected bool enforceMax;
@@ -145,7 +145,7 @@ namespace Creativetools.src.UI.Elements
     /// <summary>
     /// Float implementation
     /// </summary>
-    class UIFloatRangedDataValue : UIRangedDataValue<float>
+    internal class UIFloatRangedDataValue : UIRangedDataValue<float>
     {
         // ctor with alt Func and Action vs override.
         public UIFloatRangedDataValue(string label = "", float defaultValue = 0f, float min = 0f, float max = 1f, bool enforceMin = false, bool enforceMax = false) : base(label, defaultValue, min, max, enforceMin, enforceMax)
@@ -217,7 +217,7 @@ namespace Creativetools.src.UI.Elements
     /// <summary>
     /// Float implementation
     /// </summary>
-    class UIIntRangedDataValue : UIRangedDataValue<int>
+    internal class UIIntRangedDataValue : UIRangedDataValue<int>
     {
         // ctor with alt Func and Action vs override.
         public UIIntRangedDataValue(string label = "", int defaultValue = 0, int min = 0, int max = 100, bool enforceMin = false, bool enforceMax = false) : base(label, defaultValue, min, max, enforceMin, enforceMax)
@@ -277,7 +277,7 @@ namespace Creativetools.src.UI.Elements
         }
     }
 
-    class UIFloatRangedDataValueLogit : UIFloatRangedDataValue
+    internal class UIFloatRangedDataValueLogit : UIFloatRangedDataValue
     {
         public UIFloatRangedDataValueLogit(string label = "", float defaultValue = 0f, float min = 0, float max = 1, bool enforceMin = false, bool enforceMax = false) : base(label, defaultValue, min, max, enforceMin, enforceMax)
         {

@@ -12,10 +12,10 @@ using static Creativetools.src.UI.UIHelper;
 
 namespace Creativetools.src.Tools.WeatherControl
 {
-    class WeatherControlUI : UIState
+    internal class WeatherControlUI : UIState
     {
         private DragableUIPanel WeatherMenu;
-        UIIntRangedDataValue Time;
+        private UIIntRangedDataValue Time;
         public override void OnInitialize()
         {
             WeatherMenu = new DragableUIPanel("Weather Control", 500f, 200f);
