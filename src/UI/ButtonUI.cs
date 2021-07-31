@@ -7,14 +7,14 @@ using Terraria.UI;
 
 namespace Creativetools.src.UI
 {
-    class ButtonUI : UIState
+    internal class ButtonUI : UIState
     {
         private UIHoverImageButton MenuButton;
         public override void OnInitialize()
         {
             MenuButton = new UIHoverImageButton("Creativetools/UI Assets/MenuButton", "Open Menu");
             MenuButton.Top.Set(260, 0);
-            MenuButton.OnClick += new MouseEvent(MenuButtonClicked);
+            MenuButton.OnClick += MenuButtonClicked;
             Append(MenuButton);
         }
 

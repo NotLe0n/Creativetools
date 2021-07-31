@@ -9,18 +9,18 @@ using static Creativetools.src.UI.UIHelper;
 
 namespace Creativetools.src.Tools.Modify
 {
-    class ItemModUI : UIState
+    internal class ItemModUI : UIState
     {
-        UIIntRangedDataValue DamageDataProperty;
-        UIIntRangedDataValue CritDataProperty;
-        UIFloatRangedDataValue KnockbackDataProperty;
-        UIIntRangedDataValue UsetimeDataProperty;
-        UIIntRangedDataValue DefenseDataProperty;
-        UIFloatRangedDataValue ShootspeedDataProperty;
-        UIFloatRangedDataValue SizeDataProperty;
+        private UIIntRangedDataValue DamageDataProperty;
+        private UIIntRangedDataValue CritDataProperty;
+        private UIFloatRangedDataValue KnockbackDataProperty;
+        private UIIntRangedDataValue UsetimeDataProperty;
+        private UIIntRangedDataValue DefenseDataProperty;
+        private UIFloatRangedDataValue ShootspeedDataProperty;
+        private UIFloatRangedDataValue SizeDataProperty;
         public override void OnInitialize()
         {
-            TabPanel ItemMenu = new TabPanel(450, 450, new Tab("Change Item", this), new Tab(" Change Player", new PlayerModUI()));
+            TabPanel ItemMenu = new(450, 450, new Tab("Change Item", this), new Tab(" Change Player", new PlayerModUI()));
             ItemMenu.VAlign = 0.6f;
             ItemMenu.HAlign = 0.2f;
             ItemMenu.OnCloseBtnClicked += () => UISystem.UserInterface.SetState(new MainUI());
@@ -47,7 +47,7 @@ namespace Creativetools.src.Tools.Modify
             var SizeSlider = MakeSlider(new UIFloatRangedDataValue("", 0, 0, 50), out SizeDataProperty, ItemMenu, top: 350, left: -10);
             SliderButtons("Set Size", SizeSlider, button => button.OnClick += (evt, elm) => ChangeSize(SizeDataProperty.Data));
 
-            UITextPanel<string> AutoswingButton = new UITextPanel<string>("Toggle Autoswing");
+            UITextPanel<string> AutoswingButton = new("Toggle Autoswing");
             AutoswingButton.SetPadding(4);
             AutoswingButton.MarginLeft = 10;
             AutoswingButton.MarginTop = 400;
@@ -59,7 +59,7 @@ namespace Creativetools.src.Tools.Modify
             };
             ItemMenu.Append(AutoswingButton);
 
-            UITextPanel<string> TurnaroundButton = new UITextPanel<string>("Toggle Turnaround");
+            UITextPanel<string> TurnaroundButton = new("Toggle Turnaround");
             TurnaroundButton.SetPadding(4);
             TurnaroundButton.MarginLeft = 275;
             TurnaroundButton.MarginTop = 400;

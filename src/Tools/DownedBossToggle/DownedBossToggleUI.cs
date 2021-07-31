@@ -12,7 +12,7 @@ namespace Creativetools.src.Tools.DownedBossToggle
 {
     public class DownedBossToggleUI : UIState
     {
-        UIList toggleList, textList;
+        private UIList toggleList, textList;
         public override void OnInitialize()
         {
             var panel = new DragableUIPanel("DownedBoss Toggle", 600, 430);

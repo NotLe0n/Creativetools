@@ -5,11 +5,12 @@ using Terraria;
 using Terraria.GameContent;
 using Terraria.GameContent.UI.Elements;
 using Terraria.UI;
-using static Terraria.ModLoader.ModContent;
+using Terraria.ModLoader;
 
 namespace Creativetools.src.UI.Elements
 {
-    class UIRange<T> : UIElement
+    // thanks jopojelly
+    internal class UIRange<T> : UIElement
     {
         internal UIText label;
         internal UISlider slider;
@@ -46,6 +47,7 @@ namespace Creativetools.src.UI.Elements
             input.SetPadding(0);
             input.OnUnfocus += () => data.ParseValue(input.Text);
             input.Width.Set(0, .16f);
+            input.Height.Set(20, 0);
             input.HAlign = 1f;
             input.VAlign = 0.5f;
             Append(input);
@@ -54,7 +56,7 @@ namespace Creativetools.src.UI.Elements
             data.SetValue(data.Data);
         }
 
-        bool debugDraw = false;
+        private bool debugDraw = false;
         protected override void DrawSelf(SpriteBatch spriteBatch)
         {
             if (debugDraw)
@@ -109,7 +111,7 @@ namespace Creativetools.src.UI.Elements
                 //slider.HAlign = .25f;
                 Append(slider);
 
-                minus = new UIImageButton(GetTexture("UIElements/ButtonMinus"));
+                minus = new UIImageButton(ModContent.Request<Texture2D>("UIElements/ButtonMinus"));
                 minus.OnClick += Minus_OnClick;
                 //minus.Height.Set(16, 0f);
                 minus.Width.Set(0, .125f);
@@ -119,7 +121,7 @@ namespace Creativetools.src.UI.Elements
                 //minus.HAlign = .625f;
                 Append(minus);
 
-                plus = new UIImageButton(GetTexture("UIElements/ButtonPlus"));
+                plus = new UIImageButton(ModContent.Request<Texture2D>("UIElements/ButtonPlus"));
                 plus.OnClick += Plus_OnClick;
                 //plus.Height.Set(16, 0f);
                 plus.Width.Set(0, .125f);
@@ -133,6 +135,7 @@ namespace Creativetools.src.UI.Elements
                 input.OnUnfocus += validateInput;
                 //input.PaddingLeft = 12;
                 input.Width.Set(0, .25f);
+                input.Height.Set(20, 0);
                 input.Left.Set(0, .75f);
                 input.VAlign = 0.5f;
                 //input.HAlign = 1f;
@@ -160,6 +163,7 @@ namespace Creativetools.src.UI.Elements
                 input.OnUnfocus += validateInput;
                 //input.PaddingLeft = 12;
                 input.Width.Set(0, .33f);
+                input.Height.Set(20, 0);
                 //input.HAlign = 1f;
                 input.VAlign = 0.5f;
                 input.Left.Precent = 0.66f;

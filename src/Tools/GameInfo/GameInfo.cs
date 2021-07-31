@@ -8,17 +8,17 @@ using static Creativetools.src.NearestToMouse;
 
 namespace Creativetools.src.Tools.GameInfo
 {
-    class GameInfo : UIState
+    internal class GameInfo : UIState
     {
         #region vars
         public static bool Visible;
-        public UIText Mouseinfo = new UIText("") { TextColor = Color.AntiqueWhite, MarginTop = 20 };
-        public UIText Playerinfo = new UIText("") { TextColor = Color.Firebrick, MarginTop = 50 };
-        public UIText Screeninfo = new UIText("") { TextColor = Color.Goldenrod };
-        public UIText NPCinfo = new UIText("") { TextColor = Color.Salmon };
-        public UIText Iteminfo = new UIText("") { TextColor = Color.DodgerBlue };
-        public UIText Projectileinfo = new UIText("") { TextColor = Color.HotPink };
-        public UIText Gameinfo = new UIText("") { TextColor = Color.DeepSkyBlue, MarginTop = Main.screenHeight - 20 };
+        public UIText Mouseinfo = new("") { TextColor = Color.AntiqueWhite, MarginTop = 20 };
+        public UIText Playerinfo = new("") { TextColor = Color.Firebrick, MarginTop = 50 };
+        public UIText Screeninfo = new("") { TextColor = Color.Goldenrod };
+        public UIText NPCinfo = new("") { TextColor = Color.Salmon };
+        public UIText Iteminfo = new("") { TextColor = Color.DodgerBlue };
+        public UIText Projectileinfo = new("") { TextColor = Color.HotPink };
+        public UIText Gameinfo = new("") { TextColor = Color.DeepSkyBlue, MarginTop = Main.screenHeight - 20 };
         #endregion
 
         public override void OnInitialize()

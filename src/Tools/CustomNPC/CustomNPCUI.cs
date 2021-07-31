@@ -2,7 +2,6 @@
 using Creativetools.src.UI;
 using Creativetools.src.UI.Elements;
 using Microsoft.Xna.Framework.Graphics;
-using System.Windows.Forms;
 using Terraria;
 using Terraria.Audio;
 using Terraria.GameContent.UI.Elements;
@@ -14,39 +13,39 @@ using static Terraria.ModLoader.ModContent;
 
 namespace Creativetools.src.Tools.CustomNPC
 {
-    class CustomNPCUI : UIState
+    internal class CustomNPCUI : UIState
     {
         private NewUITextBox nametext;
-        UIIntRangedDataValue LifeDataProperty;
-        UIIntRangedDataValue DamageDataProperty;
-        UIIntRangedDataValue DefenseDataProperty;
-        UIIntRangedDataValue AiSyleDataProperty;
-        UIFloatRangedDataValue KnockbackDataProperty;
-        UIFloatRangedDataValue ScaleDataProperty;
-        UIIntRangedDataValue FrameDataProperty;
+        private UIIntRangedDataValue LifeDataProperty;
+        private UIIntRangedDataValue DamageDataProperty;
+        private UIIntRangedDataValue DefenseDataProperty;
+        private UIIntRangedDataValue AiSyleDataProperty;
+        private UIFloatRangedDataValue KnockbackDataProperty;
+        private UIFloatRangedDataValue ScaleDataProperty;
+        private UIIntRangedDataValue FrameDataProperty;
         public override void OnInitialize()
         {
-            TabPanel Menu = new TabPanel(450, 500, new Tab("Custom NPC", this), new Tab(" Custom Item", new CustomItemUI()));
+            TabPanel Menu = new(450, 500, new Tab("Custom NPC", this), new Tab(" Custom Item", new CustomItemUI()));
             Menu.VAlign = 0.6f;
             Menu.HAlign = 0.2f;
             Menu.OnCloseBtnClicked += () => UISystem.UserInterface.SetState(new MainUI());
             Append(Menu);
 
-            UITextPanel<string> CreateButton = new UITextPanel<string>(Language.GetTextValue("Create NPC"));
+            UITextPanel<string> CreateButton = new(Language.GetTextValue("Create NPC"));
             CreateButton.SetPadding(4);
             CreateButton.HAlign = 0.05f;
             CreateButton.MarginTop = 460;
             CreateButton.OnClick += CreateButtonButtonClicked;
             Menu.Append(CreateButton);
 
-            UITextPanel<string> CodeButton = new UITextPanel<string>(Language.GetTextValue("Copy Code"));
+            UITextPanel<string> CodeButton = new(Language.GetTextValue("Copy Code"));
             CodeButton.SetPadding(4);
             CodeButton.HAlign = 0.5f;
             CodeButton.MarginTop = 460;
             CodeButton.OnClick += CodeButtonClicked;
             Menu.Append(CodeButton);
 
-            UITextPanel<string> FileButton = new UITextPanel<string>(Language.GetTextValue("Select Texture"));
+            UITextPanel<string> FileButton = new(Language.GetTextValue("Select Texture"));
             FileButton.SetPadding(4);
             FileButton.HAlign = 0.9f;
             FileButton.MarginTop = 460;
@@ -57,6 +56,7 @@ namespace Creativetools.src.Tools.CustomNPC
             nametext.HAlign = 0.5f;
             nametext.MarginTop = 50;
             nametext.Width.Set(-40f, 1f);
+            nametext.Height.Set(30, 0);
             Menu.Append(nametext);
 
             MakeSlider(new UIIntRangedDataValue("Life: ", 0, 0, 999), out LifeDataProperty, Menu, top: 100);
@@ -72,7 +72,7 @@ namespace Creativetools.src.Tools.CustomNPC
             FrameSlider.Append(new UIText("Frame count:") { HAlign = 0.9f, MarginTop = -15 });
             Menu.Append(FrameSlider);
 
-            UITextPanel<string> NoCollideButton = new UITextPanel<string>("Collision: true") { HAlign = 0.05f, MarginTop = 400 };
+            UITextPanel<string> NoCollideButton = new("Collision: true") { HAlign = 0.05f, MarginTop = 400 };
             NoCollideButton.OnClick += (evt, elm) =>
             {
                 CustomNPC.cNoCollide = !CustomNPC.cNoCollide;
@@ -80,7 +80,7 @@ namespace Creativetools.src.Tools.CustomNPC
             };
             Menu.Append(NoCollideButton);
 
-            UITextPanel<string> ImmortalButton = new UITextPanel<string>("Immortal: false") { HAlign = 0.95f, MarginTop = 400 };
+            UITextPanel<string> ImmortalButton = new("Immortal: false") { HAlign = 0.95f, MarginTop = 400 };
             ImmortalButton.OnClick += (evt, elm) =>
             {
                 CustomNPC.cImmortal = !CustomNPC.cImmortal;

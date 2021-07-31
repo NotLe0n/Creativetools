@@ -4,7 +4,7 @@ using Terraria.UI;
 
 namespace Creativetools.src.UI.Elements
 {
-    class BetterUIList : UIList
+    internal class BetterUIList : UIList
     {
         public static FieldInfo field_innerList;
         public static MethodInfo method_uiElementAppend;

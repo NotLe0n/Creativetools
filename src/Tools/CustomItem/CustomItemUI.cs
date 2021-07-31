@@ -2,7 +2,6 @@
 using Creativetools.src.UI;
 using Creativetools.src.UI.Elements;
 using Microsoft.Xna.Framework.Graphics;
-using System.Windows.Forms;
 using Terraria;
 using Terraria.Audio;
 using Terraria.GameContent.UI.Elements;
@@ -14,7 +13,7 @@ using static Terraria.ModLoader.ModContent;
 
 namespace Creativetools.src.Tools.CustomItem
 {
-    class CustomItemUI : UIState
+    internal class CustomItemUI : UIState
     {
         internal NewUITextBox nametext;
         public UIIntRangedDataValue DamageDataProperty;
@@ -28,27 +27,27 @@ namespace Creativetools.src.Tools.CustomItem
 
         public override void OnInitialize()
         {
-            TabPanel Menu = new TabPanel(450, 600, new Tab("Custom NPC", new CustomNPCUI()), new Tab(" Custom Item", this));
+            TabPanel Menu = new(450, 600, new Tab("Custom NPC", new CustomNPCUI()), new Tab(" Custom Item", this));
             Menu.VAlign = 0.7f;
             Menu.HAlign = 0.2f;
             Menu.OnCloseBtnClicked += () => UISystem.UserInterface.SetState(new MainUI());
             Append(Menu);
 
-            UITextPanel<string> CreateButton = new UITextPanel<string>(Language.GetTextValue("Create Item"));
+            UITextPanel<string> CreateButton = new(Language.GetTextValue("Create Item"));
             CreateButton.SetPadding(4);
             CreateButton.HAlign = 0.05f;
             CreateButton.MarginTop = 555;
             CreateButton.OnClick += CreateButtonClicked;
             Menu.Append(CreateButton);
 
-            UITextPanel<string> CodeButton = new UITextPanel<string>(Language.GetTextValue("Copy Code"));
+            UITextPanel<string> CodeButton = new(Language.GetTextValue("Copy Code"));
             CodeButton.SetPadding(4);
             CodeButton.HAlign = 0.5f;
             CodeButton.MarginTop = 555;
             CodeButton.OnClick += CodeButtonClicked;
             Menu.Append(CodeButton);
 
-            UITextPanel<string> FileButton = new UITextPanel<string>(Language.GetTextValue("Select Texture"));
+            UITextPanel<string> FileButton = new(Language.GetTextValue("Select Texture"));
             FileButton.SetPadding(4);
             FileButton.HAlign = 0.9f;
             FileButton.MarginTop = 555;
@@ -59,6 +58,7 @@ namespace Creativetools.src.Tools.CustomItem
             nametext.HAlign = 0.5f;
             nametext.MarginTop = 50;
             nametext.Width.Set(-40f, 1f);
+            nametext.Height.Set(30, 0);
             Menu.Append(nametext);
 
             MakeSlider(new UIIntRangedDataValue("Damage: ", 0, 0, 999), out DamageDataProperty, Menu, top: 100, widthPixels: 1);
@@ -70,7 +70,7 @@ namespace Creativetools.src.Tools.CustomItem
             MakeSlider(new UIFloatRangedDataValue("Size: ", 1, 0, 10), out ScaleDataProperty, Menu, top: 400, widthPixels: 1);
             MakeSlider(new UIIntRangedDataValue("UseTime: ", 10, 0, 600), out UseTimeDataProperty, Menu, top: 450, widthPixels: 1);
 
-            UITextPanel<string> AutoSwingButton = new UITextPanel<string>("Autoswing: false");
+            UITextPanel<string> AutoSwingButton = new("Autoswing: false");
             AutoSwingButton.HAlign = 0.05f;
             AutoSwingButton.MarginTop = 500;
             AutoSwingButton.OnClick += (evt, listeningelement) =>
@@ -80,7 +80,7 @@ namespace Creativetools.src.Tools.CustomItem
             };
             Menu.Append(AutoSwingButton);
 
-            UITextPanel<string> TurnAroundButton = new UITextPanel<string>("Turnaround: false");
+            UITextPanel<string> TurnAroundButton = new("Turnaround: false");
             TurnAroundButton.HAlign = 0.95f;
             TurnAroundButton.MarginTop = 500;
             TurnAroundButton.OnClick += (evt, listeningelement) =>

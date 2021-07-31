@@ -14,10 +14,10 @@ using static Creativetools.src.UI.UIHelper;
 
 namespace Creativetools.src.Tools.PlaySound
 {
-    class PlaySoundUI : UIState
+    internal class PlaySoundUI : UIState
     {
         private UIText SoundName, MusicName;
-        UIIntRangedDataValue ID;
+        private UIIntRangedDataValue ID;
         public static UIIntRangedDataValue MusicSound;
         public static bool playmusic;
 
@@ -34,7 +34,7 @@ namespace Creativetools.src.Tools.PlaySound
 
         public override void OnInitialize()
         {
-            DragableUIPanel Menu = new DragableUIPanel("Play Sound", 500, 180);
+            DragableUIPanel Menu = new("Play Sound", 500, 180);
             Menu.VAlign = 0.6f;
             Menu.HAlign = 0.2f;
             Menu.OnCloseBtnClicked += () => UISystem.UserInterface.SetState(new MainUI());
@@ -61,7 +61,7 @@ namespace Creativetools.src.Tools.PlaySound
             /////////////////Music////////////////////
             var MusicSlider = MakeSlider(new UIIntRangedDataValue("", 0, 0, Music.Length), out MusicSound, Menu, top: 100, left: -10);
 
-            UITextPanel<string> PlayMusic = new UITextPanel<string>(text: playmusic ? "Stop Music" : "Play Music");
+            UITextPanel<string> PlayMusic = new(text: playmusic ? "Stop Music" : "Play Music");
             PlayMusic.SetPadding(4);
             PlayMusic.MarginLeft = 20;
             PlayMusic.Width.Set(10, 0f);
@@ -81,7 +81,7 @@ namespace Creativetools.src.Tools.PlaySound
             base.Update(gameTime);
             SoundName.SetText("SoundID." + Sounds[ID.Data].Name);
 
-            List<string> MusicNames = new List<string>(Music.Length);
+            List<string> MusicNames = new(Music.Length);
             for (int i = 0; i < MusicNames.Capacity; i++)
             {
                 MusicNames.Add("MusicID." + Music[i].Name);
@@ -90,7 +90,7 @@ namespace Creativetools.src.Tools.PlaySound
             MusicNames.Insert(45, "Unused");
 
             MusicName.SetText(MusicNames[MusicSound.Data]);
-            
+
         }
         // so you can't use items when clicking on the button
         protected override void DrawSelf(SpriteBatch spriteBatch)

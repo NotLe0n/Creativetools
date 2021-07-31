@@ -6,7 +6,7 @@ using static Creativetools.src.NearestToMouse;
 
 namespace Creativetools.src.Tools.MagicCursor
 {
-    class MagicCursorNPC : GlobalNPC
+    internal class MagicCursorNPC : GlobalNPC
     {
         public static bool MagicCursor;
 

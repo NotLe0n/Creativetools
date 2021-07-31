@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 
 namespace Creativetools.src.Tools.CustomItem
 {
-    class Global : GlobalItem
+    internal class Global : GlobalItem
     {
         public static bool createitem;
         public static string cName = "Customitem";
@@ -18,7 +18,7 @@ namespace Creativetools.src.Tools.CustomItem
         public static int cUseTime = 10;
         public static bool cAutoSwing = false;
         public static bool cTurnAround = false;
-        public static Texture2D ctexture = ModContent.GetTexture("Creativetools/src/Tools/CustomItem/CustomItem").Value;
+        public static Texture2D ctexture = ModContent.Request<Texture2D>("Creativetools/src/Tools/CustomItem/CustomItem").Value;
 
         public override void SetDefaults(Item item)
         {

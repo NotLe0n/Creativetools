@@ -9,7 +9,7 @@ using Terraria.UI;
 
 namespace Creativetools.src
 {
-    class UISystem : ModSystem
+    internal class UISystem : ModSystem
     {
         public static UserInterface UserInterface;
         private UserInterface InfoUserInterface;
@@ -58,10 +58,12 @@ namespace Creativetools.src
         public override void UpdateUI(GameTime gameTime)
         {
             _lastUpdateUiGameTime = gameTime;
+
             if (Main.playerInventory)
             {
                 ButtonUserInterface.Update(gameTime);
                 UserInterface.Update(gameTime);
+
                 if (UserInterface.CurrentState != null)
                 {
                     if (Confirm_Panel.Visible)
