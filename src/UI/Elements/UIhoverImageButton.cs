@@ -9,19 +9,17 @@ namespace Creativetools.src.UI.Elements
     internal class UIHoverImageButton : UIImageButton
     {
         internal string HoverText;
-        internal string Texture;
 
-        public UIHoverImageButton(string texture, string hoverText) : base(ModContent.Request<Texture2D>(texture))
+        public UIHoverImageButton(string texture, string hoverText) : base(ModContent.Request<Texture2D>(texture, ReLogic.Content.AssetRequestMode.ImmediateLoad))
         {
             HoverText = hoverText;
-            Texture = texture;
         }
 
         public override void Update(GameTime gameTime)
         {
             if (IsMouseHovering)
             {
-                Main.hoverItemName = HoverText;
+                Main.LocalPlayer.cursorItemIconText = HoverText;
                 Main.LocalPlayer.mouseInterface = true;
             }
             base.Update(gameTime);
