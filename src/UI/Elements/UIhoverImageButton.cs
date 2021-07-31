@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.GameContent.UI.Elements;
 using Terraria.ModLoader;
@@ -9,23 +10,21 @@ namespace Creativetools.src.UI.Elements
     {
         internal string HoverText;
         internal string Texture;
-        public UIHoverImageButton(string texture, string hoverText) : base(ModContent.GetTexture(texture))
+
+        public UIHoverImageButton(string texture, string hoverText) : base(ModContent.Request<Texture2D>(texture))
         {
             HoverText = hoverText;
             Texture = texture;
         }
-        protected override void DrawSelf(SpriteBatch spriteBatch)
-        {
-            base.DrawSelf(spriteBatch);
 
+        public override void Update(GameTime gameTime)
+        {
             if (IsMouseHovering)
             {
                 Main.hoverItemName = HoverText;
-            }
-            if (ContainsPoint(Main.MouseScreen)) //so you can't use items while clicking the button
-            {
                 Main.LocalPlayer.mouseInterface = true;
             }
+            base.Update(gameTime);
         }
     }
 }

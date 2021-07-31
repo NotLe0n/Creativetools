@@ -4,19 +4,21 @@ using Terraria.Audio;
 using Terraria.GameContent.UI.Elements;
 using Terraria.ID;
 using Terraria.UI;
-using static Terraria.ModLoader.ModContent;
+using Terraria.ModLoader;
 
 namespace Creativetools.src.UI.Elements
 {
     internal class MenuButton : UIImage
     {
         public string HoverText;
-        private UIImage frame = new(GetTexture("Creativetools/UI Assets/selected"));
-        public MenuButton(string texture, string hoverText, MouseEvent mouseEvent) : base(GetTexture("Creativetools/UI Assets/" + texture))
+        private UIImage frame = new(ModContent.Request<Texture2D>("Creativetools/UI Assets/selected"));
+
+        public MenuButton(string texture, string hoverText, MouseEvent mouseEvent) : base(ModContent.Request<Texture2D>("Creativetools/UI Assets/" + texture))
         {
             OnClick += mouseEvent;
             HoverText = hoverText;
         }
+
         public void SetState(bool value)
         {
             if (value)
@@ -28,11 +30,13 @@ namespace Creativetools.src.UI.Elements
                 frame.Remove();
             }
         }
+
         public override void Click(UIMouseEvent evt)
         {
             SoundEngine.PlaySound(SoundID.MenuTick);
             base.Click(evt);
         }
+
         protected override void DrawSelf(SpriteBatch spriteBatch)
         {
             base.DrawSelf(spriteBatch);

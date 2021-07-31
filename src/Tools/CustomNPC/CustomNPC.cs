@@ -16,7 +16,7 @@ namespace Creativetools.src.Tools.CustomNPC
         public static float cScale = 1f;
         public static bool cNoCollide = false;
         public static bool cImmortal = false;
-        public static Texture2D ctexture = ModContent.GetTexture("Creativetools/src/Tools/CustomNPC/CustomNPC").Value;
+        public static Texture2D ctexture = ModContent.Request<Texture2D>("Creativetools/src/Tools/CustomNPC/CustomNPC").Value;
         public static int cFramecount = 1;
 
         public override void SetStaticDefaults()

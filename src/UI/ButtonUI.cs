@@ -14,7 +14,7 @@ namespace Creativetools.src.UI
         {
             MenuButton = new UIHoverImageButton("Creativetools/UI Assets/MenuButton", "Open Menu");
             MenuButton.Top.Set(260, 0);
-            MenuButton.OnClick += new MouseEvent(MenuButtonClicked);
+            MenuButton.OnClick += MenuButtonClicked;
             Append(MenuButton);
         }
 

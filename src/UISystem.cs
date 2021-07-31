@@ -58,10 +58,12 @@ namespace Creativetools.src
         public override void UpdateUI(GameTime gameTime)
         {
             _lastUpdateUiGameTime = gameTime;
+
             if (Main.playerInventory)
             {
                 ButtonUserInterface.Update(gameTime);
                 UserInterface.Update(gameTime);
+
                 if (UserInterface.CurrentState != null)
                 {
                     if (Confirm_Panel.Visible)
