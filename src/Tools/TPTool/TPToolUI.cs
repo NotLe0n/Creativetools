@@ -115,6 +115,8 @@ namespace Creativetools.src.Tools.TPTool
             {
                 Main.LocalPlayer.position = coordinates;
             }
+
+            Terraria.Audio.SoundEngine.PlaySound(Terraria.ID.SoundID.Item6);
         }
 
         public override void Update(GameTime gameTime)

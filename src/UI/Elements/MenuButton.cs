@@ -11,9 +11,9 @@ namespace Creativetools.src.UI.Elements
     internal class MenuButton : UIImage
     {
         public string HoverText;
-        private UIImage frame = new(ModContent.Request<Texture2D>("Creativetools/UI Assets/selected"));
+        private UIImage frame = new(ModContent.Request<Texture2D>("Creativetools/UI Assets/selected", ReLogic.Content.AssetRequestMode.ImmediateLoad));
 
-        public MenuButton(string texture, string hoverText, MouseEvent mouseEvent) : base(ModContent.Request<Texture2D>("Creativetools/UI Assets/" + texture))
+        public MenuButton(string texture, string hoverText, MouseEvent mouseEvent) : base(ModContent.Request<Texture2D>("Creativetools/UI Assets/" + texture, ReLogic.Content.AssetRequestMode.ImmediateLoad))
         {
             OnClick += mouseEvent;
             HoverText = hoverText;

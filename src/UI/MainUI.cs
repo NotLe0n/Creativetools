@@ -40,13 +40,13 @@ namespace Creativetools.src.UI
 
             // 1. Zeile
             buttonGrid.Add(new MenuButton("bloodmoonToggle", "Event Toggle", (evt, element) => UISystem.UserInterface.SetState(new EventToggleUI())));
-            buttonGrid.Add(new MenuButton("pirateInvasionToggle", "Toggle Pirate invasion", (evt, element) => UISystem.UserInterface.SetState(new InvasionToggleUI())));
+            buttonGrid.Add(new MenuButton("pirateInvasionToggle", "Invasion Toggle", (evt, element) => UISystem.UserInterface.SetState(new InvasionToggleUI())));
             buttonGrid.Add(new MenuButton("hardmodeToggle", "Toggle hardmode", (evt, element) => Main.hardMode = !Main.hardMode));
             buttonGrid.Add(new MenuButton("expertModeToggle", "Toggle Game Mode", (evt, element) => UISystem.UserInterface.SetState(new GameModeToggleUI())));
             buttonGrid.Add(new MenuButton("weatherControl", "Weather Control", (evt, element) => UISystem.UserInterface.SetState(new WeatherControlUI())));
             buttonGrid.Add(new MenuButton("creativeFly", "Creative Fly", (evt, element) => MovePlayer.CreativeFly = !MovePlayer.CreativeFly));
             buttonGrid.Add(new MenuButton("magicCursor", "Magic Cursor", (evt, element) => MagicCursorNPC.MagicCursor = !MagicCursorNPC.MagicCursor));
-            buttonGrid.Add(new MenuButton("MenuButton", "TP Tool", (evt, element) => UISystem.UserInterface.SetState(new TPToolUI())));
+            buttonGrid.Add(new MenuButton("tptool", "TP Tool", (evt, element) => UISystem.UserInterface.SetState(new TPToolUI())));
 
             // 2. Zeile
             buttonGrid.Add(new MenuButton("Info", "Game Info", (evt, element) => GameInfo.Visible = !GameInfo.Visible));
