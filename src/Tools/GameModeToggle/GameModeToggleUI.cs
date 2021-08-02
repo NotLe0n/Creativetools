@@ -17,32 +17,45 @@ namespace Creativetools.src.Tools.GameModeToggle
 
     public class GameModeToggleUI : UIState
     {
-        private UIIntRangedDataValue gameMode;
-        private UIText gameModeText;
+        private UIIntRangedDataValue worldGameMode;
+        private UIText worldGameModeText;
+
+        private UIIntRangedDataValue playerGameMode;
+        private UIText playerGameModeText;
+
         public override void OnInitialize()
         {
-            var panel = new DragableUIPanel("Game Mode Toggle", 400, 100);
+            var panel = new DragableUIPanel("Game Mode Toggle", 400, 150);
             panel.VAlign = 0.4f;
             panel.HAlign = 0.3f;
             panel.OnCloseBtnClicked += () => UISystem.UserInterface.SetState(new MainUI());
             Append(panel);
 
-            UIHelper.MakeSlider(new UIIntRangedDataValue("Game mode", Main.GameMode, 0, 3), out gameMode, panel, top: 50);
+            UIHelper.MakeSlider(new UIIntRangedDataValue("World Game mode", Main.GameMode, 0, 3), out worldGameMode, panel, top: 50);
 
-            gameModeText = new UIText("");
-            gameModeText.Top.Set(75, 0);
-            gameModeText.Left.Set(0, 0.5f);
-            panel.Append(gameModeText);
+            worldGameModeText = new UIText("");
+            worldGameModeText.Top.Set(75, 0);
+            worldGameModeText.Left.Set(0, 0.5f);
+            panel.Append(worldGameModeText);
+
+
+            UIHelper.MakeSlider(new UIIntRangedDataValue("Player Game mode", Main.LocalPlayer.difficulty, 0, 3), out playerGameMode, panel, top: 100);
+
+            playerGameModeText = new UIText("");
+            playerGameModeText.Top.Set(125, 0);
+            playerGameModeText.Left.Set(0, 0.5f);
+            panel.Append(playerGameModeText);
 
         }
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
 
-            Main.GameMode = gameMode.Data;
+            Main.GameMode = worldGameMode.Data;
+            Main.LocalPlayer.difficulty = (byte)playerGameMode.Data;
 
-            if (gameModeText != null)
-                gameModeText.SetText(((GameModeID)Main.GameMode).ToString());
+            worldGameModeText?.SetText(((GameModeID)Main.GameMode).ToString());
+            playerGameModeText?.SetText(((GameModeID)Main.LocalPlayer.difficulty).ToString());
         }
     }
 }

@@ -34,7 +34,7 @@ namespace Creativetools.src.UI
 
         public override void Update(GameTime gameTime)
         {
-            MenuButton.Left.Set(Main.GameModeInfo.IsJourneyMode ? 67 : 20, 0);
+            MenuButton.Left.Set(Main.LocalPlayer.difficulty == 3 ? 67 : 20, 0);
             base.Update(gameTime);
         }
     }

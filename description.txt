@@ -5,7 +5,9 @@
 
 For a complete Changlog and more information visit my homepage!
 
-[c/66EEFF:Thanks to Pyroknight for drawing the sprites.]
+Special Thanks:
+Thanks to Pyroknight for drawing the sprites.
+Thanks to direwolf420, darthmorf and jopojelly for some UIElements.
 
 Latest Changes:
 v3.2 - Sprite Overhaul
