@@ -34,7 +34,7 @@ namespace Creativetools.src.UI
 
         public override void Update(GameTime gameTime)
         {
-            MenuButton.Left.Set(Main.LocalPlayer.difficulty == 3 ? 67 : 20, 0);
+            MenuButton.Left.Set(Main.LocalPlayer.difficulty == 3 && Main.LocalPlayer.chest == -1 && Main.LocalPlayer.talkNPC == -1 ? 67 : 20, 0);
             base.Update(gameTime);
         }
     }

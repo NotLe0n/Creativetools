@@ -55,7 +55,8 @@ namespace Creativetools.src.Tools.GameInfo
                 $"Player name: {player.name}, whoAmI: {player.whoAmI}"
                 + $"\nPosition: {player.position}, Velocity: {player.velocity}"
                 + $"\nliferegen: {player.lifeRegen}, liferegen time: {player.lifeRegenTime}, manaregen: {player.manaRegen}, minion number: {player.numMinions}"
-                + $"\nrocket time: {player.rocketTime}, respawn time: {player.respawnTimer}, imunity timer: {player.immuneTime}, flight timer: {player.wingTime}" : "");
+                + $"\nrocket time: {player.rocketTime}, respawn time: {player.respawnTimer}, imunity timer: {player.immuneTime}, flight timer: {player.wingTime}"
+                + $"\nluck: {player.luck}" : "");
             //screen information
             Screeninfo.SetText(!Config.Instance.HideScreen ? $"Screen position: {Main.screenPosition}, Screen Zoom:  {Main.GameZoomTarget}" : "");
 

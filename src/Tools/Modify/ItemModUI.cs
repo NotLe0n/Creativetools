@@ -11,79 +11,72 @@ namespace Creativetools.src.Tools.Modify
 {
     internal class ItemModUI : UIState
     {
-        private UIIntRangedDataValue DamageDataProperty;
-        private UIIntRangedDataValue CritDataProperty;
-        private UIFloatRangedDataValue KnockbackDataProperty;
-        private UIIntRangedDataValue UsetimeDataProperty;
-        private UIIntRangedDataValue DefenseDataProperty;
-        private UIFloatRangedDataValue ShootspeedDataProperty;
-        private UIFloatRangedDataValue SizeDataProperty;
         public override void OnInitialize()
         {
-            TabPanel ItemMenu = new(450, 450, new Tab("Change Item", this), new Tab(" Change Player", new PlayerModUI()));
-            ItemMenu.VAlign = 0.6f;
-            ItemMenu.HAlign = 0.2f;
-            ItemMenu.OnCloseBtnClicked += () => UISystem.UserInterface.SetState(new MainUI());
-            Append(ItemMenu);
+            TabPanel itemMenu = new(450, 450, new Tab("Change Item", this), new Tab(" Change Player", new PlayerModUI()));
+            itemMenu.VAlign = 0.6f;
+            itemMenu.HAlign = 0.2f;
+            itemMenu.OnCloseBtnClicked += () => UISystem.UserInterface.SetState(new MainUI());
+            Append(itemMenu);
 
-            var DamageSlider = MakeSlider(new UIIntRangedDataValue("", 0, 0, 999), out DamageDataProperty, ItemMenu, top: 50, left: -10);
-            SliderButtons("Set Damage", DamageSlider, button => button.OnClick += (evt, elm) => ChangeDamage(DamageDataProperty.Data));
+            var damageSlider = MakeSlider(new UIIntRangedDataValue("", 0, 0, 999), out var damageDataProperty, itemMenu, top: 50, left: -10);
+            SliderButtons("Set Damage", damageSlider, button => button.OnClick += (evt, elm) => ChangeDamage(damageDataProperty.Data));
 
-            var CritSlider = MakeSlider(new UIIntRangedDataValue("", 0, 0, 100), out CritDataProperty, ItemMenu, top: 100, left: -10);
-            SliderButtons("Set Crit", CritSlider, button => button.OnClick += (evt, elm) => ChangeCrit(CritDataProperty.Data));
+            var critSlider = MakeSlider(new UIIntRangedDataValue("", 0, 0, 100), out var critDataProperty, itemMenu, top: 100, left: -10);
+            SliderButtons("Set Crit", critSlider, button => button.OnClick += (evt, elm) => ChangeCrit(critDataProperty.Data));
 
-            var KnockSlider = MakeSlider(new UIFloatRangedDataValue("", 0, 0, 100), out KnockbackDataProperty, ItemMenu, top: 150, left: -10);
-            SliderButtons("Set Knockback", KnockSlider, button => button.OnClick += (evt, elm) => ChangeKnock(KnockbackDataProperty.Data));
+            var knockSlider = MakeSlider(new UIFloatRangedDataValue("", 0, 0, 100), out var knockbackDataProperty, itemMenu, top: 150, left: -10);
+            SliderButtons("Set Knockback", knockSlider, button => button.OnClick += (evt, elm) => ChangeKnock(knockbackDataProperty.Data));
 
-            var UsetimeSlider = MakeSlider(new UIIntRangedDataValue("", 0, 0, 50), out UsetimeDataProperty, ItemMenu, top: 200, left: -10);
-            SliderButtons("Set Usetime", UsetimeSlider, button => button.OnClick += (evt, elm) => ChangeUseTime(UsetimeDataProperty.Data));
+            var usetimeSlider = MakeSlider(new UIIntRangedDataValue("", 0, 0, 50), out var usetimeDataProperty, itemMenu, top: 200, left: -10);
+            SliderButtons("Set Usetime", usetimeSlider, button => button.OnClick += (evt, elm) => ChangeUseTime(usetimeDataProperty.Data));
 
-            var DefenseSlider = MakeSlider(new UIIntRangedDataValue("", 0, 0, 100), out DefenseDataProperty, ItemMenu, top: 250, left: -10);
-            SliderButtons("Set Defense", DefenseSlider, button => button.OnClick += (evt, elm) => ChangeDefense(DefenseDataProperty.Data));
+            var defenseSlider = MakeSlider(new UIIntRangedDataValue("", 0, 0, 100), out var defenseDataProperty, itemMenu, top: 250, left: -10);
+            SliderButtons("Set Defense", defenseSlider, button => button.OnClick += (evt, elm) => ChangeDefense(defenseDataProperty.Data));
 
-            var ShootSlider = MakeSlider(new UIFloatRangedDataValue("", 0, 0, 999), out ShootspeedDataProperty, ItemMenu, top: 300, left: -10);
-            SliderButtons("Set Bullet speed", ShootSlider, button => button.OnClick += (evt, elm) => ChangeShoot(ShootspeedDataProperty.Data));
+            var shootSlider = MakeSlider(new UIFloatRangedDataValue("", 0, 0, 999), out var shootspeedDataProperty, itemMenu, top: 300, left: -10);
+            SliderButtons("Set Bullet speed", shootSlider, button => button.OnClick += (evt, elm) => ChangeShoot(shootspeedDataProperty.Data));
 
-            var SizeSlider = MakeSlider(new UIFloatRangedDataValue("", 0, 0, 50), out SizeDataProperty, ItemMenu, top: 350, left: -10);
-            SliderButtons("Set Size", SizeSlider, button => button.OnClick += (evt, elm) => ChangeSize(SizeDataProperty.Data));
+            var sizeSlider = MakeSlider(new UIFloatRangedDataValue("", 0, 0, 50), out var sizeDataProperty, itemMenu, top: 350, left: -10);
+            SliderButtons("Set Size", sizeSlider, button => button.OnClick += (evt, elm) => ChangeSize(sizeDataProperty.Data));
 
-            UITextPanel<string> AutoswingButton = new("Toggle Autoswing");
-            AutoswingButton.SetPadding(4);
-            AutoswingButton.MarginLeft = 10;
-            AutoswingButton.MarginTop = 400;
-            AutoswingButton.Width.Set(10, 0f);
-            AutoswingButton.OnClick += (evt, elm) =>
+            var autoswingButton = new UITextPanel<string>("Toggle Autoswing");
+            autoswingButton.SetPadding(4);
+            autoswingButton.MarginLeft = 10;
+            autoswingButton.MarginTop = 400;
+            autoswingButton.Width.Set(10, 0f);
+            autoswingButton.OnClick += (evt, elm) =>
             {
                 ToggleAutoSwing();
                 SoundEngine.PlaySound(SoundID.MenuTick);
             };
-            ItemMenu.Append(AutoswingButton);
+            itemMenu.Append(autoswingButton);
 
-            UITextPanel<string> TurnaroundButton = new("Toggle Turnaround");
-            TurnaroundButton.SetPadding(4);
-            TurnaroundButton.MarginLeft = 275;
-            TurnaroundButton.MarginTop = 400;
-            TurnaroundButton.Width.Set(10, 0f);
-            TurnaroundButton.OnClick += (evt, elm) =>
+            var turnaroundButton = new UITextPanel<string>("Toggle Turnaround");
+            turnaroundButton.SetPadding(4);
+            turnaroundButton.MarginLeft = 275;
+            turnaroundButton.MarginTop = 400;
+            turnaroundButton.Width.Set(10, 0f);
+            turnaroundButton.OnClick += (evt, elm) =>
             {
                 ToggleTurnAround();
                 SoundEngine.PlaySound(SoundID.MenuTick);
             };
-            ItemMenu.Append(TurnaroundButton);
+            itemMenu.Append(turnaroundButton);
         }
 
-        public static void ChangeDamage(int change) => Main.LocalPlayer.HeldItem.damage = change;
-        public static void ChangeCrit(int change) => Main.LocalPlayer.HeldItem.crit = change - 4;
-        public static void ChangeKnock(float change) => Main.LocalPlayer.HeldItem.knockBack = change;
-        public static void ChangeUseTime(int change)
+        private static void ChangeDamage(int change) => Main.LocalPlayer.HeldItem.damage = change;
+        private static void ChangeCrit(int change) => Main.LocalPlayer.HeldItem.crit = change - 4;
+        private static void ChangeKnock(float change) => Main.LocalPlayer.HeldItem.knockBack = change;
+        private static void ChangeUseTime(int change)
         {
             Main.LocalPlayer.HeldItem.useTime = change;
             Main.LocalPlayer.HeldItem.useAnimation = change;
         }
-        public static void ChangeDefense(int change) => Main.LocalPlayer.HeldItem.defense = change;
-        public static void ChangeShoot(float change) => Main.LocalPlayer.HeldItem.shootSpeed = change;
-        public static void ChangeSize(float change) => Main.LocalPlayer.HeldItem.scale = change;
-        public static void ToggleAutoSwing() => Main.LocalPlayer.HeldItem.autoReuse = !Main.LocalPlayer.HeldItem.autoReuse;
-        public static void ToggleTurnAround() => Main.LocalPlayer.HeldItem.useTurn = !Main.LocalPlayer.HeldItem.useTurn;
+        private static void ChangeDefense(int change) => Main.LocalPlayer.HeldItem.defense = change;
+        private static void ChangeShoot(float change) => Main.LocalPlayer.HeldItem.shootSpeed = change;
+        private static void ChangeSize(float change) => Main.LocalPlayer.HeldItem.scale = change;
+        private static void ToggleAutoSwing() => Main.LocalPlayer.HeldItem.autoReuse = !Main.LocalPlayer.HeldItem.autoReuse;
+        private static void ToggleTurnAround() => Main.LocalPlayer.HeldItem.useTurn = !Main.LocalPlayer.HeldItem.useTurn;
     }
 }

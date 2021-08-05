@@ -8,35 +8,31 @@ namespace Creativetools.src.Tools.Modify
 {
     internal class PlayerModUI : UIState
     {
-        private TabPanel PlayerMenu;
-        private UIIntRangedDataValue LifeDataProperty;
-        private UIIntRangedDataValue ManaDataProperty;
-        private UIIntRangedDataValue MaxLifeDataProperty;
-        private UIIntRangedDataValue MaxManaDataProperty;
-        private UIFloatRangedDataValue SizeDataProperty;
-
         public override void OnInitialize()
         {
-            PlayerMenu = new TabPanel(450, 300, new Tab("Change Item", new ItemModUI()), new Tab(" Change Player", this));
-            PlayerMenu.VAlign = 0.6f;
-            PlayerMenu.HAlign = 0.2f;
-            PlayerMenu.OnCloseBtnClicked += () => UISystem.UserInterface.SetState(new MainUI());
-            Append(PlayerMenu);
+            var playerMenu = new TabPanel(450, 350, new Tab("Change Item", new ItemModUI()), new Tab(" Change Player", this));
+            playerMenu.VAlign = 0.6f;
+            playerMenu.HAlign = 0.2f;
+            playerMenu.OnCloseBtnClicked += () => UISystem.UserInterface.SetState(new MainUI());
+            Append(playerMenu);
 
-            var LifeSlider = MakeSlider(new UIIntRangedDataValue("", 0, 0, 999), out LifeDataProperty, PlayerMenu, top: 50, left: -10);
-            SliderButtons("Set Life", LifeSlider, button => button.OnClick += (evt, element) => Main.LocalPlayer.statLife = LifeDataProperty.Data);
+            var lifeSlider = MakeSlider(new UIIntRangedDataValue("", 0, 0, 999), out var lifeDataProperty, playerMenu, top: 50, left: -10);
+            SliderButtons("Set Life", lifeSlider, button => button.OnClick += (evt, element) => Main.LocalPlayer.statLife = lifeDataProperty.Data);
 
-            var ManaSlider = MakeSlider(new UIIntRangedDataValue("", 0, 0, 400), out ManaDataProperty, PlayerMenu, top: 100, left: -10);
-            SliderButtons("Set Mana", ManaSlider, button => button.OnClick += (evt, element) => Main.LocalPlayer.statMana = ManaDataProperty.Data);
+            var manaSlider = MakeSlider(new UIIntRangedDataValue("", 0, 0, 400), out var manaDataProperty, playerMenu, top: 100, left: -10);
+            SliderButtons("Set Mana", manaSlider, button => button.OnClick += (evt, element) => Main.LocalPlayer.statMana = manaDataProperty.Data);
 
-            var MaxLifeSlider = MakeSlider(new UIIntRangedDataValue("", 0, 0, 999), out MaxLifeDataProperty, PlayerMenu, top: 150, left: -10);
-            SliderButtons("Set Max Life", MaxLifeSlider, button => button.OnClick += (evt, element) => Main.LocalPlayer.statLifeMax = MaxLifeDataProperty.Data);
+            var maxLifeSlider = MakeSlider(new UIIntRangedDataValue("", 0, 0, 999), out var maxLifeDataProperty, playerMenu, top: 150, left: -10);
+            SliderButtons("Set Max Life", maxLifeSlider, button => button.OnClick += (evt, element) => Main.LocalPlayer.statLifeMax = maxLifeDataProperty.Data);
 
-            var MaxManaSlider = MakeSlider(new UIIntRangedDataValue("", 0, 0, 400), out MaxManaDataProperty, PlayerMenu, top: 200, left: -10);
-            SliderButtons("Set Max Mana", MaxManaSlider, button => button.OnClick += (evt, element) => Main.LocalPlayer.statManaMax = MaxManaDataProperty.Data);
+            var maxManaSlider = MakeSlider(new UIIntRangedDataValue("", 0, 0, 400), out var maxManaDataProperty, playerMenu, top: 200, left: -10);
+            SliderButtons("Set Max Mana", maxManaSlider, button => button.OnClick += (evt, element) => Main.LocalPlayer.statManaMax = maxManaDataProperty.Data);
 
-            var SizeSlider = MakeSlider(new UIFloatRangedDataValue("", 0.1f, 0.1f, 4), out SizeDataProperty, PlayerMenu, top: 250, left: -10);
-            SliderButtons("Set Size", SizeSlider, button => button.OnClick += (evt, element) => ModifyPlayer.playerSize = SizeDataProperty.Data);
+            var sizeSlider = MakeSlider(new UIFloatRangedDataValue("", 0.1f, 0.1f, 4), out var sizeDataProperty, playerMenu, top: 250, left: -10);
+            SliderButtons("Set Size", sizeSlider, button => button.OnClick += (evt, element) => ModifyPlayer.playerSize = sizeDataProperty.Data);
+
+            var luckSlider = MakeSlider(new UIFloatRangedDataValue("", 0, -0.7f, 1), out var luckDataProperty, playerMenu, top: 300, left: -10);
+            SliderButtons("Set Luck", luckSlider, button => button.OnClick += (evt, element) => ModifyPlayer.luck = luckDataProperty.Data);
         }
     }
 }

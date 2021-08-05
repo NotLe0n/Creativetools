@@ -17,6 +17,7 @@ using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
 using Terraria.UI;
+using Terraria.DataStructures;
 
 namespace Creativetools.src.UI
 {
@@ -39,32 +40,39 @@ namespace Creativetools.src.UI
             MenuPanel.Append(buttonGrid);
 
             // 1. Zeile
-            buttonGrid.Add(new MenuButton("bloodmoonToggle", "Event Toggle", (evt, element) => UISystem.UserInterface.SetState(new EventToggleUI())));
-            buttonGrid.Add(new MenuButton("pirateInvasionToggle", "Invasion Toggle", (evt, element) => UISystem.UserInterface.SetState(new InvasionToggleUI())));
-            buttonGrid.Add(new MenuButton("hardmodeToggle", "Toggle hardmode", (evt, element) => Main.hardMode = !Main.hardMode));
-            buttonGrid.Add(new MenuButton("expertModeToggle", "Toggle Game Mode", (evt, element) => UISystem.UserInterface.SetState(new GameModeToggleUI())));
-            buttonGrid.Add(new MenuButton("weatherControl", "Weather Control", (evt, element) => UISystem.UserInterface.SetState(new WeatherControlUI())));
-            buttonGrid.Add(new MenuButton("creativeFly", "Creative Fly", (evt, element) => MovePlayer.CreativeFly = !MovePlayer.CreativeFly));
-            buttonGrid.Add(new MenuButton("magicCursor", "Magic Cursor", (evt, element) => MagicCursorNPC.MagicCursor = !MagicCursorNPC.MagicCursor));
-            buttonGrid.Add(new MenuButton("tptool", "TP Tool", (evt, element) => UISystem.UserInterface.SetState(new TPToolUI())));
+            AddButton("bloodmoonToggle",        "Event Toggle",         () => UISystem.UserInterface.SetState(new EventToggleUI()));
+            AddButton("pirateInvasionToggle",   "Invasion Toggle",      () => UISystem.UserInterface.SetState(new InvasionToggleUI()));
+            AddButton("hardmodeToggle",         "Toggle hardmode",      () => Main.hardMode = !Main.hardMode);
+            AddButton("expertModeToggle",        "Toggle Game Mode",    () => UISystem.UserInterface.SetState(new GameModeToggleUI()));
+            AddButton("weatherControl",         "Weather Control",      () => UISystem.UserInterface.SetState(new WeatherControlUI()));
+            AddButton("creativeFly",            "Creative Fly",         () => MovePlayer.CreativeFly = !MovePlayer.CreativeFly);
+            AddButton("magicCursor",            "Magic Cursor",         () => MagicCursorNPC.MagicCursor = !MagicCursorNPC.MagicCursor);
+            AddButton("tptool",                 "TP Tool",              () => UISystem.UserInterface.SetState(new TPToolUI()));
 
             // 2. Zeile
-            buttonGrid.Add(new MenuButton("Info", "Game Info", (evt, element) => GameInfo.Visible = !GameInfo.Visible));
-            buttonGrid.Add(new MenuButton("playSound", "Play Sound", (evt, element) => UISystem.UserInterface.SetState(new PlaySoundUI())));
-            buttonGrid.Add(new MenuButton("modifyItem", "Modify Item/Player", (evt, element) => UISystem.UserInterface.SetState(new ItemModUI())));
-            buttonGrid.Add(new MenuButton("custom", "Custom Item/NPC", (evt, element) => UISystem.UserInterface.SetState(new CustomNPCUI())));
-            buttonGrid.Add(new MenuButton("DownedBossToggle", "DownedBoss Toggle", (evt, element) => UISystem.UserInterface.SetState(new DownedBossToggleUI())));
-            buttonGrid.Add(new MenuButton("clearInventory", "Clear inventory", (evt, element) => Confirm_Panel.Visible = true));
+            AddButton("Info",                   "Game Info",            () => GameInfo.Visible = !GameInfo.Visible);
+            AddButton("playSound",              "Play Sound",           () => UISystem.UserInterface.SetState(new PlaySoundUI()));
+            AddButton("modifyItem",             "Modify Item/Player",   () => UISystem.UserInterface.SetState(new ItemModUI()));
+            AddButton("custom",                 "Custom Item/NPC",      () => UISystem.UserInterface.SetState(new CustomNPCUI()));
+            AddButton("DownedBossToggle",       "DownedBoss Toggle",    () => UISystem.UserInterface.SetState(new DownedBossToggleUI()));
+            AddButton("clearInventory",         "Clear inventory",      () => Confirm_Panel.Visible = true);
+            AddButton("killplayer",             "Kill Player",          () => Main.LocalPlayer.KillMe(PlayerDeathReason.LegacyEmpty(), 100, 0));
         }
+
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime); // Don't remove, or else dragging won't be smooth
-            bool[] check = { false, false, Main.hardMode, false, false, MovePlayer.CreativeFly, MagicCursorNPC.MagicCursor, false, false, false, false, false, false, false };
+            bool[] check = { false, false, Main.hardMode, false, false, MovePlayer.CreativeFly, MagicCursorNPC.MagicCursor, false, GameInfo.Visible, false, false, false, false, false, false };
 
             for (int i = 0; i < buttonGrid.Count; i++)
             {
                 ((MenuButton)buttonGrid.items[i]).SetState(check[i]);
             }
+        }
+
+        private void AddButton(string iconName, string name, System.Action action)
+        {
+            buttonGrid.Add(new MenuButton(iconName, name, (evt, elm) => action()));
         }
     }
 }

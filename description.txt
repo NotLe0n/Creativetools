@@ -10,11 +10,19 @@ Thanks to Pyroknight for drawing the sprites.
 Thanks to direwolf420, darthmorf and jopojelly for some UIElements.
 
 Latest Changes:
-v3.2 - Sprite Overhaul
-    + Pyroknight redrew all sprites
-    + Made Description more informative
-    + fixed WeatherControl button text
+v4.3 - added 1.4 features
+    + Added Lantern night event
+    + Added Star shower event
+    + Added Kill player
+    + Added Luck stat in Modify Player
 
+v4.2 - bug fix
+    + fixed bug where the Menu Button would overlap with the first chest slot when in journey mode
+
+v4.0 & v4.1 - Ported to 1.4
+    + Added TP tool
+    + Changed UI
+    + Added Gamemode slider
 _________________________
 
 [c/FFE900:Content:]
