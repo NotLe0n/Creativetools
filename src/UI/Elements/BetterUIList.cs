@@ -1,18 +1,24 @@
 ﻿using System.Reflection;
 using Terraria.GameContent.UI.Elements;
 using Terraria.UI;
+using System.Collections.Generic;
 
 namespace Creativetools.src.UI.Elements
 {
+    // Original: https://github.com/Pbone3/FargowiltasSouls/blob/master/UI/UIToggleList.cs (1.3)
+    // THANK YOU PBONE <33333333
+
     internal class BetterUIList : UIList
     {
-        public static FieldInfo field_innerList;
-        public static MethodInfo method_uiElementAppend;
-        public static MethodInfo method_uiElementRecalcuate;
-        public static MethodInfo method_uiElementRemoveChild;
+        private readonly FieldInfo field__items;
+        private readonly FieldInfo field_innerList;
+        private readonly MethodInfo method_uiElementAppend;
+        private readonly MethodInfo method_uiElementRecalcuate;
+        private readonly MethodInfo method_uiElementRemoveChild;
 
-        static BetterUIList()
+        public BetterUIList()
         {
+            field__items = typeof(UIList).GetField("_items", BindingFlags.Instance | BindingFlags.NonPublic);
             field_innerList = typeof(UIList).GetField("_innerList", BindingFlags.Instance | BindingFlags.NonPublic);
             method_uiElementAppend = typeof(UIElement).GetMethod("Append", BindingFlags.Instance | BindingFlags.Public);
             method_uiElementRecalcuate = typeof(UIElement).GetMethod("Recalculate", BindingFlags.Instance | BindingFlags.Public);
@@ -21,7 +27,7 @@ namespace Creativetools.src.UI.Elements
 
         public override void Add(UIElement item)
         {
-            Elements.Add(item);
+            (field__items.GetValue(this) as List<UIElement>).Add(item);
             method_uiElementAppend.Invoke(field_innerList.GetValue(this), new object[] { item });
             method_uiElementRecalcuate.Invoke(field_innerList.GetValue(this), null);
         }

@@ -28,7 +28,7 @@ namespace Creativetools.src.Tools.DownedBossToggle
             scrollbar.Top.Set(0, 0.1f);
             panel.Append(scrollbar);
 
-            toggleList = new UIList();
+            toggleList = new BetterUIList();
             toggleList.Width.Set(0, 0.1f);
             toggleList.Height.Set(340, 0);
             toggleList.Left.Set(0, 0.1f);
@@ -37,7 +37,7 @@ namespace Creativetools.src.Tools.DownedBossToggle
             toggleList.SetScrollbar(scrollbar);
             panel.Append(toggleList);
 
-            textList = new UIList();
+            textList = new BetterUIList();
             textList.Width.Set(0, 0.9f);
             textList.Height.Set(340, 0);
             textList.Left.Set(0, 0.2f);
