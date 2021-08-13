@@ -10,7 +10,6 @@ namespace Creativetools.src.UI.Elements
 
     internal class BetterUIList : UIList
     {
-        private readonly FieldInfo field__items;
         private readonly FieldInfo field_innerList;
         private readonly MethodInfo method_uiElementAppend;
         private readonly MethodInfo method_uiElementRecalcuate;
@@ -18,7 +17,6 @@ namespace Creativetools.src.UI.Elements
 
         public BetterUIList()
         {
-            field__items = typeof(UIList).GetField("_items", BindingFlags.Instance | BindingFlags.NonPublic);
             field_innerList = typeof(UIList).GetField("_innerList", BindingFlags.Instance | BindingFlags.NonPublic);
             method_uiElementAppend = typeof(UIElement).GetMethod("Append", BindingFlags.Instance | BindingFlags.Public);
             method_uiElementRecalcuate = typeof(UIElement).GetMethod("Recalculate", BindingFlags.Instance | BindingFlags.Public);
@@ -27,7 +25,7 @@ namespace Creativetools.src.UI.Elements
 
         public override void Add(UIElement item)
         {
-            (field__items.GetValue(this) as List<UIElement>).Add(item);
+            _items.Add(item);
             method_uiElementAppend.Invoke(field_innerList.GetValue(this), new object[] { item });
             method_uiElementRecalcuate.Invoke(field_innerList.GetValue(this), null);
         }
