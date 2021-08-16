@@ -38,7 +38,7 @@ namespace Creativetools.src.Tools.DownedBossToggle
             panel.Append(toggleList);
 
             textList = new BetterUIList();
-            textList.Width.Set(0, 0.9f);
+            textList.Width.Set(0, 0.7f);
             textList.Height.Set(340, 0);
             textList.Left.Set(0, 0.2f);
             textList.Top.Set(0, 0.1f);
