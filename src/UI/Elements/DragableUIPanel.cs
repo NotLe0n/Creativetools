@@ -40,7 +40,11 @@ namespace Creativetools.src.UI.Elements
         public override void OnInitialize()
         {
             base.OnInitialize();
-
+            header.Width = Width;
+        }
+        public override void Recalculate()
+        {
+            base.Recalculate();
             header.Width = Width;
         }
 

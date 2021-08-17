@@ -15,8 +15,11 @@ namespace Creativetools.src.Tools.AssemblyViewer
     class InspectValue : UIState
     {
         private readonly MemberInfo _member;
+
         private UIDataElement dataElement;
         private readonly DragableUIPanel panel;
+        private readonly UIText frozenText;
+        private readonly UIToggleImage frozenToggle;
         private bool frozen;
 
         public InspectValue(MemberInfo member)
@@ -25,8 +28,6 @@ namespace Creativetools.src.Tools.AssemblyViewer
             frozen = false;
 
             panel = new DragableUIPanel(member.Name);
-            panel.Width.Set(400, 0);
-            panel.Height.Set(100, 0);
             panel.Top.Set(200, 0);
             panel.Left.Set(500, 0);
             panel.OnCloseBtnClicked += () => UISystem.UserInterface2.SetState(null);
@@ -34,7 +35,7 @@ namespace Creativetools.src.Tools.AssemblyViewer
 
             panel.Append(new UIText("Value:")
             {
-                Left = new(0, 0.03f),
+                Left = new(20, 0),
                 Top = new(45, 0),
             });
 
@@ -44,15 +45,14 @@ namespace Creativetools.src.Tools.AssemblyViewer
 
             if ((!field?.IsLiteral).GetValueOrDefault() && (!field?.IsInitOnly).GetValueOrDefault() || (property?.CanWrite).GetValueOrDefault())
             {
-                panel.Append(new UIText("frozen:")
+                frozenText = new UIText("frozen:")
                 {
-                    Left = new(0, 0.7f),
                     Top = new(45, 0),
-                });
+                };
+                panel.Append(frozenText);
 
-                var frozenToggle = new UIToggleImage(Main.Assets.Request<Texture2D>("Images\\UI\\Settings_Toggle"), 13, 13, new Point(17, 1), new Point(1, 1));
+                frozenToggle = new UIToggleImage(Main.Assets.Request<Texture2D>("Images\\UI\\Settings_Toggle"), 13, 13, new Point(17, 1), new Point(1, 1));
                 frozenToggle.OnClick += FrozenToggle_OnClick;
-                frozenToggle.Left.Set(0, 0.85f);
                 frozenToggle.Top.Set(47, 0);
                 panel.Append(frozenToggle);
             }
@@ -100,14 +100,11 @@ namespace Creativetools.src.Tools.AssemblyViewer
             dataElement = new UIDataElement(val)
             {
                 Top = new(40, 0),
-                Left = new(0, 0.17f),
+                Left = new(80, 0),
                 IgnoresMouseInteraction = !frozen
             };
             dataElement.OnValueChanged += (newData) => ChangeFieldValue(field, newData);
             panel.Append(dataElement);
-
-            panel.Width.Set(dataElement.Width.Pixels * 2.5f, 0);
-            panel.Height.Set(dataElement.Height.Pixels, 0);
 
             tempUnfreeze = false;
         }
@@ -133,14 +130,11 @@ namespace Creativetools.src.Tools.AssemblyViewer
             dataElement = new UIDataElement(val)
             {
                 Top = new(40, 0),
-                Left = new(0, 0.17f),
+                Left = new(80, 0),
                 IgnoresMouseInteraction = !frozen
             };
             dataElement.OnValueChanged += (newData) => ChangePropertyValue(property, newData);
             panel.Append(dataElement);
-
-            panel.Width.Set(dataElement.Width.Pixels * 2.5f, 0);
-            panel.Height.Set(dataElement.Height.Pixels, 0);
 
             tempUnfreeze = false;
         }
@@ -149,6 +143,21 @@ namespace Creativetools.src.Tools.AssemblyViewer
         {
             property.SetValue(null, newData);
             tempUnfreeze = true;
+        }
+
+        public override void Recalculate()
+        {
+            base.Recalculate();
+
+            if (dataElement != null)
+            {
+                frozenText?.Left.Set(panel.GetDimensions().Width - 100, 0);
+                frozenToggle?.Left.Set(panel.GetDimensions().Width - 30, 0);
+
+                panel.Width.Set(dataElement.Width.Pixels + 200, 0);
+                panel.Height.Set(dataElement.Height.Pixels, 0);
+                panel.Recalculate();
+            }
         }
     }
 }

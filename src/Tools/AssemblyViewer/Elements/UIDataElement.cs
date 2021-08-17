@@ -24,7 +24,7 @@ namespace Creativetools.src.Tools.AssemblyViewer.Elements
         public UIDataElement(object data)
         {
             this.data = data;
-            Width.Set(150, 0);
+            Width.Set(data.ToString().GetTextSize().X, 0);
             Height.Set(100, 0);
 
             Append(new UIText(data.ToString())
@@ -82,7 +82,7 @@ namespace Creativetools.src.Tools.AssemblyViewer.Elements
         public UIDataElement(byte data)
         {
             this.data = data;
-            Width.Set(150, 0);
+            Width.Set(data.ToString().GetTextSize().X + 50, 0);
             Height.Set(100, 0);
 
             NumericTextbox(data, typeof(byte));
@@ -90,7 +90,7 @@ namespace Creativetools.src.Tools.AssemblyViewer.Elements
         public UIDataElement(short data)
         {
             this.data = data;
-            Width.Set(150, 0);
+            Width.Set(data.ToString().GetTextSize().X + 50, 0);
             Height.Set(100, 0);
 
             NumericTextbox(data, typeof(short));
@@ -98,7 +98,7 @@ namespace Creativetools.src.Tools.AssemblyViewer.Elements
         public UIDataElement(int data)
         {
             this.data = data;
-            Width.Set(150, 0);
+            Width.Set(data.ToString().GetTextSize().X + 50, 0);
             Height.Set(100, 0);
 
             NumericTextbox(data, typeof(int));
@@ -106,7 +106,7 @@ namespace Creativetools.src.Tools.AssemblyViewer.Elements
         public UIDataElement(long data)
         {
             this.data = data;
-            Width.Set(150, 0);
+            Width.Set(data.ToString().GetTextSize().X + 50, 0);
             Height.Set(100, 0);
 
             NumericTextbox(data, typeof(long));
@@ -114,7 +114,7 @@ namespace Creativetools.src.Tools.AssemblyViewer.Elements
         public UIDataElement(float data)
         {
             this.data = data;
-            Width.Set(150, 0);
+            Width.Set(data.ToString().GetTextSize().X + 50, 0);
             Height.Set(100, 0);
 
             NumericTextbox(data, typeof(float));
@@ -122,7 +122,7 @@ namespace Creativetools.src.Tools.AssemblyViewer.Elements
         public UIDataElement(double data)
         {
             this.data = data;
-            Width.Set(150, 0);
+            Width.Set(data.ToString().GetTextSize().X + 50, 0);
             Height.Set(100, 0);
 
             NumericTextbox(data, typeof(double));
@@ -131,11 +131,12 @@ namespace Creativetools.src.Tools.AssemblyViewer.Elements
         public UIDataElement(string data)
         {
             this.data = data;
-            Width.Set(150, 0);
-            Height.Set(100, 0);
 
             if (data != null)
             {
+                Width.Set(data.ToString().GetTextSize().X + 50, 0);
+                Height.Set(100, 0);
+
                 var textBox = new NewUITextBox(data.ToString());
                 textBox.Width.Set(data.ToString().GetTextSize().X + 50, 0);
                 textBox.MinHeight.Set(25, 0);
@@ -146,6 +147,9 @@ namespace Creativetools.src.Tools.AssemblyViewer.Elements
             }
             else
             {
+                Width.Set("null".GetTextSize().X + 50, 0);
+                Height.Set(100, 0);
+
                 Append(new UIText("null")
                 {
                     Top = new(5, 0)
@@ -157,18 +161,18 @@ namespace Creativetools.src.Tools.AssemblyViewer.Elements
         {
             this.data = data;
 
-            Width.Set(160, 0);
+            Width.Set(data.X.ToString().GetTextSize().X + data.X.ToString().GetTextSize().Y + 110, 0);
             Height.Set(100, 0);
 
             var elmX = new UIDataElement(data.X);
-            elmX.Width.Set(100, 0);
+            elmX.Width.Set(data.X.ToString().GetTextSize().X + 50, 0);
             elmX.Height.Set(30, 0);
             Append(elmX);
 
             var elmY = new UIDataElement(data.Y);
-            elmY.Width.Set(100, 0);
+            elmY.Width.Set(data.X.ToString().GetTextSize().Y + 50, 0);
             elmY.Height.Set(30, 0);
-            elmY.Left.Set(110, 0);
+            elmY.Left.Set(data.X.ToString().GetTextSize().X + 60, 0);
             Append(elmY);
         }
         public UIDataElement(Vector3 data)
@@ -186,13 +190,13 @@ namespace Creativetools.src.Tools.AssemblyViewer.Elements
             var elmY = new UIDataElement(data.Y);
             elmY.Width.Set(50, 0);
             elmY.Height.Set(30, 0);
-            elmY.Left.Set(60, 0);
+            elmY.Left.Set(50, 0);
             Append(elmY);
 
             var elmZ = new UIDataElement(data.Z);
             elmZ.Width.Set(50, 0);
             elmZ.Height.Set(30, 0);
-            elmZ.Left.Set(110, 0);
+            elmZ.Left.Set(100, 0);
             Append(elmZ);
         }
         public UIDataElement(Matrix data)
@@ -220,7 +224,7 @@ namespace Creativetools.src.Tools.AssemblyViewer.Elements
                     elm.Top.Set(height * j + 10, 0);
                     Append(elm);
 
-                    Width.Pixels += i + 10;
+                    Width.Pixels += i + 11;
                     Height.Pixels += j + 10;
                 }
             }
@@ -229,7 +233,7 @@ namespace Creativetools.src.Tools.AssemblyViewer.Elements
         {
             this.data = data;
 
-            Width.Set(190, 0);
+            Width.Set(250, 0);
             Height.Set(100, 0);
 
             var colorImg = new UISolidColor(data);
