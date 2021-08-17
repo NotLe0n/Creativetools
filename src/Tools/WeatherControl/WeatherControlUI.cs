@@ -18,7 +18,9 @@ namespace Creativetools.src.Tools.WeatherControl
         private UIIntRangedDataValue Time;
         public override void OnInitialize()
         {
-            WeatherMenu = new DragableUIPanel("Weather Control", 500f, 200f);
+            WeatherMenu = new DragableUIPanel("Weather Control");
+            WeatherMenu.Width.Set(500f, 0);
+            WeatherMenu.Height.Set(200f, 0);
             WeatherMenu.VAlign = 0.6f;
             WeatherMenu.HAlign = 0.2f;
             WeatherMenu.OnCloseBtnClicked += () => UISystem.UserInterface.SetState(new MainUI());

@@ -12,8 +12,10 @@ namespace Creativetools.src.Tools.ClearInventory
         public static bool Visible;
         public override void OnInitialize()
         {
-            DragableUIPanel ConfirmPanel = new("Are you sure you want to delete all your items?", 550f, 100f);
+            DragableUIPanel ConfirmPanel = new("Are you sure you want to delete all your items?");
             ConfirmPanel.SetPadding(0);
+            ConfirmPanel.Width.Set(550, 0);
+            ConfirmPanel.Height.Set(100, 0);
             ConfirmPanel.VAlign = ConfirmPanel.HAlign = 0.5f;
             ConfirmPanel.OnCloseBtnClicked += () => Visible = false;
             Append(ConfirmPanel);

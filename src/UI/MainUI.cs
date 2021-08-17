@@ -27,7 +27,9 @@ namespace Creativetools.src.UI
 
         public override void OnInitialize()
         {
-            DragableUIPanel MenuPanel = new("Creativetools Menu", 442f, 160f) { VAlign = 0.5f, HAlign = 0.1f };
+            DragableUIPanel MenuPanel = new("Creativetools Menu") { VAlign = 0.5f, HAlign = 0.1f };
+            MenuPanel.Width.Set(442f, 0);
+            MenuPanel.Height.Set(160f, 0);
             MenuPanel.OnCloseBtnClicked += () => { UISystem.UserInterface.SetState(null); SoundEngine.PlaySound(SoundID.MenuClose); };
             Append(MenuPanel);
 

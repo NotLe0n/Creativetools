@@ -24,7 +24,9 @@ namespace Creativetools.src.Tools.AssemblyViewer
             _member = member;
             frozen = false;
 
-            panel = new DragableUIPanel(member.Name, 400, 100);
+            panel = new DragableUIPanel(member.Name);
+            panel.Width.Set(400, 0);
+            panel.Height.Set(100, 0);
             panel.Top.Set(200, 0);
             panel.Left.Set(500, 0);
             panel.OnCloseBtnClicked += () => UISystem.UserInterface2.SetState(null);

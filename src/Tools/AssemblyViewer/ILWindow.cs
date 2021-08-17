@@ -16,9 +16,11 @@ namespace Creativetools.src.Tools.AssemblyViewer
         {
             var instructions = Disassembler.GetInstructions(method);
 
-            var panel = new DragableUIPanel(method.Name, 400, 550);
+            var panel = new DragableUIPanel(method.Name);
             panel.Top.Set(200, 0);
             panel.Left.Set(500, 0);
+            panel.Width.Set(400, 0);
+            panel.Height.Set(550, 0);
             panel.OnCloseBtnClicked += () => UISystem.UserInterface2.SetState(null);
             Append(panel);
 

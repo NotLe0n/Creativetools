@@ -20,7 +20,9 @@ namespace Creativetools.src.Tools.AssemblyViewer
 
         public AssemblyViewer(string currentNamespace, TypeInfo selectedClass = null)
         {
-            var menu = new DragableUIPanel("AssemblyViewer", 850f, 650f);
+            var menu = new DragableUIPanel("AssemblyViewer");
+            menu.Width.Set(850, 0);
+            menu.Height.Set(650, 0);
             menu.VAlign = 0.6f;
             menu.HAlign = 0.6f;
             menu.OnCloseBtnClicked += () => UISystem.UserInterface.SetState(new MainUI());

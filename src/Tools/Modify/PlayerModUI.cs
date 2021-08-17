@@ -10,9 +10,11 @@ namespace Creativetools.src.Tools.Modify
     {
         public override void OnInitialize()
         {
-            var playerMenu = new TabPanel(450, 350, new Tab("Change Item", new ItemModUI()), new Tab(" Change Player", this));
+            var playerMenu = new TabPanel(new Tab("Change Item", new ItemModUI()), new Tab(" Change Player", this));
             playerMenu.VAlign = 0.6f;
             playerMenu.HAlign = 0.2f;
+            playerMenu.Width.Set(450, 0);
+            playerMenu.Height.Set(350, 0);
             playerMenu.OnCloseBtnClicked += () => UISystem.UserInterface.SetState(new MainUI());
             Append(playerMenu);
 

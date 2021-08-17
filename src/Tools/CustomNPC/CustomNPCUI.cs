@@ -25,9 +25,11 @@ namespace Creativetools.src.Tools.CustomNPC
         private UIIntRangedDataValue FrameDataProperty;
         public override void OnInitialize()
         {
-            TabPanel Menu = new(450, 500, new Tab("Custom NPC", this), new Tab(" Custom Item", new CustomItemUI()));
+            TabPanel Menu = new(new Tab("Custom NPC", this), new Tab(" Custom Item", new CustomItemUI()));
             Menu.VAlign = 0.6f;
             Menu.HAlign = 0.2f;
+            Menu.Width.Set(450, 0);
+            Menu.Height.Set(500, 0);
             Menu.OnCloseBtnClicked += () => UISystem.UserInterface.SetState(new MainUI());
             Append(Menu);
 

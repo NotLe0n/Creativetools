@@ -12,15 +12,12 @@ namespace Creativetools.src.UI.Elements
         public event Action OnCloseBtnClicked;
         internal UIPanel header;
 
-        public DragableUIPanel(string headingtext, float width, float height)
+        public DragableUIPanel(string headingtext)
         {
-            Width.Set(width, 0f);
-            Height.Set(height, 0f);
             SetPadding(0);
 
             header = new UIPanel();
             header.SetPadding(0);
-            header.Width = Width;
             header.Height.Set(30, 0f);
             header.BackgroundColor.A = 255;
             header.OnMouseDown += Header_OnMouseDown;
@@ -40,6 +37,13 @@ namespace Creativetools.src.UI.Elements
             closeBtn.OnClick += (evt, elm) => OnCloseBtnClicked?.Invoke();
             header.Append(closeBtn);
         }
+        public override void OnInitialize()
+        {
+            base.OnInitialize();
+
+            header.Width = Width;
+        }
+
         #region Drag code yoiked from ExampleMod 
 
         private Vector2 offset;

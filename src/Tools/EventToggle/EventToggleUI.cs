@@ -16,7 +16,9 @@ namespace Creativetools.src.Tools.EventToggle
 
         public override void OnInitialize()
         {
-            DragableUIPanel MenuPanel = new("Event Toggle", 442f, 160f) { VAlign = 0.5f, HAlign = 0.1f };
+            DragableUIPanel MenuPanel = new("Event Toggle") { VAlign = 0.5f, HAlign = 0.1f };
+            MenuPanel.Width.Set(442, 0);
+            MenuPanel.Height.Set(160, 0);
             MenuPanel.OnCloseBtnClicked += () => { UISystem.UserInterface.SetState(new MainUI()); SoundEngine.PlaySound(SoundID.MenuClose); };
             Append(MenuPanel);
 
