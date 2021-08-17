@@ -124,7 +124,7 @@ namespace Creativetools.src.Tools.AssemblyViewer
                 dataElement = null;
             }
 
-            if (!property.PropertyType.ContainsGenericParameters)
+            if (property.PropertyType.ContainsGenericParameters)
                 return;
 
             dynamic val = property.GetValue(null);
