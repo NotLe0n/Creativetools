@@ -1,6 +1,8 @@
 ﻿using Creativetools.src.UI.Elements;
+using Microsoft.Xna.Framework;
 using System;
 using Terraria.Audio;
+using Terraria.GameContent;
 using Terraria.GameContent.UI.Elements;
 using Terraria.ID;
 using Terraria.UI;
@@ -10,7 +12,7 @@ namespace Creativetools.src.UI
     /// <summary>
     /// Helps make UI code smaller and easier to work with.
     /// </summary>
-    internal class UIHelper
+    internal static class UIHelper
     {
         /// <summary>
         /// Creates a UIHoverImageButton with a click event
@@ -95,6 +97,11 @@ namespace Creativetools.src.UI
             appendTo.Append(Slider);
 
             return Slider;
+        }
+
+        public static Vector2 GetTextSize(this string str)
+        {
+            return FontAssets.MouseText.Value.MeasureString(str);
         }
     }
 }

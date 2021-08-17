@@ -51,6 +51,7 @@ namespace Creativetools.src.UI
 
             // 2. Zeile
             AddButton("Info",                   "Game Info",            () => GameInfo.Visible = !GameInfo.Visible);
+            AddButton("Info",                   "Game Info 2",          () => UISystem.UserInterface.SetState(new Tools.GameInfo2.GameInfo2("Terraria")));
             AddButton("playSound",              "Play Sound",           () => UISystem.UserInterface.SetState(new PlaySoundUI()));
             AddButton("modifyItem",             "Modify Item/Player",   () => UISystem.UserInterface.SetState(new ItemModUI()));
             AddButton("custom",                 "Custom Item/NPC",      () => UISystem.UserInterface.SetState(new CustomNPCUI()));
@@ -62,7 +63,7 @@ namespace Creativetools.src.UI
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime); // Don't remove, or else dragging won't be smooth
-            bool[] check = { false, false, Main.hardMode, false, false, MovePlayer.CreativeFly, MagicCursorNPC.MagicCursor, false, GameInfo.Visible, false, false, false, false, false, false };
+            bool[] check = { false, false, Main.hardMode, false, false, MovePlayer.CreativeFly, MagicCursorNPC.MagicCursor, false, GameInfo.Visible, false, false, false, false, false, false, false };
 
             for (int i = 0; i < buttonGrid.Count; i++)
             {
