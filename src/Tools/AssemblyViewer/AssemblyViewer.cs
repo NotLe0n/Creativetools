@@ -8,19 +8,19 @@ using Terraria.UI;
 using Terraria;
 using Terraria.GameContent.UI.Elements;
 using Microsoft.Xna.Framework;
-using Creativetools.src.Tools.GameInfo2.Elements;
+using Creativetools.src.Tools.AssemblyViewer.Elements;
 
-namespace Creativetools.src.Tools.GameInfo2
+namespace Creativetools.src.Tools.AssemblyViewer
 {
-    class GameInfo2 : UIState
+    class AssemblyViewer : UIState
     {
         private static float oldViewPosition;
         private UIScrollbar _scrollbar;
         private Namespace terrariaAssembly = new();
 
-        public GameInfo2(string currentNamespace, TypeInfo selectedClass = null)
+        public AssemblyViewer(string currentNamespace, TypeInfo selectedClass = null)
         {
-            var menu = new DragableUIPanel("GameInfo2", 850f, 650f);
+            var menu = new DragableUIPanel("AssemblyViewer", 850f, 650f);
             menu.VAlign = 0.6f;
             menu.HAlign = 0.6f;
             menu.OnCloseBtnClicked += () => UISystem.UserInterface.SetState(new MainUI());

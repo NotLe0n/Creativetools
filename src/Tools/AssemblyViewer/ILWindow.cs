@@ -8,7 +8,7 @@ using Mono.Reflection;
 using Terraria.GameContent.UI.Elements;
 using Terraria.UI;
 
-namespace Creativetools.src.Tools.GameInfo2
+namespace Creativetools.src.Tools.AssemblyViewer
 {
     class ILWindow : UIState
     {

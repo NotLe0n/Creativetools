@@ -4,7 +4,7 @@ using Terraria.GameContent;
 using Terraria.GameContent.UI.Elements;
 using Terraria.UI;
 
-namespace Creativetools.src.Tools.GameInfo2.Elements
+namespace Creativetools.src.Tools.AssemblyViewer.Elements
 {
     class Header : UIElement
     {
@@ -58,7 +58,7 @@ namespace Creativetools.src.Tools.GameInfo2.Elements
                 if (ContainsPoint(Main.MouseScreen) && Main.mouseLeft)
                 {
                     string target = string.Join('.', spliced[0..(index + 1)]);
-                    UISystem.UserInterface.SetState(new GameInfo2(target));
+                    UISystem.UserInterface.SetState(new AssemblyViewer(target));
                 }
             }
         }

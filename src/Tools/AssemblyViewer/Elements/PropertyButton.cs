@@ -8,7 +8,7 @@ using Terraria.GameContent.UI.Elements;
 using Terraria.ModLoader;
 using Terraria.UI;
 
-namespace Creativetools.src.Tools.GameInfo2.Elements
+namespace Creativetools.src.Tools.AssemblyViewer.Elements
 {
     class PropertyButton : UIText
     {
@@ -22,7 +22,7 @@ namespace Creativetools.src.Tools.GameInfo2.Elements
             if (!property.CanWrite) img += "Getter";
             if (property.GetMethod.IsPrivate) img += "Private";
 
-            var texture = ModContent.Request<Texture2D>("Creativetools/UI Assets/GameInfo2/" + img, ReLogic.Content.AssetRequestMode.ImmediateLoad);
+            var texture = ModContent.Request<Texture2D>("Creativetools/UI Assets/AssemblyViewer/" + img, ReLogic.Content.AssetRequestMode.ImmediateLoad);
             Append(new UIImage(texture));
         }
 

@@ -11,7 +11,7 @@ using Terraria.GameContent;
 using Terraria.GameContent.UI.Elements;
 using Terraria.UI;
 
-namespace Creativetools.src.Tools.GameInfo2.Elements
+namespace Creativetools.src.Tools.AssemblyViewer.Elements
 {
     class UIDataElement : UIElement
     {

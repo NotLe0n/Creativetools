@@ -5,12 +5,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using Creativetools.src.Tools.GameInfo2.Elements;
+using Creativetools.src.Tools.AssemblyViewer.Elements;
 using Terraria;
 using Terraria.GameContent.UI.Elements;
 using Terraria.UI;
 
-namespace Creativetools.src.Tools.GameInfo2
+namespace Creativetools.src.Tools.AssemblyViewer
 {
     class InspectValue : UIState
     {

@@ -51,7 +51,7 @@ namespace Creativetools.src.UI
 
             // 2. Zeile
             AddButton("Info",                   "Game Info",            () => GameInfo.Visible = !GameInfo.Visible);
-            AddButton("Info",                   "Game Info 2",          () => UISystem.UserInterface.SetState(new Tools.GameInfo2.GameInfo2("Terraria")));
+            AddButton("Info",                   "AssemblyViewer",       () => UISystem.UserInterface.SetState(new Tools.AssemblyViewer.AssemblyViewer("Terraria")));
             AddButton("playSound",              "Play Sound",           () => UISystem.UserInterface.SetState(new PlaySoundUI()));
             AddButton("modifyItem",             "Modify Item/Player",   () => UISystem.UserInterface.SetState(new ItemModUI()));
             AddButton("custom",                 "Custom Item/NPC",      () => UISystem.UserInterface.SetState(new CustomNPCUI()));

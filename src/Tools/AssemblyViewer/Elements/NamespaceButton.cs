@@ -3,7 +3,7 @@ using Terraria.GameContent.UI.Elements;
 using Terraria.ModLoader;
 using Terraria.UI;
 
-namespace Creativetools.src.Tools.GameInfo2.Elements
+namespace Creativetools.src.Tools.AssemblyViewer.Elements
 {
     class NamespaceButton : UIText
     {
@@ -12,7 +12,7 @@ namespace Creativetools.src.Tools.GameInfo2.Elements
         {
             _namespace = ns;
 
-            var texture = ModContent.Request<Texture2D>("Creativetools/UI Assets/GameInfo2/folder", ReLogic.Content.AssetRequestMode.ImmediateLoad);
+            var texture = ModContent.Request<Texture2D>("Creativetools/UI Assets/AssemblyViewer/folder", ReLogic.Content.AssetRequestMode.ImmediateLoad);
             Append(new UIImage(texture));
         }
 
@@ -20,7 +20,7 @@ namespace Creativetools.src.Tools.GameInfo2.Elements
         {
             base.Click(evt);
 
-            UISystem.UserInterface.SetState(new GameInfo2(_namespace.FullName));
+            UISystem.UserInterface.SetState(new AssemblyViewer(_namespace.FullName));
         }
     }
 }

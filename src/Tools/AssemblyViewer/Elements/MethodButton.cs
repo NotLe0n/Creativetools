@@ -4,7 +4,7 @@ using Terraria.UI;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria.ModLoader;
 
-namespace Creativetools.src.Tools.GameInfo2.Elements
+namespace Creativetools.src.Tools.AssemblyViewer.Elements
 {
     class MethodButton : UIText
     {
@@ -24,7 +24,7 @@ namespace Creativetools.src.Tools.GameInfo2.Elements
             if (method.IsPrivate)
                 img += "Private";
 
-            var texture = ModContent.Request<Texture2D>("Creativetools/UI Assets/GameInfo2/" + img, ReLogic.Content.AssetRequestMode.ImmediateLoad);
+            var texture = ModContent.Request<Texture2D>("Creativetools/UI Assets/AssemblyViewer/" + img, ReLogic.Content.AssetRequestMode.ImmediateLoad);
             Append(new UIImage(texture));
         }
 
