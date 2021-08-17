@@ -167,12 +167,14 @@ namespace Creativetools.src.Tools.AssemblyViewer.Elements
             var elmX = new UIDataElement(data.X);
             elmX.Width.Set(data.X.ToString().GetTextSize().X + 50, 0);
             elmX.Height.Set(30, 0);
+            elmX.OnValueChanged += (newVal) => OnValueChanged.Invoke(new Vector2((float)newVal, data.Y));
             Append(elmX);
 
             var elmY = new UIDataElement(data.Y);
             elmY.Width.Set(data.X.ToString().GetTextSize().Y + 50, 0);
             elmY.Height.Set(30, 0);
             elmY.Left.Set(data.X.ToString().GetTextSize().X + 60, 0);
+            elmY.OnValueChanged += (newVal) => OnValueChanged.Invoke(new Vector2(data.X, (float)newVal));
             Append(elmY);
         }
         public UIDataElement(Vector3 data)
@@ -185,18 +187,21 @@ namespace Creativetools.src.Tools.AssemblyViewer.Elements
             var elmX = new UIDataElement(data.X);
             elmX.Width.Set(50, 0);
             elmX.Height.Set(30, 0);
+            elmX.OnValueChanged += (newVal) => OnValueChanged.Invoke(new Vector3((float)newVal, data.Y, data.Z));
             Append(elmX);
 
             var elmY = new UIDataElement(data.Y);
             elmY.Width.Set(50, 0);
             elmY.Height.Set(30, 0);
             elmY.Left.Set(50, 0);
+            elmY.OnValueChanged += (newVal) => OnValueChanged.Invoke(new Vector3(data.X, (float)newVal, data.Z));
             Append(elmY);
 
             var elmZ = new UIDataElement(data.Z);
             elmZ.Width.Set(50, 0);
             elmZ.Height.Set(30, 0);
             elmZ.Left.Set(100, 0);
+            elmZ.OnValueChanged += (newVal) => OnValueChanged.Invoke(new Vector3(data.X, data.Y, (float)newVal));
             Append(elmZ);
         }
         public UIDataElement(Matrix data)
@@ -245,24 +250,28 @@ namespace Creativetools.src.Tools.AssemblyViewer.Elements
             elmR.Width.Set(50, 0);
             elmR.Height.Set(30, 0);
             elmR.Left.Set(30, 0);
+            elmR.OnValueChanged += (newVal) => OnValueChanged.Invoke(new Color((byte)newVal, data.G, data.B, data.A));
             Append(elmR);
 
             var elmG = new UIDataElement(data.G);
             elmG.Width.Set(50, 0);
             elmG.Height.Set(30, 0);
             elmG.Left.Set(80, 0);
+            elmG.OnValueChanged += (newVal) => OnValueChanged.Invoke(new Color(data.R, (byte)newVal, data.B, data.A));
             Append(elmG);
 
             var elmB = new UIDataElement(data.B);
             elmB.Width.Set(50, 0);
             elmB.Height.Set(30, 0);
             elmB.Left.Set(130, 0);
+            elmB.OnValueChanged += (newVal) => OnValueChanged.Invoke(new Color(data.R, data.G, (byte)newVal, data.A));
             Append(elmB);
 
             var elmA = new UIDataElement(data.A);
             elmA.Width.Set(50, 0);
             elmA.Height.Set(30, 0);
             elmA.Left.Set(180, 0);
+            elmA.OnValueChanged += (newVal) => OnValueChanged.Invoke(new Color(data.R, data.G, data.B, (byte)newVal));
             Append(elmA);
         }
     }
