@@ -9,11 +9,18 @@ namespace Creativetools.src.Tools.AssemblyViewer.Elements
     class ClassButton : UIText
     {
         public readonly TypeInfo _class;
-        public ClassButton(TypeInfo clas) : base("   " + clas.Name)
+        public ClassButton(TypeInfo clas) : base($"    {(clas.DeclaringType != null ? $"{clas.DeclaringType.Name}." : "")}{clas.Name}")
         {
             _class = clas;
 
-            var texture = ModContent.Request<Texture2D>("Creativetools/UI Assets/AssemblyViewer/class", ReLogic.Content.AssetRequestMode.ImmediateLoad);
+            string img = "Class";
+            if (clas.IsEnum)
+                img = "EnumItem";
+
+            if (clas.IsNotPublic)
+                img += "Private";
+
+            var texture = ModContent.Request<Texture2D>("Creativetools/UI Assets/AssemblyViewer/" + img, ReLogic.Content.AssetRequestMode.ImmediateLoad);
             Append(new UIImage(texture));
         }
 
