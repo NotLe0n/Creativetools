@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Text;
+using Terraria;
 using Creativetools.src.UI.Elements;
 using Mono.Reflection;
 using Terraria.GameContent.UI.Elements;
@@ -34,8 +34,11 @@ namespace Creativetools.src.Tools.AssemblyViewer
                 invokeButton.Height.Set(10, 0);
                 invokeButton.OnClick += (evt, elm) =>
                 {
-                    method.Invoke(null, null);
-                    Terraria.Main.NewText($"<AssemblyViewer> Invoked method [c/FF0000:{method.Name}()] successfully!");
+                    object ret = method.Invoke(null, null);
+                    Main.NewText($"<AssemblyViewer> Invoked method [c/FF0000:{method.Name}()] successfully!");
+
+                    if (ret is not null)
+                        Main.NewText($"<AssemblyViewer> [c/FF0000:{method.Name}()] returned {ret}");
                 };
                 panel.Append(invokeButton);
             }
