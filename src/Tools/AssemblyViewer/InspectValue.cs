@@ -2,13 +2,12 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
 using Creativetools.src.Tools.AssemblyViewer.Elements;
 using Terraria;
 using Terraria.GameContent.UI.Elements;
 using Terraria.UI;
+using Creativetools.src.UI;
 
 namespace Creativetools.src.Tools.AssemblyViewer
 {
@@ -154,7 +153,7 @@ namespace Creativetools.src.Tools.AssemblyViewer
                 frozenText?.Left.Set(panel.GetDimensions().Width - 100, 0);
                 frozenToggle?.Left.Set(panel.GetDimensions().Width - 30, 0);
 
-                panel.Width.Set(dataElement.Width.Pixels + 200, 0);
+                panel.Width.Set(Math.Max(dataElement.Width.Pixels + (frozenText?.GetDimensions().Width).GetValueOrDefault() + 150, _member.Name.GetTextSize().X + 40), 0);
                 panel.Height.Set(dataElement.Height.Pixels, 0);
                 panel.Recalculate();
             }
