@@ -10,6 +10,10 @@ Thanks to Pyroknight for drawing the sprites.
 Thanks to direwolf420, darthmorf and jopojelly for some UIElements.
 
 Latest Changes:
+v4.4 - AssemblyViewer
+    + Added AssemblyViewer
+    + Fixed DownedBossToggle's UI
+
 v4.3 - added 1.4 features
     + Added Lantern night event
     + Added Star shower event

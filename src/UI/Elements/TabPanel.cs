@@ -55,17 +55,15 @@ namespace Creativetools.src.UI.Elements
         /// <summary>
         /// Creates a new Tab Panel
         /// </summary>
-        /// <param name="width">The width of the panel</param>
-        /// <param name="height">The height of the panel</param>
         /// <param name="tabs">All tabs that the panel should hold</param>
-        public TabPanel(float width, float height, params Tab[] tabs) : base("", width, height)
+        public TabPanel(params Tab[] tabs) : base("")
         {
-            Width.Pixels = width;
-            Height.Pixels = height;
             Tabs = tabs;
         }
         public override void OnInitialize()
         {
+            base.OnInitialize();
+
             // set correct position for all tabs
             for (int i = 0; i < Tabs.Length; i++)
             {

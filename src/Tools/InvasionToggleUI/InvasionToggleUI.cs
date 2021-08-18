@@ -13,7 +13,9 @@ namespace Creativetools.src.Tools.InvasionToggleUI
         private UIGrid buttonGrid;
         public override void OnInitialize()
         {
-            DragableUIPanel MenuPanel = new("Invasion Toggle", 250f, 100f) { VAlign = 0.5f, HAlign = 0.1f };
+            DragableUIPanel MenuPanel = new("Invasion Toggle") { VAlign = 0.5f, HAlign = 0.1f };
+            MenuPanel.Width.Set(250f, 0);
+            MenuPanel.Height.Set(100f, 0);
             MenuPanel.OnCloseBtnClicked += () => { UISystem.UserInterface.SetState(new MainUI()); SoundEngine.PlaySound(SoundID.MenuClose); };
             Append(MenuPanel);
 

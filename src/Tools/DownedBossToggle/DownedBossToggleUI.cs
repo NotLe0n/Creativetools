@@ -15,7 +15,9 @@ namespace Creativetools.src.Tools.DownedBossToggle
         private UIList toggleList, textList;
         public override void OnInitialize()
         {
-            var panel = new DragableUIPanel("DownedBoss Toggle", 600, 430);
+            var panel = new DragableUIPanel("DownedBoss Toggle");
+            panel.Width.Set(600, 0);
+            panel.Height.Set(430, 0);
             panel.VAlign = 0.6f;
             panel.HAlign = 0.2f;
             panel.OnCloseBtnClicked += () => UISystem.UserInterface.SetState(new MainUI());

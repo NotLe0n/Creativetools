@@ -34,7 +34,9 @@ namespace Creativetools.src.Tools.PlaySound
 
         public override void OnInitialize()
         {
-            DragableUIPanel Menu = new("Play Sound", 500, 180);
+            DragableUIPanel Menu = new("Play Sound");
+            Menu.Width.Set(500, 0);
+            Menu.Height.Set(180, 0);
             Menu.VAlign = 0.6f;
             Menu.HAlign = 0.2f;
             Menu.OnCloseBtnClicked += () => UISystem.UserInterface.SetState(new MainUI());

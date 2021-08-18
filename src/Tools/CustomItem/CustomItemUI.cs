@@ -27,9 +27,11 @@ namespace Creativetools.src.Tools.CustomItem
 
         public override void OnInitialize()
         {
-            TabPanel Menu = new(450, 600, new Tab("Custom NPC", new CustomNPCUI()), new Tab(" Custom Item", this));
+            TabPanel Menu = new(new Tab("Custom NPC", new CustomNPCUI()), new Tab(" Custom Item", this));
             Menu.VAlign = 0.7f;
             Menu.HAlign = 0.2f;
+            Menu.Width.Set(450, 0);
+            Menu.Height.Set(600, 0);
             Menu.OnCloseBtnClicked += () => UISystem.UserInterface.SetState(new MainUI());
             Append(Menu);
 

@@ -25,7 +25,9 @@ namespace Creativetools.src.Tools.GameModeToggle
 
         public override void OnInitialize()
         {
-            var panel = new DragableUIPanel("Game Mode Toggle", 400, 150);
+            var panel = new DragableUIPanel("Game Mode Toggle");
+            panel.Width.Set(400, 0);
+            panel.Height.Set(150, 0);
             panel.VAlign = 0.4f;
             panel.HAlign = 0.3f;
             panel.OnCloseBtnClicked += () => UISystem.UserInterface.SetState(new MainUI());

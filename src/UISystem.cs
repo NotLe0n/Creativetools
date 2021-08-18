@@ -12,6 +12,7 @@ namespace Creativetools.src
     internal class UISystem : ModSystem
     {
         public static UserInterface UserInterface;
+        public static UserInterface UserInterface2;
         private UserInterface InfoUserInterface;
         private UserInterface ButtonUserInterface;
         private UserInterface ConfirmPanelUserInterface;
@@ -39,6 +40,8 @@ namespace Creativetools.src
                 ButtonUserInterface.SetState(ButtonUI);
                 ConfirmPanelUserInterface = new UserInterface();
                 ConfirmPanelUserInterface.SetState(ConfirmPanelUI);
+                UserInterface2 = new UserInterface();
+                UserInterface2.SetState(null);
                 //////////////////////////////////////////////////
             }
         }
@@ -52,6 +55,7 @@ namespace Creativetools.src
             ConfirmPanelUserInterface = null;
 
             UserInterface = null;
+            UserInterface2 = null;
         }
 
         private GameTime _lastUpdateUiGameTime;
@@ -63,6 +67,7 @@ namespace Creativetools.src
             {
                 ButtonUserInterface.Update(gameTime);
                 UserInterface.Update(gameTime);
+                UserInterface2.Update(gameTime);
 
                 if (UserInterface.CurrentState != null)
                 {
@@ -93,6 +98,7 @@ namespace Creativetools.src
                             if (UserInterface.CurrentState != null)
                             {
                                 UserInterface.Draw(Main.spriteBatch, _lastUpdateUiGameTime);
+                                UserInterface2.Draw(Main.spriteBatch, _lastUpdateUiGameTime);
                                 if (Confirm_Panel.Visible)
                                 {
                                     ConfirmPanelUserInterface.Draw(Main.spriteBatch, _lastUpdateUiGameTime);

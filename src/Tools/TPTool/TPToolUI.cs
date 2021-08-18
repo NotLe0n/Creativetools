@@ -17,7 +17,9 @@ namespace Creativetools.src.Tools.TPTool
 
         public override void OnInitialize()
         {
-            var panel = new DragableUIPanel("TP Tool", 450, 300) { VAlign = 0.5f, HAlign = 0.1f };
+            var panel = new DragableUIPanel("TP Tool") { VAlign = 0.5f, HAlign = 0.1f };
+            panel.Width.Set(450, 0);
+            panel.Height.Set(300, 0);
             panel.OnCloseBtnClicked += () => UISystem.UserInterface.SetState(new MainUI());
             Append(panel);
 
