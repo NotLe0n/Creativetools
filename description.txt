@@ -10,6 +10,10 @@ Thanks to Pyroknight for drawing the sprites.
 Thanks to direwolf420, darthmorf and jopojelly for some UIElements.
 
 Latest Changes:
+v4.4.1 - Decompiler
+    + Changed AssemblyViewer Font
+    + You can now view c# code (the game might lag for huge methods)
+
 v4.4 - AssemblyViewer
     + Added AssemblyViewer
     + Fixed DownedBossToggle's UI

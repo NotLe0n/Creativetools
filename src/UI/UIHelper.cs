@@ -1,5 +1,6 @@
 ﻿using Creativetools.src.UI.Elements;
 using Microsoft.Xna.Framework;
+using ReLogic.Graphics;
 using System;
 using Terraria.Audio;
 using Terraria.GameContent;
@@ -102,6 +103,10 @@ namespace Creativetools.src.UI
         public static Vector2 GetTextSize(this string str)
         {
             return FontAssets.MouseText.Value.MeasureString(str);
+        }
+        public static Vector2 GetTextSize(this string str, DynamicSpriteFont font)
+        {
+            return font.MeasureString(str);
         }
     }
 }

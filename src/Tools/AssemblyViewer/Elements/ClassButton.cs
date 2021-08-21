@@ -6,10 +6,10 @@ using Terraria.UI;
 
 namespace Creativetools.src.Tools.AssemblyViewer.Elements
 {
-    class ClassButton : UIText
+    class ClassButton : UIFontText
     {
         public readonly TypeInfo _class;
-        public ClassButton(TypeInfo clas) : base($"    {(clas.DeclaringType != null ? $"{clas.DeclaringType.Name}." : "")}{clas.Name}")
+        public ClassButton(TypeInfo clas) : base(FontSystem.ConsolasFont, $"  {(clas.DeclaringType != null ? $"{clas.DeclaringType.Name}." : "")}{clas.Name}")
         {
             _class = clas;
 

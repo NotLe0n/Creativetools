@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Creativetools.src.UI;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.GameContent;
 using Terraria.GameContent.UI.Elements;
@@ -24,27 +25,27 @@ namespace Creativetools.src.Tools.AssemblyViewer.Elements
                 segment.TextColor = i != spliced.Length - 1 ? Color.LightGray : Color.White;
                 Append(segment);
 
-                xOffset += FontAssets.MouseText.Value.MeasureString(spliced[i]).X;
+                xOffset += spliced[i].GetTextSize(FontSystem.ConsolasFont).X;
 
                 // To not put a dot at the end (e.g: "Terraria.ID.")
                 if (i < spliced.Length - 1)
                 {
-                    Append(new UIText(".")
+                    Append(new UIFontText(FontSystem.ConsolasFont, ".")
                     {
                         Left = new(xOffset, 0)
                     });
 
-                    xOffset += FontAssets.MouseText.Value.MeasureString(".").X;
+                    xOffset += FontSystem.ConsolasFont.MeasureString(".").X;
                 }
             }
         }
 
-        class HeaderSegment : UIText
+        class HeaderSegment : UIFontText
         {
             private readonly string[] spliced;
             private readonly int index;
 
-            public HeaderSegment(string[] spliced, int index) : base(spliced[index])
+            public HeaderSegment(string[] spliced, int index) : base(FontSystem.ConsolasFont, spliced[index])
             {
                 this.spliced = spliced;
                 this.index = index;

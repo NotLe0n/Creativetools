@@ -7,10 +7,10 @@ using Terraria.UI;
 
 namespace Creativetools.src.Tools.AssemblyViewer.Elements
 {
-    class FieldButton : UIText
+    class FieldButton : UIFontText
     {
         public readonly FieldInfo _field;
-        public FieldButton(FieldInfo member) : base("   " + member.Name)
+        public FieldButton(FieldInfo member) : base(FontSystem.ConsolasFont, "  " + member.Name)
         {
             _field = member;
             TextColor = Color.LightGray;

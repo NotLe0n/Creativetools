@@ -86,8 +86,8 @@ namespace Creativetools.src.Tools.AssemblyViewer
             var namespaceSearchbar = new NewUITextBox("search:", 0.8f)
             {
                 Top = new(0, 0.06f),
-                Left = new(currentNamespace.GetTextSize().X + 30, 0),
-                Width = new(320 - currentNamespace.GetTextSize().X, 0),
+                Left = new(currentNamespace.GetTextSize(FontSystem.ConsolasFont).X + 30, 0),
+                Width = new(320 - currentNamespace.GetTextSize(FontSystem.ConsolasFont).X, 0),
                 Height = new(20, 0),
                 BackgroundColor = default, // remove background
                 BorderColor = default // renove border
@@ -120,7 +120,7 @@ namespace Creativetools.src.Tools.AssemblyViewer
 
         private void ConstructClassInterface(TypeInfo selectedClass, DragableUIPanel menu)
         {
-            menu.Append(new UIText(selectedClass.Name)
+            menu.Append(new UIFontText(FontSystem.ConsolasFont, selectedClass.Name)
             {
                 Top = new(0, 0.06f),
                 Left = new(0, 0.48f),

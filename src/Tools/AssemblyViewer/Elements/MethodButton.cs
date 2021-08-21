@@ -6,10 +6,10 @@ using Terraria.ModLoader;
 
 namespace Creativetools.src.Tools.AssemblyViewer.Elements
 {
-    class MethodButton : UIText
+    class MethodButton : UIFontText
     {
         public readonly MethodInfo _method;
-        public MethodButton(MethodInfo method) : base("   " + method.Name + $"({GetParametersAsString(method)})")
+        public MethodButton(MethodInfo method) : base(FontSystem.ConsolasFont, "  " + method.Name + $"({GetParametersAsString(method)})")
         {
             _method = method;
             TextColor = Microsoft.Xna.Framework.Color.LightGray;

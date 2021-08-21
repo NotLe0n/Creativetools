@@ -5,10 +5,10 @@ using Terraria.UI;
 
 namespace Creativetools.src.Tools.AssemblyViewer.Elements
 {
-    class NamespaceButton : UIText
+    class NamespaceButton : UIFontText
     {
         public readonly Namespace _namespace;
-        public NamespaceButton(Namespace ns) : base("   " + ns.Name)
+        public NamespaceButton(Namespace ns) : base(FontSystem.ConsolasFont, "  " + ns.Name)
         {
             _namespace = ns;
 

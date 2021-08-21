@@ -7,10 +7,10 @@ using Terraria.UI;
 
 namespace Creativetools.src.Tools.AssemblyViewer.Elements
 {
-    class PropertyButton : UIText
+    class PropertyButton : UIFontText
     {
         public readonly PropertyInfo _property;
-        public PropertyButton(PropertyInfo property) : base("   " + property.Name)
+        public PropertyButton(PropertyInfo property) : base(FontSystem.ConsolasFont, "  " + property.Name)
         {
             _property = property;
             TextColor = Color.LightGray;
