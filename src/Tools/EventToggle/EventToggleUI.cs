@@ -16,11 +16,11 @@ namespace Creativetools.src.Tools.EventToggle
 
         public override void OnInitialize()
         {
-            DragableUIPanel MenuPanel = new("Event Toggle") { VAlign = 0.5f, HAlign = 0.1f };
-            MenuPanel.Width.Set(442, 0);
-            MenuPanel.Height.Set(160, 0);
-            MenuPanel.OnCloseBtnClicked += () => { UISystem.UserInterface.SetState(new MainUI()); SoundEngine.PlaySound(SoundID.MenuClose); };
-            Append(MenuPanel);
+            var menuPanel = new DragableUIPanel("Event Toggle") { VAlign = 0.5f, HAlign = 0.1f };
+            menuPanel.Width.Set(442, 0);
+            menuPanel.Height.Set(160, 0);
+            menuPanel.OnCloseBtnClicked += () => { UISystem.UserInterface.SetState(new MainUI()); SoundEngine.PlaySound(SoundID.MenuClose); };
+            Append(menuPanel);
 
             buttonGrid = new UIGrid(8);
             buttonGrid.Top.Set(40, 0f);
@@ -28,7 +28,7 @@ namespace Creativetools.src.Tools.EventToggle
             buttonGrid.Width.Set(0, 1);
             buttonGrid.Height.Set(0, 1);
             buttonGrid.ListPadding = 10f;
-            MenuPanel.Append(buttonGrid);
+            menuPanel.Append(buttonGrid);
             base.OnInitialize();
 
             AddButton("bloodmoonToggle",    "Toggle bloodmoon",     () => Main.bloodMoon = !Main.bloodMoon);

@@ -23,72 +23,73 @@ namespace Creativetools.src.Tools.CustomNPC
         private UIFloatRangedDataValue KnockbackDataProperty;
         private UIFloatRangedDataValue ScaleDataProperty;
         private UIIntRangedDataValue FrameDataProperty;
+
         public override void OnInitialize()
         {
-            TabPanel Menu = new(new Tab("Custom NPC", this), new Tab(" Custom Item", new CustomItemUI()));
-            Menu.VAlign = 0.6f;
-            Menu.HAlign = 0.2f;
-            Menu.Width.Set(450, 0);
-            Menu.Height.Set(500, 0);
-            Menu.OnCloseBtnClicked += () => UISystem.UserInterface.SetState(new MainUI());
-            Append(Menu);
+            var menu = new TabPanel(new Tab("Custom NPC", this), new Tab(" Custom Item", new CustomItemUI()));
+            menu.VAlign = 0.6f;
+            menu.HAlign = 0.2f;
+            menu.Width.Set(450, 0);
+            menu.Height.Set(500, 0);
+            menu.OnCloseBtnClicked += () => UISystem.UserInterface.SetState(new MainUI());
+            Append(menu);
 
-            UITextPanel<string> CreateButton = new(Language.GetTextValue("Create NPC"));
-            CreateButton.SetPadding(4);
-            CreateButton.HAlign = 0.05f;
-            CreateButton.MarginTop = 460;
-            CreateButton.OnClick += CreateButtonButtonClicked;
-            Menu.Append(CreateButton);
+            var createButton = new UITextPanel<string>(Language.GetTextValue("Create NPC"));
+            createButton.SetPadding(4);
+            createButton.HAlign = 0.05f;
+            createButton.MarginTop = 460;
+            createButton.OnClick += CreateButtonButtonClicked;
+            menu.Append(createButton);
 
-            UITextPanel<string> CodeButton = new(Language.GetTextValue("Copy Code"));
-            CodeButton.SetPadding(4);
-            CodeButton.HAlign = 0.5f;
-            CodeButton.MarginTop = 460;
-            CodeButton.OnClick += CodeButtonClicked;
-            Menu.Append(CodeButton);
+            var codeButton = new UITextPanel<string>(Language.GetTextValue("Copy Code"));
+            codeButton.SetPadding(4);
+            codeButton.HAlign = 0.5f;
+            codeButton.MarginTop = 460;
+            codeButton.OnClick += CodeButtonClicked;
+            menu.Append(codeButton);
 
-            UITextPanel<string> FileButton = new(Language.GetTextValue("Select Texture"));
-            FileButton.SetPadding(4);
-            FileButton.HAlign = 0.9f;
-            FileButton.MarginTop = 460;
-            FileButton.OnClick += FileButtonClicked;
-            Menu.Append(FileButton);
+            var fileButton = new UITextPanel<string>(Language.GetTextValue("Select Texture"));
+            fileButton.SetPadding(4);
+            fileButton.HAlign = 0.9f;
+            fileButton.MarginTop = 460;
+            fileButton.OnClick += FileButtonClicked;
+            menu.Append(fileButton);
 
             nametext = new NewUITextBox("Enter name here");
             nametext.HAlign = 0.5f;
             nametext.MarginTop = 50;
             nametext.Width.Set(-40f, 1f);
             nametext.Height.Set(30, 0);
-            Menu.Append(nametext);
+            menu.Append(nametext);
 
-            MakeSlider(new UIIntRangedDataValue("Life: ", 0, 0, 999), out LifeDataProperty, Menu, top: 100);
-            MakeSlider(new UIIntRangedDataValue("Damage: ", 0, 0, 999), out DamageDataProperty, Menu, top: 150);
-            MakeSlider(new UIIntRangedDataValue("Defense: ", 0, 0, 999), out DefenseDataProperty, Menu, top: 200);
-            MakeSlider(new UIIntRangedDataValue("AiStyle: ", 1, 0, 111), out AiSyleDataProperty, Menu, top: 250);
-            MakeSlider(new UIFloatRangedDataValue("Knockback resist: ", 0, 0, 1), out KnockbackDataProperty, Menu, 300);
-            MakeSlider(new UIFloatRangedDataValue("Scale: ", 1, 0, 10), out ScaleDataProperty, Menu, top: 350);
+            MakeSlider(new UIIntRangedDataValue("Life: ", 0, 0, 999), out LifeDataProperty, menu, top: 100);
+            MakeSlider(new UIIntRangedDataValue("Damage: ", 0, 0, 999), out DamageDataProperty, menu, top: 150);
+            MakeSlider(new UIIntRangedDataValue("Defense: ", 0, 0, 999), out DefenseDataProperty, menu, top: 200);
+            MakeSlider(new UIIntRangedDataValue("AiStyle: ", 1, 0, 111), out AiSyleDataProperty, menu, top: 250);
+            MakeSlider(new UIFloatRangedDataValue("Knockback resist: ", 0, 0, 1), out KnockbackDataProperty, menu, 300);
+            MakeSlider(new UIFloatRangedDataValue("Scale: ", 1, 0, 10), out ScaleDataProperty, menu, top: 350);
 
             FrameDataProperty = new UIIntRangedDataValue("", 1, 1, 20);
-            UIElement FrameSlider = new UIRange<int>(FrameDataProperty) { MarginTop = 410, HAlign = 0.35f };
+            var FrameSlider = new UIRange<int>(FrameDataProperty) { MarginTop = 410, HAlign = 0.35f };
             FrameSlider.Width.Set(0, 0.4f);
             FrameSlider.Append(new UIText("Frame count:") { HAlign = 0.9f, MarginTop = -15 });
-            Menu.Append(FrameSlider);
+            menu.Append(FrameSlider);
 
-            UITextPanel<string> NoCollideButton = new("Collision: true") { HAlign = 0.05f, MarginTop = 400 };
-            NoCollideButton.OnClick += (evt, elm) =>
+            var noCollideButton = new UITextPanel<string>("Collision: true") { HAlign = 0.05f, MarginTop = 400 };
+            noCollideButton.OnClick += (evt, elm) =>
             {
                 CustomNPC.cNoCollide = !CustomNPC.cNoCollide;
-                NoCollideButton.SetText("Collision: " + !CustomNPC.cNoCollide);
+                noCollideButton.SetText("Collision: " + !CustomNPC.cNoCollide);
             };
-            Menu.Append(NoCollideButton);
+            menu.Append(noCollideButton);
 
-            UITextPanel<string> ImmortalButton = new("Immortal: false") { HAlign = 0.95f, MarginTop = 400 };
-            ImmortalButton.OnClick += (evt, elm) =>
+            var immortalButton = new UITextPanel<string>("Immortal: false") { HAlign = 0.95f, MarginTop = 400 };
+            immortalButton.OnClick += (evt, elm) =>
             {
                 CustomNPC.cImmortal = !CustomNPC.cImmortal;
-                ImmortalButton.SetText("Immortal: " + CustomNPC.cImmortal);
+                immortalButton.SetText("Immortal: " + CustomNPC.cImmortal);
             };
-            Menu.Append(ImmortalButton);
+            menu.Append(immortalButton);
         }
 
         private void CreateButtonButtonClicked(UIMouseEvent evt, UIElement listeningElement)

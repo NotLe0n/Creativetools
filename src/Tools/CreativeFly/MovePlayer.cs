@@ -7,13 +7,11 @@ namespace Creativetools.src.Tools.CreativeFly
 {
     internal class MovePlayer : ModPlayer
     {
-        public static bool CreativeFly;
-        public bool creativeFly;
+        public static bool creativeFly;
+
         public override void ProcessTriggers(TriggersSet triggersSet)
         {
-            creativeFly = CreativeFly;
-            CreativeFly = creativeFly;
-            if (CreativeFly)
+            if (creativeFly)
             {
                 Player.gravity = 0f; //player doesn't fall
                 Player.controlJump = false; //player can't jump

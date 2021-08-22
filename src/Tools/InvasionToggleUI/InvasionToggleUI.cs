@@ -11,13 +11,14 @@ namespace Creativetools.src.Tools.InvasionToggleUI
     internal class InvasionToggleUI : UIState
     {
         private UIGrid buttonGrid;
+
         public override void OnInitialize()
         {
-            DragableUIPanel MenuPanel = new("Invasion Toggle") { VAlign = 0.5f, HAlign = 0.1f };
-            MenuPanel.Width.Set(250f, 0);
-            MenuPanel.Height.Set(100f, 0);
-            MenuPanel.OnCloseBtnClicked += () => { UISystem.UserInterface.SetState(new MainUI()); SoundEngine.PlaySound(SoundID.MenuClose); };
-            Append(MenuPanel);
+            var menuPanel = new DragableUIPanel("Invasion Toggle") { VAlign = 0.5f, HAlign = 0.1f };
+            menuPanel.Width.Set(250f, 0);
+            menuPanel.Height.Set(100f, 0);
+            menuPanel.OnCloseBtnClicked += () => { UISystem.UserInterface.SetState(new MainUI()); SoundEngine.PlaySound(SoundID.MenuClose); };
+            Append(menuPanel);
 
             buttonGrid = new UIGrid(4);
             buttonGrid.Top.Set(40, 0f);
@@ -25,7 +26,7 @@ namespace Creativetools.src.Tools.InvasionToggleUI
             buttonGrid.Width.Set(0, 1);
             buttonGrid.Height.Set(0, 1);
             buttonGrid.ListPadding = 10f;
-            MenuPanel.Append(buttonGrid);
+            menuPanel.Append(buttonGrid);
 
             buttonGrid.Add(new MenuButton("pirateInvasionToggle", "Toggle Pirate invasion", (evt, element) => ToggleInvasion(InvasionID.PirateInvasion)));
             buttonGrid.Add(new MenuButton("goblinInvasionToggle", "Toggle Goblin invasion", (evt, element) => ToggleInvasion(InvasionID.GoblinArmy)));

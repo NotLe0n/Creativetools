@@ -15,82 +15,82 @@ namespace Creativetools.src.Tools.CustomItem
 {
     internal class CustomItemUI : UIState
     {
-        internal NewUITextBox nametext;
-        public UIIntRangedDataValue DamageDataProperty;
-        public UIIntRangedDataValue CritDataProperty;
-        public UIIntRangedDataValue DefenseDataProperty;
-        public UIIntRangedDataValue ShootDataProperty;
-        public UIFloatRangedDataValue ShootSpeedDataProperty;
-        public UIFloatRangedDataValue KnockbackDataProperty;
-        public UIFloatRangedDataValue ScaleDataProperty;
-        public UIIntRangedDataValue UseTimeDataProperty;
+        private NewUITextBox nametext;
+        private UIIntRangedDataValue DamageDataProperty;
+        private UIIntRangedDataValue CritDataProperty;
+        private UIIntRangedDataValue DefenseDataProperty;
+        private UIIntRangedDataValue ShootDataProperty;
+        private UIFloatRangedDataValue ShootSpeedDataProperty;
+        private UIFloatRangedDataValue KnockbackDataProperty;
+        private UIFloatRangedDataValue ScaleDataProperty;
+        private UIIntRangedDataValue UseTimeDataProperty;
 
         public override void OnInitialize()
         {
-            TabPanel Menu = new(new Tab("Custom NPC", new CustomNPCUI()), new Tab(" Custom Item", this));
-            Menu.VAlign = 0.7f;
-            Menu.HAlign = 0.2f;
-            Menu.Width.Set(450, 0);
-            Menu.Height.Set(600, 0);
-            Menu.OnCloseBtnClicked += () => UISystem.UserInterface.SetState(new MainUI());
-            Append(Menu);
+            var menu = new TabPanel(new Tab("Custom NPC", new CustomNPCUI()), new Tab(" Custom Item", this));
+            menu.VAlign = 0.7f;
+            menu.HAlign = 0.2f;
+            menu.Width.Set(450, 0);
+            menu.Height.Set(600, 0);
+            menu.OnCloseBtnClicked += () => UISystem.UserInterface.SetState(new MainUI());
+            Append(menu);
 
-            UITextPanel<string> CreateButton = new(Language.GetTextValue("Create Item"));
-            CreateButton.SetPadding(4);
-            CreateButton.HAlign = 0.05f;
-            CreateButton.MarginTop = 555;
-            CreateButton.OnClick += CreateButtonClicked;
-            Menu.Append(CreateButton);
+            var createButton = new UITextPanel<string>(Language.GetTextValue("Create Item"));
+            createButton.SetPadding(4);
+            createButton.HAlign = 0.05f;
+            createButton.MarginTop = 555;
+            createButton.OnClick += CreateButtonClicked;
+            menu.Append(createButton);
 
-            UITextPanel<string> CodeButton = new(Language.GetTextValue("Copy Code"));
-            CodeButton.SetPadding(4);
-            CodeButton.HAlign = 0.5f;
-            CodeButton.MarginTop = 555;
-            CodeButton.OnClick += CodeButtonClicked;
-            Menu.Append(CodeButton);
+            var codeButton = new UITextPanel<string>(Language.GetTextValue("Copy Code"));
+            codeButton.SetPadding(4);
+            codeButton.HAlign = 0.5f;
+            codeButton.MarginTop = 555;
+            codeButton.OnClick += CodeButtonClicked;
+            menu.Append(codeButton);
 
-            UITextPanel<string> FileButton = new(Language.GetTextValue("Select Texture"));
-            FileButton.SetPadding(4);
-            FileButton.HAlign = 0.9f;
-            FileButton.MarginTop = 555;
-            FileButton.OnClick += FileButtonClicked;
-            Menu.Append(FileButton);
+            var fileButton = new UITextPanel<string>(Language.GetTextValue("Select Texture"));
+            fileButton.SetPadding(4);
+            fileButton.HAlign = 0.9f;
+            fileButton.MarginTop = 555;
+            fileButton.OnClick += FileButtonClicked;
+            menu.Append(fileButton);
 
             nametext = new NewUITextBox("Enter name here");
             nametext.HAlign = 0.5f;
             nametext.MarginTop = 50;
             nametext.Width.Set(-40f, 1f);
             nametext.Height.Set(30, 0);
-            Menu.Append(nametext);
+            menu.Append(nametext);
 
-            MakeSlider(new UIIntRangedDataValue("Damage: ", 0, 0, 999), out DamageDataProperty, Menu, top: 100, widthPixels: 1);
-            MakeSlider(new UIIntRangedDataValue("Crit: ", 0, 0, 100), out CritDataProperty, Menu, top: 150, widthPixels: 1);
-            MakeSlider(new UIIntRangedDataValue("Defense: ", 0, 0, 999), out DefenseDataProperty, Menu, top: 200, widthPixels: 1);
-            MakeSlider(new UIIntRangedDataValue("Shoot: ", 0, 0, 100), out ShootDataProperty, Menu, top: 250, widthPixels: 1);
-            MakeSlider(new UIFloatRangedDataValue("Bullet Speed: ", 10, 0, 50), out ShootSpeedDataProperty, Menu, top: 300, widthPixels: 1);
-            MakeSlider(new UIFloatRangedDataValue("Knockback: ", 0, 0, 100), out KnockbackDataProperty, Menu, top: 350, widthPixels: 1);
-            MakeSlider(new UIFloatRangedDataValue("Size: ", 1, 0, 10), out ScaleDataProperty, Menu, top: 400, widthPixels: 1);
-            MakeSlider(new UIIntRangedDataValue("UseTime: ", 10, 0, 600), out UseTimeDataProperty, Menu, top: 450, widthPixels: 1);
+            MakeSlider(new UIIntRangedDataValue("Damage: ", 0, 0, 999), out DamageDataProperty, menu, top: 100, widthPixels: 1);
+            MakeSlider(new UIIntRangedDataValue("Crit: ", 0, 0, 100), out CritDataProperty, menu, top: 150, widthPixels: 1);
+            MakeSlider(new UIIntRangedDataValue("Defense: ", 0, 0, 999), out DefenseDataProperty, menu, top: 200, widthPixels: 1);
+            MakeSlider(new UIIntRangedDataValue("Shoot: ", 0, 0, 100), out ShootDataProperty, menu, top: 250, widthPixels: 1);
+            MakeSlider(new UIFloatRangedDataValue("Bullet Speed: ", 10, 0, 50), out ShootSpeedDataProperty, menu, top: 300, widthPixels: 1);
+            MakeSlider(new UIFloatRangedDataValue("Knockback: ", 0, 0, 100), out KnockbackDataProperty, menu, top: 350, widthPixels: 1);
+            MakeSlider(new UIFloatRangedDataValue("Size: ", 1, 0, 10), out ScaleDataProperty, menu, top: 400, widthPixels: 1);
+            MakeSlider(new UIIntRangedDataValue("UseTime: ", 10, 0, 600), out UseTimeDataProperty, menu, top: 450, widthPixels: 1);
 
-            UITextPanel<string> AutoSwingButton = new("Autoswing: false");
-            AutoSwingButton.HAlign = 0.05f;
-            AutoSwingButton.MarginTop = 500;
-            AutoSwingButton.OnClick += (evt, listeningelement) =>
+            var autoSwingButton = new UITextPanel<string>("Autoswing: false");
+            autoSwingButton.HAlign = 0.05f;
+            autoSwingButton.MarginTop = 500;
+            autoSwingButton.OnClick += (evt, listeningelement) =>
             {
                 Global.cAutoSwing = !Global.cAutoSwing;
-                AutoSwingButton.SetText("Autoswing: " + Global.cAutoSwing);
+                autoSwingButton.SetText("Autoswing: " + Global.cAutoSwing);
             };
-            Menu.Append(AutoSwingButton);
+            menu.Append(autoSwingButton);
 
-            UITextPanel<string> TurnAroundButton = new("Turnaround: false");
-            TurnAroundButton.HAlign = 0.95f;
-            TurnAroundButton.MarginTop = 500;
-            TurnAroundButton.OnClick += (evt, listeningelement) =>
+            var turnAroundButton = new UITextPanel<string>("Turnaround: false");
+            turnAroundButton.HAlign = 0.95f;
+            turnAroundButton.MarginTop = 500;
+            turnAroundButton.OnClick += (evt, listeningelement) =>
             {
                 Global.cTurnAround = !Global.cTurnAround;
-                TurnAroundButton.SetText("Turnaround: " + Global.cTurnAround);
+                turnAroundButton.SetText("Turnaround: " + Global.cTurnAround);
             };
-            Menu.Append(TurnAroundButton);
+            menu.Append(turnAroundButton);
         }
         private void CreateButtonClicked(UIMouseEvent evt, UIElement listeningElement)
         {

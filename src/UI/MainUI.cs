@@ -27,11 +27,11 @@ namespace Creativetools.src.UI
 
         public override void OnInitialize()
         {
-            DragableUIPanel MenuPanel = new("Creativetools Menu") { VAlign = 0.5f, HAlign = 0.1f };
-            MenuPanel.Width.Set(442f, 0);
-            MenuPanel.Height.Set(160f, 0);
-            MenuPanel.OnCloseBtnClicked += () => { UISystem.UserInterface.SetState(null); SoundEngine.PlaySound(SoundID.MenuClose); };
-            Append(MenuPanel);
+            var menuPanel = new DragableUIPanel("Creativetools Menu") { VAlign = 0.5f, HAlign = 0.1f };
+            menuPanel.Width.Set(442f, 0);
+            menuPanel.Height.Set(160f, 0);
+            menuPanel.OnCloseBtnClicked += () => { UISystem.UserInterface.SetState(null); SoundEngine.PlaySound(SoundID.MenuClose); };
+            Append(menuPanel);
 
             buttonGrid = new UIGrid(8);
             buttonGrid.Top.Set(40, 0f);
@@ -39,7 +39,7 @@ namespace Creativetools.src.UI
             buttonGrid.Width.Set(0, 1);
             buttonGrid.Height.Set(0, 1);
             buttonGrid.ListPadding = 10f;
-            MenuPanel.Append(buttonGrid);
+            menuPanel.Append(buttonGrid);
 
             // 1. Zeile
             AddButton("bloodmoonToggle",        "Event Toggle",         () => UISystem.UserInterface.SetState(new EventToggleUI()));
@@ -47,7 +47,7 @@ namespace Creativetools.src.UI
             AddButton("hardmodeToggle",         "Toggle hardmode",      () => Main.hardMode = !Main.hardMode);
             AddButton("expertModeToggle",        "Toggle Game Mode",    () => UISystem.UserInterface.SetState(new GameModeToggleUI()));
             AddButton("weatherControl",         "Weather Control",      () => UISystem.UserInterface.SetState(new WeatherControlUI()));
-            AddButton("creativeFly",            "Creative Fly",         () => MovePlayer.CreativeFly = !MovePlayer.CreativeFly);
+            AddButton("creativeFly",            "Creative Fly",         () => MovePlayer.creativeFly = !MovePlayer.creativeFly);
             AddButton("magicCursor",            "Magic Cursor",         () => MagicCursorNPC.MagicCursor = !MagicCursorNPC.MagicCursor);
             AddButton("tptool",                 "TP Tool",              () => UISystem.UserInterface.SetState(new TPToolUI()));
 
@@ -65,7 +65,7 @@ namespace Creativetools.src.UI
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime); // Don't remove, or else dragging won't be smooth
-            bool[] check = { false, false, Main.hardMode, false, false, MovePlayer.CreativeFly, MagicCursorNPC.MagicCursor, false, GameInfo.Visible, false, false, false, false, false, false, false };
+            bool[] check = { false, false, Main.hardMode, false, false, MovePlayer.creativeFly, MagicCursorNPC.MagicCursor, false, GameInfo.Visible, false, false, false, false, false, false, false };
 
             for (int i = 0; i < buttonGrid.Count; i++)
             {

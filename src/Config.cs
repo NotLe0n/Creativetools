@@ -5,7 +5,6 @@ namespace Creativetools.src
 {
     public class Config : ModConfig
     {
-        public static Config Instance;
         public override ConfigScope Mode => ConfigScope.ClientSide;
 
         [DefaultValue(false)]
