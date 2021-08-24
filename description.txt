@@ -10,6 +10,10 @@ Thanks to Pyroknight for drawing the sprites.
 Thanks to direwolf420, darthmorf and jopojelly for some UIElements.
 
 Latest Changes:
+v4.4.2 - Time Control
+    + Added Time Control
+    + Code cleanup
+
 v4.4.1 - Decompiler
     + Changed AssemblyViewer Font
     + You can now view c# code (the game might lag for huge methods)
@@ -100,3 +104,12 @@ DownedBoss Toggle:
 Summon Meteor:
     [c/C4C4C4:You can summon a Meteor.]
     (only 1 meteor can exist in a world. If you want two, destroy the first one)
+
+TP tool:
+    Teleport to any coordinate or loaded NPC. (WARNING: Teleporing outside the map may crash the game!)
+
+Assembly Viewer:
+    You can search through Terraria's Classes and namespaces, look at how methods work, and inspect and change static fields.
+
+Time Control:
+    Use Hotkeys to Freeze, slow down or frame step the game.
