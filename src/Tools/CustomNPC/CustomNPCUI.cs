@@ -8,8 +8,9 @@ using Terraria.GameContent.UI.Elements;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.UI;
+using Terraria.ModLoader;
+using ReLogic.OS;
 using static Creativetools.src.UI.UIHelper;
-using static Terraria.ModLoader.ModContent;
 
 namespace Creativetools.src.Tools.CustomNPC
 {
@@ -103,13 +104,13 @@ namespace Creativetools.src.Tools.CustomNPC
             CustomNPC.cScale = ScaleDataProperty.Data;
             CustomNPC.cFramecount = FrameDataProperty.Data;
             Player player = Main.LocalPlayer;
-            NPC.NewNPC((int)player.position.X, (int)player.position.Y, NPCType<CustomNPC>());
+            NPC.NewNPC((int)player.position.X, (int)player.position.Y, ModContent.NPCType<CustomNPC>());
             SoundEngine.PlaySound(SoundID.MenuTick);
         }
+
         private void CodeButtonClicked(UIMouseEvent evt, UIElement listeningElement)
         {
-            /*Clipboard.SetText(
-$@"using Terraria.ID;
+            Platform.Get<IClipboard>().Value = $@"using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace YourMod
@@ -119,33 +120,34 @@ namespace YourMod
         public override void SetStaticDefaults()
         {{
             DisplayName.SetDefault(""{CustomNPC.cName}"");
-            Main.npcFrameCount[npc.type] = 6;
+            Main.npcFrameCount[NPC.type] = {CustomNPC.cFramecount};
         }}
 
         public override void SetDefaults()
         {{
-            npc.GivenName = {CustomNPC.cName};
-            npc.width = 32;
-            npc.height = 32;
-            npc.aiStyle = {CustomNPC.cAistyle};
-            npc.knockBackResist = {CustomNPC.cKnockback};
-            npc.damage = {CustomNPC.cDamage};
-            npc.defense = {CustomNPC.cDefense};
-            npc.lifeMax = {CustomNPC.cLifeMax};
-            npc.HitSound = SoundID.NPCHit1;
-            npc.DeathSound = SoundID.NPCDeath1;
-            npc.value = 25f;
-            npc.scale = {CustomNPC.cScale};
-            npc.noTileCollide = {CustomNPC.cNoCollide};
-            npc.immortal = {CustomNPC.cImmortal};
-            npc.dontTakeDamage = {CustomNPC.cImmortal};
+            NPC.GivenName = {CustomNPC.cName};
+            NPC.width = 32;
+            NPC.height = 32;
+            NPC.aiStyle = {CustomNPC.cAistyle};
+            NPC.knockBackResist = {CustomNPC.cKnockback};
+            NPC.damage = {CustomNPC.cDamage};
+            NPC.defense = {CustomNPC.cDefense};
+            NPC.lifeMax = {CustomNPC.cLifeMax};
+            NPC.HitSound = SoundID.NPCHit1;
+            NPC.DeathSound = SoundID.NPCDeath1;
+            NPC.value = 25f;
+            NPC.scale = {CustomNPC.cScale};
+            NPC.noTileCollide = {CustomNPC.cNoCollide};
+            NPC.immortal = {CustomNPC.cImmortal};
+            NPC.dontTakeDamage = {CustomNPC.cImmortal};
         }}
     }}
-}}");*/
+}}";
         }
 
         private void FileButtonClicked(UIMouseEvent evt, UIElement listeningElement)
         {
+            
             /*using (OpenFileDialog openFileDialog = new OpenFileDialog())
             {
                 openFileDialog.InitialDirectory = "c:\\";
@@ -159,6 +161,7 @@ namespace YourMod
                 }
             }*/
         }
+
         // so you can't use items when clicking on the button
         protected override void DrawSelf(SpriteBatch spriteBatch)
         {

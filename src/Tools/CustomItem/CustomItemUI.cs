@@ -8,8 +8,9 @@ using Terraria.GameContent.UI.Elements;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.UI;
+using Terraria.ModLoader;
+using ReLogic.OS;
 using static Creativetools.src.UI.UIHelper;
-using static Terraria.ModLoader.ModContent;
 
 namespace Creativetools.src.Tools.CustomItem
 {
@@ -92,6 +93,7 @@ namespace Creativetools.src.Tools.CustomItem
             };
             menu.Append(turnAroundButton);
         }
+
         private void CreateButtonClicked(UIMouseEvent evt, UIElement listeningElement)
         {
             Global.cName = nametext.Text;
@@ -104,14 +106,13 @@ namespace Creativetools.src.Tools.CustomItem
             Global.cScale = ScaleDataProperty.Data;
             Global.cUseTime = UseTimeDataProperty.Data;
             Global.createitem = true;
-            Main.LocalPlayer.QuickSpawnItem(ItemType<CustomItem>());
+            Main.LocalPlayer.QuickSpawnItem(ModContent.ItemType<CustomItem>());
             SoundEngine.PlaySound(SoundID.MenuTick);
         }
+
         private void CodeButtonClicked(UIMouseEvent evt, UIElement listeningElement)
         {
-            /*Clipboard.SetText(
-            #region code
-$@"using Terraria.ID;
+            Platform.Get<IClipboard>().Value = $@"using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace YourMod 
@@ -128,7 +129,7 @@ namespace YourMod
             Item.SetNameOverride(""{Global.cName}"");
             Item.width = 32;
             Item.height = 32;
-            Item.melee = true;
+            Item.DamageType = DamageClass.Melee;
             Item.knockBack = {Global.cKnockback};
             Item.damage = {Global.cDamage};
             Item.defense = {Global.cDefense};
@@ -144,10 +145,9 @@ namespace YourMod
             Item.UseSound = SoundID.Item1;
         }}
     }}
-}}"
-            #endregion
-            );*/
+}}";
         }
+
         private void FileButtonClicked(UIMouseEvent evt, UIElement listeningElement)
         {
             /*using (OpenFileDialog openFileDialog = new OpenFileDialog())
@@ -163,6 +163,7 @@ namespace YourMod
                 }
             }*/
         }
+
         // so you can't use items when clicking on the button
         protected override void DrawSelf(SpriteBatch spriteBatch)
         {

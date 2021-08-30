@@ -5,11 +5,17 @@
 
 For a complete Changlog and more information visit my homepage!
 
+This mod doesn't work correctly in multiplayer!
+
 Special Thanks:
 Thanks to Pyroknight for drawing the sprites.
 Thanks to direwolf420, darthmorf and jopojelly for some UIElements.
 
 Latest Changes:
+v4.4.3 - Fixes
+    + Fixed copy code button
+    + maybe fixed time control crashing multiplayer?
+
 v4.4.2 - Time Control
     + Added Time Control
     + Code cleanup
