@@ -41,7 +41,7 @@ namespace Creativetools.src.Tools.CustomNPC
             NPC.noTileCollide = cNoCollide;
             NPC.immortal = cImmortal;
             NPC.dontTakeDamage = cImmortal;
-            //Main.npcTexture[NPC.type] = ctexture;
+            //Terraria.GameContent.TextureAssets.Npc[NPC.type] = ctexture;
             Main.npcFrameCount[NPC.type] = cFramecount;
         }
     }

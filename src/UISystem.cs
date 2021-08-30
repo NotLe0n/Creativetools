@@ -19,7 +19,7 @@ namespace Creativetools.src
         /////////////////////////////
         internal GameInfo InfoUI;
         internal ButtonUI ButtonUI;
-        internal Confirm_Panel ConfirmPanelUI;
+        internal ConfirmPanel ConfirmPanelUI;
 
         public override void Load()
         {
@@ -29,7 +29,7 @@ namespace Creativetools.src
                 InfoUI.Activate();
                 ButtonUI = new ButtonUI();
                 ButtonUI.Activate();
-                ConfirmPanelUI = new Confirm_Panel();
+                ConfirmPanelUI = new ConfirmPanel();
                 ConfirmPanelUI.Activate();
                 ///////////////////////////////////////////////////
                 UserInterface = new UserInterface();
@@ -71,7 +71,7 @@ namespace Creativetools.src
 
                 if (UserInterface.CurrentState != null)
                 {
-                    if (Confirm_Panel.Visible)
+                    if (ConfirmPanel.Visible)
                     {
                         ConfirmPanelUserInterface.Update(gameTime);
                     }
@@ -99,7 +99,7 @@ namespace Creativetools.src
                             {
                                 UserInterface.Draw(Main.spriteBatch, _lastUpdateUiGameTime);
                                 UserInterface2.Draw(Main.spriteBatch, _lastUpdateUiGameTime);
-                                if (Confirm_Panel.Visible)
+                                if (ConfirmPanel.Visible)
                                 {
                                     ConfirmPanelUserInterface.Draw(Main.spriteBatch, _lastUpdateUiGameTime);
                                 }

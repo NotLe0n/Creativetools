@@ -7,7 +7,7 @@ using Terraria.UI;
 
 namespace Creativetools.src.Tools.ClearInventory
 {
-    internal class Confirm_Panel : UIState
+    internal class ConfirmPanel : UIState
     {
         public static bool Visible;
         public override void OnInitialize()
@@ -45,7 +45,7 @@ namespace Creativetools.src.Tools.ClearInventory
             ConfirmPanel.Append(NObutton);
 
             YEPbutton.Append(new UIText("Yes") { HAlign = 0.5f, VAlign = 0.5f });
-            DelFavbutton.Append(new UIText("Delete all, exept favorited Items") { HAlign = 0.5f, VAlign = 0.5f });
+            DelFavbutton.Append(new UIText("Delete all, except favorited items") { HAlign = 0.5f, VAlign = 0.5f });
             NObutton.Append(new UIText("NO!") { HAlign = 0.5f, VAlign = 0.5f });
         }
         private void YEPClicked(UIMouseEvent evt, UIElement listeningElement)

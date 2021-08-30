@@ -12,7 +12,9 @@ Thanks to Pyroknight for drawing the sprites.
 Thanks to direwolf420, darthmorf and jopojelly for some UIElements.
 
 Latest Changes:
-v4.4.3 - Fixes
+v4.4.3 & ..4 - Fixes
+    + Fixed Typo
+    + Fixed Open File Dialog
     + Fixed copy code button
     + maybe fixed time control crashing multiplayer?
 

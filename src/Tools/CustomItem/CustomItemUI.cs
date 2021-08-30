@@ -10,6 +10,7 @@ using Terraria.Localization;
 using Terraria.UI;
 using Terraria.ModLoader;
 using ReLogic.OS;
+using Terraria.Utilities.FileBrowser;
 using static Creativetools.src.UI.UIHelper;
 
 namespace Creativetools.src.Tools.CustomItem
@@ -150,18 +151,11 @@ namespace YourMod
 
         private void FileButtonClicked(UIMouseEvent evt, UIElement listeningElement)
         {
-            /*using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            string path = FileBrowser.OpenFilePanel("Select Texture", "png");
+            if (path != null)
             {
-                openFileDialog.InitialDirectory = "c:\\";   //start at c:\\ directory
-                openFileDialog.Filter = "PNG (*.png)|*.png|All files (*.*)|*.*";    //supported file types
-                openFileDialog.FilterIndex = 1;
-                openFileDialog.RestoreDirectory = true;
-
-                if (openFileDialog.ShowDialog() == DialogResult.OK)
-                {
-                    Global.ctexture = Texture2D.FromStream(Main.graphics.GraphicsDevice, openFileDialog.OpenFile());
-                }
-            }*/
+                Global.ctexture = Texture2D.FromStream(Main.graphics.GraphicsDevice, System.IO.File.OpenRead(path));
+            }
         }
 
         // so you can't use items when clicking on the button

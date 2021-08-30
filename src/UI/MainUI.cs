@@ -58,7 +58,7 @@ namespace Creativetools.src.UI
             AddButton("modifyItem",             "Modify Item/Player",   () => UISystem.UserInterface.SetState(new ItemModUI()));
             AddButton("custom",                 "Custom Item/NPC",      () => UISystem.UserInterface.SetState(new CustomNPCUI()));
             AddButton("DownedBossToggle",       "DownedBoss Toggle",    () => UISystem.UserInterface.SetState(new DownedBossToggleUI()));
-            AddButton("clearInventory",         "Clear inventory",      () => Confirm_Panel.Visible = true);
+            AddButton("clearInventory",         "Clear inventory",      () => ConfirmPanel.Visible = true);
             AddButton("killplayer",             "Kill Player",          () => Main.LocalPlayer.KillMe(PlayerDeathReason.LegacyEmpty(), 100, 0));
         }
 
