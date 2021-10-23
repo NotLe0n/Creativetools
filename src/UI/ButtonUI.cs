@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
+using Terraria.ModLoader;
 using Terraria.UI;
 
 namespace Creativetools.src.UI
@@ -13,7 +14,6 @@ namespace Creativetools.src.UI
         public override void OnInitialize()
         {
             MenuButton = new UIHoverImageButton("Creativetools/UI Assets/MenuButton", "Open Menu");
-            MenuButton.Top.Set(260, 0);
             MenuButton.OnClick += MenuButtonClicked;
             Append(MenuButton);
         }
@@ -34,7 +34,14 @@ namespace Creativetools.src.UI
 
         public override void Update(GameTime gameTime)
         {
-            MenuButton.Left.Set(Main.LocalPlayer.difficulty == 3 && Main.LocalPlayer.chest == -1 && Main.LocalPlayer.talkNPC == -1 ? 67 : 20, 0);
+            Vector2 offset = ModContent.GetInstance<Config>().MenuBtnOffset * 47.5f;
+            if (Main.LocalPlayer.difficulty == 3)
+            {
+                offset.X += 47;
+            }
+
+            MenuButton.Top.Set(260 + offset.Y, 0);
+            MenuButton.Left.Set(20 + System.MathF.Max(offset.X, 0), 0);
             base.Update(gameTime);
         }
     }

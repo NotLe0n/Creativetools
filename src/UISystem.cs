@@ -94,7 +94,11 @@ namespace Creativetools.src
                     {
                         if (Main.playerInventory)
                         {
-                            ButtonUserInterface.Draw(Main.spriteBatch, _lastUpdateUiGameTime);
+                            if (Main.LocalPlayer.chest == -1 && Main.LocalPlayer.talkNPC == -1)
+                            {
+                                ButtonUserInterface.Draw(Main.spriteBatch, _lastUpdateUiGameTime);
+                            }
+
                             if (UserInterface.CurrentState != null)
                             {
                                 UserInterface.Draw(Main.spriteBatch, _lastUpdateUiGameTime);

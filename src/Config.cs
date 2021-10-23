@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using Microsoft.Xna.Framework;
+using System.ComponentModel;
 using Terraria.ModLoader.Config;
 
 namespace Creativetools.src
@@ -38,5 +39,12 @@ namespace Creativetools.src
         [DefaultValue(false)]
         [Label("Hide Hitboxes")]
         public bool Hitboxes { get; set; }
+
+        [DefaultValue(typeof(Vector2), "0, 0")]
+        [Label("Menu button offset")]
+        [Increment(1f)]
+        [Range(-5f, 5f)]
+        [DrawTicks]
+        public Vector2 MenuBtnOffset { get; set; }
     }
 }
