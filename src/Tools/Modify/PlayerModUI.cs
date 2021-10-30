@@ -30,7 +30,7 @@ namespace Creativetools.src.Tools.Modify
             var maxManaSlider = MakeSlider(new UIIntRangedDataValue("", 0, 0, 400), out var maxManaDataProperty, playerMenu, top: 200, left: -10);
             SliderButtons("Set Max Mana", maxManaSlider, button => button.OnClick += (evt, element) => Main.LocalPlayer.statManaMax = maxManaDataProperty.Data);
 
-            var sizeSlider = MakeSlider(new UIFloatRangedDataValue("", 0.1f, 0.1f, 4), out var sizeDataProperty, playerMenu, top: 250, left: -10);
+            var sizeSlider = MakeSlider(new UIFloatRangedDataValue("", 1, 0.01f, 10), out var sizeDataProperty, playerMenu, top: 250, left: -10);
             SliderButtons("Set Size", sizeSlider, button => button.OnClick += (evt, element) => ModifyPlayer.playerSize = sizeDataProperty.Data);
 
             var luckSlider = MakeSlider(new UIFloatRangedDataValue("", 0, -0.7f, 1), out var luckDataProperty, playerMenu, top: 300, left: -10);

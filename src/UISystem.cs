@@ -65,18 +65,23 @@ namespace Creativetools.src
 
             if (Main.playerInventory)
             {
-                ButtonUserInterface.Update(gameTime);
-                UserInterface.Update(gameTime);
-                UserInterface2.Update(gameTime);
+                if (Main.LocalPlayer.chest == -1 && Main.LocalPlayer.talkNPC == -1)
+                {
+                    ButtonUserInterface.Update(gameTime);
+                }
 
                 if (UserInterface.CurrentState != null)
                 {
+                    UserInterface.Update(gameTime);
+                    UserInterface2.Update(gameTime);
+
                     if (ConfirmPanel.Visible)
                     {
                         ConfirmPanelUserInterface.Update(gameTime);
                     }
                 }
             }
+
             if (GameInfo.Visible)
             {
                 InfoUserInterface.Update(gameTime);
@@ -103,12 +108,14 @@ namespace Creativetools.src
                             {
                                 UserInterface.Draw(Main.spriteBatch, _lastUpdateUiGameTime);
                                 UserInterface2.Draw(Main.spriteBatch, _lastUpdateUiGameTime);
+
                                 if (ConfirmPanel.Visible)
                                 {
                                     ConfirmPanelUserInterface.Draw(Main.spriteBatch, _lastUpdateUiGameTime);
                                 }
                             }
                         }
+
                         if (GameInfo.Visible)
                         {
                             InfoUserInterface.Draw(Main.spriteBatch, _lastUpdateUiGameTime);
