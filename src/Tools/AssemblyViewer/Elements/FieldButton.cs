@@ -5,36 +5,33 @@ using Terraria.GameContent.UI.Elements;
 using Terraria.ModLoader;
 using Terraria.UI;
 
-namespace Creativetools.src.Tools.AssemblyViewer.Elements
+namespace Creativetools.src.Tools.AssemblyViewer.Elements;
+
+class FieldButton : UIFontText
 {
-    class FieldButton : UIFontText
-    {
-        public readonly FieldInfo _field;
-        public FieldButton(FieldInfo member) : base(FontSystem.ConsolasFont, "  " + member.Name)
-        {
-            _field = member;
-            TextColor = Color.LightGray;
+	public readonly FieldInfo _field;
+	public FieldButton(FieldInfo member) : base(FontSystem.ConsolasFont, "  " + member.Name)
+	{
+		_field = member;
+		TextColor = Color.LightGray;
 
-            string img = "Field";
-            if (member.IsLiteral) img = "Constant";
-            if (member.IsPrivate) img += "Private";
+		string img = "Field";
+		if (member.IsLiteral) img = "Constant";
+		if (member.IsPrivate) img += "Private";
 
-            var texture = ModContent.Request<Texture2D>("Creativetools/UI Assets/AssemblyViewer/" + img, ReLogic.Content.AssetRequestMode.ImmediateLoad);
-            Append(new UIImage(texture));      
-        }
+		var texture = ModContent.Request<Texture2D>("Creativetools/UI Assets/AssemblyViewer/" + img, ReLogic.Content.AssetRequestMode.ImmediateLoad);
+		Append(new UIImage(texture));
+	}
 
-        public override void Click(UIMouseEvent evt)
-        {
-            base.Click(evt);
+	public override void Click(UIMouseEvent evt)
+	{
+		base.Click(evt);
 
-            if (UISystem.UserInterface2.CurrentState == null)
-            {
-                UISystem.UserInterface2.SetState(new InspectValue(_field));
-            }
-            else
-            {
-                UISystem.UserInterface2.SetState(null);
-            }
-        }
-    }
+		var userInterface2 = UISystem.UserInterface2;
+
+		userInterface2.SetState(
+			userInterface2.CurrentState == null ? 
+			new InspectValue(_field) : null
+		);
+	}
 }

@@ -9,8 +9,8 @@ using Terraria.ModLoader;
 
 namespace Creativetools.src.UI.Elements
 {
-    // thanks jopojelly
-    internal class UIRange<T> : UIElement
+	// thanks jopojelly
+	internal class UIRange<T> : UIElement
     {
         internal UIText label;
         internal UISlider slider;

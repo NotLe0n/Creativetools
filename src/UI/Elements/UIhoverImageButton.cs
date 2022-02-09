@@ -4,25 +4,25 @@ using Terraria;
 using Terraria.GameContent.UI.Elements;
 using Terraria.ModLoader;
 
-namespace Creativetools.src.UI.Elements
+namespace Creativetools.src.UI.Elements;
+
+internal class UIHoverImageButton : UIImageButton
 {
-    internal class UIHoverImageButton : UIImageButton
-    {
-        internal string HoverText;
+	public string hoverText;
 
-        public UIHoverImageButton(string texture, string hoverText) : base(ModContent.Request<Texture2D>(texture, ReLogic.Content.AssetRequestMode.ImmediateLoad))
-        {
-            HoverText = hoverText;
-        }
+	public UIHoverImageButton(string texture, string hoverText) : base(ModContent.Request<Texture2D>(texture, ReLogic.Content.AssetRequestMode.ImmediateLoad))
+	{
+		this.hoverText = hoverText;
+	}
 
-        public override void Update(GameTime gameTime)
-        {
-            if (IsMouseHovering)
-            {
-                Main.LocalPlayer.cursorItemIconText = HoverText;
-                Main.LocalPlayer.mouseInterface = true;
-            }
-            base.Update(gameTime);
-        }
-    }
+	public override void Update(GameTime gameTime)
+	{
+		if (IsMouseHovering)
+		{
+			Main.LocalPlayer.cursorItemIconText = hoverText;
+			Main.LocalPlayer.mouseInterface = true;
+		}
+
+		base.Update(gameTime);
+	}
 }

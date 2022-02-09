@@ -12,6 +12,10 @@ Thanks to Pyroknight for drawing the sprites.
 Thanks to direwolf420, darthmorf and jopojelly for some UIElements.
 
 Latest Changes:
+v4.4.7
+    + fixed Assembly Viewer
+    + upgraded to dotnet 6
+
 v4.4.6
     + fixed bug where you can still hit the button while in a chest or talking to a npc
     + You can now change the player size again (Now I only need to fix "Play Music" and "Change Texture")

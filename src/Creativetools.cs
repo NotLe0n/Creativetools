@@ -1,8 +1,5 @@
 using Terraria.ModLoader;
 
-namespace Creativetools.src
-{
-    public class Creativetools : Mod
-    {
-    }
-}
+namespace Creativetools.src;
+
+public class Creativetools : Mod { }

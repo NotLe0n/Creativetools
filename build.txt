@@ -1,7 +1,7 @@
 displayName = Creative tools
 author = NotLe0n
-version = 4.4.6
-hideCode = true
+version = 4.4.7
+hideCode = false
 hideResources = false
 includeSource = false
 dllReferences = Mono.Reflection, ICSharpCode.Decompiler
