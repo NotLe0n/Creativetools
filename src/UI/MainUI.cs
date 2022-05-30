@@ -8,7 +8,7 @@ using Creativetools.src.Tools.GameModeToggle;
 using Creativetools.src.Tools.InvasionToggleUI;
 using Creativetools.src.Tools.MagicCursor;
 using Creativetools.src.Tools.Modify;
-using Creativetools.src.Tools.PlaySound;
+using Creativetools.src.Tools.Playsound;
 using Creativetools.src.Tools.TPTool;
 using Creativetools.src.Tools.WeatherControl;
 using Creativetools.src.UI.Elements;

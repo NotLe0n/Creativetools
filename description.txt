@@ -12,6 +12,11 @@ Thanks to Pyroknight for drawing the sprites.
 Thanks to direwolf420, darthmorf and jopojelly for some UIElements.
 
 Latest Changes:
+v4.4.8
+    + fixed mod for new Update
+    + fixed Play Music.
+    * Only thing that still doesn't work should be "Change Texture" in Custom NPC/Item
+
 v4.4.7
     + fixed Assembly Viewer
     + upgraded to dotnet 6

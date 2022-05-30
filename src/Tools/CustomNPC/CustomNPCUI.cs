@@ -105,7 +105,7 @@ internal class CustomNPCUI : UIState
 		CustomNPC.cScale = ScaleDataProperty.Data;
 		CustomNPC.cFramecount = FrameDataProperty.Data;
 		Player player = Main.LocalPlayer;
-		NPC.NewNPC((int)player.position.X, (int)player.position.Y, ModContent.NPCType<CustomNPC>());
+		NPC.NewNPC(null, (int)player.position.X, (int)player.position.Y, ModContent.NPCType<CustomNPC>());
 		SoundEngine.PlaySound(SoundID.MenuTick);
 	}
 

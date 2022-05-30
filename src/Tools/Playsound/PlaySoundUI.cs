@@ -12,25 +12,18 @@ using Terraria.ID;
 using Terraria.UI;
 using static Creativetools.src.UI.UIHelper;
 
-namespace Creativetools.src.Tools.PlaySound;
+namespace Creativetools.src.Tools.Playsound;
 
 internal class PlaySoundUI : UIState
 {
 	private UIText soundName, musicName;
 	private UIIntRangedDataValue ID;
-	private UIIntRangedDataValue MusicSound;
+	public static UIIntRangedDataValue MusicSound;
 	public static bool playmusic;
 
-	private List<FieldInfo> Sounds
-	{
-		get
-		{
-			List<FieldInfo> sounds = typeof(SoundID).GetFields(BindingFlags.Public | BindingFlags.Static | BindingFlags.DeclaredOnly | BindingFlags.SetField).ToList();
-			sounds.RemoveAll(x => x.FieldType != typeof(int) && x.FieldType != typeof(LegacySoundStyle));
-			return sounds;
-		}
-	}
-	private FieldInfo[] Music => typeof(MusicID).GetFields(BindingFlags.Public | BindingFlags.Static | BindingFlags.DeclaredOnly | BindingFlags.SetField);
+	private static FieldInfo[] Sounds => typeof(SoundID).GetFields(BindingFlags.Public | BindingFlags.Static | BindingFlags.SetField).Where(x => x.FieldType == typeof(SoundStyle)).OrderBy(x => x.Name).ToArray();
+
+	private static FieldInfo[] Music => typeof(MusicID).GetFields(BindingFlags.Public | BindingFlags.Static | BindingFlags.SetField);
 
 	public override void OnInitialize()
 	{
@@ -43,18 +36,10 @@ internal class PlaySoundUI : UIState
 		Append(menu);
 
 		//////////////////Sound/////////////////////
-		var soundSlider = MakeSlider(new UIIntRangedDataValue("", 0, 0, Sounds.Count - 1), out ID, menu, top: 50, left: -10);
+		var soundSlider = MakeSlider(new UIIntRangedDataValue("", 0, 0, Sounds.Length - 1), out ID, menu, top: 50, left: -10);
 		SliderButtons("Play Sound", soundSlider, button => button.OnClick += (evt, elm) =>
 		{
-			var type = Sounds[ID.Data].FieldType;
-			if (type == typeof(int))
-			{
-				SoundEngine.PlaySound((int)Sounds[ID.Data].GetValue(null));
-			}
-			else if (type == typeof(LegacySoundStyle))
-			{
-				SoundEngine.PlaySound((LegacySoundStyle)Sounds[ID.Data].GetValue(null));
-			}
+			SoundEngine.PlaySound((SoundStyle)Sounds[ID.Data].GetValue(null));
 		}, false);
 
 		soundName = new UIText("") { HAlign = 0.6f, MarginTop = 20 };

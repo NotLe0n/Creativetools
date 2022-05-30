@@ -107,7 +107,7 @@ internal class CustomItemUI : UIState
 		Global.cScale = ScaleDataProperty.Data;
 		Global.cUseTime = UseTimeDataProperty.Data;
 		Global.createitem = true;
-		Main.LocalPlayer.QuickSpawnItem(ModContent.ItemType<CustomItem>());
+		Main.LocalPlayer.QuickSpawnItem(Main.LocalPlayer.GetSource_OpenItem(ModContent.ItemType<CustomItem>()), ModContent.ItemType<CustomItem>());
 		SoundEngine.PlaySound(SoundID.MenuTick);
 	}
 
