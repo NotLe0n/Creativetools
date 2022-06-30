@@ -17,7 +17,7 @@ internal class InvasionToggleUI : UIState
 		var menuPanel = new DragableUIPanel("Invasion Toggle") { VAlign = 0.5f, HAlign = 0.1f };
 		menuPanel.Width.Set(250f, 0);
 		menuPanel.Height.Set(100f, 0);
-		menuPanel.OnCloseBtnClicked += () => { UISystem.UserInterface.SetState(new MainUI()); SoundEngine.PlaySound(SoundID.MenuClose); };
+		menuPanel.OnCloseBtnClicked += UISystem.BackToMainMenu;
 		Append(menuPanel);
 
 		buttonGrid = new UIGrid(4);
@@ -35,8 +35,13 @@ internal class InvasionToggleUI : UIState
 		base.OnInitialize();
 	}
 
-	private void ToggleInvasion(short type)
+	public static void ToggleInvasion(short type)
 	{
+		if (Main.netMode != NetmodeID.SinglePlayer) {
+			MultiplayerSystem.SyncInvasion(type);
+			return;
+		}
+
 		string[] text = { "", "LegacyMisc.0", "LegacyMisc.4", "LegacyMisc.24", "LegacyMisc.42" };
 
 		if (Main.invasionType == InvasionID.None)

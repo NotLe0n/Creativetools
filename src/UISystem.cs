@@ -4,6 +4,8 @@ using Creativetools.src.UI;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
+using Terraria.Audio;
+using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.UI;
 
@@ -141,5 +143,11 @@ internal class UISystem : ModSystem
 				InterfaceScaleType.Game)
 			);
 		}
+	}
+
+	public static void BackToMainMenu()
+	{
+		UserInterface.SetState(new MainUI());
+		SoundEngine.PlaySound(SoundID.MenuClose);
 	}
 }

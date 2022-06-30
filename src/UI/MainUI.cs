@@ -44,7 +44,7 @@ internal class MainUI : UIState
 		// 1. Zeile
 		AddButton("bloodmoonToggle", "Event Toggle", () => UISystem.UserInterface.SetState(new EventToggleUI()));
 		AddButton("pirateInvasionToggle", "Invasion Toggle", () => UISystem.UserInterface.SetState(new InvasionToggleUI()));
-		AddButton("hardmodeToggle", "Toggle hardmode", () => Main.hardMode = !Main.hardMode);
+		AddButton("hardmodeToggle", "Toggle hardmode", ToggleHardmode);
 		AddButton("expertModeToggle", "Toggle Game Mode", () => UISystem.UserInterface.SetState(new GameModeToggleUI()));
 		AddButton("weatherControl", "Weather Control", () => UISystem.UserInterface.SetState(new WeatherControlUI()));
 		AddButton("creativeFly", "Creative Fly", () => MovePlayer.creativeFly = !MovePlayer.creativeFly);
@@ -76,5 +76,15 @@ internal class MainUI : UIState
 	private void AddButton(string iconName, string name, System.Action action)
 	{
 		buttonGrid.Add(new MenuButton(iconName, name, (evt, elm) => action()));
+	}
+
+	private void ToggleHardmode()
+	{
+		if (Main.netMode == NetmodeID.SinglePlayer) {
+			Main.hardMode = !Main.hardMode;
+		}
+		else {
+			MultiplayerSystem.SyncHardMode(!Main.hardMode);
+		}
 	}
 }

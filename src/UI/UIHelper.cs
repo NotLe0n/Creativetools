@@ -20,15 +20,15 @@ internal static class UIHelper
 	/// </summary>
 	/// <param name="element">The UIHoverImageButton which should be created</param>
 	/// <param name="AppendTo">What UIElement it should append to</param>
-	/// <param name="action">The Click Event</param>
+	/// <param name="onClick">The Click Event</param>
 	/// <param name="MarginLeft">X Position relative to "AppendTo"</param>
 	/// <param name="MarginTop">Y Position relative to "AppendTo"</param>
 	/// <param name="HAllign">Percentage X Position relative to "AppendTo"</param>
 	/// <param name="VAllign">Percentage Y Position relative to "AppendTo"</param>
 	/// <returns></returns>
-	public static UIElement ImageButtons(UIHoverImageButton element, UIElement AppendTo, Action<UIElement> action, float MarginLeft = 0, float MarginTop = 0, float HAllign = 0, float VAllign = 0)
+	public static UIElement ImageButtons(UIHoverImageButton element, UIElement AppendTo, Action onClick, float MarginLeft = 0, float MarginTop = 0, float HAllign = 0, float VAllign = 0)
 	{
-		action(element);
+		element.OnClick += (evt, elm) => onClick();
 		AppendTo.Append(element);
 		element.MarginLeft = MarginLeft;
 		element.MarginTop = MarginTop;

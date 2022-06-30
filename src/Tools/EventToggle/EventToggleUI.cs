@@ -5,6 +5,7 @@ using Terraria;
 using Terraria.Audio;
 using Terraria.GameContent.Events;
 using Terraria.ID;
+using Terraria.ModLoader;
 using Terraria.UI;
 
 namespace Creativetools.src.Tools.EventToggle;
@@ -12,37 +13,41 @@ namespace Creativetools.src.Tools.EventToggle;
 internal class EventToggleUI : UIState
 {
 	private UIGrid buttonGrid;
-	private bool starfall;
+	private static bool starfall;
 
 	public override void OnInitialize()
 	{
-		var menuPanel = new DragableUIPanel("Event Toggle") { VAlign = 0.5f, HAlign = 0.1f };
-		menuPanel.Width.Set(442, 0);
-		menuPanel.Height.Set(160, 0);
-		menuPanel.OnCloseBtnClicked += () => { UISystem.UserInterface.SetState(new MainUI()); SoundEngine.PlaySound(SoundID.MenuClose); };
+		var menuPanel = new DragableUIPanel("Event Toggle") { 
+			VAlign = 0.5f, 
+			HAlign = 0.1f,
+			Width = new(442, 0),
+			Height = new(160, 0)
+		};
+		menuPanel.OnCloseBtnClicked += UISystem.BackToMainMenu;
 		Append(menuPanel);
 
-		buttonGrid = new UIGrid(8);
-		buttonGrid.Top.Set(40, 0f);
-		buttonGrid.Left.Set(10, 0f);
-		buttonGrid.Width.Set(0, 1);
-		buttonGrid.Height.Set(0, 1);
-		buttonGrid.ListPadding = 10f;
+		buttonGrid = new UIGrid(8) {
+			Top = new(40, 0f),
+			Left = new(10, 0f),
+			Width = new(0, 1),
+			Height = new(0, 1),
+			ListPadding = 10f
+		};
 		menuPanel.Append(buttonGrid);
 		base.OnInitialize();
 
-		AddButton("bloodmoonToggle", "Toggle bloodmoon", () => Main.bloodMoon = !Main.bloodMoon);
-		AddButton("frostmoonToggle", "Toggle Frost moon", () => { if (Main.snowMoon) Main.stopMoonEvent(); else Main.startSnowMoon(); });
-		AddButton("pumpkinmoonToggle", "Toggle Pumpkin moon", () => { if (Main.pumpkinMoon) Main.stopMoonEvent(); else Main.startPumpkinMoon(); });
-		AddButton("solareclipseToggle", "Toggle Solar Eclipse", () => Main.eclipse = !Main.eclipse);
-		AddButton("halloweenToggle", "Toggle halloween", () => Main.halloween = !Main.halloween);
-		AddButton("xmasToggle", "Toggle Christmas", () => Main.xMas = !Main.xMas);
-		AddButton("partyToggle", "Toggle party", () => BirthdayParty.GenuineParty = !BirthdayParty.PartyIsUp);
-		AddButton("slimerainToggle", "Toggle Slime Rain", () => { if (Main.slimeRain) Main.StopSlimeRain(announce: true); else Main.StartSlimeRain(announce: true); });
+		AddButton("bloodmoonToggle", "Toggle bloodmoon", MultiplayerSystem.BloodMoonEvent);
+		AddButton("frostmoonToggle", "Toggle Frost moon", MultiplayerSystem.FrostMoonEvent);
+		AddButton("pumpkinmoonToggle", "Toggle Pumpkin moon", MultiplayerSystem.PumpkinMoonEvent);
+		AddButton("solareclipseToggle", "Toggle Solar Eclipse", MultiplayerSystem.SolarEclipseEvent);
+		AddButton("halloweenToggle", "Toggle halloween", MultiplayerSystem.HalloweenEvent);
+		AddButton("xmasToggle", "Toggle Christmas", MultiplayerSystem.ChristmasEvent);
+		AddButton("partyToggle", "Toggle party", MultiplayerSystem.PartyEvent);
+		AddButton("slimerainToggle", "Toggle Slime Rain", MultiplayerSystem.SlimeRainEvent);
 
-		AddButton("spawnMeteor", "spawn Meteor", () => WorldGen.dropMeteor());
-		AddButton("lanternnight", "Lantern Night", () => LanternNight.GenuineLanterns = !LanternNight.GenuineLanterns);
-		AddButton("meteorshower", "Meteor shower", () => starfall = !starfall);
+		AddButton("spawnMeteor", "spawn Meteor", MultiplayerSystem.MeteorEvent);
+		AddButton("lanternnight", "Lantern Night", MultiplayerSystem.LanternNightEvent);
+		AddButton("meteorshower", "Meteor shower", MultiplayerSystem.MeteorShowerEvent);
 	}
 
 	public override void Update(GameTime gameTime)
@@ -55,11 +60,107 @@ internal class EventToggleUI : UIState
 			((MenuButton)buttonGrid.items[i]).SetState(check[i]);
 		}
 
-		if (starfall) Star.StarFall(Main.LocalPlayer.position.X);
+		if (starfall) {
+			Star.StarFall(Main.LocalPlayer.position.X);
+		}
 	}
 
-	private void AddButton(string iconName, string name, System.Action action)
+	private void AddButton(string iconName, string name, byte eventID)
 	{
-		buttonGrid.Add(new MenuButton(iconName, name, (evt, elm) => action()));
+		buttonGrid.Add(new MenuButton(iconName, name, (evt, elm) =>
+		{
+			if (Main.netMode == NetmodeID.SinglePlayer) {
+				switch (eventID) {
+					case MultiplayerSystem.BloodMoonEvent: ToggleBloodMoon(); break;
+					case MultiplayerSystem.FrostMoonEvent: ToggleFrostMoon(); break;
+					case MultiplayerSystem.PumpkinMoonEvent: TogglePumpkinMoon(); break;
+					case MultiplayerSystem.SolarEclipseEvent: ToggleSolarEclipse(); break;
+					case MultiplayerSystem.HalloweenEvent: ToggleHalloween(); break;
+					case MultiplayerSystem.ChristmasEvent: ToggleChristmas(); break;
+					case MultiplayerSystem.PartyEvent: ToggleParty(); break;
+					case MultiplayerSystem.SlimeRainEvent: ToggleSlimeRain(); break;
+					case MultiplayerSystem.MeteorEvent: SpawnMeteor(); break;
+					case MultiplayerSystem.LanternNightEvent: ToggleLanternNight(); break;
+					case MultiplayerSystem.MeteorShowerEvent: ToggleStarFall(); break;
+				}
+			}
+			else {
+				MultiplayerSystem.SyncEvent(eventID);
+			}
+		}));
+	}
+
+	/*
+		Toggle Methods
+	*/
+
+	public static void ToggleBloodMoon()
+	{
+		Main.bloodMoon = !Main.bloodMoon;	
+	}
+
+	public static void ToggleFrostMoon()
+	{
+		if (Main.snowMoon) {
+			Main.stopMoonEvent();
+		}
+		else {
+			Main.startSnowMoon();
+		}
+	}
+
+	public static void TogglePumpkinMoon()
+	{
+		if (Main.pumpkinMoon) {
+			Main.stopMoonEvent();
+		}
+		else {
+			Main.startPumpkinMoon();
+		}
+	}
+
+	public static void ToggleSolarEclipse()
+	{
+		Main.eclipse = !Main.eclipse;
+	}
+
+	public static void ToggleHalloween()
+	{
+		Main.halloween = !Main.halloween;
+	}
+
+	public static void ToggleChristmas()
+	{
+		Main.xMas = !Main.xMas;
+	}
+
+	public static void ToggleParty()
+	{
+		BirthdayParty.GenuineParty = !BirthdayParty.PartyIsUp;
+	}
+
+	public static void ToggleSlimeRain()
+	{
+		if (Main.slimeRain) {
+			Main.StopSlimeRain(announce: true); 
+		}
+		else {
+			Main.StartSlimeRain(announce: true);
+		}
+	}
+
+	public static void ToggleLanternNight()
+	{
+		LanternNight.GenuineLanterns = !LanternNight.GenuineLanterns;
+	}
+
+	public static void SpawnMeteor()
+	{
+		WorldGen.dropMeteor();
+	}
+
+	public static void ToggleStarFall()
+	{
+		starfall = !starfall;
 	}
 }

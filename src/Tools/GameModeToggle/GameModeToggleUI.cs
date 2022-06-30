@@ -30,7 +30,7 @@ public class GameModeToggleUI : UIState
 		panel.Height.Set(150, 0);
 		panel.VAlign = 0.4f;
 		panel.HAlign = 0.3f;
-		panel.OnCloseBtnClicked += () => UISystem.UserInterface.SetState(new MainUI());
+		panel.OnCloseBtnClicked += UISystem.BackToMainMenu;
 		Append(panel);
 
 		UIHelper.MakeSlider(new UIIntRangedDataValue("World Game mode", Main.GameMode, 0, 3), out worldGameMode, panel, top: 50);
@@ -54,10 +54,20 @@ public class GameModeToggleUI : UIState
 	{
 		base.Update(gameTime);
 
-		Main.GameMode = worldGameMode.Data;
+		if (Main.GameMode != worldGameMode.Data) {
+			if (Main.netMode == Terraria.ID.NetmodeID.SinglePlayer) {
+				Main.GameMode = worldGameMode.Data;
+			}
+			else {
+				MultiplayerSystem.SyncGameMode((byte)worldGameMode.Data);
+			}
+			
+		}
 		Main.LocalPlayer.difficulty = (byte)playerGameMode.Data;
 
 		worldGameModeText?.SetText(((GameModeID)Main.GameMode).ToString());
 		playerGameModeText?.SetText(((GameModeID)Main.LocalPlayer.difficulty).ToString());
 	}
+
+
 }
