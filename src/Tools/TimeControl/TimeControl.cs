@@ -36,8 +36,7 @@ class TimeControl : ModSystem
 
 	private void Main_DoUpdate(On.Terraria.Main.orig_DoUpdate orig, Main self, ref Microsoft.Xna.Framework.GameTime gameTime)
 	{
-		if (Main.gameMenu || Main.ingameOptionsWindow || Main.inFancyUI || Main.blockInput || Main.drawingPlayerChat || Terraria.GameInput.PlayerInput.WritingText || Main.netMode == NetmodeID.Server)
-		{
+		if (Main.gameMenu || Main.ingameOptionsWindow || Main.inFancyUI || Main.blockInput || Main.drawingPlayerChat || Terraria.GameInput.PlayerInput.WritingText || Main.netMode == NetmodeID.Server) {
 			orig(self, ref gameTime);
 			return;
 		}
@@ -55,25 +54,21 @@ class TimeControl : ModSystem
 		bool gameSpeedUpValid = gameSpeedUpKeybind.GetAssignedKeys().Count > 0 && Enum.TryParse(gameSpeedUpKeybind.GetAssignedKeys()[0], out gameSpeedUpKey);
 		bool gameSpeedDownValid = gameSpeedDownKeybind.GetAssignedKeys().Count > 0 && Enum.TryParse(gameSpeedDownKeybind.GetAssignedKeys()[0], out gameSpeedDownKey);
 
-		if (frameStepValid && !lastKeyboard.IsKeyDown(frameStepKey) && Keyboard.GetState().IsKeyDown(frameStepKey))
-		{
+		if (frameStepValid && !lastKeyboard.IsKeyDown(frameStepKey) && Keyboard.GetState().IsKeyDown(frameStepKey)) {
 			freeze = false;
 			takeStep = true;
 			Main.NewText("[c/666666:Time Control:] Stepped");
 		}
-		if (freezeValid && !lastKeyboard.IsKeyDown(freezeKey) && Keyboard.GetState().IsKeyDown(freezeKey))
-		{
+		if (freezeValid && !lastKeyboard.IsKeyDown(freezeKey) && Keyboard.GetState().IsKeyDown(freezeKey)) {
 			freeze = !freeze;
 			takeStep = false;
 			Main.NewText("[c/666666:Time Control:] Frozen");
 		}
-		if (gameSpeedUpValid && !lastKeyboard.IsKeyDown(gameSpeedUpKey) && Keyboard.GetState().IsKeyDown(gameSpeedUpKey))
-		{
+		if (gameSpeedUpValid && !lastKeyboard.IsKeyDown(gameSpeedUpKey) && Keyboard.GetState().IsKeyDown(gameSpeedUpKey)) {
 			gameSpeed = (gameSpeed % 10) + 1;
 			Main.NewText("[c/666666:Time Control:] " + (100.0 / gameSpeed) + "%");
 		}
-		if (gameSpeedDownValid && !lastKeyboard.IsKeyDown(gameSpeedDownKey) && Keyboard.GetState().IsKeyDown(gameSpeedDownKey))
-		{
+		if (gameSpeedDownValid && !lastKeyboard.IsKeyDown(gameSpeedDownKey) && Keyboard.GetState().IsKeyDown(gameSpeedDownKey)) {
 			gameSpeed--;
 			if (gameSpeed < 1)
 				gameSpeed = 10;
@@ -84,8 +79,7 @@ class TimeControl : ModSystem
 
 		if (freeze) return;
 
-		if (timer % gameSpeed == 0)
-		{
+		if (timer % gameSpeed == 0) {
 			orig(self, ref gameTime);
 		}
 	}

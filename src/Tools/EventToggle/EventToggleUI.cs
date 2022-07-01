@@ -17,8 +17,8 @@ internal class EventToggleUI : UIState
 
 	public override void OnInitialize()
 	{
-		var menuPanel = new DragableUIPanel("Event Toggle") { 
-			VAlign = 0.5f, 
+		var menuPanel = new DragableUIPanel("Event Toggle") {
+			VAlign = 0.5f,
 			HAlign = 0.1f,
 			Width = new(442, 0),
 			Height = new(160, 0)
@@ -55,8 +55,7 @@ internal class EventToggleUI : UIState
 		base.Update(gameTime); // Don't remove, or else dragging won't be smooth
 		bool[] check = { Main.bloodMoon, Main.snowMoon, Main.pumpkinMoon, Main.eclipse, Main.halloween, Main.xMas, BirthdayParty.PartyIsUp, Main.slimeRain, WorldGen.spawnMeteor, LanternNight.LanternsUp, starfall };
 
-		for (int i = 0; i < buttonGrid.Count; i++)
-		{
+		for (int i = 0; i < buttonGrid.Count; i++) {
 			((MenuButton)buttonGrid.items[i]).SetState(check[i]);
 		}
 
@@ -96,7 +95,7 @@ internal class EventToggleUI : UIState
 
 	public static void ToggleBloodMoon()
 	{
-		Main.bloodMoon = !Main.bloodMoon;	
+		Main.bloodMoon = !Main.bloodMoon;
 	}
 
 	public static void ToggleFrostMoon()
@@ -142,7 +141,7 @@ internal class EventToggleUI : UIState
 	public static void ToggleSlimeRain()
 	{
 		if (Main.slimeRain) {
-			Main.StopSlimeRain(announce: true); 
+			Main.StopSlimeRain(announce: true);
 		}
 		else {
 			Main.StartSlimeRain(announce: true);

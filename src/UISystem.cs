@@ -25,8 +25,7 @@ internal class UISystem : ModSystem
 
 	public override void Load()
 	{
-		if (!Main.dedServ)
-		{
+		if (!Main.dedServ) {
 			InfoUI = new GameInfo();
 			InfoUI.Activate();
 			ButtonUI = new ButtonUI();
@@ -66,27 +65,22 @@ internal class UISystem : ModSystem
 	{
 		_lastUpdateUiGameTime = gameTime;
 
-		if (Main.playerInventory)
-		{
-			if (Main.LocalPlayer.chest == -1 && Main.LocalPlayer.talkNPC == -1)
-			{
+		if (Main.playerInventory) {
+			if (Main.LocalPlayer.chest == -1 && Main.LocalPlayer.talkNPC == -1) {
 				ButtonUserInterface.Update(gameTime);
 			}
 
-			if (UserInterface.CurrentState != null)
-			{
+			if (UserInterface.CurrentState != null) {
 				UserInterface.Update(gameTime);
 				UserInterface2.Update(gameTime);
 
-				if (ConfirmPanel.Visible)
-				{
+				if (ConfirmPanel.Visible) {
 					ConfirmPanelUserInterface.Update(gameTime);
 				}
 			}
 		}
 
-		if (GameInfo.Visible)
-		{
+		if (GameInfo.Visible) {
 			InfoUserInterface.Update(gameTime);
 		}
 	}
@@ -94,33 +88,26 @@ internal class UISystem : ModSystem
 	public override void ModifyInterfaceLayers(List<GameInterfaceLayer> layers)
 	{
 		int mouseTextIndex = layers.FindIndex(layer => layer.Name.Equals("Vanilla: Mouse Text"));
-		if (mouseTextIndex != -1)
-		{
+		if (mouseTextIndex != -1) {
 			layers.Insert(mouseTextIndex, new LegacyGameInterfaceLayer(
 				"CreativeTools: UI",
-				delegate
-				{
-					if (Main.playerInventory)
-					{
-						if (Main.LocalPlayer.chest == -1 && Main.LocalPlayer.talkNPC == -1)
-						{
+				delegate {
+					if (Main.playerInventory) {
+						if (Main.LocalPlayer.chest == -1 && Main.LocalPlayer.talkNPC == -1) {
 							ButtonUserInterface.Draw(Main.spriteBatch, _lastUpdateUiGameTime);
 						}
 
-						if (UserInterface.CurrentState != null)
-						{
+						if (UserInterface.CurrentState != null) {
 							UserInterface.Draw(Main.spriteBatch, _lastUpdateUiGameTime);
 							UserInterface2.Draw(Main.spriteBatch, _lastUpdateUiGameTime);
 
-							if (ConfirmPanel.Visible)
-							{
+							if (ConfirmPanel.Visible) {
 								ConfirmPanelUserInterface.Draw(Main.spriteBatch, _lastUpdateUiGameTime);
 							}
 						}
 					}
 
-					if (GameInfo.Visible)
-					{
+					if (GameInfo.Visible) {
 						InfoUserInterface.Draw(Main.spriteBatch, _lastUpdateUiGameTime);
 					}
 					return true;
@@ -128,14 +115,11 @@ internal class UISystem : ModSystem
 				   InterfaceScaleType.UI));
 		}
 		int rulerLayerIndex = layers.FindIndex(layer => layer.Name.Equals("Vanilla: Ruler"));
-		if (rulerLayerIndex != -1)
-		{
+		if (rulerLayerIndex != -1) {
 			layers.Insert(rulerLayerIndex, new LegacyGameInterfaceLayer(
 				"Creative tools: Scale fix",
-				delegate
-				{
-					if (GameInfo.Visible)
-					{
+				delegate {
+					if (GameInfo.Visible) {
 						GameInfo.WorldDraw();
 					}
 					return true;

@@ -149,8 +149,7 @@ namespace YourMod
 	private void FileButtonClicked(UIMouseEvent evt, UIElement listeningElement)
 	{
 		string path = FileBrowser.OpenFilePanel("Select Texture", "png");
-		if (path != null)
-		{
+		if (path != null) {
 			CustomNPC.ctexture = Texture2D.FromStream(Main.graphics.GraphicsDevice, System.IO.File.OpenRead(path));
 		}
 	}
@@ -158,8 +157,7 @@ namespace YourMod
 	// so you can't use items when clicking on the button
 	protected override void DrawSelf(SpriteBatch spriteBatch)
 	{
-		if (ContainsPoint(Main.MouseScreen))
-		{
+		if (ContainsPoint(Main.MouseScreen)) {
 			Main.LocalPlayer.mouseInterface = true;
 		}
 	}

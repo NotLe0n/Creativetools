@@ -67,8 +67,7 @@ internal class MainUI : UIState
 		base.Update(gameTime); // Don't remove, or else dragging won't be smooth
 		bool[] check = { false, false, Main.hardMode, false, false, MovePlayer.creativeFly, MagicCursorNPC.MagicCursor, false, GameInfo.Visible, false, false, false, false, false, false, false };
 
-		for (int i = 0; i < buttonGrid.Count; i++)
-		{
+		for (int i = 0; i < buttonGrid.Count; i++) {
 			((MenuButton)buttonGrid.items[i]).SetState(check[i]);
 		}
 	}

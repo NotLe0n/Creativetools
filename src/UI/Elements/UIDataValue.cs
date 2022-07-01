@@ -17,14 +17,10 @@ internal class UIDataValue<T>
 	protected T defaultValue = default;
 	// use data as memory when datasetter/getter are active to notify ui of changes
 	protected T data = default;
-	public T Data
-	{
-		get
-		{
-			if (DataGetter != null)
-			{
-				if (!data.Equals(DataGetter()))
-				{
+	public T Data {
+		get {
+			if (DataGetter != null) {
+				if (!data.Equals(DataGetter())) {
 					data = DataGetter();
 					OnValueChanged?.Invoke();
 					return data;
@@ -33,15 +29,12 @@ internal class UIDataValue<T>
 			}
 			return data;
 		}
-		protected set
-		{
-			if (DataSetter != null)
-			{
+		protected set {
+			if (DataSetter != null) {
 				DataSetter(value);
 				data = DataGetter();
 			}
-			else
-			{
+			else {
 				data = value;
 			}
 			OnValueChanged?.Invoke();
@@ -180,12 +173,10 @@ internal class UIFloatRangedDataValue : UIRangedDataValue<float>
 	protected override void DefaultParseValue(string value)
 	{
 		float result;
-		if (float.TryParse(value, out result))
-		{
+		if (float.TryParse(value, out result)) {
 			SetValue(result);
 		}
-		else
-		{
+		else {
 			SetValue(Data);
 		}
 	}
@@ -200,13 +191,11 @@ internal class UIFloatRangedDataValue : UIRangedDataValue<float>
 	/// </summary>
 	protected override void DefaultSetValue(float value)
 	{
-		if (value < min && enforceMin)
-		{
+		if (value < min && enforceMin) {
 			Data = min;
 			return;
 		}
-		if (value > max && enforceMax)
-		{
+		if (value > max && enforceMax) {
 			Data = max;
 			return;
 		}
@@ -248,12 +237,10 @@ internal class UIIntRangedDataValue : UIRangedDataValue<int>
 	protected override void DefaultParseValue(string value)
 	{
 		int result;
-		if (int.TryParse(value, out result))
-		{
+		if (int.TryParse(value, out result)) {
 			SetValue(result);
 		}
-		else
-		{
+		else {
 			SetValue(Data);
 		}
 	}
@@ -263,13 +250,11 @@ internal class UIIntRangedDataValue : UIRangedDataValue<int>
 	/// </summary>
 	protected override void DefaultSetValue(int value)
 	{
-		if (value < min && enforceMin)
-		{
+		if (value < min && enforceMin) {
 			Data = min;
 			return;
 		}
-		if (value > max && enforceMax)
-		{
+		if (value > max && enforceMax) {
 			Data = max;
 			return;
 		}

@@ -23,13 +23,11 @@ public class UIGrid : UIElement
 			Vector2 position = Parent.GetDimensions().Position();
 			Vector2 dimensions = new(Parent.GetDimensions().Width, Parent.GetDimensions().Height);
 
-			foreach (UIElement current in Elements)
-			{
+			foreach (UIElement current in Elements) {
 				Vector2 position2 = current.GetDimensions().Position();
 				Vector2 dimensions2 = new(current.GetDimensions().Width, current.GetDimensions().Height);
 
-				if (Collision.CheckAABBvAABBCollision(position, dimensions, position2, dimensions2))
-				{
+				if (Collision.CheckAABBvAABBCollision(position, dimensions, position2, dimensions2)) {
 					current.Draw(spriteBatch);
 				}
 			}
@@ -42,10 +40,8 @@ public class UIGrid : UIElement
 	private float innerListHeight;
 	public float ListPadding = 5f;
 
-	public int Count
-	{
-		get
-		{
+	public int Count {
+		get {
 			return items.Count;
 		}
 	}
@@ -69,8 +65,7 @@ public class UIGrid : UIElement
 	public float GetRowWidth()
 	{
 		float width = 0;
-		for (int i = 0; i < items.Count; i++)
-		{
+		for (int i = 0; i < items.Count; i++) {
 			width = MathHelper.Clamp(items.Count * (items[i].Width.Pixels + ListPadding * 2), items[i].Width.Pixels, 300);
 		}
 		return width;
@@ -78,13 +73,10 @@ public class UIGrid : UIElement
 
 	public void Goto(ElementSearchMethod searchMethod, bool center = false)
 	{
-		for (int i = 0; i < items.Count; i++)
-		{
-			if (searchMethod(items[i]))
-			{
+		for (int i = 0; i < items.Count; i++) {
+			if (searchMethod(items[i])) {
 				scrollbar.ViewPosition = items[i].Top.Pixels;
-				if (center)
-				{
+				if (center) {
 					scrollbar.ViewPosition = items[i].Top.Pixels - GetInnerDimensions().Height / 2 + items[i].GetOuterDimensions().Height / 2;
 				}
 				return;
@@ -122,8 +114,7 @@ public class UIGrid : UIElement
 	public override void ScrollWheel(UIScrollWheelEvent evt)
 	{
 		base.ScrollWheel(evt);
-		if (scrollbar != null)
-		{
+		if (scrollbar != null) {
 			scrollbar.ViewPosition -= evt.ScrollWheelValue;
 		}
 	}
@@ -133,24 +124,20 @@ public class UIGrid : UIElement
 		base.RecalculateChildren();
 		float top = 0f;
 		float left = 0f;
-		for (int i = 0; i < items.Count; i++)
-		{
+		for (int i = 0; i < items.Count; i++) {
 			items[i].Top.Set(top, 0f);
 			items[i].Left.Set(left, 0f);
 			items[i].Recalculate();
-			if (i % cols == cols - 1)
-			{
+			if (i % cols == cols - 1) {
 				top += items[i].GetOuterDimensions().Height + ListPadding;
 				left = 0;
 			}
-			else
-			{
+			else {
 				left += items[i].GetOuterDimensions().Width + ListPadding;
 			}
 			//num += this._items[i].GetOuterDimensions().Height + this.ListPadding;
 		}
-		if (items.Count > 0)
-		{
+		if (items.Count > 0) {
 			top += ListPadding + items[0].GetOuterDimensions().Height;
 		}
 		innerListHeight = top;
@@ -158,8 +145,7 @@ public class UIGrid : UIElement
 
 	private void UpdateScrollbar()
 	{
-		if (scrollbar == null)
-		{
+		if (scrollbar == null) {
 			return;
 		}
 		scrollbar.SetView(GetInnerDimensions().Height, innerListHeight);
@@ -185,12 +171,10 @@ public class UIGrid : UIElement
 	public override List<SnapPoint> GetSnapPoints()
 	{
 		List<SnapPoint> list = new();
-		if (GetSnapPoint(out SnapPoint item))
-		{
+		if (GetSnapPoint(out SnapPoint item)) {
 			list.Add(item);
 		}
-		foreach (UIElement current in items)
-		{
+		foreach (UIElement current in items) {
 			list.AddRange(current.GetSnapPoints());
 		}
 		return list;
@@ -198,8 +182,7 @@ public class UIGrid : UIElement
 
 	protected override void DrawSelf(SpriteBatch spriteBatch)
 	{
-		if (scrollbar != null)
-		{
+		if (scrollbar != null) {
 			innerList.Top.Set(-scrollbar.GetValue(), 0f);
 		}
 		Recalculate();

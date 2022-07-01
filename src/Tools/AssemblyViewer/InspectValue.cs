@@ -32,8 +32,7 @@ class InspectValue : UIState
 		panel.OnCloseBtnClicked += () => UISystem.UserInterface2.SetState(null);
 		Append(panel);
 
-		panel.Append(new UIText("Value:")
-		{
+		panel.Append(new UIText("Value:") {
 			Left = new(20, 0),
 			Top = new(45, 0),
 		});
@@ -42,10 +41,8 @@ class InspectValue : UIState
 		var field = _member as FieldInfo;
 		var property = _member as PropertyInfo;
 
-		if ((!field?.IsLiteral).GetValueOrDefault() && (!field?.IsInitOnly).GetValueOrDefault() || (property?.CanWrite).GetValueOrDefault())
-		{
-			frozenText = new UIText("frozen:")
-			{
+		if ((!field?.IsLiteral).GetValueOrDefault() && (!field?.IsInitOnly).GetValueOrDefault() || (property?.CanWrite).GetValueOrDefault()) {
+			frozenText = new UIText("frozen:") {
 				Top = new(45, 0),
 			};
 			panel.Append(frozenText);
@@ -68,15 +65,13 @@ class InspectValue : UIState
 	{
 		base.Update(gameTime);
 
-		if (!frozen || tempUnfreeze)
-		{
+		if (!frozen || tempUnfreeze) {
 			if (_member is FieldInfo field)
 				UpdateDataElement(field);
 			else if (_member is PropertyInfo property)
 				UpdateDataElement(property);
 		}
-		else
-		{
+		else {
 			if (_member is FieldInfo field)
 				field.SetValue(null, dataElement.data);
 			else if (_member is PropertyInfo property)
@@ -86,8 +81,7 @@ class InspectValue : UIState
 
 	private void UpdateDataElement(FieldInfo field)
 	{
-		if (dataElement != null)
-		{
+		if (dataElement != null) {
 			dataElement.Remove();
 			dataElement = null;
 		}
@@ -96,8 +90,7 @@ class InspectValue : UIState
 			return;
 
 		dynamic val = field.GetValue(null);
-		dataElement = new UIDataElement(val)
-		{
+		dataElement = new UIDataElement(val) {
 			Top = new(40, 0),
 			Left = new(80, 0),
 			IgnoresMouseInteraction = !frozen
@@ -116,8 +109,7 @@ class InspectValue : UIState
 
 	private void UpdateDataElement(PropertyInfo property)
 	{
-		if (dataElement != null)
-		{
+		if (dataElement != null) {
 			dataElement.Remove();
 			dataElement = null;
 		}
@@ -126,8 +118,7 @@ class InspectValue : UIState
 			return;
 
 		dynamic val = property.GetValue(null);
-		dataElement = new UIDataElement(val)
-		{
+		dataElement = new UIDataElement(val) {
 			Top = new(40, 0),
 			Left = new(80, 0),
 			IgnoresMouseInteraction = !frozen
@@ -148,8 +139,7 @@ class InspectValue : UIState
 	{
 		base.Recalculate();
 
-		if (dataElement != null)
-		{
+		if (dataElement != null) {
 			frozenText?.Left.Set(panel.GetDimensions().Width - 100, 0);
 			frozenToggle?.Left.Set(panel.GetDimensions().Width - 30, 0);
 

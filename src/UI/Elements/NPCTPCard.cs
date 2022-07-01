@@ -34,12 +34,10 @@ internal class NPCTPCard : UIPanel
 	{
 		base.Draw(spriteBatch);
 
-		if (++frameTimer > frameDelay)
-		{
+		if (++frameTimer > frameDelay) {
 			frameCounter++;
 			frameTimer = 0;
-			if (frameCounter > Main.npcFrameCount[_npc.type] - 1)
-			{
+			if (frameCounter > Main.npcFrameCount[_npc.type] - 1) {
 				frameCounter = 0;
 			}
 		}

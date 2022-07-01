@@ -30,7 +30,7 @@ class FieldButton : UIFontText
 		var userInterface2 = UISystem.UserInterface2;
 
 		userInterface2.SetState(
-			userInterface2.CurrentState == null ? 
+			userInterface2.CurrentState == null ?
 			new InspectValue(_field) : null
 		);
 	}

@@ -36,8 +36,7 @@ internal class Tab : UITextPanel<string>
 	public override void Update(GameTime gameTime)
 	{
 		// Highlight
-		if (UISystem.UserInterface.CurrentState == _changeStateTo)
-		{
+		if (UISystem.UserInterface.CurrentState == _changeStateTo) {
 			BackgroundColor = new Color(73, 94, 171);
 		}
 	}
@@ -65,10 +64,8 @@ internal class TabPanel : DragableUIPanel
 		base.OnInitialize();
 
 		// set correct position for all tabs
-		for (int i = 0; i < Tabs.Length; i++)
-		{
-			if (i > 0 && Tabs[i - 1] != null)
-			{
+		for (int i = 0; i < Tabs.Length; i++) {
+			if (i > 0 && Tabs[i - 1] != null) {
 				Tabs[i].Left.Set(FontAssets.MouseText.Value.MeasureString(Tabs[i - 1].Text).X, 0f);
 			}
 		}

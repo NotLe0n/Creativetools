@@ -51,8 +51,7 @@ internal class BetterUIList : UIList
 	{
 		base.RecalculateChildren();
 		float width = 0f;
-		for (int i = 0; i < _items.Count; i++)
-		{
+		for (int i = 0; i < _items.Count; i++) {
 			CalculatedStyle outerDimensions = _items[i].GetOuterDimensions();
 			if (width < outerDimensions.Width)
 				width = outerDimensions.Width;
@@ -63,8 +62,7 @@ internal class BetterUIList : UIList
 
 	protected override void DrawSelf(SpriteBatch spriteBatch)
 	{
-		if (horizontalScrollbar != null)
-		{
+		if (horizontalScrollbar != null) {
 			(field_innerList.GetValue(this) as UIElement).Left.Set(0f - horizontalScrollbar.ViewPosition, 0f);
 		}
 
@@ -79,8 +77,7 @@ internal class BetterUIList : UIList
 
 	private void UpdateHorizontalScrollbar()
 	{
-		if (horizontalScrollbar != null)
-		{
+		if (horizontalScrollbar != null) {
 			float width = GetInnerDimensions().Width;
 			horizontalScrollbar.SetView(width, _innerListWidth);
 		}

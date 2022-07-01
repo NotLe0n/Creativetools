@@ -61,8 +61,7 @@ internal class UISlider : UIElement
 		Texture2D ColorSlidertexture = TextureAssets.ColorSlider.Value;
 
 		spriteBatch.Draw(TextureAssets.ColorBar.Value, rectangle, Color.White);
-		if (IsMouseHovering)
-		{
+		if (IsMouseHovering) {
 			spriteBatch.Draw(TextureAssets.ColorHighlight.Value, rectangle, Main.OurFavoriteColor);
 		}
 
@@ -74,8 +73,7 @@ internal class UISlider : UIElement
 
 		x = rectangle.X;
 		y = rectangle.Y;
-		for (float i = 0f; i < rectangle.Width; i += 1f)
-		{
+		for (float i = 0f; i < rectangle.Width; i += 1f) {
 			float amount = i / rectangle.Width;
 			Color color = colorRange ? Main.hslToRgb(amount, 1f, 0.5f) : Color.Lerp(Color.Black, Color.White, amount);
 			spriteBatch.Draw(TextureAssets.ColorBlip.Value, new Vector2(x + i * scale, y),
@@ -92,8 +90,7 @@ internal class UISlider : UIElement
 			scale, SpriteEffects.None, 0f);
 
 		// LOGIC
-		if (IsMouseHovering && Main.mouseLeft)
-		{
+		if (IsMouseHovering && Main.mouseLeft) {
 			float newPerc = (Main.mouseX - rectangle.X) / (float)rectangle.Width;
 			newPerc = Utils.Clamp(newPerc, 0f, 1f);
 			_SlideKeyboardAction(newPerc);

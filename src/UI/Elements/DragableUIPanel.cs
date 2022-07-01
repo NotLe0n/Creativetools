@@ -79,8 +79,7 @@ public class DragableUIPanel : UIPanel
 			Main.LocalPlayer.mouseInterface = true;
 
 
-		if (dragging)
-		{
+		if (dragging) {
 			Left.Set(Main.mouseX - offset.X, 0f);
 			Top.Set(Main.mouseY - offset.Y, 0f);
 			Recalculate();
@@ -92,8 +91,7 @@ public class DragableUIPanel : UIPanel
 		// (In our example, the parent would be ExampleUI, a UIState. This means that we are checking that the DragableUIPanel is outside the whole screen)
 		// By doing this and some simple math, we can snap the panel back on screen if the user resizes his window or otherwise changes resolution.
 		var parentSpace = Parent.GetDimensions().ToRectangle();
-		if (!GetDimensions().ToRectangle().Intersects(parentSpace))
-		{
+		if (!GetDimensions().ToRectangle().Intersects(parentSpace)) {
 			Left.Pixels = Utils.Clamp(Left.Pixels, 0, parentSpace.Right - Width.Pixels);
 			Top.Pixels = Utils.Clamp(Top.Pixels, 0, parentSpace.Bottom - Height.Pixels);
 			// Recalculate forces the UI system to do the positioning math again.

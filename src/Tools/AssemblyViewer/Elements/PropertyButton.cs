@@ -27,12 +27,10 @@ class PropertyButton : UIFontText
 	{
 		base.Click(evt);
 
-		if (UISystem.UserInterface2.CurrentState == null)
-		{
+		if (UISystem.UserInterface2.CurrentState == null) {
 			UISystem.UserInterface2.SetState(new InspectValue(_property));
 		}
-		else
-		{
+		else {
 			UISystem.UserInterface2.SetState(null);
 		}
 	}

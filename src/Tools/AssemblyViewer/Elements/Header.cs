@@ -18,8 +18,7 @@ class Header : UIElement
 		spliced = text.Split('.');
 
 		float xOffset = 0;
-		for (int i = 0; i < spliced.Length; i++)
-		{
+		for (int i = 0; i < spliced.Length; i++) {
 			var segment = new HeaderSegment(spliced, i);
 			segment.Left.Set(xOffset, 0);
 			segment.TextColor = i != spliced.Length - 1 ? Color.LightGray : Color.White;
@@ -28,10 +27,8 @@ class Header : UIElement
 			xOffset += spliced[i].GetTextSize(FontSystem.ConsolasFont).X;
 
 			// To not put a dot at the end (e.g: "Terraria.ID.")
-			if (i < spliced.Length - 1)
-			{
-				Append(new UIFontText(FontSystem.ConsolasFont, ".")
-				{
+			if (i < spliced.Length - 1) {
+				Append(new UIFontText(FontSystem.ConsolasFont, ".") {
 					Left = new(xOffset, 0)
 				});
 
@@ -56,8 +53,7 @@ class Header : UIElement
 			base.Update(gameTime);
 
 			// This is in update because the click event doesn't work :))
-			if (ContainsPoint(Main.MouseScreen) && Main.mouseLeft)
-			{
+			if (ContainsPoint(Main.MouseScreen) && Main.mouseLeft) {
 				string target = string.Join('.', spliced[0..(index + 1)]);
 				UISystem.UserInterface.SetState(new AssemblyViewer(target));
 			}

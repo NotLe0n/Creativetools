@@ -23,8 +23,7 @@ class UIDataElement : UIElement
 		Width.Set(data.ToString().GetTextSize().X, 0);
 		Height.Set(100, 0);
 
-		Append(new UIText(data.ToString())
-		{
+		Append(new UIText(data.ToString()) {
 			Top = new(5, 0)
 		});
 	}
@@ -34,8 +33,7 @@ class UIDataElement : UIElement
 		Width.Set(150, 0);
 		Height.Set(100, 0);
 
-		Append(new UIText(data.ToString())
-		{
+		Append(new UIText(data.ToString()) {
 			Top = new(5, 0)
 		});
 
@@ -64,13 +62,11 @@ class UIDataElement : UIElement
 			&& str == "-")
 			return true;
 
-		try
-		{
+		try {
 			Convert.ChangeType(str, type);
 			return true;
 		}
-		catch
-		{
+		catch {
 			return false;
 		}
 	}
@@ -128,8 +124,7 @@ class UIDataElement : UIElement
 	{
 		this.data = data;
 
-		if (data != null)
-		{
+		if (data != null) {
 			Width.Set(data.ToString().GetTextSize().X + 50, 0);
 			Height.Set(100, 0);
 
@@ -141,13 +136,11 @@ class UIDataElement : UIElement
 			textBox.OnEnterPressed += () => OnValueChanged.Invoke(textBox.Text);
 			Append(textBox);
 		}
-		else
-		{
+		else {
 			Width.Set("null".GetTextSize().X + 50, 0);
 			Height.Set(100, 0);
 
-			Append(new UIText("null")
-			{
+			Append(new UIText("null") {
 				Top = new(5, 0)
 			});
 		}
@@ -211,10 +204,8 @@ class UIDataElement : UIElement
 				{ data.M41, data.M42, data.M43, data.M44 }
 			};
 
-		for (int i = 0; i < matrixArr.GetLength(0); i++)
-		{
-			for (int j = 0; j < matrixArr.GetLength(1); j++)
-			{
+		for (int i = 0; i < matrixArr.GetLength(0); i++) {
+			for (int j = 0; j < matrixArr.GetLength(1); j++) {
 				var width = 50;
 				var height = 30;
 

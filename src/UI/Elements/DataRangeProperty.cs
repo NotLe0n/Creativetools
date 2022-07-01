@@ -1,118 +1,111 @@
 ﻿using Microsoft.Xna.Framework;
 using Terraria;
 
-namespace Creativetools.src.UI.Elements
+namespace Creativetools.src.UI.Elements;
+
+internal class FullFloatDataRangeProperty
 {
-	internal class FullFloatDataRangeProperty
-	{
-		internal float min = 0f;
-		internal float max = 5f;
-		private float data = 1f;
-		internal float Data
-		{
-			get { return data; }
-			set
-			{
-				data = value;
-				range.input.SetText(data.ToString("0.00"));
-			}
-		}
-
-		public UIRange<float> range;
-
-		public FullFloatDataRangeProperty(string label, float defaultValue, float min, float max)
-		{
-			data = defaultValue;
-			this.min = min;
-			this.max = max;
-			range = new UIRange<float>(label, () => (Data - min) / (max - min), (s) => { Data = s * (max - min) + min; }, ValidateInput);
-			//range.Top.Set(top, 0f);
-			range.Width.Set(0, 1f);
-			Data = data;
-		}
-
-		public FullFloatDataRangeProperty(UIFloatRangedDataValue inData)
-		{
-			range = new UIRange<float>(inData.label, inData.GetProportion, inData.SetProportion, ValidateInput);
-			range.Width.Set(0, 1f);
-		}
-
-		private void ValidateInput()
-		{
-			Data = float.TryParse(range.input.Text, out float result) ? result : data;
+	internal float min = 0f;
+	internal float max = 5f;
+	private float data = 1f;
+	internal float Data {
+		get { return data; }
+		set {
+			data = value;
+			range.input.SetText(data.ToString("0.00"));
 		}
 	}
 
-	internal class IntDataRangeProperty
+	public UIRange<float> range;
+
+	public FullFloatDataRangeProperty(string label, float defaultValue, float min, float max)
 	{
-		internal int max = 5;
-		private int data = 1;
-		internal int Data
-		{
-			get { return data; }
-			set
-			{
-				data = value;
-				range.input.SetText(data.ToString());
-			}
-		}
+		data = defaultValue;
+		this.min = min;
+		this.max = max;
+		range = new UIRange<float>(label, () => (Data - min) / (max - min), (s) => { Data = s * (max - min) + min; }, ValidateInput);
+		//range.Top.Set(top, 0f);
+		range.Width.Set(0, 1f);
+		Data = data;
+	}
 
-		public UIRange<int> range;
+	public FullFloatDataRangeProperty(UIFloatRangedDataValue inData)
+	{
+		range = new UIRange<float>(inData.label, inData.GetProportion, inData.SetProportion, ValidateInput);
+		range.Width.Set(0, 1f);
+	}
 
-		public IntDataRangeProperty(string label, int defaultValue, int max, bool fine = false)
-		{
-			data = defaultValue;
-			this.max = max;
-			range = new UIRange<int>(label, () => (float)Data / max, (s) => { Data = (int)(s * max); }, ValidateInput, fine);
-			range.intDataRangeProperty = this;
-			//range.Top.Set(top, 0f);
-			range.Width.Set(0, 1f);
-			Data = data;
-		}
+	private void ValidateInput()
+	{
+		Data = float.TryParse(range.input.Text, out float result) ? result : data;
+	}
+}
 
-		private void ValidateInput()
-		{
-			Data = int.TryParse(range.input.Text, out int result) ? result : data;
+internal class IntDataRangeProperty
+{
+	internal int max = 5;
+	private int data = 1;
+	internal int Data {
+		get { return data; }
+		set {
+			data = value;
+			range.input.SetText(data.ToString());
 		}
 	}
 
-	internal class ColorDataRangeProperty
+	public UIRange<int> range;
+
+	public IntDataRangeProperty(string label, int defaultValue, int max, bool fine = false)
 	{
-		private Color data = Color.White;
-		internal Color Data
-		{
-			get { return data; }
-			set
-			{
-				data = value;
-				//range.input.SetText($"{data.R}-{data.G}-{data.B}");
-				range.input.SetText(data.Hex3());
-			}
-		}
+		data = defaultValue;
+		this.max = max;
+		range = new UIRange<int>(label, () => (float)Data / max, (s) => { Data = (int)(s * max); }, ValidateInput, fine);
+		range.intDataRangeProperty = this;
+		//range.Top.Set(top, 0f);
+		range.Width.Set(0, 1f);
+		Data = data;
+	}
 
-		public UIRange<float> range;
+	private void ValidateInput()
+	{
+		Data = int.TryParse(range.input.Text, out int result) ? result : data;
+	}
+}
 
-		public ColorDataRangeProperty(string label)
-		{
-			//Main.hslToRgb(amount, 1f, 0.5f)
-			range = new UIRange<float>(label, () => Main.rgbToHsl(Data).X, (s) => { Data = Main.hslToRgb(s, 1f, 0.5f); }, ValidateInput);
-			range.Width.Set(0, 1f);
-			range.slider.SetHueMode(true);
-			Data = data;
+internal class ColorDataRangeProperty
+{
+	private Color data = Color.White;
+	internal Color Data {
+		get { return data; }
+		set {
+			data = value;
+			//range.input.SetText($"{data.R}-{data.G}-{data.B}");
+			range.input.SetText(data.Hex3());
 		}
+	}
 
-		private void ValidateInput()
-		{
-			//int result;
-			//if (int.TryParse(range.input.Text, out result))
-			//{
-			//	Data = result;
-			//}
-			//else
-			//{
-			//	Data = data;
-			//}
-			Data = data;
-		}
+	public UIRange<float> range;
+
+	public ColorDataRangeProperty(string label)
+	{
+		//Main.hslToRgb(amount, 1f, 0.5f)
+		range = new UIRange<float>(label, () => Main.rgbToHsl(Data).X, (s) => { Data = Main.hslToRgb(s, 1f, 0.5f); }, ValidateInput);
+		range.Width.Set(0, 1f);
+		range.slider.SetHueMode(true);
+		Data = data;
+	}
+
+	private void ValidateInput()
+	{
+		//int result;
+		//if (int.TryParse(range.input.Text, out result))
+		//{
+		//	Data = result;
+		//}
+		//else
+		//{
+		//	Data = data;
+		//}
+		Data = data;
 	}
 }

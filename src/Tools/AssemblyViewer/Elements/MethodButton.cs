@@ -33,12 +33,10 @@ class MethodButton : UIFontText
 		base.Click(evt);
 		var based = _method as MethodBase;
 
-		if (UISystem.UserInterface2.CurrentState == null)
-		{
+		if (UISystem.UserInterface2.CurrentState == null) {
 			UISystem.UserInterface2.SetState(new ILWindow(based));
 		}
-		else
-		{
+		else {
 			UISystem.UserInterface2.SetState(null);
 		}
 	}
@@ -46,11 +44,9 @@ class MethodButton : UIFontText
 	private static string GetParametersAsString(MethodInfo method)
 	{
 		string str = string.Empty;
-		foreach (var parameter in method.GetParameters())
-		{
+		foreach (var parameter in method.GetParameters()) {
 			str += $"{PrimitiveTypeNameToStructName(parameter.ParameterType.Name)} {parameter.Name}";
-			if (parameter.Position != method.GetParameters().Length - 1)
-			{
+			if (parameter.Position != method.GetParameters().Length - 1) {
 				str += ", ";
 			}
 		}

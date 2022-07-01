@@ -44,13 +44,11 @@ internal class InvasionToggleUI : UIState
 
 		string[] text = { "", "LegacyMisc.0", "LegacyMisc.4", "LegacyMisc.24", "LegacyMisc.42" };
 
-		if (Main.invasionType == InvasionID.None)
-		{
+		if (Main.invasionType == InvasionID.None) {
 			Main.StartInvasion(type: type);
 			Main.invasionType = type;
 		}
-		else
-		{
+		else {
 			Main.invasionType = InvasionID.None;
 			Main.NewText(Terraria.Localization.Language.GetTextValue(text[type]), 143, 61, 209);
 		}
@@ -65,8 +63,7 @@ internal class InvasionToggleUI : UIState
 				Main.invasionType == InvasionID.MartianMadness,
 				Main.invasionType == InvasionID.SnowLegion };
 
-		for (int i = 0; i < buttonGrid.Count; i++)
-		{
+		for (int i = 0; i < buttonGrid.Count; i++) {
 			((MenuButton)buttonGrid.items[i]).SetState(check[i]);
 		}
 	}

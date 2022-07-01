@@ -55,8 +55,7 @@ internal class NewUITextBox : UIPanel
 
 	internal void Unfocus()
 	{
-		if (focused)
-		{
+		if (focused) {
 			focused = false;
 			Main.blockInput = false;
 
@@ -66,8 +65,7 @@ internal class NewUITextBox : UIPanel
 
 	internal void Focus()
 	{
-		if (!focused)
-		{
+		if (!focused) {
 			Main.clrInput();
 			focused = true;
 			Main.blockInput = true;
@@ -89,12 +87,10 @@ internal class NewUITextBox : UIPanel
 
 	internal void SetText(string text)
 	{
-		if (text.Length > _maxLength)
-		{
+		if (text.Length > _maxLength) {
 			text = text.Substring(0, _maxLength);
 		}
-		if (currentString != text)
-		{
+		if (currentString != text) {
 			currentString = text;
 			OnTextChanged?.Invoke();
 		}
@@ -112,54 +108,45 @@ internal class NewUITextBox : UIPanel
 		//Draw panel
 		base.DrawSelf(spriteBatch);
 
-		if (focused)
-		{
+		if (focused) {
 			Terraria.GameInput.PlayerInput.WritingText = true;
 			Main.instance.HandleIME();
 			string newString = Main.GetInputText(currentString);
-			if (!newString.Equals(currentString))
-			{
+			if (!newString.Equals(currentString)) {
 				currentString = newString;
 				OnTextChanged?.Invoke();
 			}
-			else
-			{
+			else {
 				currentString = newString;
 			}
 
-			if (JustPressed(Keys.Tab))
-			{
+			if (JustPressed(Keys.Tab)) {
 				if (unfocusOnTab) Unfocus();
 				OnTabPressed?.Invoke();
 			}
-			if (JustPressed(Keys.Enter))
-			{
+			if (JustPressed(Keys.Enter)) {
 				Main.drawingPlayerChat = false;
 				if (unfocusOnEnter) Unfocus();
 				OnEnterPressed?.Invoke();
 			}
-			if (++textBlinkerCount >= 20)
-			{
+			if (++textBlinkerCount >= 20) {
 				textBlinkerState = (textBlinkerState + 1) % 2;
 				textBlinkerCount = 0;
 			}
 			Main.instance.DrawWindowsIMEPanel(new Vector2(98f, Main.screenHeight - 36), 0f);
 		}
 		string displayString = currentString;
-		if (textBlinkerState == 1 && focused)
-		{
+		if (textBlinkerState == 1 && focused) {
 			displayString += "|";
 		}
 		CalculatedStyle space = GetDimensions();
 		Color color = TextColor;
 		Vector2 drawPos = space.Position() + new Vector2(4, 2);
-		if (currentString.Length == 0 && !focused)
-		{
+		if (currentString.Length == 0 && !focused) {
 			color *= 0.5f;
 			spriteBatch.DrawString(FontAssets.MouseText.Value, hintText, drawPos, color, 0f, Vector2.Zero, TextScale, SpriteEffects.None, 0);
 		}
-		else
-		{
+		else {
 			spriteBatch.DrawString(FontAssets.MouseText.Value, displayString, drawPos, TextColor, 0f, Vector2.Zero, TextScale, SpriteEffects.None, 0);
 		}
 	}

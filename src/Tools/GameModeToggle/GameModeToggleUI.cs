@@ -61,7 +61,7 @@ public class GameModeToggleUI : UIState
 			else {
 				MultiplayerSystem.SyncGameMode((byte)worldGameMode.Data);
 			}
-			
+
 		}
 		Main.LocalPlayer.difficulty = (byte)playerGameMode.Data;
 

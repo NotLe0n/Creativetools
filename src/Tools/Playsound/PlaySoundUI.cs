@@ -69,8 +69,7 @@ internal class PlaySoundUI : UIState
 		soundName.SetText("SoundID." + Sounds[ID.Data].Name);
 
 		List<string> musicNames = new(Music.Length);
-		for (int i = 0; i < musicNames.Capacity; i++)
-		{
+		for (int i = 0; i < musicNames.Capacity; i++) {
 			musicNames.Add("MusicID." + Music[i].Name);
 		}
 		musicNames.Insert(0, "No Music");
@@ -82,8 +81,7 @@ internal class PlaySoundUI : UIState
 	// so you can't use items when clicking on the button
 	protected override void DrawSelf(SpriteBatch spriteBatch)
 	{
-		if (ContainsPoint(Main.MouseScreen))
-		{
+		if (ContainsPoint(Main.MouseScreen)) {
 			Main.LocalPlayer.mouseInterface = true;
 		}
 	}

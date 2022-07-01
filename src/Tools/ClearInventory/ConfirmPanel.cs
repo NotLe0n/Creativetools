@@ -51,8 +51,7 @@ internal class ConfirmPanel : UIState
 	private void YEPClicked(UIMouseEvent evt, UIElement listeningElement)
 	{
 		//delete all items in the inventory
-		for (int i = 0; i < Main.InventorySlotsTotal; i++)
-		{
+		for (int i = 0; i < Main.InventorySlotsTotal; i++) {
 			Main.LocalPlayer.inventory[i].TurnToAir();
 			SoundEngine.PlaySound(SoundID.Grab);
 		}
@@ -62,10 +61,8 @@ internal class ConfirmPanel : UIState
 	private void DelFavClicked(UIMouseEvent evt, UIElement listeningElement)
 	{
 		//delete all exept favorited items
-		for (int i = 0; i < Main.InventorySlotsTotal; i++)
-		{
-			if (!Main.LocalPlayer.inventory[i].favorited)
-			{
+		for (int i = 0; i < Main.InventorySlotsTotal; i++) {
+			if (!Main.LocalPlayer.inventory[i].favorited) {
 				Main.LocalPlayer.inventory[i].TurnToAir();
 				SoundEngine.PlaySound(SoundID.Grab);
 			}

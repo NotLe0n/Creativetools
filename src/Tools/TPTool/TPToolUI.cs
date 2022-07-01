@@ -96,8 +96,7 @@ internal class TPToolUI : UIState
 		NPCList.SetScrollbar(NPCscrollbar);
 		panel.Append(NPCList);
 
-		foreach (NPC npc in Main.npc.Where(x => x.active))
-		{
+		foreach (NPC npc in Main.npc.Where(x => x.active)) {
 			var NPCCard = new NPCTPCard(npc);
 			NPCCard.Width.Set(200, 0);
 			NPCCard.Height.Set(50, 0);
@@ -109,12 +108,10 @@ internal class TPToolUI : UIState
 
 	private void Teleport(UIMouseEvent evt, UIElement listeningElement)
 	{
-		if (relative)
-		{
+		if (relative) {
 			Main.LocalPlayer.position += coordinates;
 		}
-		else
-		{
+		else {
 			Main.LocalPlayer.position = coordinates;
 		}
 
@@ -123,12 +120,10 @@ internal class TPToolUI : UIState
 
 	public override void Update(GameTime gameTime)
 	{
-		if (Main.GameUpdateCount % 60 == 0)
-		{
+		if (Main.GameUpdateCount % 60 == 0) {
 			NPCList.Clear();
 
-			foreach (NPC npc in Main.npc.Where(x => x.active))
-			{
+			foreach (NPC npc in Main.npc.Where(x => x.active)) {
 				var NPCCard = new NPCTPCard(npc);
 				NPCCard.Width.Set(200, 0);
 				NPCCard.Height.Set(50, 0);
