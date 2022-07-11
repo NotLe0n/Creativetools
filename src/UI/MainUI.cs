@@ -59,7 +59,7 @@ internal class MainUI : UIState
 		AddButton("custom", "Custom Item/NPC", () => UISystem.UserInterface.SetState(new CustomNPCUI()));
 		AddButton("DownedBossToggle", "DownedBoss Toggle", () => UISystem.UserInterface.SetState(new DownedBossToggleUI()));
 		AddButton("clearInventory", "Clear inventory", () => ConfirmPanel.Visible = true);
-		AddButton("killplayer", "Kill Player", () => Main.LocalPlayer.KillMe(PlayerDeathReason.LegacyEmpty(), 100, 0));
+		AddButton("killplayer", "Kill Player", () => KillMe());
 	}
 
 	public override void Update(GameTime gameTime)
@@ -83,7 +83,25 @@ internal class MainUI : UIState
 			Main.hardMode = !Main.hardMode;
 		}
 		else {
-			MultiplayerSystem.SyncHardMode(!Main.hardMode);
+			MultiplayerSystem.SendHardmodePacket(!Main.hardMode);
 		}
+	}
+
+	private static void KillMe()
+	{
+		if (Main.netMode == NetmodeID.SinglePlayer) {
+			KillPlayer(Main.LocalPlayer);
+		}
+		else {
+			MultiplayerSystem.SendKillPlayerPacket(Main.myPlayer);
+		}
+	}
+
+	public static void KillPlayer(Player p)
+	{
+		bool old = p.creativeGodMode;
+		p.creativeGodMode = false;
+		p.KillMe(PlayerDeathReason.LegacyEmpty(), 100, 0);
+		p.creativeGodMode = old;
 	}
 }

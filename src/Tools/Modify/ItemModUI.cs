@@ -13,34 +13,35 @@ internal class ItemModUI : UIState
 {
 	public override void OnInitialize()
 	{
-		TabPanel itemMenu = new(new Tab("Change Item", this), new Tab(" Change Player", new PlayerModUI()));
-		itemMenu.VAlign = 0.6f;
-		itemMenu.HAlign = 0.2f;
-		itemMenu.Width.Set(450, 0);
-		itemMenu.Height.Set(450, 0);
+		var itemMenu = new TabPanel(new Tab("Change Item", this), new Tab(" Change Player", new PlayerModUI())) {
+			VAlign = 0.6f,
+			HAlign = 0.2f,
+			Width = new(450, 0),
+			Height = new(450, 0)
+		};
 		itemMenu.OnCloseBtnClicked += () => UISystem.UserInterface.SetState(new MainUI());
 		Append(itemMenu);
 
 		var damageSlider = MakeSlider(new UIIntRangedDataValue("", 0, 0, 999), out var damageDataProperty, itemMenu, top: 50, left: -10);
-		SliderButtons("Set Damage", damageSlider, button => button.OnClick += (evt, elm) => ChangeDamage(damageDataProperty.Data));
+		damageSlider.AppendSliderButton("Set Damage", () => ChangeDamage(damageDataProperty.Data));
 
 		var critSlider = MakeSlider(new UIIntRangedDataValue("", 0, 0, 100), out var critDataProperty, itemMenu, top: 100, left: -10);
-		SliderButtons("Set Crit", critSlider, button => button.OnClick += (evt, elm) => ChangeCrit(critDataProperty.Data));
+		critSlider.AppendSliderButton("Set Crit", () => ChangeCrit(critDataProperty.Data));
 
 		var knockSlider = MakeSlider(new UIFloatRangedDataValue("", 0, 0, 100), out var knockbackDataProperty, itemMenu, top: 150, left: -10);
-		SliderButtons("Set Knockback", knockSlider, button => button.OnClick += (evt, elm) => ChangeKnock(knockbackDataProperty.Data));
+		knockSlider.AppendSliderButton("Set Knockback", () => ChangeKnock(knockbackDataProperty.Data));
 
 		var usetimeSlider = MakeSlider(new UIIntRangedDataValue("", 0, 0, 50), out var usetimeDataProperty, itemMenu, top: 200, left: -10);
-		SliderButtons("Set Usetime", usetimeSlider, button => button.OnClick += (evt, elm) => ChangeUseTime(usetimeDataProperty.Data));
+		usetimeSlider.AppendSliderButton("Set Usetime", () => ChangeUseTime(usetimeDataProperty.Data));
 
 		var defenseSlider = MakeSlider(new UIIntRangedDataValue("", 0, 0, 100), out var defenseDataProperty, itemMenu, top: 250, left: -10);
-		SliderButtons("Set Defense", defenseSlider, button => button.OnClick += (evt, elm) => ChangeDefense(defenseDataProperty.Data));
+		defenseSlider.AppendSliderButton("Set Defense", () => ChangeDefense(defenseDataProperty.Data));
 
 		var shootSlider = MakeSlider(new UIFloatRangedDataValue("", 0, 0, 999), out var shootspeedDataProperty, itemMenu, top: 300, left: -10);
-		SliderButtons("Set Bullet speed", shootSlider, button => button.OnClick += (evt, elm) => ChangeShoot(shootspeedDataProperty.Data));
+		shootSlider.AppendSliderButton("Set Bullet speed", () => ChangeShoot(shootspeedDataProperty.Data));
 
 		var sizeSlider = MakeSlider(new UIFloatRangedDataValue("", 0, 0, 50), out var sizeDataProperty, itemMenu, top: 350, left: -10);
-		SliderButtons("Set Size", sizeSlider, button => button.OnClick += (evt, elm) => ChangeSize(sizeDataProperty.Data));
+		sizeSlider.AppendSliderButton("Set Size", () => ChangeSize(sizeDataProperty.Data));
 
 		var autoswingButton = new UITextPanel<string>("Toggle Autoswing");
 		autoswingButton.SetPadding(4);

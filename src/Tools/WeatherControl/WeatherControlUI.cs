@@ -27,15 +27,16 @@ internal class WeatherControlUI : UIState
 		menu.OnCloseBtnClicked += UISystem.BackToMainMenu;
 		Append(menu);
 
-		string[] moons = new[] { "FullMoon", "WaningGibbous", "ThirdQuarter", "WaningCrescent", "NewMoon", "WaxingCrescent", "FirstQuarter", "WaxingGibbous" };
-
 		var timeSlider = MakeSlider(new UIIntRangedDataValue("Time Control:", 0, 0, 86399), out time, menu, top: 50);
 		menu.Append(new UIText(Language.GetTextValue("LegacyInterface.102") + ":", 0.85f) { MarginTop = 105, MarginLeft = 20 });
 
-		float pos = 0.3f;
-		for (int i = 0; i < moons.Length; i++) {
-			ImageButtons(new("Creativetools/UI Assets/" + moons[i], Language.GetTextValue("GameUI." + moons[i])),
-				menu, () => ChangeMoonPhase(i), MarginTop: 100, HAllign: pos);
+		float pos = 0.25f;
+		for (int i = 0; i < 8; i++) {
+			var btn = new MoonPhaseButton(i) {
+				MarginTop = 100,
+				HAlign = pos
+			};
+			menu.Append(btn);
 
 			pos += 0.1f;
 		}
@@ -45,15 +46,31 @@ internal class WeatherControlUI : UIState
 	{
 		base.Update(gameTime);
 		if (Main.time != time.Data) {
-			double transformedTime = !(Main.dayTime = time.Data <= 54000) ? Math.Abs(time.Data - 54000) : time.Data;
-
 			if (Main.netMode == NetmodeID.SinglePlayer) {
-				Main.time = transformedTime;
+				Main.dayTime = time.Data <= 54000;
+				Main.time = !Main.dayTime ? Math.Abs(time.Data - 54000) : time.Data;
 			}
 			else {
-				MultiplayerSystem.SyncTime(transformedTime);
+				MultiplayerSystem.SendTimePacket(time.Data <= 54000, time.Data > 54000 ? Math.Abs(time.Data - 54000) : time.Data);
 			}
 		}
+	}
+}
+
+class MoonPhaseButton : UIHoverImageButton
+{
+	private static readonly string[] moons = new[] { "FullMoon", "WaningGibbous", "ThirdQuarter", "WaningCrescent", "NewMoon", "WaxingCrescent", "FirstQuarter", "WaxingGibbous" };
+	private readonly int moonPhase;
+
+	public MoonPhaseButton(int moonPhase) : base("Creativetools/UI Assets/" + moons[moonPhase], Language.GetTextValue("GameUI." + moons[moonPhase]))
+	{
+		this.moonPhase = moonPhase;
+	}
+
+	public override void Click(UIMouseEvent evt)
+	{
+		base.Click(evt);
+		ChangeMoonPhase(moonPhase);
 	}
 
 	private static void ChangeMoonPhase(int phase)
@@ -62,7 +79,7 @@ internal class WeatherControlUI : UIState
 			Main.moonPhase = phase;
 		}
 		else {
-			MultiplayerSystem.SyncMoonPhase(phase);
+			MultiplayerSystem.SendMoonPhasePacket(phase);
 		}
 	}
 }

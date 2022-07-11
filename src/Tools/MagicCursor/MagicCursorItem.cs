@@ -1,4 +1,5 @@
 ﻿using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 using static Creativetools.src.NearestToMouse;
 
@@ -10,6 +11,10 @@ internal class ModifyItem : GlobalItem
 	{
 		if (MagicCursorNPC.MagicCursor && Main.mouseMiddle && Main.item[GetItemMouseClosest()].Hitbox.Distance(Main.MouseWorld) < 500) {
 			Main.item[GetItemMouseClosest()].position = Main.MouseWorld;
+
+			if (Main.netMode != NetmodeID.SinglePlayer) {
+				NetMessage.SendData(MessageID.SyncItem);
+			}
 		}
 	}
 }

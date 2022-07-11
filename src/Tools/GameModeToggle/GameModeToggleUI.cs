@@ -59,7 +59,7 @@ public class GameModeToggleUI : UIState
 				Main.GameMode = worldGameMode.Data;
 			}
 			else {
-				MultiplayerSystem.SyncGameMode((byte)worldGameMode.Data);
+				MultiplayerSystem.SendGamemodePacket((byte)worldGameMode.Data);
 			}
 
 		}

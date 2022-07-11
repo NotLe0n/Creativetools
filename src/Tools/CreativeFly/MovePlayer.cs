@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework.Input;
 using Terraria;
 using Terraria.GameInput;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace Creativetools.src.Tools.CreativeFly;
@@ -37,6 +38,10 @@ internal class MovePlayer : ModPlayer
 			}
 			if (Main.keyState.IsKeyDown(Keys.D)) {
 				Player.position.X += 8 * modifier; //move right
+			}
+
+			if (Main.netMode != NetmodeID.SinglePlayer) {
+				NetMessage.SendData(MessageID.PlayerControls);
 			}
 		}
 	}

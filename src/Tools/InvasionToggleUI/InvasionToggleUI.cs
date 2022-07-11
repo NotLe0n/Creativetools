@@ -3,8 +3,10 @@ using Creativetools.src.UI.Elements;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.Audio;
+using Terraria.Chat;
 using Terraria.ID;
 using Terraria.UI;
+using Terraria.Localization;
 
 namespace Creativetools.src.Tools.InvasionToggleUI;
 
@@ -28,20 +30,25 @@ internal class InvasionToggleUI : UIState
 		buttonGrid.ListPadding = 10f;
 		menuPanel.Append(buttonGrid);
 
-		buttonGrid.Add(new MenuButton("pirateInvasionToggle", "Toggle Pirate invasion", (evt, element) => ToggleInvasion(InvasionID.PirateInvasion)));
-		buttonGrid.Add(new MenuButton("goblinInvasionToggle", "Toggle Goblin invasion", (evt, element) => ToggleInvasion(InvasionID.GoblinArmy)));
-		buttonGrid.Add(new MenuButton("alienInvasionToggle", "Toggle Martian Madness", (evt, element) => ToggleInvasion(InvasionID.MartianMadness)));
-		buttonGrid.Add(new MenuButton("frostLegionToggle", "Toggle Frost Legion", (evt, element) => ToggleInvasion(InvasionID.SnowLegion)));
+		buttonGrid.Add(new MenuButton("pirateInvasionToggle", "Toggle Pirate invasion", (evt, element) => ToggleInvasion2(InvasionID.PirateInvasion)));
+		buttonGrid.Add(new MenuButton("goblinInvasionToggle", "Toggle Goblin invasion", (evt, element) => ToggleInvasion2(InvasionID.GoblinArmy)));
+		buttonGrid.Add(new MenuButton("alienInvasionToggle", "Toggle Martian Madness", (evt, element) => ToggleInvasion2(InvasionID.MartianMadness)));
+		buttonGrid.Add(new MenuButton("frostLegionToggle", "Toggle Frost Legion", (evt, element) => ToggleInvasion2(InvasionID.SnowLegion)));
 		base.OnInitialize();
+	}
+
+	private static void ToggleInvasion2(short type)
+	{
+		if (Main.netMode == NetmodeID.SinglePlayer) {
+			ToggleInvasion(type);
+		}
+		else {
+			MultiplayerSystem.SendInvasionPacket(type);
+		}
 	}
 
 	public static void ToggleInvasion(short type)
 	{
-		if (Main.netMode != NetmodeID.SinglePlayer) {
-			MultiplayerSystem.SyncInvasion(type);
-			return;
-		}
-
 		string[] text = { "", "LegacyMisc.0", "LegacyMisc.4", "LegacyMisc.24", "LegacyMisc.42" };
 
 		if (Main.invasionType == InvasionID.None) {
@@ -50,7 +57,8 @@ internal class InvasionToggleUI : UIState
 		}
 		else {
 			Main.invasionType = InvasionID.None;
-			Main.NewText(Terraria.Localization.Language.GetTextValue(text[type]), 143, 61, 209);
+			var nt = NetworkText.FromLiteral(Language.GetTextValue(text[type]));
+			ChatHelper.BroadcastChatMessage(nt, new(143, 61, 209));
 		}
 	}
 

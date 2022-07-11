@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Creativetools.src.Tools.TPTool;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.Audio;
@@ -11,8 +12,8 @@ namespace Creativetools.src.UI.Elements;
 
 internal class NPCTPCard : UIPanel
 {
-	private NPC _npc;
-	private UIText _NPCPosText;
+	private readonly NPC _npc;
+	private readonly UIText _NPCPosText;
 	public NPCTPCard(NPC npc)
 	{
 		_npc = npc;
@@ -62,7 +63,7 @@ internal class NPCTPCard : UIPanel
 	{
 		SoundEngine.PlaySound(SoundID.Item6);
 
-		Main.LocalPlayer.position = _npc.position;
+		TPToolUI.SetPosition(_npc.position);
 		base.Click(evt);
 	}
 }

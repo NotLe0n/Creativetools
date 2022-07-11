@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System.Linq;
 using Terraria;
 using Terraria.GameContent.UI.Elements;
+using Terraria.ID;
 using Terraria.UI;
 
 namespace Creativetools.src.Tools.TPTool;
@@ -109,13 +110,13 @@ internal class TPToolUI : UIState
 	private void Teleport(UIMouseEvent evt, UIElement listeningElement)
 	{
 		if (relative) {
-			Main.LocalPlayer.position += coordinates;
+			SetPosition(Main.player[Main.myPlayer].position + coordinates);
 		}
 		else {
-			Main.LocalPlayer.position = coordinates;
+			SetPosition(coordinates);
 		}
 
-		Terraria.Audio.SoundEngine.PlaySound(Terraria.ID.SoundID.Item6);
+		Terraria.Audio.SoundEngine.PlaySound(SoundID.Item6);
 	}
 
 	public override void Update(GameTime gameTime)
@@ -132,5 +133,13 @@ internal class TPToolUI : UIState
 		}
 
 		base.Update(gameTime);
+	}
+
+	public static void SetPosition(Vector2 v)
+	{
+		Main.player[Main.myPlayer].position = v;
+		if (Main.netMode != NetmodeID.SinglePlayer) {
+			MultiplayerSystem.SendPlayerPositionPacket(Main.myPlayer, v);
+		}
 	}
 }

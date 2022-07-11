@@ -37,7 +37,7 @@ internal class PlaySoundUI : UIState
 
 		//////////////////Sound/////////////////////
 		var soundSlider = MakeSlider(new UIIntRangedDataValue("", 0, 0, Sounds.Length - 1), out ID, menu, top: 50, left: -10);
-		SliderButtons("Play Sound", soundSlider, button => button.OnClick += (evt, elm) =>
+		soundSlider.AppendSliderButton("Play Sound", () =>
 		{
 			SoundEngine.PlaySound((SoundStyle)Sounds[ID.Data].GetValue(null));
 		}, false);

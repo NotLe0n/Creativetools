@@ -25,7 +25,7 @@ internal class MagicCursorNPC : GlobalNPC
 				npc.netUpdate = true;
 			}
 			Main.npc[GetNPCMouseClosest()].noTileCollide = false;
-			if (Main.netMode == NetmodeID.MultiplayerClient) {
+			if (Main.netMode != NetmodeID.SinglePlayer) {
 				NetMessage.SendData(MessageID.SyncNPC);
 			}
 		}

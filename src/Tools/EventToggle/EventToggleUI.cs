@@ -84,7 +84,7 @@ internal class EventToggleUI : UIState
 				}
 			}
 			else {
-				MultiplayerSystem.SyncEvent(eventID);
+				MultiplayerSystem.SendEventPacket(eventID);
 			}
 		}));
 	}
