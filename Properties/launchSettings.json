@@ -11,6 +11,12 @@
       "executablePath": "dotnet",
       "commandLineArgs": "$(tMLServerPath)",
       "workingDirectory": "$(tMLSteamPath)"
+    },
+    "tModLoader-win": {
+      "commandName": "Executable",
+      "executablePath": "C:/Program Files/dotnet/dotnet.exe",
+      "commandLineArgs": "tModLoader.dll",
+      "workingDirectory": "C:/Program Files (x86)/Steam/steamapps/common/tModLoader"
     }
   }
 }

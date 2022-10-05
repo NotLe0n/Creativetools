@@ -29,6 +29,8 @@ internal class MultiplayerSystem
 	public const byte DownedBossSync = 6;
 	public const byte PlayerPositionSync = 7;
 	public const byte KillPlayerSync = 8;
+	public const byte NPCSync = 9;
+	public const byte ItemPosSync = 10;
 
 	/* EventIDs */
 	public const byte BloodMoonEvent = 0;
@@ -119,6 +121,23 @@ internal class MultiplayerSystem
 	{
 		ModPacket myPacket = CreateLabeledPacket(KillPlayerSync);
 		myPacket.Write(player);
+		myPacket.Send();
+	}
+
+	public static void SendNPCPacket(int id, Vector2 position, Vector2 velocity)
+	{
+		ModPacket myPacket = CreateLabeledPacket(NPCSync);
+		myPacket.Write(id);
+		myPacket.WriteVector2(position);
+		myPacket.WriteVector2(velocity);
+		myPacket.Send();
+	}
+
+	public static void SendItemPosPacket(int id, Vector2 position)
+	{
+		ModPacket myPacket = CreateLabeledPacket(ItemPosSync);
+		myPacket.Write(id);
+		myPacket.WriteVector2(position);
 		myPacket.Send();
 	}
 
@@ -223,6 +242,24 @@ internal class MultiplayerSystem
 				if (Main.netMode == NetmodeID.Server) {
 					Console.WriteLine("kill player: " + whoAmI + " | " + player1);
 					NetMessage.SendPlayerDeath(whoAmI, PlayerDeathReason.LegacyEmpty(), int.MaxValue, 0, false);
+				}
+				break;
+			case NPCSync:
+				int NPCID = reader.ReadInt32();
+				Main.npc[NPCID].position = reader.ReadVector2();
+				Main.npc[NPCID].velocity = reader.ReadVector2();
+				Main.npc[NPCID].netUpdate = true;
+				
+				if (Main.netMode == NetmodeID.Server) {
+					NetMessage.SendData(MessageID.SyncNPC);
+				}
+				break;
+			case ItemPosSync:
+				int ItemID = reader.ReadInt32();
+				Main.item[ItemID].position = reader.ReadVector2();
+				
+				if (Main.netMode == NetmodeID.Server) {
+					NetMessage.SendData(MessageID.SyncItem);
 				}
 				break;
 			default:

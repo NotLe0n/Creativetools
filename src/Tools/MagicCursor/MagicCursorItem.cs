@@ -12,9 +12,7 @@ internal class ModifyItem : GlobalItem
 		if (MagicCursorNPC.MagicCursor && Main.mouseMiddle && Main.item[GetItemMouseClosest()].Hitbox.Distance(Main.MouseWorld) < 500) {
 			Main.item[GetItemMouseClosest()].position = Main.MouseWorld;
 
-			if (Main.netMode != NetmodeID.SinglePlayer) {
-				NetMessage.SendData(MessageID.SyncItem);
-			}
+			MultiplayerSystem.SendItemPosPacket(GetItemMouseClosest(), Main.item[GetItemMouseClosest()].position);
 		}
 	}
 }
