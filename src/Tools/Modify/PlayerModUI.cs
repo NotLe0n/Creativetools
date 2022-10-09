@@ -23,18 +23,18 @@ internal class PlayerModUI : UIState
 		lifeSlider.AppendSliderButton("Set Life", () => Main.LocalPlayer.statLife = lifeDataProperty.Data);
 
 		var manaSlider = MakeSlider(new UIIntRangedDataValue("", 0, 0, 400), out var manaDataProperty, playerMenu, top: 100, left: -10);
-		lifeSlider.AppendSliderButton("Set Mana", () => Main.LocalPlayer.statMana = manaDataProperty.Data);
+		manaSlider.AppendSliderButton("Set Mana", () => Main.LocalPlayer.statMana = manaDataProperty.Data);
 
 		var maxLifeSlider = MakeSlider(new UIIntRangedDataValue("", 0, 0, 999), out var maxLifeDataProperty, playerMenu, top: 150, left: -10);
-		lifeSlider.AppendSliderButton("Set Max Life", () => Main.LocalPlayer.statLifeMax = maxLifeDataProperty.Data);
+		maxLifeSlider.AppendSliderButton("Set Max Life", () => Main.LocalPlayer.statLifeMax = maxLifeDataProperty.Data);
 
 		var maxManaSlider = MakeSlider(new UIIntRangedDataValue("", 0, 0, 400), out var maxManaDataProperty, playerMenu, top: 200, left: -10);
-		lifeSlider.AppendSliderButton("Set Max Mana", () => Main.LocalPlayer.statManaMax = maxManaDataProperty.Data);
+		maxManaSlider.AppendSliderButton("Set Max Mana", () => Main.LocalPlayer.statManaMax = maxManaDataProperty.Data);
 
 		var sizeSlider = MakeSlider(new UIFloatRangedDataValue("", 1, 0.01f, 10), out var sizeDataProperty, playerMenu, top: 250, left: -10);
-		lifeSlider.AppendSliderButton("Set Size", () => ModifyPlayer.playerSize = sizeDataProperty.Data);
+		sizeSlider.AppendSliderButton("Set Size", () => ModifyPlayer.playerSize = sizeDataProperty.Data);
 
 		var luckSlider = MakeSlider(new UIFloatRangedDataValue("", 0, -0.7f, 1), out var luckDataProperty, playerMenu, top: 300, left: -10);
-		lifeSlider.AppendSliderButton("Set Luck", () => ModifyPlayer.luck = luckDataProperty.Data);
+		luckSlider.AppendSliderButton("Set Luck", () => ModifyPlayer.luck = luckDataProperty.Data);
 	}
 }
