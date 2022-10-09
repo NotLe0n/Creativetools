@@ -31,6 +31,9 @@ internal class MultiplayerSystem
 	public const byte KillPlayerSync = 8;
 	public const byte NPCSync = 9;
 	public const byte ItemPosSync = 10;
+	public const byte PlayerHealthSync = 11;
+	public const byte PlayerManaSync = 12;
+
 
 	/* EventIDs */
 	public const byte BloodMoonEvent = 0;
@@ -141,6 +144,24 @@ internal class MultiplayerSystem
 		myPacket.Send();
 	}
 
+	public static void SendPlayerHealthPacket(int id, int curr, int max)
+	{
+		ModPacket myPacket = CreateLabeledPacket(PlayerHealthSync);
+		myPacket.Write(id);
+		myPacket.Write(curr);
+		myPacket.Write(max);
+		myPacket.Send();
+	}
+	
+	public static void SendPlayerManaPacket(int id, int curr, int max)
+	{
+		ModPacket myPacket = CreateLabeledPacket(PlayerManaSync);
+		myPacket.Write(id);
+		myPacket.Write(curr);
+		myPacket.Write(max);
+		myPacket.Send();
+	}
+	
 	public static void HandlePacket(BinaryReader reader, int whoAmI)
 	{
 		byte msgType = reader.ReadByte();
@@ -260,6 +281,24 @@ internal class MultiplayerSystem
 				
 				if (Main.netMode == NetmodeID.Server) {
 					NetMessage.SendData(MessageID.SyncItem);
+				}
+				break;
+			case PlayerHealthSync:
+				int player2 = reader.ReadInt32();
+				Main.player[player2].statLife = reader.ReadInt32();
+				Main.player[player2].statLifeMax = reader.ReadInt32();
+				
+				if (Main.netMode == NetmodeID.Server) {
+					NetMessage.SendData(MessageID.PlayerLifeMana);
+				}
+				break;
+			case PlayerManaSync:
+				int player3 = reader.ReadInt32();
+				Main.player[player3].statMana = reader.ReadInt32();
+				Main.player[player3].statManaMax = reader.ReadInt32();
+				
+				if (Main.netMode == NetmodeID.Server) {
+					NetMessage.SendData(MessageID.PlayerMana);
 				}
 				break;
 			default:
