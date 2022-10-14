@@ -1,6 +1,5 @@
 ﻿using Creativetools.src.Tools.ClearInventory;
 using Creativetools.src.Tools.CreativeFly;
-using Creativetools.src.Tools.CustomNPC;
 using Creativetools.src.Tools.DownedBossToggle;
 using Creativetools.src.Tools.EventToggle;
 using Creativetools.src.Tools.GameInfo;
@@ -56,7 +55,6 @@ internal class MainUI : UIState
 		AddButton("Info", "AssemblyViewer", () => UISystem.UserInterface.SetState(new Tools.AssemblyViewer.AssemblyViewer("Terraria")));
 		AddButton("playSound", "Play Sound", () => UISystem.UserInterface.SetState(new PlaySoundUI()));
 		AddButton("modifyItem", "Modify Item/Player", () => UISystem.UserInterface.SetState(new ItemModUI()));
-		AddButton("custom", "Custom Item/NPC", () => UISystem.UserInterface.SetState(new CustomNPCUI()));
 		AddButton("DownedBossToggle", "DownedBoss Toggle", () => UISystem.UserInterface.SetState(new DownedBossToggleUI()));
 		AddButton("clearInventory", "Clear inventory", () => ConfirmPanel.Visible = true);
 		AddButton("killplayer", "Kill Player", () => KillMe());
