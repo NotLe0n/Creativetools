@@ -1,15 +1,15 @@
-﻿using Creativetools.src.UI.Elements;
+﻿using Creativetools.Tools.AssemblyViewer.Elements;
+using Creativetools.UI;
+using Creativetools.UI.Elements;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Reflection;
-using Creativetools.src.Tools.AssemblyViewer.Elements;
 using Terraria;
 using Terraria.GameContent.UI.Elements;
 using Terraria.UI;
-using Creativetools.src.UI;
 
-namespace Creativetools.src.Tools.AssemblyViewer;
+namespace Creativetools.Tools.AssemblyViewer;
 
 class InspectValue : UIState
 {

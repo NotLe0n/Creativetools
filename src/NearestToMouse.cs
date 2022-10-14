@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Terraria;
 
-namespace Creativetools.src;
+namespace Creativetools;
 
 internal class NearestToMouse
 {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Creativetools.src.UI.Elements;
+namespace Creativetools.UI.Elements;
 
 /// <summary>
 /// Purely a data storage

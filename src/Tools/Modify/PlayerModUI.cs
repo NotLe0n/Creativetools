@@ -1,11 +1,10 @@
-﻿using Creativetools.src.UI;
-using Creativetools.src.UI.Elements;
+﻿using Creativetools.UI;
+using Creativetools.UI.Elements;
 using Terraria;
-using Terraria.ID;
 using Terraria.UI;
-using static Creativetools.src.UI.UIHelper;
+using static Creativetools.UI.UIHelper;
 
-namespace Creativetools.src.Tools.Modify;
+namespace Creativetools.Tools.Modify;
 
 internal class PlayerModUI : UIState
 {

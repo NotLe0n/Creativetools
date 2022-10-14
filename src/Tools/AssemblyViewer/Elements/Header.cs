@@ -1,11 +1,9 @@
-﻿using Creativetools.src.UI;
+﻿using Creativetools.UI;
 using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.GameContent;
-using Terraria.GameContent.UI.Elements;
 using Terraria.UI;
 
-namespace Creativetools.src.Tools.AssemblyViewer.Elements;
+namespace Creativetools.Tools.AssemblyViewer.Elements;
 
 class Header : UIElement
 {

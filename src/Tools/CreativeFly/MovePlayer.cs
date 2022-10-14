@@ -4,7 +4,7 @@ using Terraria.GameInput;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Creativetools.src.Tools.CreativeFly;
+namespace Creativetools.Tools.CreativeFly;
 
 internal class MovePlayer : ModPlayer
 {

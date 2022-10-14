@@ -1,4 +1,4 @@
-﻿using Creativetools.src.UI.Elements;
+﻿using Creativetools.UI.Elements;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.Audio;
@@ -6,7 +6,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.UI;
 
-namespace Creativetools.src.UI;
+namespace Creativetools.UI;
 
 internal class ButtonUI : UIState
 {

@@ -3,7 +3,7 @@ using System.Reflection;
 using Terraria.GameContent.UI.Elements;
 using Terraria.UI;
 
-namespace Creativetools.src.UI.Elements;
+namespace Creativetools.UI.Elements;
 
 // Original: https://github.com/Pbone3/FargowiltasSouls/blob/master/UI/UIToggleList.cs (1.3)
 // THANK YOU PBONE <33333333

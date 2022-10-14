@@ -4,7 +4,7 @@ using Terraria;
 using Terraria.GameContent.UI.Elements;
 using Terraria.UI;
 
-namespace Creativetools.src.UI.Elements;
+namespace Creativetools.UI.Elements;
 
 public class DragableUIPanel : UIPanel
 {
@@ -34,7 +34,7 @@ public class DragableUIPanel : UIPanel
 		closeBtn.Width.Set(40, 0);
 		closeBtn.Left.Set(-40, 1f);
 		closeBtn.BackgroundColor.A = 255;
-		closeBtn.OnClick += (evt, elm) => OnCloseBtnClicked?.Invoke();
+		closeBtn.OnClick += (_, _) => OnCloseBtnClicked?.Invoke();
 		header.Append(closeBtn);
 	}
 	public override void OnInitialize()

@@ -1,5 +1,5 @@
-﻿using Creativetools.src.UI;
-using Creativetools.src.UI.Elements;
+﻿using Creativetools.UI;
+using Creativetools.UI.Elements;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Linq;
@@ -8,15 +8,15 @@ using Terraria.GameContent.UI.Elements;
 using Terraria.ID;
 using Terraria.UI;
 
-namespace Creativetools.src.Tools.TPTool;
+namespace Creativetools.Tools.TPTool;
 
 internal class TPToolUI : UIState
 {
-	private bool relative = false;
+	private bool relative;
 	private Vector2 coordinates = Vector2.Zero;
-	private UIList NPCList;
+	private readonly UIList NPCList;
 
-	public override void OnInitialize()
+	public TPToolUI()
 	{
 		var panel = new DragableUIPanel("TP Tool") { VAlign = 0.5f, HAlign = 0.1f };
 		panel.Width.Set(450, 0);
@@ -24,49 +24,49 @@ internal class TPToolUI : UIState
 		panel.OnCloseBtnClicked += () => UISystem.UserInterface.SetState(new MainUI());
 		Append(panel);
 
-		var tp2coords = new UIText("TP to coordinates:");
-		tp2coords.Top.Set(40, 0);
-		tp2coords.Left.Set(20, 0);
-		panel.Append(tp2coords);
+		var tp2Coords = new UIText("TP to coordinates:");
+		tp2Coords.Top.Set(40, 0);
+		tp2Coords.Left.Set(20, 0);
+		panel.Append(tp2Coords);
 
-		var tp2coordsX = new UIText("X:");
-		tp2coordsX.Top.Set(60, 0);
-		tp2coordsX.Left.Set(20, 0);
-		panel.Append(tp2coordsX);
+		var tp2CoordsX = new UIText("X:");
+		tp2CoordsX.Top.Set(60, 0);
+		tp2CoordsX.Left.Set(20, 0);
+		panel.Append(tp2CoordsX);
 
-		var tp2coordsY = new UIText("Y:");
-		tp2coordsY.Top.Set(80, 0);
-		tp2coordsY.Left.Set(20, 0);
-		panel.Append(tp2coordsY);
+		var tp2CoordsY = new UIText("Y:");
+		tp2CoordsY.Top.Set(80, 0);
+		tp2CoordsY.Left.Set(20, 0);
+		panel.Append(tp2CoordsY);
 
-		var tp2coordsXInput = new NewUITextBox("0");
-		tp2coordsXInput.Width.Set(100, 0);
-		tp2coordsXInput.Height.Set(20, 0);
-		tp2coordsXInput.Top.Set(60, 0);
-		tp2coordsXInput.Left.Set(50, 0);
-		tp2coordsXInput.OnUnfocus += () => coordinates.X = float.TryParse(tp2coordsXInput.Text, out float temp) ? temp : coordinates.X;
-		tp2coordsXInput.unfocusOnEnter = true;
-		panel.Append(tp2coordsXInput);
+		var tp2CoordsXInput = new NewUITextBox("0");
+		tp2CoordsXInput.Width.Set(100, 0);
+		tp2CoordsXInput.Height.Set(20, 0);
+		tp2CoordsXInput.Top.Set(60, 0);
+		tp2CoordsXInput.Left.Set(50, 0);
+		tp2CoordsXInput.OnUnfocus += () => coordinates.X = float.TryParse(tp2CoordsXInput.Text, out float temp) ? temp : coordinates.X;
+		tp2CoordsXInput.unfocusOnEnter = true;
+		panel.Append(tp2CoordsXInput);
 
-		var tp2coordsYInput = new NewUITextBox("0");
-		tp2coordsYInput.Width.Set(100, 0);
-		tp2coordsYInput.Height.Set(20, 0);
-		tp2coordsYInput.Top.Set(80, 0);
-		tp2coordsYInput.Left.Set(50, 0);
-		tp2coordsYInput.OnUnfocus += () => coordinates.Y = float.TryParse(tp2coordsYInput.Text, out float temp) ? temp : coordinates.Y;
-		tp2coordsYInput.unfocusOnEnter = true;
-		panel.Append(tp2coordsYInput);
+		var tp2CoordsYInput = new NewUITextBox("0");
+		tp2CoordsYInput.Width.Set(100, 0);
+		tp2CoordsYInput.Height.Set(20, 0);
+		tp2CoordsYInput.Top.Set(80, 0);
+		tp2CoordsYInput.Left.Set(50, 0);
+		tp2CoordsYInput.OnUnfocus += () => coordinates.Y = float.TryParse(tp2CoordsYInput.Text, out float temp) ? temp : coordinates.Y;
+		tp2CoordsYInput.unfocusOnEnter = true;
+		panel.Append(tp2CoordsYInput);
 
-		var tp2relativeCoordsText = new UIText("relative");
-		tp2relativeCoordsText.Top.Set(120, 0);
-		tp2relativeCoordsText.Left.Set(20, 0);
-		panel.Append(tp2relativeCoordsText);
+		var tp2RelativeCoordsText = new UIText("relative");
+		tp2RelativeCoordsText.Top.Set(120, 0);
+		tp2RelativeCoordsText.Left.Set(20, 0);
+		panel.Append(tp2RelativeCoordsText);
 
-		var tp2relativeCoords = new UIToggleImage(Main.Assets.Request<Texture2D>("Images\\UI\\Settings_Toggle"), 13, 13, new Point(17, 1), new Point(1, 1));
-		tp2relativeCoords.Top.Set(120, 0);
-		tp2relativeCoords.Left.Set(80, 0);
-		tp2relativeCoords.OnClick += (evt, elm) => relative = tp2relativeCoords.IsOn;
-		panel.Append(tp2relativeCoords);
+		var tp2RelativeCoords = new UIToggleImage(Main.Assets.Request<Texture2D>("Images\\UI\\Settings_Toggle"), 13, 13, new Point(17, 1), new Point(1, 1));
+		tp2RelativeCoords.Top.Set(120, 0);
+		tp2RelativeCoords.Left.Set(80, 0);
+		tp2RelativeCoords.OnClick += (_, _) => relative = tp2RelativeCoords.IsOn;
+		panel.Append(tp2RelativeCoords);
 
 		var tpBtn = new UITextPanel<string>("Teleport");
 		tpBtn.Width.Set(20, 0);
@@ -103,8 +103,6 @@ internal class TPToolUI : UIState
 			NPCCard.Height.Set(50, 0);
 			NPCList.Add(NPCCard);
 		}
-
-		base.OnInitialize();
 	}
 
 	private void Teleport(UIMouseEvent evt, UIElement listeningElement)

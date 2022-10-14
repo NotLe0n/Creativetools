@@ -1,16 +1,16 @@
-﻿using Creativetools.src.UI;
-using Creativetools.src.UI.Elements;
+﻿using Creativetools.Tools.AssemblyViewer.Elements;
+using Creativetools.UI;
+using Creativetools.UI.Elements;
+using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using Terraria.UI;
 using Terraria;
 using Terraria.GameContent.UI.Elements;
-using Microsoft.Xna.Framework;
-using Creativetools.src.Tools.AssemblyViewer.Elements;
+using Terraria.UI;
 
-namespace Creativetools.src.Tools.AssemblyViewer;
+namespace Creativetools.Tools.AssemblyViewer;
 
 class AssemblyViewer : UIState
 {

@@ -1,9 +1,8 @@
 ﻿using Terraria;
-using Terraria.ID;
 using Terraria.ModLoader;
-using static Creativetools.src.NearestToMouse;
+using static Creativetools.NearestToMouse;
 
-namespace Creativetools.src.Tools.MagicCursor;
+namespace Creativetools.Tools.MagicCursor;
 
 internal class ModifyItem : GlobalItem
 {

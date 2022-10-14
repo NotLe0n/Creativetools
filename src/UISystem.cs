@@ -1,6 +1,6 @@
-﻿using Creativetools.src.Tools.ClearInventory;
-using Creativetools.src.Tools.GameInfo;
-using Creativetools.src.UI;
+﻿using Creativetools.Tools.ClearInventory;
+using Creativetools.Tools.GameInfo;
+using Creativetools.UI;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
@@ -9,7 +9,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.UI;
 
-namespace Creativetools.src;
+namespace Creativetools;
 
 internal class UISystem : ModSystem
 {

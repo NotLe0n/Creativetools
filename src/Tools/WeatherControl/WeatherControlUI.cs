@@ -1,16 +1,14 @@
-﻿using Creativetools.src.UI;
-using Creativetools.src.UI.Elements;
+﻿using Creativetools.UI.Elements;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
 using Terraria.GameContent.UI.Elements;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.UI;
-using static Creativetools.src.UI.UIHelper;
+using static Creativetools.UI.UIHelper;
 
-namespace Creativetools.src.Tools.WeatherControl;
+namespace Creativetools.Tools.WeatherControl;
 
 internal class WeatherControlUI : UIState
 {

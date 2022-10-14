@@ -1,5 +1,5 @@
-﻿using Creativetools.src.UI;
-using Creativetools.src.UI.Elements;
+﻿using Creativetools.UI;
+using Creativetools.UI.Elements;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -9,11 +9,11 @@ using Terraria.GameContent.UI.Elements;
 using Terraria.ID;
 using Terraria.UI;
 
-namespace Creativetools.src.Tools.DownedBossToggle;
+namespace Creativetools.Tools.DownedBossToggle;
 
 public class DownedBossToggleUI : UIState
 {
-	private UIList toggleList, textList;
+	private readonly UIList toggleList, textList;
 
 	public DownedBossToggleUI(float viewPosition = 0)
 	{
@@ -87,7 +87,7 @@ public class DownedBossToggleUI : UIState
 		resetBtn.Left.Set(0, 0.5f);
 		resetBtn.Top.Set(0, 0.92f);
 		resetBtn.Width.Set(0, 0.3f);
-		resetBtn.OnClick += (evt, elm) => SetAll2(false);
+		resetBtn.OnClick += (_, _) => SetAll2(false);
 		panel.Append(resetBtn);
 
 		var allTrueBtn = new UITextPanel<string>("Check all");
@@ -95,7 +95,7 @@ public class DownedBossToggleUI : UIState
 		allTrueBtn.Left.Set(0, 0.1f);
 		allTrueBtn.Top.Set(0, 0.92f);
 		allTrueBtn.Width.Set(0, 0.3f);
-		allTrueBtn.OnClick += (evt, elm) => SetAll2(true);
+		allTrueBtn.OnClick += (_, _) => SetAll2(true);
 		panel.Append(allTrueBtn);
 
 		base.OnInitialize();
@@ -110,7 +110,7 @@ public class DownedBossToggleUI : UIState
 		// append toggle
 		var toggle = new UIToggleImage(Main.Assets.Request<Texture2D>("Images\\UI\\Settings_Toggle"), 13, 13, new Point(17, 1), new Point(1, 1));
 		toggle.SetState((bool)field.GetValue(type));
-		toggle.OnClick += (evt, elm) => SetField(field, toggle.IsOn);
+		toggle.OnClick += (_, _) => SetField(field, toggle.IsOn);
 		toggleList.Add(toggle);
 
 		// append text

@@ -1,14 +1,12 @@
-﻿using Creativetools.src.UI;
-using Creativetools.src.UI.Elements;
+﻿using Creativetools.UI.Elements;
 using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.Audio;
 using Terraria.Chat;
 using Terraria.ID;
-using Terraria.UI;
 using Terraria.Localization;
+using Terraria.UI;
 
-namespace Creativetools.src.Tools.InvasionToggleUI;
+namespace Creativetools.Tools.InvasionToggleUI;
 
 internal class InvasionToggleUI : UIState
 {
@@ -30,10 +28,10 @@ internal class InvasionToggleUI : UIState
 		buttonGrid.ListPadding = 10f;
 		menuPanel.Append(buttonGrid);
 
-		buttonGrid.Add(new MenuButton("pirateInvasionToggle", "Toggle Pirate invasion", (evt, element) => ToggleInvasion2(InvasionID.PirateInvasion)));
-		buttonGrid.Add(new MenuButton("goblinInvasionToggle", "Toggle Goblin invasion", (evt, element) => ToggleInvasion2(InvasionID.GoblinArmy)));
-		buttonGrid.Add(new MenuButton("alienInvasionToggle", "Toggle Martian Madness", (evt, element) => ToggleInvasion2(InvasionID.MartianMadness)));
-		buttonGrid.Add(new MenuButton("frostLegionToggle", "Toggle Frost Legion", (evt, element) => ToggleInvasion2(InvasionID.SnowLegion)));
+		buttonGrid.Add(new MenuButton("pirateInvasionToggle", "Toggle Pirate invasion", (_, _) => ToggleInvasion2(InvasionID.PirateInvasion)));
+		buttonGrid.Add(new MenuButton("goblinInvasionToggle", "Toggle Goblin invasion", (_, _) => ToggleInvasion2(InvasionID.GoblinArmy)));
+		buttonGrid.Add(new MenuButton("alienInvasionToggle", "Toggle Martian Madness", (_, _) => ToggleInvasion2(InvasionID.MartianMadness)));
+		buttonGrid.Add(new MenuButton("frostLegionToggle", "Toggle Frost Legion", (_, _) => ToggleInvasion2(InvasionID.SnowLegion)));
 		base.OnInitialize();
 	}
 

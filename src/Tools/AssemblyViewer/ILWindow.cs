@@ -1,20 +1,18 @@
-﻿using System.Reflection;
-using Terraria;
-using Creativetools.src.UI.Elements;
-using Mono.Reflection;
-using Terraria.GameContent.UI.Elements;
-using Terraria.UI;
-using System.Collections.Generic;
+﻿using Creativetools.Tools.AssemblyViewer.Elements;
+using Creativetools.UI.Elements;
 using ICSharpCode.Decompiler;
 using ICSharpCode.Decompiler.CSharp;
-using System.Linq;
 using ICSharpCode.Decompiler.TypeSystem;
-using Terraria.ModLoader;
-using ReLogic.Graphics;
-using Creativetools.src.Tools.AssemblyViewer.Elements;
+using Mono.Reflection;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 using System.Text.RegularExpressions;
+using Terraria;
+using Terraria.GameContent.UI.Elements;
+using Terraria.UI;
 
-namespace Creativetools.src.Tools.AssemblyViewer;
+namespace Creativetools.Tools.AssemblyViewer;
 
 class ILWindow : UIState
 {
@@ -41,7 +39,7 @@ class ILWindow : UIState
 			invokeButton.Left.Set(10, 0);
 			invokeButton.Width.Set(100, 0);
 			invokeButton.Height.Set(10, 0);
-			invokeButton.OnClick += (evt, elm) =>
+			invokeButton.OnClick += (_, _) =>
 			{
 				object ret = method.Invoke(null, null);
 				Main.NewText($"<AssemblyViewer> Invoked method [c/FF0000:{method.Name}()] successfully!");
@@ -80,7 +78,7 @@ class ILWindow : UIState
 		changeViewBtn.Left.Set(10, 0.85f);
 		changeViewBtn.Width.Set(20, 0);
 		changeViewBtn.Height.Set(20, 0);
-		changeViewBtn.OnClick += (evt, elm) =>
+		changeViewBtn.OnClick += (_, _) =>
 		{
 			list.Clear();
 

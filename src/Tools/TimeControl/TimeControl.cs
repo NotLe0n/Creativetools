@@ -4,7 +4,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Creativetools.src.Tools.TimeControl;
+namespace Creativetools.Tools.TimeControl;
 
 class TimeControl : ModSystem
 {

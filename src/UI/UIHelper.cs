@@ -1,4 +1,4 @@
-﻿using Creativetools.src.UI.Elements;
+﻿using Creativetools.UI.Elements;
 using Microsoft.Xna.Framework;
 using ReLogic.Graphics;
 using System;
@@ -8,7 +8,7 @@ using Terraria.GameContent.UI.Elements;
 using Terraria.ID;
 using Terraria.UI;
 
-namespace Creativetools.src.UI;
+namespace Creativetools.UI;
 
 /// <summary>
 /// Helps make UI code smaller and easier to work with.
@@ -29,7 +29,7 @@ internal static class UIHelper
 		button.MarginLeft = 20;
 		button.Width.Set(10, 0f);
 
-		button.OnClick += (_, __) =>
+		button.OnClick += (_, _) =>
 		{
 			if (tick) {
 				SoundEngine.PlaySound(SoundID.MenuTick);

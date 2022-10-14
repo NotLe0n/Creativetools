@@ -7,7 +7,7 @@ using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.UI;
 
-namespace Creativetools.src.UI.Elements;
+namespace Creativetools.UI.Elements;
 
 internal class UISlider : UIElement
 {
@@ -27,7 +27,7 @@ internal class UISlider : UIElement
 		_toggleTexture = Main.Assets.Request<Texture2D>("Images\\UI\\Settings_Toggle").Value;
 		_TextDisplayFunction = getText ?? (() => "???");
 		_GetStatusFunction = getStatus ?? (() => 0f);
-		_SlideKeyboardAction = setStatusKeyboard ?? ((s) => { });
+		_SlideKeyboardAction = setStatusKeyboard ?? ((_) => { });
 		_SlideGamepadAction = setStatusGamepad ?? (() => { });
 		_sliderIDInPage = sliderIDInPage;
 	}

@@ -1,10 +1,10 @@
-﻿using System.Reflection;
+﻿using Microsoft.Xna.Framework.Graphics;
+using System.Reflection;
 using Terraria.GameContent.UI.Elements;
-using Terraria.UI;
-using Microsoft.Xna.Framework.Graphics;
 using Terraria.ModLoader;
+using Terraria.UI;
 
-namespace Creativetools.src.Tools.AssemblyViewer.Elements;
+namespace Creativetools.Tools.AssemblyViewer.Elements;
 
 class MethodButton : UIFontText
 {

@@ -4,10 +4,10 @@ using System;
 using Terraria;
 using Terraria.GameContent;
 using Terraria.GameContent.UI.Elements;
-using Terraria.UI;
 using Terraria.ModLoader;
+using Terraria.UI;
 
-namespace Creativetools.src.UI.Elements;
+namespace Creativetools.UI.Elements;
 
 // thanks jopojelly
 internal class UIRange<T> : UIElement
@@ -91,7 +91,7 @@ internal class UIRange<T> : UIElement
 	{
 		Height.Set(20f, 0f);
 		_GetProportion = getProportion ?? (() => 0f);
-		_SetProportion = setProportion ?? ((s) => { });
+		_SetProportion = setProportion ?? ((_) => { });
 
 		if (fine) {
 			label = new UIText(labeltext, 0.85f);

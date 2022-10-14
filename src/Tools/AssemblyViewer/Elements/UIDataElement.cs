@@ -1,5 +1,5 @@
-﻿using Creativetools.src.UI;
-using Creativetools.src.UI.Elements;
+﻿using Creativetools.UI;
+using Creativetools.UI.Elements;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -7,7 +7,7 @@ using Terraria;
 using Terraria.GameContent.UI.Elements;
 using Terraria.UI;
 
-namespace Creativetools.src.Tools.AssemblyViewer.Elements;
+namespace Creativetools.Tools.AssemblyViewer.Elements;
 
 class UIDataElement : UIElement
 {
@@ -41,7 +41,7 @@ class UIDataElement : UIElement
 		toggle.SetState(data);
 		toggle.Left.Set(50, Left.Precent);
 		toggle.Top.Set(6, 0);
-		toggle.OnClick += (evt, elm) => OnValueChanged.Invoke(!(bool)this.data);
+		toggle.OnClick += (_, _) => OnValueChanged.Invoke(!(bool)this.data);
 		Append(toggle);
 	}
 	#region numeric

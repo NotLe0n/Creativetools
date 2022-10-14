@@ -1,24 +1,25 @@
-﻿using Creativetools.src.Tools.ClearInventory;
-using Creativetools.src.Tools.CreativeFly;
-using Creativetools.src.Tools.DownedBossToggle;
-using Creativetools.src.Tools.EventToggle;
-using Creativetools.src.Tools.GameInfo;
-using Creativetools.src.Tools.GameModeToggle;
-using Creativetools.src.Tools.InvasionToggleUI;
-using Creativetools.src.Tools.MagicCursor;
-using Creativetools.src.Tools.Modify;
-using Creativetools.src.Tools.Playsound;
-using Creativetools.src.Tools.TPTool;
-using Creativetools.src.Tools.WeatherControl;
-using Creativetools.src.UI.Elements;
+﻿using Creativetools.Tools.AssemblyViewer;
+using Creativetools.Tools.ClearInventory;
+using Creativetools.Tools.CreativeFly;
+using Creativetools.Tools.DownedBossToggle;
+using Creativetools.Tools.EventToggle;
+using Creativetools.Tools.GameInfo;
+using Creativetools.Tools.GameModeToggle;
+using Creativetools.Tools.InvasionToggleUI;
+using Creativetools.Tools.MagicCursor;
+using Creativetools.Tools.Modify;
+using Creativetools.Tools.Playsound;
+using Creativetools.Tools.TPTool;
+using Creativetools.Tools.WeatherControl;
+using Creativetools.UI.Elements;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.Audio;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.UI;
-using Terraria.DataStructures;
 
-namespace Creativetools.src.UI;
+namespace Creativetools.UI;
 
 internal class MainUI : UIState
 {
@@ -52,12 +53,12 @@ internal class MainUI : UIState
 
 		// 2. Zeile
 		AddButton("Info", "Game Info", () => GameInfo.Visible = !GameInfo.Visible);
-		AddButton("Info", "AssemblyViewer", () => UISystem.UserInterface.SetState(new Tools.AssemblyViewer.AssemblyViewer("Terraria")));
+		AddButton("Info", "AssemblyViewer", () => UISystem.UserInterface.SetState(new AssemblyViewer("Terraria")));
 		AddButton("playSound", "Play Sound", () => UISystem.UserInterface.SetState(new PlaySoundUI()));
 		AddButton("modifyItem", "Modify Item/Player", () => UISystem.UserInterface.SetState(new ItemModUI()));
 		AddButton("DownedBossToggle", "DownedBoss Toggle", () => UISystem.UserInterface.SetState(new DownedBossToggleUI()));
 		AddButton("clearInventory", "Clear inventory", () => ConfirmPanel.Visible = true);
-		AddButton("killplayer", "Kill Player", () => KillMe());
+		AddButton("killplayer", "Kill Player", KillMe);
 	}
 
 	public override void Update(GameTime gameTime)
@@ -72,7 +73,7 @@ internal class MainUI : UIState
 
 	private void AddButton(string iconName, string name, System.Action action)
 	{
-		buttonGrid.Add(new MenuButton(iconName, name, (evt, elm) => action()));
+		buttonGrid.Add(new MenuButton(iconName, name, (_, _) => action()));
 	}
 
 	private void ToggleHardmode()

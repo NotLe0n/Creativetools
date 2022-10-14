@@ -1,13 +1,13 @@
-﻿using Creativetools.src.UI;
-using Creativetools.src.UI.Elements;
+﻿using Creativetools.UI;
+using Creativetools.UI.Elements;
 using Terraria;
 using Terraria.Audio;
 using Terraria.GameContent.UI.Elements;
 using Terraria.ID;
 using Terraria.UI;
-using static Creativetools.src.UI.UIHelper;
+using static Creativetools.UI.UIHelper;
 
-namespace Creativetools.src.Tools.Modify;
+namespace Creativetools.Tools.Modify;
 
 internal class ItemModUI : UIState
 {
@@ -48,7 +48,7 @@ internal class ItemModUI : UIState
 		autoswingButton.MarginLeft = 10;
 		autoswingButton.MarginTop = 400;
 		autoswingButton.Width.Set(10, 0f);
-		autoswingButton.OnClick += (evt, elm) =>
+		autoswingButton.OnClick += (_, _) =>
 		{
 			ToggleAutoSwing();
 			SoundEngine.PlaySound(SoundID.MenuTick);
@@ -60,7 +60,7 @@ internal class ItemModUI : UIState
 		turnaroundButton.MarginLeft = 275;
 		turnaroundButton.MarginTop = 400;
 		turnaroundButton.Width.Set(10, 0f);
-		turnaroundButton.OnClick += (evt, elm) =>
+		turnaroundButton.OnClick += (_, _) =>
 		{
 			ToggleTurnAround();
 			SoundEngine.PlaySound(SoundID.MenuTick);

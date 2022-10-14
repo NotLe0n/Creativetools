@@ -1,38 +1,33 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Terraria;
-using Terraria.ModLoader;
-using Terraria.ID;
-using System.Reflection;
-using System.IO;
-using Creativetools.src.Tools.EventToggle;
-using Creativetools.src.Tools.InvasionToggleUI;
-using Newtonsoft.Json;
-using Creativetools.src.Tools.DownedBossToggle;
+﻿using Creativetools.Tools.DownedBossToggle;
+using Creativetools.Tools.EventToggle;
+using Creativetools.Tools.InvasionToggleUI;
+using Creativetools.UI;
 using Microsoft.Xna.Framework;
+using System;
+using System.IO;
+using Terraria;
 using Terraria.DataStructures;
-using Creativetools.src.UI;
+using Terraria.ID;
+using Terraria.ModLoader;
 
-namespace Creativetools.src;
+namespace Creativetools;
 
 internal class MultiplayerSystem
 {
 	/* SyncIDs */
-	public const byte EventSync = 0;
-	public const byte InvasionSync = 1;
-	public const byte HardmodeSync = 2;
-	public const byte GamemodeSync = 3;
-	public const byte MoonPhaseSync = 4;
-	public const byte TimeSync = 5;
-	public const byte DownedBossSync = 6;
-	public const byte PlayerPositionSync = 7;
-	public const byte KillPlayerSync = 8;
-	public const byte NPCSync = 9;
-	public const byte ItemPosSync = 10;
-	public const byte PlayerHealthSync = 11;
-	public const byte PlayerManaSync = 12;
+	private const byte EventSync = 0;
+	private const byte InvasionSync = 1;
+	private const byte HardmodeSync = 2;
+	private const byte GamemodeSync = 3;
+	private const byte MoonPhaseSync = 4;
+	private const byte TimeSync = 5;
+	private const byte DownedBossSync = 6;
+	private const byte PlayerPositionSync = 7;
+	private const byte KillPlayerSync = 8;
+	private const byte NPCSync = 9;
+	private const byte ItemPosSync = 10;
+	private const byte PlayerHealthSync = 11;
+	private const byte PlayerManaSync = 12;
 
 
 	/* EventIDs */
@@ -240,7 +235,7 @@ internal class MultiplayerSystem
 					DownedBossToggleUI.SetAll(state2);
 				}
 				else {
-					typeof(NPC).GetField(fieldName).SetValue(typeof(NPC), state2);
+					typeof(NPC).GetField(fieldName)?.SetValue(typeof(NPC), state2);
 				}
 				
 				if (Main.netMode == NetmodeID.Server) {

@@ -8,7 +8,7 @@ using Terraria.GameContent;
 using Terraria.GameContent.UI.Elements;
 using Terraria.UI;
 
-namespace Creativetools.src.UI.Elements;
+namespace Creativetools.UI.Elements;
 
 //ty jopojelly and darthmorf
 internal class NewUITextBox : UIPanel

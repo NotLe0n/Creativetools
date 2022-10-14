@@ -1,14 +1,11 @@
-﻿using Creativetools.src.UI;
-using Creativetools.src.UI.Elements;
+﻿using Creativetools.UI.Elements;
 using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.Audio;
 using Terraria.GameContent.Events;
 using Terraria.ID;
-using Terraria.ModLoader;
 using Terraria.UI;
 
-namespace Creativetools.src.Tools.EventToggle;
+namespace Creativetools.Tools.EventToggle;
 
 internal class EventToggleUI : UIState
 {
@@ -66,7 +63,7 @@ internal class EventToggleUI : UIState
 
 	private void AddButton(string iconName, string name, byte eventID)
 	{
-		buttonGrid.Add(new MenuButton(iconName, name, (evt, elm) =>
+		buttonGrid.Add(new MenuButton(iconName, name, (_, _) =>
 		{
 			if (Main.netMode == NetmodeID.SinglePlayer) {
 				switch (eventID) {

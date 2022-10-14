@@ -5,9 +5,9 @@ using Terraria.GameContent;
 using Terraria.GameContent.UI.Elements;
 using Terraria.ModLoader;
 using Terraria.UI;
-using static Creativetools.src.NearestToMouse;
+using static Creativetools.NearestToMouse;
 
-namespace Creativetools.src.Tools.GameInfo;
+namespace Creativetools.Tools.GameInfo;
 
 internal class GameInfo : UIState
 {
