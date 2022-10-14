@@ -81,6 +81,7 @@ public class DownedBossToggleUI : UIState
 		AddToggle("downedTowerNebula");
 		AddToggle("downedTowerStardust");
 		AddToggle("downedMoonlord");
+		AddToggle("downedDeerclops");
 
 		var resetBtn = new UITextPanel<string>("Uncheck all");
 		resetBtn.SetPadding(4);
@@ -152,6 +153,6 @@ public class DownedBossToggleUI : UIState
 		NPC.downedFrost = NPC.downedPirates = NPC.downedClown = NPC.downedPlantBoss = NPC.downedGolemBoss = NPC.downedGolemBoss = NPC.downedMartians = NPC.downedFishron =
 		NPC.downedHalloweenTree = NPC.downedHalloweenKing = NPC.downedChristmasIceQueen = NPC.downedChristmasTree = NPC.downedChristmasIceQueen = NPC.downedChristmasTree =
 		NPC.downedChristmasSantank = NPC.downedAncientCultist = NPC.downedMoonlord = NPC.downedTowerSolar = NPC.downedTowerVortex = NPC.downedTowerNebula = NPC.downedTowerStardust =
-		NPC.downedMechBossAny = NPC.downedMechBoss1 = NPC.downedMechBoss2 = NPC.downedAncientCultist = NPC.downedMechBoss3 = NPC.downedEmpressOfLight = NPC.downedQueenSlime = state;
+		NPC.downedMechBossAny = NPC.downedMechBoss1 = NPC.downedMechBoss2 = NPC.downedAncientCultist = NPC.downedMechBoss3 = NPC.downedEmpressOfLight = NPC.downedQueenSlime = NPC.downedDeerclops = state;
 	}
 }
