@@ -7,16 +7,24 @@ using Terraria.UI;
 
 namespace Creativetools.Tools.GameModeToggle;
 
-public enum GameModeID
-{
-	Classic,
-	Expert,
-	Master,
-	Journey
-}
-
 public class GameModeToggleUI : UIState
 {
+	private enum WorldGameModeID
+	{
+		Classic,
+		Expert,
+		Master,
+		Journey
+	}
+
+	private enum PlayerGameModeID
+	{
+		Classic,
+		Mediumcore,
+		Hardcore,
+		Journey
+	}
+	
 	private readonly UIIntRangedDataValue worldGameMode;
 	private readonly UIText worldGameModeText;
 
@@ -63,8 +71,8 @@ public class GameModeToggleUI : UIState
 		}
 		Main.LocalPlayer.difficulty = (byte)playerGameMode.Data;
 
-		worldGameModeText?.SetText(((GameModeID)Main.GameMode).ToString());
-		playerGameModeText?.SetText(((GameModeID)Main.LocalPlayer.difficulty).ToString());
+		worldGameModeText?.SetText(((WorldGameModeID)Main.GameMode).ToString());
+		playerGameModeText?.SetText(((PlayerGameModeID)Main.LocalPlayer.difficulty).ToString());
 	}
 
 
