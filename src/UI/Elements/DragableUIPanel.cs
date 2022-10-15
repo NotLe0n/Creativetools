@@ -4,13 +4,13 @@ using Terraria;
 using Terraria.GameContent.UI.Elements;
 using Terraria.UI;
 
-namespace Creativetools.src.UI.Elements;
+namespace Creativetools.UI.Elements;
 
 public class DragableUIPanel : UIPanel
 {
 	public bool active = false;
 	public event Action OnCloseBtnClicked;
-	internal UIPanel header;
+	internal readonly UIPanel header;
 
 	public DragableUIPanel(string headingtext)
 	{
@@ -34,7 +34,7 @@ public class DragableUIPanel : UIPanel
 		closeBtn.Width.Set(40, 0);
 		closeBtn.Left.Set(-40, 1f);
 		closeBtn.BackgroundColor.A = 255;
-		closeBtn.OnClick += (evt, elm) => OnCloseBtnClicked?.Invoke();
+		closeBtn.OnClick += (_, _) => OnCloseBtnClicked?.Invoke();
 		header.Append(closeBtn);
 	}
 	public override void OnInitialize()
@@ -79,8 +79,7 @@ public class DragableUIPanel : UIPanel
 			Main.LocalPlayer.mouseInterface = true;
 
 
-		if (dragging)
-		{
+		if (dragging) {
 			Left.Set(Main.mouseX - offset.X, 0f);
 			Top.Set(Main.mouseY - offset.Y, 0f);
 			Recalculate();
@@ -92,8 +91,7 @@ public class DragableUIPanel : UIPanel
 		// (In our example, the parent would be ExampleUI, a UIState. This means that we are checking that the DragableUIPanel is outside the whole screen)
 		// By doing this and some simple math, we can snap the panel back on screen if the user resizes his window or otherwise changes resolution.
 		var parentSpace = Parent.GetDimensions().ToRectangle();
-		if (!GetDimensions().ToRectangle().Intersects(parentSpace))
-		{
+		if (!GetDimensions().ToRectangle().Intersects(parentSpace)) {
 			Left.Pixels = Utils.Clamp(Left.Pixels, 0, parentSpace.Right - Width.Pixels);
 			Top.Pixels = Utils.Clamp(Top.Pixels, 0, parentSpace.Bottom - Height.Pixels);
 			// Recalculate forces the UI system to do the positioning math again.

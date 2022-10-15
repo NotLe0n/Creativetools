@@ -1,0 +1,148 @@
+[h1]Creative Tools[/h1]
+
+With Creative tools you can toggle different events and game states with a single click of a button, move NPC's and Items with your mouse, display lots of Information on the screen and much more!
+
+This mod is open source on my [url=https://github.com/NotLe0n/Creativetools]GitHub[/url]. If you have a GitHub account, please give it a star!
+If you have any questions, issues or bugs contact me on my [url=https://discord.gg/NX4DVzz2v6]discord server[/url]
+
+[h3]Special Thanks[/h3]
+Thanks to Pyroknight for drawing the sprites.
+Thanks to direwolf420, darthmorf and jopojelly for some UIElements.
+
+[h1]Tools[/h1]
+[h2]Event Toggle[/h2]
+    - Bloodmoon
+    - Frostmoon
+    - Pumpkinmoon
+    - Solar eclipse
+    - Halloween
+    - Christmas
+    - Party
+    - Slime Rain
+    - Lantern Night
+    - Meteor Shower
+    
+[h2]Invasion Toggle[/h2]
+    - Pirate invasion
+    - Goblin Army
+    - Martian Madness
+    - Frost Legion
+
+[h2]Hardmore Toggle[/h2]
+    Toggles Hardmode (does not generate ores)
+
+[h2]Game mode Toggle[/h2]
+    You can toggle the World game mode (Classic, Expert, Master, Journey),
+    and the player game mode (Classic, Mediumcore, Hardcore, Journey)
+
+[h2]Weather Control[/h2]
+    Control what time it is and change the moon phase
+
+[h2]Creative Fly (no clip)[/h2]
+    Toggle to Fly in the air or through blocks! Control with WASD, SHIFT to go faster and CTRL to go slower
+
+[h2]Magic Cursor[/h2]
+    Move NPCs and Items with your mouse.
+    hold middle click and drag to move them (only works for one npc of a type)
+
+[h2]TP tool[/h2]
+    Teleport to any coordinate or loaded NPC. (WARNING: Teleporting outside the map may crash the game!)
+
+[h2]Game Info[/h2]
+    Information you can display on the screen:
+    - Mouse position relative to the World
+    - Mouse position relative to the screen
+    - Mouse and Mouse border Color
+    
+    - Player name, whoAmI id, position, velocity, ect
+    - NPC position, velocity, name, type, aiStyle
+    - Item position, name, type, Distance to Mouse
+    - Projectile position, velocity, name, type
+    - Screen position, Screen Zoom
+    - Time, Global time, Rain Timer
+    - Hitboxes
+
+[h2]Assembly Viewer[/h2]
+    You can search through Terraria's classes and namespaces, look at how methods work, invoke methods, and inspect and change static fields.
+
+[h2]Play Sound[/h2]
+    Play any sound or Music and find their ID
+
+[h2]Modify held Item/Player[/h2] 
+    Change some properties of your held Item or your player
+    Changes are not saved
+
+[h2]DownedBoss Toggle[/h2]
+    Toggle what bosses you have killed already.
+    Example: You can only enter the dungeon when skeleton has been defeated. Instead of having to fight him you can just tick NPC.downedBoss3.
+
+[h2]Summon Meteor[/h2]
+    You can summon a Meteor.
+    (only 1 meteor can exist in a world. If you want two, destroy the first one)
+
+[h2]Clear Inventory[/h2]
+    Clear inventory or delete non-favorited items! (inventory-, ammo- and money slots).
+
+[h2]Kill Player[/h2]
+    Kills your player (does not work in multiplayer if you have god mode enabled)
+
+[h2]Time Control[/h2]
+    Use Hotkeys to Freeze, slow down or frame step the game.
+   
+[h1]Latest Changes[/h1]
+v5.0 - Multiplayer Update
+    + made many tools multiplayer compatible
+        Note: Assembly Viewer and Modify Item is not compatible
+    - removed Custom Item/NPC, because they were causing issues
+    + added Deerclops to Downed Boss Toggle
+    + fixed Modify Player UI
+    + fixed Game Mode Toggle's player difficulty text
+    + added workshop description and icon
+
+v4.4.8
+    + fixed mod for new Update
+    + fixed Play Music.
+    * Only thing that still doesn't work should be "Change Texture" in Custom NPC/Item
+
+v4.4.7
+    + fixed Assembly Viewer
+    + upgraded to dotnet 6
+
+v4.4.6
+    + fixed bug where you can still hit the button while in a chest or talking to a npc
+    + You can now change the player size again (Now I only need to fix "Play Music" and "Change Texture")
+
+v4.4.5
+    + You can now change the menu button offset in the mod config
+
+v4.4.3 & ..4 - Fixes
+    + Fixed Typo
+    + Fixed Open File Dialog
+    + Fixed copy code button
+    + maybe fixed time control crashing multiplayer?
+
+v4.4.2 - Time Control
+    + Added Time Control
+    + Code cleanup
+
+v4.4.1 - Decompiler
+    + Changed AssemblyViewer Font
+    + You can now view c# code (the game might lag for huge methods)
+
+v4.4 - AssemblyViewer
+    + Added AssemblyViewer
+    + Fixed DownedBossToggle's UI
+
+v4.3 - added 1.4 features
+    + Added Lantern night event
+    + Added Star shower event
+    + Added Kill player
+    + Added Luck stat in Modify Player
+
+v4.2 - bug fix
+    + fixed bug where the Menu Button would overlap with the first chest slot when in journey mode
+
+v4.0 & v4.1 - Ported to 1.4
+    + Added TP tool
+    + Changed UI
+    + Added game mode slider

@@ -1,4 +1,4 @@
-﻿using Creativetools.src.UI.Elements;
+﻿using Creativetools.UI.Elements;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.Audio;
@@ -6,27 +6,25 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.UI;
 
-namespace Creativetools.src.UI;
+namespace Creativetools.UI;
 
 internal class ButtonUI : UIState
 {
-	private UIHoverImageButton MenuButton;
-	public override void OnInitialize()
+	private readonly UIHoverImageButton _menuButton;
+	public ButtonUI()
 	{
-		MenuButton = new UIHoverImageButton("Creativetools/UI Assets/MenuButton", "Open Menu");
-		MenuButton.OnClick += MenuButtonClicked;
-		Append(MenuButton);
+		_menuButton = new UIHoverImageButton("Creativetools/UI Assets/MenuButton", "Open Menu");
+		_menuButton.OnClick += MenuButtonClicked;
+		Append(_menuButton);
 	}
 
-	private void MenuButtonClicked(UIMouseEvent evt, UIElement listeningElement)
+	private static void MenuButtonClicked(UIMouseEvent evt, UIElement listeningElement)
 	{
-		if (UISystem.UserInterface.CurrentState != null)
-		{
+		if (UISystem.UserInterface.CurrentState != null) {
 			UISystem.UserInterface.SetState(null);
 			SoundEngine.PlaySound(SoundID.MenuClose);
 		}
-		else
-		{
+		else {
 			UISystem.UserInterface.SetState(new MainUI());
 			SoundEngine.PlaySound(SoundID.MenuOpen);
 		}
@@ -35,13 +33,12 @@ internal class ButtonUI : UIState
 	public override void Update(GameTime gameTime)
 	{
 		Vector2 offset = ModContent.GetInstance<Config>().MenuBtnOffset * 47.5f;
-		if (Main.LocalPlayer.difficulty == 3)
-		{
+		if (Main.LocalPlayer.difficulty == 3) {
 			offset.X += 47;
 		}
 
-		MenuButton.Top.Set(260 + offset.Y, 0);
-		MenuButton.Left.Set(20 + System.MathF.Max(offset.X, 0), 0);
+		_menuButton.Top.Set(260 + offset.Y, 0);
+		_menuButton.Left.Set(20 + System.MathF.Max(offset.X, 0), 0);
 		base.Update(gameTime);
 	}
 }

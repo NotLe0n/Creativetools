@@ -6,7 +6,7 @@ using Terraria.Audio;
 using Terraria.ID;
 using Terraria.UI;
 
-namespace Creativetools.src.UI.Elements;
+namespace Creativetools.UI.Elements;
 
 class UIHorizontalScrollbar : UIElement
 {
@@ -29,8 +29,7 @@ class UIHorizontalScrollbar : UIElement
 		PaddingRight = 5f;
 	}
 
-	public float ViewPosition
-	{
+	public float ViewPosition {
 		get => _viewPosition;
 		set => _viewPosition = MathHelper.Clamp(value, 0f, _maxViewSize - _viewSize);
 	}
@@ -46,8 +45,7 @@ class UIHorizontalScrollbar : UIElement
 	private Rectangle GetHandleRectangle()
 	{
 		CalculatedStyle innerDimensions = GetInnerDimensions();
-		if (_maxViewSize == 0f && _viewSize == 0f)
-		{
+		if (_maxViewSize == 0f && _viewSize == 0f) {
 			_viewSize = 1f;
 			_maxViewSize = 1f;
 		}
@@ -89,8 +87,7 @@ class UIHorizontalScrollbar : UIElement
 		CalculatedStyle dimensions = GetDimensions();
 		CalculatedStyle innerDimensions = GetInnerDimensions();
 
-		if (_isDragging)
-		{
+		if (_isDragging) {
 			float num = UserInterface.ActiveInstance.MousePosition.X - innerDimensions.X - _dragXOffset;
 			_viewPosition = MathHelper.Clamp(num / innerDimensions.Width * _maxViewSize, 0f, _maxViewSize - _viewSize);
 		}
@@ -112,16 +109,13 @@ class UIHorizontalScrollbar : UIElement
 	public override void MouseDown(UIMouseEvent evt)
 	{
 		base.MouseDown(evt);
-		if (evt.Target == this)
-		{
+		if (evt.Target == this) {
 			Rectangle handleRectangle = GetHandleRectangle();
-			if (handleRectangle.Contains(new Point((int)evt.MousePosition.X, (int)evt.MousePosition.Y)))
-			{
+			if (handleRectangle.Contains(new Point((int)evt.MousePosition.X, (int)evt.MousePosition.Y))) {
 				_isDragging = true;
 				_dragXOffset = evt.MousePosition.X - handleRectangle.X;
 			}
-			else
-			{
+			else {
 				CalculatedStyle innerDimensions = GetInnerDimensions();
 				float num = UserInterface.ActiveInstance.MousePosition.X - innerDimensions.X - (handleRectangle.Width >> 1);
 				_viewPosition = MathHelper.Clamp(num / innerDimensions.Width * _maxViewSize, 0f, _maxViewSize - _viewSize);

@@ -1,14 +1,11 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Terraria;
 using ReLogic.Graphics;
 using System;
-using Terraria.GameContent;
-using Terraria.ModLoader;
 using Terraria.UI;
 using Terraria.UI.Chat;
 
-namespace Creativetools.src.Tools.AssemblyViewer.Elements;
+namespace Creativetools.Tools.AssemblyViewer.Elements;
 
 class UIFontText : UIElement
 {
@@ -27,18 +24,15 @@ class UIFontText : UIElement
 	public float TextOriginX { get; set; }
 	public float WrappedTextBottomPadding { get; set; }
 
-	public bool IsWrapped
-	{
+	public bool IsWrapped {
 		get => _isWrapped;
-		set
-		{
+		set {
 			_isWrapped = value;
 			InternalSetText(_text, _textScale, _isLarge);
 		}
 	}
 
-	public Color TextColor
-	{
+	public Color TextColor {
 		get => _color;
 		set => _color = value;
 	}
@@ -77,36 +71,30 @@ class UIFontText : UIElement
 		CalculatedStyle innerDimensions = GetInnerDimensions();
 		Vector2 pos = innerDimensions.Position();
 
-		if (_isLarge)
-		{
+		if (_isLarge) {
 			pos.Y -= 10f * _textScale;
 		}
-		else
-		{
+		else {
 			pos.Y -= 2f * _textScale;
 		}
 
 		pos.X += (innerDimensions.Width - _textSize.X) * TextOriginX;
 
 		float num = _textScale;
-		if (DynamicallyScaleDownToWidth && _textSize.X > innerDimensions.Width)
-		{
+		if (DynamicallyScaleDownToWidth && _textSize.X > innerDimensions.Width) {
 			num *= innerDimensions.Width / _textSize.X;
 		}
-		if (_isLarge)
-		{
+		if (_isLarge) {
 			DrawStringBig(spriteBatch, Font, _visibleText, pos, _color, num);
 		}
-		else
-		{
+		else {
 			DrawString(spriteBatch, Font, _visibleText, pos, _color, num);
 		}
 	}
 
 	private void VerifyTextState()
 	{
-		if ((object)_lastTextReference != Text)
-		{
+		if ((object)_lastTextReference != Text) {
 			InternalSetText(_text, _textScale, _isLarge);
 		}
 	}
@@ -118,12 +106,10 @@ class UIFontText : UIElement
 		_textScale = textScale;
 		_lastTextReference = _text.ToString();
 
-		if (IsWrapped)
-		{
+		if (IsWrapped) {
 			_visibleText = Font.CreateWrappedText(_lastTextReference, GetInnerDimensions().Width / _textScale);
 		}
-		else
-		{
+		else {
 			_visibleText = _lastTextReference;
 		}
 		Vector2 vector = Font.MeasureString(_visibleText);
@@ -131,16 +117,14 @@ class UIFontText : UIElement
 
 		MinWidth.Set(vector2.X + PaddingLeft + PaddingRight, 0f);
 		MinHeight.Set(vector2.Y + PaddingTop + PaddingBottom, 0f);
-		if (OnInternalTextChange != null)
-		{
+		if (OnInternalTextChange != null) {
 			OnInternalTextChange();
 		}
 	}
 
 	private static Vector2 DrawString(SpriteBatch sb, DynamicSpriteFont font, string text, Vector2 pos, Color color, float scale = 1f, float anchorx = 0f, float anchory = 0f, int maxCharactersDisplayed = -1)
 	{
-		if (maxCharactersDisplayed != -1 && text.Length > maxCharactersDisplayed)
-		{
+		if (maxCharactersDisplayed != -1 && text.Length > maxCharactersDisplayed) {
 			text.Substring(0, maxCharactersDisplayed);
 		}
 		Vector2 vector = font.MeasureString(text);
@@ -150,14 +134,11 @@ class UIFontText : UIElement
 
 	private Vector2 DrawStringBig(SpriteBatch spriteBatch, DynamicSpriteFont font, string text, Vector2 pos, Color color, float scale = 1f, float anchorx = 0f, float anchory = 0f, int maxCharactersDisplayed = -1)
 	{
-		if (maxCharactersDisplayed != -1 && text.Length > maxCharactersDisplayed)
-		{
+		if (maxCharactersDisplayed != -1 && text.Length > maxCharactersDisplayed) {
 			text.Substring(0, maxCharactersDisplayed);
 		}
-		for (int i = -1; i < 2; i++)
-		{
-			for (int j = -1; j < 2; j++)
-			{
+		for (int i = -1; i < 2; i++) {
+			for (int j = -1; j < 2; j++) {
 				spriteBatch.DrawString(font, text, pos + new Vector2(i, j), Color.Black, 0f, new Vector2(anchorx, anchory) * font.MeasureString(text), scale, SpriteEffects.None, 0f);
 			}
 		}

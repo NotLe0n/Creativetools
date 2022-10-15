@@ -5,9 +5,9 @@ using Terraria.GameContent.UI.Elements;
 using Terraria.ModLoader;
 using Terraria.UI;
 
-namespace Creativetools.src.Tools.AssemblyViewer.Elements;
+namespace Creativetools.Tools.AssemblyViewer.Elements;
 
-class PropertyButton : UIFontText
+internal class PropertyButton : UIFontText
 {
 	public readonly PropertyInfo _property;
 	public PropertyButton(PropertyInfo property) : base(FontSystem.ConsolasFont, "  " + property.Name)
@@ -27,12 +27,10 @@ class PropertyButton : UIFontText
 	{
 		base.Click(evt);
 
-		if (UISystem.UserInterface2.CurrentState == null)
-		{
+		if (UISystem.UserInterface2.CurrentState == null) {
 			UISystem.UserInterface2.SetState(new InspectValue(_property));
 		}
-		else
-		{
+		else {
 			UISystem.UserInterface2.SetState(null);
 		}
 	}

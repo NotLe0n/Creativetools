@@ -3,9 +3,9 @@ using Terraria.GameContent.UI.Elements;
 using Terraria.ModLoader;
 using Terraria.UI;
 
-namespace Creativetools.src.Tools.AssemblyViewer.Elements;
+namespace Creativetools.Tools.AssemblyViewer.Elements;
 
-class NamespaceButton : UIFontText
+internal class NamespaceButton : UIFontText
 {
 	public readonly Namespace _namespace;
 	public NamespaceButton(Namespace ns) : base(FontSystem.ConsolasFont, "  " + ns.Name)

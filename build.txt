@@ -1,9 +1,9 @@
 displayName = Creative tools
 author = NotLe0n
-version = 4.4.8.0
+version = 5.0
 hideCode = false
 hideResources = false
 includeSource = false
 dllReferences = Mono.Reflection, ICSharpCode.Decompiler
 buildIgnore = vs/*, *.csproj, *.sln, *.pidb, *.userprefs, *.user, obj/*, bin/*
-homepage = https://forums.terraria.org/index.php?threads/creative-tools.88374/
+homepage = https://github.com/NotLe0n/Creativetools

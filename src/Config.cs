@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using Terraria.ModLoader.Config;
 
-namespace Creativetools.src;
+namespace Creativetools;
 
 public class Config : ModConfig
 {

@@ -1,23 +1,23 @@
-﻿using Creativetools.src.UI;
-using Creativetools.src.UI.Elements;
+﻿using Creativetools.UI.Elements;
 using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.Audio;
+using Terraria.Chat;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.UI;
 
-namespace Creativetools.src.Tools.InvasionToggleUI;
+namespace Creativetools.Tools.InvasionToggleUI;
 
 internal class InvasionToggleUI : UIState
 {
-	private UIGrid buttonGrid;
+	private readonly UIGrid buttonGrid;
 
-	public override void OnInitialize()
+	public InvasionToggleUI()
 	{
 		var menuPanel = new DragableUIPanel("Invasion Toggle") { VAlign = 0.5f, HAlign = 0.1f };
 		menuPanel.Width.Set(250f, 0);
 		menuPanel.Height.Set(100f, 0);
-		menuPanel.OnCloseBtnClicked += () => { UISystem.UserInterface.SetState(new MainUI()); SoundEngine.PlaySound(SoundID.MenuClose); };
+		menuPanel.OnCloseBtnClicked += UISystem.BackToMainMenu;
 		Append(menuPanel);
 
 		buttonGrid = new UIGrid(4);
@@ -28,26 +28,34 @@ internal class InvasionToggleUI : UIState
 		buttonGrid.ListPadding = 10f;
 		menuPanel.Append(buttonGrid);
 
-		buttonGrid.Add(new MenuButton("pirateInvasionToggle", "Toggle Pirate invasion", (evt, element) => ToggleInvasion(InvasionID.PirateInvasion)));
-		buttonGrid.Add(new MenuButton("goblinInvasionToggle", "Toggle Goblin invasion", (evt, element) => ToggleInvasion(InvasionID.GoblinArmy)));
-		buttonGrid.Add(new MenuButton("alienInvasionToggle", "Toggle Martian Madness", (evt, element) => ToggleInvasion(InvasionID.MartianMadness)));
-		buttonGrid.Add(new MenuButton("frostLegionToggle", "Toggle Frost Legion", (evt, element) => ToggleInvasion(InvasionID.SnowLegion)));
-		base.OnInitialize();
+		buttonGrid.Add(new MenuButton("pirateInvasionToggle", "Toggle Pirate invasion", (_, _) => ToggleInvasion2(InvasionID.PirateInvasion)));
+		buttonGrid.Add(new MenuButton("goblinInvasionToggle", "Toggle Goblin invasion", (_, _) => ToggleInvasion2(InvasionID.GoblinArmy)));
+		buttonGrid.Add(new MenuButton("alienInvasionToggle", "Toggle Martian Madness", (_, _) => ToggleInvasion2(InvasionID.MartianMadness)));
+		buttonGrid.Add(new MenuButton("frostLegionToggle", "Toggle Frost Legion", (_, _) => ToggleInvasion2(InvasionID.SnowLegion)));
 	}
 
-	private void ToggleInvasion(short type)
+	private static void ToggleInvasion2(short type)
+	{
+		if (Main.netMode == NetmodeID.SinglePlayer) {
+			ToggleInvasion(type);
+		}
+		else {
+			MultiplayerSystem.SendInvasionPacket(type);
+		}
+	}
+
+	public static void ToggleInvasion(short type)
 	{
 		string[] text = { "", "LegacyMisc.0", "LegacyMisc.4", "LegacyMisc.24", "LegacyMisc.42" };
 
-		if (Main.invasionType == InvasionID.None)
-		{
+		if (Main.invasionType == InvasionID.None) {
 			Main.StartInvasion(type: type);
 			Main.invasionType = type;
 		}
-		else
-		{
+		else {
 			Main.invasionType = InvasionID.None;
-			Main.NewText(Terraria.Localization.Language.GetTextValue(text[type]), 143, 61, 209);
+			NetworkText nt = NetworkText.FromLiteral(Language.GetTextValue(text[type]));
+			ChatHelper.BroadcastChatMessage(nt, new Color(143, 61, 209));
 		}
 	}
 
@@ -60,8 +68,7 @@ internal class InvasionToggleUI : UIState
 				Main.invasionType == InvasionID.MartianMadness,
 				Main.invasionType == InvasionID.SnowLegion };
 
-		for (int i = 0; i < buttonGrid.Count; i++)
-		{
+		for (int i = 0; i < buttonGrid.Count; i++) {
 			((MenuButton)buttonGrid.items[i]).SetState(check[i]);
 		}
 	}

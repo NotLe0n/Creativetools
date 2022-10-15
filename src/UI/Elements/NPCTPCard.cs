@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Creativetools.Tools.TPTool;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.Audio;
@@ -7,12 +8,12 @@ using Terraria.GameContent.UI.Elements;
 using Terraria.ID;
 using Terraria.UI;
 
-namespace Creativetools.src.UI.Elements;
+namespace Creativetools.UI.Elements;
 
 internal class NPCTPCard : UIPanel
 {
-	private NPC _npc;
-	private UIText _NPCPosText;
+	private readonly NPC _npc;
+	private readonly UIText _npcPosText;
 	public NPCTPCard(NPC npc)
 	{
 		_npc = npc;
@@ -21,25 +22,23 @@ internal class NPCTPCard : UIPanel
 		NPCIDText.Left.Set(40, 0);
 		Append(NPCIDText);
 
-		_NPCPosText = new UIText(_npc.position.ToPoint().ToString(), 0.8f);
-		_NPCPosText.Left.Set(40, 0);
-		_NPCPosText.Top.Set(15, 0);
-		Append(_NPCPosText);
+		_npcPosText = new UIText(_npc.position.ToPoint().ToString(), 0.8f);
+		_npcPosText.Left.Set(40, 0);
+		_npcPosText.Top.Set(15, 0);
+		Append(_npcPosText);
 	}
 
-	internal int frameCounter = 0;
-	internal int frameTimer = 0;
-	private const int frameDelay = 3;
+	private int frameCounter;
+	private int frameTimer;
+	private const int FrameDelay = 3;
 	public override void Draw(SpriteBatch spriteBatch)
 	{
 		base.Draw(spriteBatch);
 
-		if (++frameTimer > frameDelay)
-		{
+		if (++frameTimer > FrameDelay) {
 			frameCounter++;
 			frameTimer = 0;
-			if (frameCounter > Main.npcFrameCount[_npc.type] - 1)
-			{
+			if (frameCounter > Main.npcFrameCount[_npc.type] - 1) {
 				frameCounter = 0;
 			}
 		}
@@ -57,14 +56,14 @@ internal class NPCTPCard : UIPanel
 	{
 		base.Update(gameTime);
 
-		_NPCPosText.SetText(_npc.position.ToPoint().ToString());
+		_npcPosText.SetText(_npc.position.ToPoint().ToString());
 	}
 
 	public override void Click(UIMouseEvent evt)
 	{
 		SoundEngine.PlaySound(SoundID.Item6);
 
-		Main.LocalPlayer.position = _npc.position;
+		TPToolUI.SetPosition(_npc.position);
 		base.Click(evt);
 	}
 }

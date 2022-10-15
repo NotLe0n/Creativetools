@@ -4,7 +4,7 @@ using Terraria;
 using Terraria.GameContent.UI.Elements;
 using Terraria.ModLoader;
 
-namespace Creativetools.src.UI.Elements;
+namespace Creativetools.UI.Elements;
 
 internal class UIHoverImageButton : UIImageButton
 {
@@ -17,8 +17,7 @@ internal class UIHoverImageButton : UIImageButton
 
 	public override void Update(GameTime gameTime)
 	{
-		if (IsMouseHovering)
-		{
+		if (IsMouseHovering) {
 			Main.LocalPlayer.cursorItemIconText = hoverText;
 			Main.LocalPlayer.mouseInterface = true;
 		}

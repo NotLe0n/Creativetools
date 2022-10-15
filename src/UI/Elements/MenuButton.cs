@@ -3,10 +3,10 @@ using Terraria;
 using Terraria.Audio;
 using Terraria.GameContent.UI.Elements;
 using Terraria.ID;
-using Terraria.UI;
 using Terraria.ModLoader;
+using Terraria.UI;
 
-namespace Creativetools.src.UI.Elements;
+namespace Creativetools.UI.Elements;
 
 internal class MenuButton : UIImage
 {
@@ -21,12 +21,10 @@ internal class MenuButton : UIImage
 
 	public void SetState(bool value)
 	{
-		if (value)
-		{
+		if (value) {
 			Append(frame);
 		}
-		else
-		{
+		else {
 			frame.Remove();
 		}
 	}
@@ -41,8 +39,7 @@ internal class MenuButton : UIImage
 	{
 		base.DrawSelf(spriteBatch);
 
-		if (IsMouseHovering)
-		{
+		if (IsMouseHovering) {
 			Main.hoverItemName = HoverText;
 		}
 		if (ContainsPoint(Main.MouseScreen)) //so you can't use items while clicking the button

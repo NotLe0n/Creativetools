@@ -1,19 +1,21 @@
-﻿using Creativetools.src.UI;
-using Creativetools.src.UI.Elements;
+﻿using Creativetools.UI;
+using Creativetools.UI.Elements;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Reflection;
 using Terraria;
 using Terraria.GameContent.UI.Elements;
+using Terraria.ID;
 using Terraria.UI;
 
-namespace Creativetools.src.Tools.DownedBossToggle;
+namespace Creativetools.Tools.DownedBossToggle;
 
 public class DownedBossToggleUI : UIState
 {
-	private UIList toggleList, textList;
-	public override void OnInitialize()
+	private readonly UIList toggleList, textList;
+
+	public DownedBossToggleUI(float viewPosition = 0)
 	{
 		var panel = new DragableUIPanel("DownedBoss Toggle");
 		panel.Width.Set(600, 0);
@@ -28,6 +30,7 @@ public class DownedBossToggleUI : UIState
 		scrollbar.Height.Set(340, 0);
 		scrollbar.Left.Set(0, 0.9f);
 		scrollbar.Top.Set(0, 0.1f);
+		scrollbar.SetView(viewPosition, scrollbar.Height.Pixels);
 		panel.Append(scrollbar);
 
 		toggleList = new BetterUIList();
@@ -78,13 +81,14 @@ public class DownedBossToggleUI : UIState
 		AddToggle("downedTowerNebula");
 		AddToggle("downedTowerStardust");
 		AddToggle("downedMoonlord");
+		AddToggle("downedDeerclops");
 
 		var resetBtn = new UITextPanel<string>("Uncheck all");
 		resetBtn.SetPadding(4);
 		resetBtn.Left.Set(0, 0.5f);
 		resetBtn.Top.Set(0, 0.92f);
 		resetBtn.Width.Set(0, 0.3f);
-		resetBtn.OnClick += (evt, elm) => SetAll(false);
+		resetBtn.OnClick += (_, _) => SetAll2(false);
 		panel.Append(resetBtn);
 
 		var allTrueBtn = new UITextPanel<string>("Check all");
@@ -92,10 +96,8 @@ public class DownedBossToggleUI : UIState
 		allTrueBtn.Left.Set(0, 0.1f);
 		allTrueBtn.Top.Set(0, 0.92f);
 		allTrueBtn.Width.Set(0, 0.3f);
-		allTrueBtn.OnClick += (evt, elm) => SetAll(true);
+		allTrueBtn.OnClick += (_, _) => SetAll2(true);
 		panel.Append(allTrueBtn);
-
-		base.OnInitialize();
 	}
 
 	private void AddToggle(string fieldName, string additionalInfo = "")
@@ -107,7 +109,7 @@ public class DownedBossToggleUI : UIState
 		// append toggle
 		var toggle = new UIToggleImage(Main.Assets.Request<Texture2D>("Images\\UI\\Settings_Toggle"), 13, 13, new Point(17, 1), new Point(1, 1));
 		toggle.SetState((bool)field.GetValue(type));
-		toggle.OnClick += (evt, elm) => field.SetValue(type, toggle.IsOn);
+		toggle.OnClick += (_, _) => SetField(field, toggle.IsOn);
 		toggleList.Add(toggle);
 
 		// append text
@@ -115,14 +117,40 @@ public class DownedBossToggleUI : UIState
 		textList.Add(text);
 	}
 
-	private static void SetAll(bool state)
+	private void SetField(FieldInfo field, bool state)
+	{
+		if (Main.netMode == NetmodeID.SinglePlayer) {
+			field.SetValue(typeof(NPC), state);
+		}
+		else {
+			MultiplayerSystem.SendDownedBossPacket(field.Name, state);
+		}
+
+		if (UISystem.UserInterface.CurrentState is DownedBossToggleUI) {
+			UISystem.UserInterface.SetState(new DownedBossToggleUI(toggleList.ViewPosition));
+		}
+	}
+
+	private void SetAll2(bool state)
+	{
+		if (Main.netMode == NetmodeID.SinglePlayer) {
+			SetAll(state);
+		}
+		else {
+			MultiplayerSystem.SendDownedBossPacket("", state, true);
+		}
+
+		if (UISystem.UserInterface.CurrentState is DownedBossToggleUI) {
+			UISystem.UserInterface.SetState(new DownedBossToggleUI(toggleList.ViewPosition));
+		}
+	}
+
+	public static void SetAll(bool state)
 	{
 		NPC.downedBoss1 = NPC.downedBoss2 = NPC.downedBoss2 = NPC.downedBoss3 = NPC.downedQueenBee = NPC.downedSlimeKing = NPC.downedGoblins =
 		NPC.downedFrost = NPC.downedPirates = NPC.downedClown = NPC.downedPlantBoss = NPC.downedGolemBoss = NPC.downedGolemBoss = NPC.downedMartians = NPC.downedFishron =
 		NPC.downedHalloweenTree = NPC.downedHalloweenKing = NPC.downedChristmasIceQueen = NPC.downedChristmasTree = NPC.downedChristmasIceQueen = NPC.downedChristmasTree =
 		NPC.downedChristmasSantank = NPC.downedAncientCultist = NPC.downedMoonlord = NPC.downedTowerSolar = NPC.downedTowerVortex = NPC.downedTowerNebula = NPC.downedTowerStardust =
-		NPC.downedMechBossAny = NPC.downedMechBoss1 = NPC.downedMechBoss2 = NPC.downedAncientCultist = NPC.downedMechBoss3 = NPC.downedEmpressOfLight = NPC.downedQueenSlime = state;
-
-		UISystem.UserInterface.SetState(new DownedBossToggleUI());
+		NPC.downedMechBossAny = NPC.downedMechBoss1 = NPC.downedMechBoss2 = NPC.downedAncientCultist = NPC.downedMechBoss3 = NPC.downedEmpressOfLight = NPC.downedQueenSlime = NPC.downedDeerclops = state;
 	}
 }

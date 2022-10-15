@@ -12,8 +12,7 @@ class FontSystem : ModSystem
 	{
 		base.Load();
 
-		if (ModContent.RequestIfExists<DynamicSpriteFont>("Creativetools/Fonts/consolas", out var asset, ReLogic.Content.AssetRequestMode.ImmediateLoad))
-		{
+		if (ModContent.RequestIfExists<DynamicSpriteFont>("Creativetools/Fonts/consolas", out var asset, ReLogic.Content.AssetRequestMode.ImmediateLoad)) {
 			ConsolasFont = asset.Value;
 		}
 	}

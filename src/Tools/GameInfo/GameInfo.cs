@@ -5,9 +5,9 @@ using Terraria.GameContent;
 using Terraria.GameContent.UI.Elements;
 using Terraria.ModLoader;
 using Terraria.UI;
-using static Creativetools.src.NearestToMouse;
+using static Creativetools.NearestToMouse;
 
-namespace Creativetools.src.Tools.GameInfo;
+namespace Creativetools.Tools.GameInfo;
 
 internal class GameInfo : UIState
 {
@@ -110,8 +110,7 @@ internal class GameInfo : UIState
 		itemRect.Offset((int)-Main.screenPosition.X, (int)-Main.screenPosition.Y);
 		itemRect = Main.ReverseGravitySupport(itemRect);
 
-		if (!ConfigInstance.Hitboxes)
-		{
+		if (!ConfigInstance.Hitboxes) {
 			if (!ConfigInstance.HidePlayer) Main.spriteBatch.Draw(TextureAssets.MagicPixel.Value, playerRect, Color.Firebrick * 0.5f);
 			if (!ConfigInstance.HideNPC) Main.spriteBatch.Draw(TextureAssets.MagicPixel.Value, npcRect, Color.Salmon * 0.5f);
 			if (!ConfigInstance.HideProjectile) Main.spriteBatch.Draw(TextureAssets.MagicPixel.Value, projRect, Color.HotPink * 0.5f);
@@ -122,8 +121,7 @@ internal class GameInfo : UIState
 	protected override void DrawSelf(SpriteBatch spriteBatch)
 	{
 		base.DrawSelf(spriteBatch);
-		if (!ConfigInstance.Hitboxes && !ConfigInstance.HideMouse)
-		{
+		if (!ConfigInstance.Hitboxes && !ConfigInstance.HideMouse) {
 			Main.spriteBatch.Draw(TextureAssets.MagicPixel.Value,
 				new Rectangle(Main.mouseX,
 					Main.mouseY,

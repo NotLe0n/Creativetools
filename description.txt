@@ -3,15 +3,119 @@
 [c/FFE900:move NPC's and Items with your mouse, display]
 [c/FFE900:lots of Information on the screen and much more!]
 
-For a complete Changlog and more information visit my homepage!
-
-This mod doesn't work correctly in multiplayer!
+This mod is open source on my GitHub (homepage link). If you have a GitHub account, please give it a star!
+If you have any questions, issues or bugs contact me on my discord server: https://discord.gg/NX4DVzz2v6
 
 Special Thanks:
 Thanks to Pyroknight for drawing the sprites.
 Thanks to direwolf420, darthmorf and jopojelly for some UIElements.
 
-Latest Changes:
+_________________________
+
+[c/FFE900:Tools:]
+
+
+[c/17ED90:Event Toggle]
+    - Bloodmoon
+    - Frostmoon
+    - Pumpkinmoon
+    - Solar eclipse
+    - Halloween
+    - Christmas
+    - Party
+    - Slime Rain
+    - Lantern Night
+    - Meteor Shower
+    
+[c/17ED90:Invasion Toggle]
+    - Pirate invasion
+    - Goblin Army
+    - Martian Madness
+    - Frost Legion
+
+[c/17ED90:Hardmore Toggle]
+    Toggles Hardmode (does not generate ores)
+
+[c/17ED90:Game mode Toggle]
+    You can toggle the World game mode (Classic, Expert, Master, Journey),
+    and the player game mode (Classic, Mediumcore, Hardcore, Journey)
+
+[c/17ED90:Weather Control]
+    Control what time it is and change the moon phase
+
+[c/17ED90:Creative Fly (no clip)]
+    Toggle to Fly in the air or through blocks!
+    Control with WASD, SHIFT to go faster and CTRL to go slower
+
+[c/17ED90:Magic Cursor]
+    Move NPCs and Items with your mouse.
+    hold middle click and drag to move them (only works for one npc of a type)
+
+[c/17ED90:TP tool]
+    Teleport to any coordinate or loaded NPC.
+    [c/FF0000:WARNING: Teleporting outside the map may]
+    [c/FF0000:crash the game!]
+
+[c/17ED90:Game Info]
+    Information you can display on the screen:
+    - Mouse position relative to the World
+    - Mouse position relative to the screen
+    - Mouse and Mouse border Color
+    
+    - Player name, whoAmI id, position, velocity, ect
+    - NPC position, velocity, name, type, aiStyle
+    - Item position, name, type, Distance to Mouse
+    - Projectile position, velocity, name, type
+    - Screen position, Screen Zoom
+    - Time, Global time, Rain Timer
+    - Hitboxes
+
+[c/17ED90:Assembly Viewer]
+    You can search through Terraria's classes and namespaces,
+    look at how methods work, invoke methods,
+    and inspect and change static fields.
+
+[c/17ED90:Play Sound]
+   Play any sound or Music and find their ID
+
+[c/17ED90:Modify held Item/Player]
+    Change some properties of your held Item or your player
+    [c/FF0000:Changes are not saved]
+
+[c/17ED90:DownedBoss Toggle]
+    Toggle what bosses you have killed already.
+    Example: You can only enter the dungeon when skeleton has been defeated. Instead of having to fight him you can just tick NPC.downedBoss3.
+
+[c/17ED90:Summon Meteor]
+    You can summon a Meteor.
+    (only 1 meteor can exist in a world. If you want two, destroy the first one)
+
+[c/17ED90:Clear Inventory]
+    Clear inventory or delete non-favorited items!
+    (inventory-, ammo- and money slots).
+
+[c/17ED90:Kill Player]
+    Kills your player
+    (does not work in multiplayer if you have god mode enabled)
+
+[c/17ED90:Time Control]
+    Use Hotkeys to Freeze, slow down or frame step the game.
+
+_________________________
+
+[c/FFE900:Latest Changes:]
+
+
+v5.0 - Multiplayer Update
+    + made many tools multiplayer compatible
+        Note: Assembly Viewer and Modify Item is not compatible
+    - removed Custom Item/NPC, because they'wre causing issues
+    + added Deerclops to Downed Boss Toggle
+    + fixed Modify Player UI
+    + fixed Game Mode Toggle's player difficulty text
+    + added workshop description and icon
+    + updated the outdated description
+
 v4.4.8
     + fixed mod for new Update
     + fixed Play Music.
@@ -58,82 +162,4 @@ v4.2 - bug fix
 v4.0 & v4.1 - Ported to 1.4
     + Added TP tool
     + Changed UI
-    + Added Gamemode slider
-_________________________
-
-[c/FFE900:Content:]
-_________________________
-
-Things you can toggle:
-    [c/C4C4C4:- Bloodmoon]        [c/C4C4C4:- Frost Legion]
-    [c/C4C4C4:- Frostmoon]        [c/C4C4C4:- Hardmode]
-    [c/C4C4C4:- Pumpkinmoon]      [c/C4C4C4:- Expert Mode]
-    [c/C4C4C4:- Solar eclipse]    [c/C4C4C4:- Halloween]
-    [c/C4C4C4:- Pirate invasion]  [c/C4C4C4:- Christmas]
-    [c/C4C4C4:- Goblin Army]      [c/C4C4C4:- Party]
-    [c/C4C4C4:- Martian Madness]  [c/C4C4C4:- Slime Rain] 
-
-Clear Inventory:
-    [c/C4C4C4:Clear inventory or delete non-favorited items!] 
-    (inventory-, ammo- and moneyslots).
-
-Modify held Item: 
-    [c/C4C4C4:Change some properties of your held Item]
-    [c/FF0000:Changes are not saved with the player]
-
-Modify Player:
-    [c/C4C4C4:Change some properties of your player]
-    [c/FF0000:Changes are not saved with the player]
-
-Custom NPC:
-    [c/C4C4C4:Create your own basic NPC]
-
-Custom Item: 
-    [c/C4C4C4:Create your own basic Item]
-
-Creative Fly:
-    [c/C4C4C4:Toggle to Fly in the air or through blocks!]
-    control with WASD, SHIFT to go faster and CTRL to go slower
-
-Magic Cursor:
-    [c/C4C4C4:Move NPCs and Items with your mouse]
-    [c/C4C4C4:hold middle click and drag to move them]
-    (only works for one npc of a type)
-
-Game Info:
-    Information you can display on the screen:
-    [c/C4C4C4:- Mouse position relative to the World]
-    [c/C4C4C4:- Mouse position relative to the screen]
-    [c/C4C4C4:- Mouse and Mouse border Color]
-
-    [c/C4C4C4:- Player name, whoAmI id, position, velocity, ect]
-    [c/C4C4C4:- NPC position, velocity, name, type, aiStyle]
-    [c/C4C4C4:- Item position, name, type, Distance to Mouse]
-    [c/C4C4C4:- Projectile position, velocity, name, type]
-    [c/C4C4C4:- Screen position, Screen Zoom]
-    [c/C4C4C4:- Time, Global time, Rain Timer]
-    [c/C4C4C4:- Hitboxes]
-
-Weather Contol:
-    [c/C4C4C4:Contol what time it is and change the moonphase]
-
-Play Sound:
-    [c/C4C4C4:Play any sound or Music and find their ID]
-    (useful for modders)
-
-DownedBoss Toggle:
-    [c/C4C4C4:Toggle what bosses you have killed already.]
-    Example: You can only enter the dungeon when skeleton has been defeated. Instead of having to fight him you can just tick NPC.downedBoss3.
-
-Summon Meteor:
-    [c/C4C4C4:You can summon a Meteor.]
-    (only 1 meteor can exist in a world. If you want two, destroy the first one)
-
-TP tool:
-    Teleport to any coordinate or loaded NPC. (WARNING: Teleporing outside the map may crash the game!)
-
-Assembly Viewer:
-    You can search through Terraria's Classes and namespaces, look at how methods work, and inspect and change static fields.
-
-Time Control:
-    Use Hotkeys to Freeze, slow down or frame step the game.
+    + Added game mode slider

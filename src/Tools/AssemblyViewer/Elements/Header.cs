@@ -1,25 +1,18 @@
-﻿using Creativetools.src.UI;
+﻿using Creativetools.UI;
 using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.GameContent;
-using Terraria.GameContent.UI.Elements;
 using Terraria.UI;
 
-namespace Creativetools.src.Tools.AssemblyViewer.Elements;
+namespace Creativetools.Tools.AssemblyViewer.Elements;
 
-class Header : UIElement
+internal class Header : UIElement
 {
-	public string text;
-	private readonly string[] spliced;
-
 	public Header(string text)
 	{
-		this.text = text;
-		spliced = text.Split('.');
+		string[] spliced = text.Split('.');
 
 		float xOffset = 0;
-		for (int i = 0; i < spliced.Length; i++)
-		{
+		for (int i = 0; i < spliced.Length; i++) {
 			var segment = new HeaderSegment(spliced, i);
 			segment.Left.Set(xOffset, 0);
 			segment.TextColor = i != spliced.Length - 1 ? Color.LightGray : Color.White;
@@ -28,10 +21,8 @@ class Header : UIElement
 			xOffset += spliced[i].GetTextSize(FontSystem.ConsolasFont).X;
 
 			// To not put a dot at the end (e.g: "Terraria.ID.")
-			if (i < spliced.Length - 1)
-			{
-				Append(new UIFontText(FontSystem.ConsolasFont, ".")
-				{
+			if (i < spliced.Length - 1) {
+				Append(new UIFontText(FontSystem.ConsolasFont, ".") {
 					Left = new(xOffset, 0)
 				});
 
@@ -40,15 +31,15 @@ class Header : UIElement
 		}
 	}
 
-	class HeaderSegment : UIFontText
+	private class HeaderSegment : UIFontText
 	{
-		private readonly string[] spliced;
-		private readonly int index;
+		private readonly string[] _spliced;
+		private readonly int _index;
 
 		public HeaderSegment(string[] spliced, int index) : base(FontSystem.ConsolasFont, spliced[index])
 		{
-			this.spliced = spliced;
-			this.index = index;
+			_spliced = spliced;
+			_index = index;
 		}
 
 		public override void Update(GameTime gameTime)
@@ -56,9 +47,8 @@ class Header : UIElement
 			base.Update(gameTime);
 
 			// This is in update because the click event doesn't work :))
-			if (ContainsPoint(Main.MouseScreen) && Main.mouseLeft)
-			{
-				string target = string.Join('.', spliced[0..(index + 1)]);
+			if (ContainsPoint(Main.MouseScreen) && Main.mouseLeft) {
+				string target = string.Join('.', _spliced[0..(_index + 1)]);
 				UISystem.UserInterface.SetState(new AssemblyViewer(target));
 			}
 		}

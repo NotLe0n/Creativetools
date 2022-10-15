@@ -5,9 +5,9 @@ using Terraria.GameContent.UI.Elements;
 using Terraria.ModLoader;
 using Terraria.UI;
 
-namespace Creativetools.src.Tools.AssemblyViewer.Elements;
+namespace Creativetools.Tools.AssemblyViewer.Elements;
 
-class FieldButton : UIFontText
+internal class FieldButton : UIFontText
 {
 	public readonly FieldInfo _field;
 	public FieldButton(FieldInfo member) : base(FontSystem.ConsolasFont, "  " + member.Name)
@@ -30,7 +30,7 @@ class FieldButton : UIFontText
 		var userInterface2 = UISystem.UserInterface2;
 
 		userInterface2.SetState(
-			userInterface2.CurrentState == null ? 
+			userInterface2.CurrentState == null ?
 			new InspectValue(_field) : null
 		);
 	}

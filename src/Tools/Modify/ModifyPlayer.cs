@@ -1,7 +1,7 @@
 ﻿using Terraria;
 using Terraria.ModLoader;
 
-namespace Creativetools.src.Tools.Modify;
+namespace Creativetools.Tools.Modify;
 
 internal class ModifyPlayer : ModPlayer
 {
