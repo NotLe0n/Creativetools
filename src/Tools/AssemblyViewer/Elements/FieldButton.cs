@@ -7,7 +7,7 @@ using Terraria.UI;
 
 namespace Creativetools.Tools.AssemblyViewer.Elements;
 
-class FieldButton : UIFontText
+internal class FieldButton : UIFontText
 {
 	public readonly FieldInfo _field;
 	public FieldButton(FieldInfo member) : base(FontSystem.ConsolasFont, "  " + member.Name)

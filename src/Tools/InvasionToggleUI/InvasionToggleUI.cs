@@ -10,9 +10,9 @@ namespace Creativetools.Tools.InvasionToggleUI;
 
 internal class InvasionToggleUI : UIState
 {
-	private UIGrid buttonGrid;
+	private readonly UIGrid buttonGrid;
 
-	public override void OnInitialize()
+	public InvasionToggleUI()
 	{
 		var menuPanel = new DragableUIPanel("Invasion Toggle") { VAlign = 0.5f, HAlign = 0.1f };
 		menuPanel.Width.Set(250f, 0);
@@ -32,7 +32,6 @@ internal class InvasionToggleUI : UIState
 		buttonGrid.Add(new MenuButton("goblinInvasionToggle", "Toggle Goblin invasion", (_, _) => ToggleInvasion2(InvasionID.GoblinArmy)));
 		buttonGrid.Add(new MenuButton("alienInvasionToggle", "Toggle Martian Madness", (_, _) => ToggleInvasion2(InvasionID.MartianMadness)));
 		buttonGrid.Add(new MenuButton("frostLegionToggle", "Toggle Frost Legion", (_, _) => ToggleInvasion2(InvasionID.SnowLegion)));
-		base.OnInitialize();
 	}
 
 	private static void ToggleInvasion2(short type)
@@ -55,8 +54,8 @@ internal class InvasionToggleUI : UIState
 		}
 		else {
 			Main.invasionType = InvasionID.None;
-			var nt = NetworkText.FromLiteral(Language.GetTextValue(text[type]));
-			ChatHelper.BroadcastChatMessage(nt, new(143, 61, 209));
+			NetworkText nt = NetworkText.FromLiteral(Language.GetTextValue(text[type]));
+			ChatHelper.BroadcastChatMessage(nt, new Color(143, 61, 209));
 		}
 	}
 

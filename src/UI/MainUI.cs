@@ -23,9 +23,9 @@ namespace Creativetools.UI;
 
 internal class MainUI : UIState
 {
-	private UIGrid buttonGrid;
+	private readonly UIGrid buttonGrid;
 
-	public override void OnInitialize()
+	public MainUI()
 	{
 		var menuPanel = new DragableUIPanel("Creativetools Menu") { VAlign = 0.5f, HAlign = 0.1f };
 		menuPanel.Width.Set(442f, 0);
@@ -41,7 +41,7 @@ internal class MainUI : UIState
 		buttonGrid.ListPadding = 10f;
 		menuPanel.Append(buttonGrid);
 
-		// 1. Zeile
+		// 1. row
 		AddButton("bloodmoonToggle", "Event Toggle", () => UISystem.UserInterface.SetState(new EventToggleUI()));
 		AddButton("pirateInvasionToggle", "Invasion Toggle", () => UISystem.UserInterface.SetState(new InvasionToggleUI()));
 		AddButton("hardmodeToggle", "Toggle hardmode", ToggleHardmode);
@@ -51,7 +51,7 @@ internal class MainUI : UIState
 		AddButton("magicCursor", "Magic Cursor", () => MagicCursorNPC.MagicCursor = !MagicCursorNPC.MagicCursor);
 		AddButton("tptool", "TP Tool", () => UISystem.UserInterface.SetState(new TPToolUI()));
 
-		// 2. Zeile
+		// 2. row
 		AddButton("Info", "Game Info", () => GameInfo.Visible = !GameInfo.Visible);
 		AddButton("Info", "AssemblyViewer", () => UISystem.UserInterface.SetState(new AssemblyViewer("Terraria")));
 		AddButton("playSound", "Play Sound", () => UISystem.UserInterface.SetState(new PlaySoundUI()));
@@ -92,14 +92,14 @@ internal class MainUI : UIState
 			KillPlayer(Main.LocalPlayer);
 		}
 		else {
-			MultiplayerSystem.SendKillPlayerPacket(Main.myPlayer);
+			MultiplayerSystem.SendKillPlayerPacket();
 		}
 	}
 
 	public static void KillPlayer(Player p)
 	{
 		bool old = p.creativeGodMode;
-		p.creativeGodMode = false;
+		p.creativeGodMode = false; // TODO: sync in multiplayer
 		p.KillMe(PlayerDeathReason.LegacyEmpty(), 100, 0);
 		p.creativeGodMode = old;
 	}

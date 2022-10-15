@@ -5,15 +5,11 @@ using Terraria.UI;
 
 namespace Creativetools.Tools.AssemblyViewer.Elements;
 
-class Header : UIElement
+internal class Header : UIElement
 {
-	public string text;
-	private readonly string[] spliced;
-
 	public Header(string text)
 	{
-		this.text = text;
-		spliced = text.Split('.');
+		string[] spliced = text.Split('.');
 
 		float xOffset = 0;
 		for (int i = 0; i < spliced.Length; i++) {
@@ -35,15 +31,15 @@ class Header : UIElement
 		}
 	}
 
-	class HeaderSegment : UIFontText
+	private class HeaderSegment : UIFontText
 	{
-		private readonly string[] spliced;
-		private readonly int index;
+		private readonly string[] _spliced;
+		private readonly int _index;
 
 		public HeaderSegment(string[] spliced, int index) : base(FontSystem.ConsolasFont, spliced[index])
 		{
-			this.spliced = spliced;
-			this.index = index;
+			_spliced = spliced;
+			_index = index;
 		}
 
 		public override void Update(GameTime gameTime)
@@ -52,7 +48,7 @@ class Header : UIElement
 
 			// This is in update because the click event doesn't work :))
 			if (ContainsPoint(Main.MouseScreen) && Main.mouseLeft) {
-				string target = string.Join('.', spliced[0..(index + 1)]);
+				string target = string.Join('.', _spliced[0..(_index + 1)]);
 				UISystem.UserInterface.SetState(new AssemblyViewer(target));
 			}
 		}

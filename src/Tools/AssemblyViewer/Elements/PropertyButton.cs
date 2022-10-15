@@ -7,7 +7,7 @@ using Terraria.UI;
 
 namespace Creativetools.Tools.AssemblyViewer.Elements;
 
-class PropertyButton : UIFontText
+internal class PropertyButton : UIFontText
 {
 	public readonly PropertyInfo _property;
 	public PropertyButton(PropertyInfo property) : base(FontSystem.ConsolasFont, "  " + property.Name)

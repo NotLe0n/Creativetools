@@ -17,13 +17,13 @@ public enum GameModeID
 
 public class GameModeToggleUI : UIState
 {
-	private UIIntRangedDataValue worldGameMode;
-	private UIText worldGameModeText;
+	private readonly UIIntRangedDataValue worldGameMode;
+	private readonly UIText worldGameModeText;
 
-	private UIIntRangedDataValue playerGameMode;
-	private UIText playerGameModeText;
+	private readonly UIIntRangedDataValue playerGameMode;
+	private readonly UIText playerGameModeText;
 
-	public override void OnInitialize()
+	public GameModeToggleUI()
 	{
 		var panel = new DragableUIPanel("Game Mode Toggle");
 		panel.Width.Set(400, 0);
@@ -40,14 +40,12 @@ public class GameModeToggleUI : UIState
 		worldGameModeText.Left.Set(0, 0.5f);
 		panel.Append(worldGameModeText);
 
-
 		UIHelper.MakeSlider(new UIIntRangedDataValue("Player Game mode", Main.LocalPlayer.difficulty, 0, 3), out playerGameMode, panel, top: 100);
 
 		playerGameModeText = new UIText("");
 		playerGameModeText.Top.Set(125, 0);
 		playerGameModeText.Left.Set(0, 0.5f);
 		panel.Append(playerGameModeText);
-
 	}
 
 	public override void Update(GameTime gameTime)

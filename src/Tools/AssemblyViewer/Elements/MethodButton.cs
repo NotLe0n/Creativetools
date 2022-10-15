@@ -6,7 +6,7 @@ using Terraria.UI;
 
 namespace Creativetools.Tools.AssemblyViewer.Elements;
 
-class MethodButton : UIFontText
+internal class MethodButton : UIFontText
 {
 	public readonly MethodInfo _method;
 	public MethodButton(MethodInfo method) : base(FontSystem.ConsolasFont, "  " + method.Name + $"({GetParametersAsString(method)})")
@@ -58,31 +58,30 @@ class MethodButton : UIFontText
 	{
 		if (name.Contains("Byte"))
 			return name.Replace("Byte", "byte");
-		else if (name.Contains("SByte"))
+		if (name.Contains("SByte"))
 			return name.Replace("SByte", "sbyte");
-		else if (name.Contains("UInt16"))
+		if (name.Contains("UInt16"))
 			return name.Replace("UInt16", "ushort");
-		else if (name.Contains("Int16"))
+		if (name.Contains("Int16"))
 			return name.Replace("Int16", "short");
-		else if (name.Contains("UInt32"))
+		if (name.Contains("UInt32"))
 			return name.Replace("UInt32", "uint");
-		else if (name.Contains("Int32"))
+		if (name.Contains("Int32"))
 			return name.Replace("Int32", "int");
-		else if (name.Contains("UInt64"))
+		if (name.Contains("UInt64"))
 			return name.Replace("UInt64", "ulong");
-		else if (name.Contains("Int64"))
+		if (name.Contains("Int64"))
 			return name.Replace("Int64", "long");
-		else if (name.Contains("Boolean"))
+		if (name.Contains("Boolean"))
 			return name.Replace("Boolean", "bool");
-		else if (name.Contains("Double"))
+		if (name.Contains("Double"))
 			return name.Replace("Double", "double");
-		else if (name.Contains("Single"))
+		if (name.Contains("Single"))
 			return name.Replace("Single", "float");
-		else if (name.Contains("String"))
+		if (name.Contains("String"))
 			return name.Replace("String", "string");
-		else if (name.Contains("Object"))
+		if (name.Contains("Object"))
 			return name.Replace("Object", "object");
-		else
-			return name;
+		return name;
 	}
 }

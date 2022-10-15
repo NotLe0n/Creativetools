@@ -12,9 +12,9 @@ namespace Creativetools.Tools.WeatherControl;
 
 internal class WeatherControlUI : UIState
 {
-	private UIIntRangedDataValue time;
+	private readonly UIIntRangedDataValue time;
 
-	public override void OnInitialize()
+	public WeatherControlUI()
 	{
 		var menu = new DragableUIPanel("Weather Control") {
 			VAlign = 0.5f,

@@ -25,7 +25,7 @@ internal class ConfirmPanel : UIState
 		yepButton.Height.Set(50, 0);
 		yepButton.HAlign = 0.03f;
 		yepButton.Top.Set(35, 0);
-		yepButton.OnClick += yepClicked;
+		yepButton.OnClick += YepClicked;
 		confirmPanel.Append(yepButton);
 
 		UIPanel delFavbutton = new();
@@ -49,7 +49,7 @@ internal class ConfirmPanel : UIState
 		noButton.Append(new UIText("NO!") { HAlign = 0.5f, VAlign = 0.5f });
 	}
 	
-	private void yepClicked(UIMouseEvent evt, UIElement listeningElement)
+	private static void YepClicked(UIMouseEvent evt, UIElement listeningElement)
 	{
 		//delete all items in the inventory
 		for (int i = 0; i < Main.InventorySlotsTotal; i++) {
@@ -60,7 +60,7 @@ internal class ConfirmPanel : UIState
 		SoundEngine.PlaySound(SoundID.MenuClose);
 	}
 	
-	private void DelFavClicked(UIMouseEvent evt, UIElement listeningElement)
+	private static void DelFavClicked(UIMouseEvent evt, UIElement listeningElement)
 	{
 		//delete all except favorited items
 		for (int i = 0; i < Main.InventorySlotsTotal; i++) {
@@ -75,7 +75,7 @@ internal class ConfirmPanel : UIState
 		SoundEngine.PlaySound(SoundID.MenuClose);
 	}
 	
-	private void NoClicked(UIMouseEvent evt, UIElement listeningElement)
+	private static void NoClicked(UIMouseEvent evt, UIElement listeningElement)
 	{
 		Visible = false; //close
 		SoundEngine.PlaySound(SoundID.MenuClose);

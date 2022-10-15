@@ -6,7 +6,7 @@ using Terraria.UI;
 
 namespace Creativetools.Tools.AssemblyViewer.Elements;
 
-class ClassButton : UIFontText
+internal class ClassButton : UIFontText
 {
 	public readonly TypeInfo _class;
 	public ClassButton(TypeInfo clas) : base(FontSystem.ConsolasFont, $"  {(clas.DeclaringType != null ? $"{clas.DeclaringType.Name}." : "")}{clas.Name}")

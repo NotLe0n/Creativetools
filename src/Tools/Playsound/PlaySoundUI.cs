@@ -16,8 +16,8 @@ namespace Creativetools.Tools.Playsound;
 
 internal class PlaySoundUI : UIState
 {
-	private UIText soundName, musicName;
-	private UIIntRangedDataValue ID;
+	private readonly UIText soundName, musicName;
+	private readonly UIIntRangedDataValue ID;
 	public static UIIntRangedDataValue MusicSound;
 	public static bool playmusic;
 
@@ -25,7 +25,7 @@ internal class PlaySoundUI : UIState
 
 	private static FieldInfo[] music => typeof(MusicID).GetFields(BindingFlags.Public | BindingFlags.Static | BindingFlags.SetField);
 
-	public override void OnInitialize()
+	public PlaySoundUI()
 	{
 		var menu = new DragableUIPanel("Play Sound");
 		menu.Width.Set(500, 0);
@@ -81,6 +81,7 @@ internal class PlaySoundUI : UIState
 		musicName.SetText(musicNames[MusicSound.Data]);
 
 	}
+	
 	// so you can't use items when clicking on the button
 	protected override void DrawSelf(SpriteBatch spriteBatch)
 	{

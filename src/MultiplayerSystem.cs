@@ -28,8 +28,7 @@ internal class MultiplayerSystem
 	private const byte ItemPosSync = 10;
 	private const byte PlayerHealthSync = 11;
 	private const byte PlayerManaSync = 12;
-
-
+	
 	/* EventIDs */
 	public const byte BloodMoonEvent = 0;
 	public const byte FrostMoonEvent = 1;
@@ -115,10 +114,9 @@ internal class MultiplayerSystem
 		myPacket.Send();
 	}
 
-	public static void SendKillPlayerPacket(int player)
+	public static void SendKillPlayerPacket()
 	{
 		ModPacket myPacket = CreateLabeledPacket(KillPlayerSync);
-		myPacket.Write(player);
 		myPacket.Send();
 	}
 
@@ -252,11 +250,8 @@ internal class MultiplayerSystem
 				}
 				break;
 			case KillPlayerSync:
-				int player1 = reader.ReadInt32();
-
 				MainUI.KillPlayer(Main.player[whoAmI]);
 				if (Main.netMode == NetmodeID.Server) {
-					Console.WriteLine("kill player: " + whoAmI + " | " + player1);
 					NetMessage.SendPlayerDeath(whoAmI, PlayerDeathReason.LegacyEmpty(), int.MaxValue, 0, false);
 				}
 				break;

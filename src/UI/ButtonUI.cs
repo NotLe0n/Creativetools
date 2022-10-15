@@ -10,15 +10,15 @@ namespace Creativetools.UI;
 
 internal class ButtonUI : UIState
 {
-	private UIHoverImageButton MenuButton;
-	public override void OnInitialize()
+	private readonly UIHoverImageButton _menuButton;
+	public ButtonUI()
 	{
-		MenuButton = new UIHoverImageButton("Creativetools/UI Assets/MenuButton", "Open Menu");
-		MenuButton.OnClick += MenuButtonClicked;
-		Append(MenuButton);
+		_menuButton = new UIHoverImageButton("Creativetools/UI Assets/MenuButton", "Open Menu");
+		_menuButton.OnClick += MenuButtonClicked;
+		Append(_menuButton);
 	}
 
-	private void MenuButtonClicked(UIMouseEvent evt, UIElement listeningElement)
+	private static void MenuButtonClicked(UIMouseEvent evt, UIElement listeningElement)
 	{
 		if (UISystem.UserInterface.CurrentState != null) {
 			UISystem.UserInterface.SetState(null);
@@ -37,8 +37,8 @@ internal class ButtonUI : UIState
 			offset.X += 47;
 		}
 
-		MenuButton.Top.Set(260 + offset.Y, 0);
-		MenuButton.Left.Set(20 + System.MathF.Max(offset.X, 0), 0);
+		_menuButton.Top.Set(260 + offset.Y, 0);
+		_menuButton.Left.Set(20 + System.MathF.Max(offset.X, 0), 0);
 		base.Update(gameTime);
 	}
 }

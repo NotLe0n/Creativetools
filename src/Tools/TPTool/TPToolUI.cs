@@ -14,7 +14,7 @@ internal class TPToolUI : UIState
 {
 	private bool relative;
 	private Vector2 coordinates = Vector2.Zero;
-	private readonly UIList NPCList;
+	private readonly UIList _npcList;
 
 	public TPToolUI()
 	{
@@ -81,27 +81,27 @@ internal class TPToolUI : UIState
 		tp2NPCText.Left.Set(200, 0);
 		panel.Append(tp2NPCText);
 
-		var NPCscrollbar = new UIScrollbar();
-		NPCscrollbar.Width.Set(20, 0);
-		NPCscrollbar.Height.Set(190, 0);
-		NPCscrollbar.Left.Set(420, 0);
-		NPCscrollbar.Top.Set(70, 0);
-		panel.Append(NPCscrollbar);
+		var npcScrollbar = new UIScrollbar();
+		npcScrollbar.Width.Set(20, 0);
+		npcScrollbar.Height.Set(190, 0);
+		npcScrollbar.Left.Set(420, 0);
+		npcScrollbar.Top.Set(70, 0);
+		panel.Append(npcScrollbar);
 
-		NPCList = new UIList();
-		NPCList.Width.Set(250, 0);
-		NPCList.Height.Set(210, 0);
-		NPCList.Left.Set(200, 0);
-		NPCList.Top.Set(60, 0);
-		NPCList.ListPadding = 8f;
-		NPCList.SetScrollbar(NPCscrollbar);
-		panel.Append(NPCList);
+		_npcList = new UIList();
+		_npcList.Width.Set(250, 0);
+		_npcList.Height.Set(210, 0);
+		_npcList.Left.Set(200, 0);
+		_npcList.Top.Set(60, 0);
+		_npcList.ListPadding = 8f;
+		_npcList.SetScrollbar(npcScrollbar);
+		panel.Append(_npcList);
 
 		foreach (NPC npc in Main.npc.Where(x => x.active)) {
-			var NPCCard = new NPCTPCard(npc);
-			NPCCard.Width.Set(200, 0);
-			NPCCard.Height.Set(50, 0);
-			NPCList.Add(NPCCard);
+			var npcCard = new NPCTPCard(npc);
+			npcCard.Width.Set(200, 0);
+			npcCard.Height.Set(50, 0);
+			_npcList.Add(npcCard);
 		}
 	}
 
@@ -120,13 +120,13 @@ internal class TPToolUI : UIState
 	public override void Update(GameTime gameTime)
 	{
 		if (Main.GameUpdateCount % 60 == 0) {
-			NPCList.Clear();
+			_npcList.Clear();
 
 			foreach (NPC npc in Main.npc.Where(x => x.active)) {
-				var NPCCard = new NPCTPCard(npc);
-				NPCCard.Width.Set(200, 0);
-				NPCCard.Height.Set(50, 0);
-				NPCList.Add(NPCCard);
+				var npcCard = new NPCTPCard(npc);
+				npcCard.Width.Set(200, 0);
+				npcCard.Height.Set(50, 0);
+				_npcList.Add(npcCard);
 			}
 		}
 

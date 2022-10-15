@@ -9,10 +9,10 @@ namespace Creativetools.Tools.EventToggle;
 
 internal class EventToggleUI : UIState
 {
-	private UIGrid buttonGrid;
+	private readonly UIGrid buttonGrid;
 	private static bool starfall;
 
-	public override void OnInitialize()
+	public EventToggleUI()
 	{
 		var menuPanel = new DragableUIPanel("Event Toggle") {
 			VAlign = 0.5f,
@@ -31,7 +31,6 @@ internal class EventToggleUI : UIState
 			ListPadding = 10f
 		};
 		menuPanel.Append(buttonGrid);
-		base.OnInitialize();
 
 		AddButton("bloodmoonToggle", "Toggle bloodmoon", MultiplayerSystem.BloodMoonEvent);
 		AddButton("frostmoonToggle", "Toggle Frost moon", MultiplayerSystem.FrostMoonEvent);

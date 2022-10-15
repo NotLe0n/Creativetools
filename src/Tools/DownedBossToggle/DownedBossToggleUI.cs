@@ -98,8 +98,6 @@ public class DownedBossToggleUI : UIState
 		allTrueBtn.Width.Set(0, 0.3f);
 		allTrueBtn.OnClick += (_, _) => SetAll2(true);
 		panel.Append(allTrueBtn);
-
-		base.OnInitialize();
 	}
 
 	private void AddToggle(string fieldName, string additionalInfo = "")
