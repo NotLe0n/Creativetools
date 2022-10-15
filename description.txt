@@ -3,6 +3,9 @@
 [c/FFE900:move NPC's and Items with your mouse, display]
 [c/FFE900:lots of Information on the screen and much more!]
 
+This mod is open source on my GitHub (homepage link). If you have a GitHub account, please give it a star!
+If you have any questions, issues or bugs contact me on my discord server: https://discord.gg/NX4DVzz2v6
+
 Special Thanks:
 Thanks to Pyroknight for drawing the sprites.
 Thanks to direwolf420, darthmorf and jopojelly for some UIElements.
