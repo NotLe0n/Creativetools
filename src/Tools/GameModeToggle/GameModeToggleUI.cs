@@ -74,6 +74,4 @@ public class GameModeToggleUI : UIState
 		worldGameModeText?.SetText(((WorldGameModeID)Main.GameMode).ToString());
 		playerGameModeText?.SetText(((PlayerGameModeID)Main.LocalPlayer.difficulty).ToString());
 	}
-
-
 }

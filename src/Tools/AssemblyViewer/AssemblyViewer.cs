@@ -91,10 +91,10 @@ class AssemblyViewer : UIState
 		{
 			// searchbar logic
 			string searchbarText = namespaceSearchbar.currentString;
-			bool firstSearch(UIElement x) => ((x as NamespaceButton)?._namespace.Name.Equals(searchbarText, StringComparison.InvariantCultureIgnoreCase)).GetValueOrDefault() || ((x as ClassButton)?._class.Name.Equals(searchbarText, StringComparison.InvariantCultureIgnoreCase)).GetValueOrDefault();
-			bool secondSearch(UIElement x) => ((x as NamespaceButton)?._namespace.Name.ToLower().Contains(searchbarText, StringComparison.InvariantCultureIgnoreCase)).GetValueOrDefault() || ((x as ClassButton)?._class.Name.ToLower().Contains(searchbarText, StringComparison.InvariantCultureIgnoreCase)).GetValueOrDefault();
+			bool FirstSearch(UIElement x) => ((x as NamespaceButton)?._namespace.Name.Equals(searchbarText, StringComparison.InvariantCultureIgnoreCase)).GetValueOrDefault() || ((x as ClassButton)?._class.Name.Equals(searchbarText, StringComparison.InvariantCultureIgnoreCase)).GetValueOrDefault();
+			bool SecondSearch(UIElement x) => ((x as NamespaceButton)?._namespace.Name.ToLower().Contains(searchbarText, StringComparison.InvariantCultureIgnoreCase)).GetValueOrDefault() || ((x as ClassButton)?._class.Name.ToLower().Contains(searchbarText, StringComparison.InvariantCultureIgnoreCase)).GetValueOrDefault();
 
-			list._items = list._items.OrderByDescending(firstSearch).ThenByDescending(secondSearch).ToList();
+			list._items = list._items.OrderByDescending(FirstSearch).ThenByDescending(SecondSearch).ToList();
 		};
 		menu.Append(namespaceSearchbar);
 
@@ -105,8 +105,9 @@ class AssemblyViewer : UIState
 		}
 
 		foreach (var item in Search(currentNamespace).Items) {
-			var text = new ClassButton(item);
-			text.TextColor = Color.LightGray;
+			var text = new ClassButton(item) {
+				TextColor = Color.LightGray
+			};
 			list.Add(text);
 		}
 	}
@@ -161,26 +162,26 @@ class AssemblyViewer : UIState
 		{
 			// searchbar logic
 			string searchbarText = memberSearchbar.currentString;
-			bool firstSearch(UIElement x) => ((x as FieldButton)?._field.Name.Equals(searchbarText, StringComparison.InvariantCultureIgnoreCase)).GetValueOrDefault() || ((x as MethodButton)?._method.Name.Equals(searchbarText, StringComparison.InvariantCultureIgnoreCase)).GetValueOrDefault() || ((x as PropertyButton)?._property.Name.Contains(searchbarText, StringComparison.InvariantCultureIgnoreCase)).GetValueOrDefault();
-			bool secondSearch(UIElement x) => ((x as FieldButton)?._field.Name.Contains(searchbarText, StringComparison.InvariantCultureIgnoreCase)).GetValueOrDefault() || ((x as MethodButton)?._method.Name.Contains(searchbarText, StringComparison.InvariantCultureIgnoreCase)).GetValueOrDefault() || ((x as PropertyButton)?._property.Name.Contains(searchbarText, StringComparison.InvariantCultureIgnoreCase)).GetValueOrDefault();
+			bool FirstSearch(UIElement x) => ((x as FieldButton)?._field.Name.Equals(searchbarText, StringComparison.InvariantCultureIgnoreCase)).GetValueOrDefault() || ((x as MethodButton)?._method.Name.Equals(searchbarText, StringComparison.InvariantCultureIgnoreCase)).GetValueOrDefault() || ((x as PropertyButton)?._property.Name.Contains(searchbarText, StringComparison.InvariantCultureIgnoreCase)).GetValueOrDefault();
+			bool SecondSearch(UIElement x) => ((x as FieldButton)?._field.Name.Contains(searchbarText, StringComparison.InvariantCultureIgnoreCase)).GetValueOrDefault() || ((x as MethodButton)?._method.Name.Contains(searchbarText, StringComparison.InvariantCultureIgnoreCase)).GetValueOrDefault() || ((x as PropertyButton)?._property.Name.Contains(searchbarText, StringComparison.InvariantCultureIgnoreCase)).GetValueOrDefault();
 
-			memberList._items = memberList._items.OrderByDescending(firstSearch).ThenByDescending(secondSearch).ToList();
+			memberList._items = memberList._items.OrderByDescending(FirstSearch).ThenByDescending(SecondSearch).ToList();
 		};
 		menu.Append(memberSearchbar);
 
 		// add members
-		var fields = selectedClass.GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static);
-		foreach (var field in fields) {
+		FieldInfo[] fields = selectedClass.GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static);
+		foreach (FieldInfo field in fields) {
 			memberList.Add(new FieldButton(field));
 		}
 
-		var properties = selectedClass.GetProperties(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static);
-		foreach (var property in properties) {
+		PropertyInfo[] properties = selectedClass.GetProperties(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static);
+		foreach (PropertyInfo property in properties) {
 			memberList.Add(new PropertyButton(property));
 		}
 
-		var methods = selectedClass.GetMethods(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static);
-		foreach (var method in methods) {
+		MethodInfo[] methods = selectedClass.GetMethods(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static);
+		foreach (MethodInfo method in methods) {
 			memberList.Add(new MethodButton(method));
 		}
 	}
@@ -206,9 +207,9 @@ class AssemblyViewer : UIState
 	{
 		string[] splitted = query.Split('.');
 
-		var result = terrariaAssembly;
-		for (int i = 0; i < splitted.Length; i++) {
-			result = result.Children.Find(x => x.Name == splitted[i]);
+		Namespace result = terrariaAssembly;
+		foreach (string split in splitted) {
+			result = result?.Children.Find(x => x.Name == split);
 		}
 
 		return result;
@@ -223,9 +224,9 @@ class AssemblyViewer : UIState
 			Name = "Terraria"
 		};
 
-		for (int i = 0; i < types.Length; i++) {
-			string directory = types[i].Namespace;
-			CreateNamespaceStructure(directory, types[i]);
+		foreach (TypeInfo type in types) {
+			string directory = type.Namespace;
+			CreateNamespaceStructure(directory, type);
 		}
 	}
 
@@ -239,17 +240,19 @@ class AssemblyViewer : UIState
 
 			// if a folder with the same name already exists
 			if (parent != null && parent.Children.Exists(x => x.Name == name)) {
-				var current = parent.Children.Find(x => x.Name == name);
-				var folder = CreateNamespaceStructure(childDir, item, current);
+				Namespace current = parent.Children.Find(x => x.Name == name);
+				Namespace folder = CreateNamespaceStructure(childDir, item, current);
 
-				if (folder != null)
-					current.Children.Add(folder);
+				if (folder != null) {
+					current?.Children.Add(folder);
+				}
+
 				return null;
 			}
 
 			// This only occurs with "Terraria.x"
 			if (parent == null) {
-				var folder = CreateNamespaceStructure(childDir, item, terrariaAssembly);
+				Namespace folder = CreateNamespaceStructure(childDir, item, terrariaAssembly);
 
 				if (folder != null)
 					terrariaAssembly.Children.Add(folder);
@@ -268,7 +271,7 @@ class AssemblyViewer : UIState
 			// if a folder with the same name already exists
 			if (parent != null && parent.Children.Exists(x => x.Name == name)) {
 				// Add item to Subdirectory
-				parent.Children.Find(x => x.Name == name).Items.Add(item);
+				parent.Children.Find(x => x.Name == name)?.Items.Add(item);
 				return null;
 			}
 
@@ -289,7 +292,7 @@ class AssemblyViewer : UIState
 	}
 }
 
-class Namespace
+internal class Namespace
 {
 	public string Name { get; set; }
 	public string FullName => Parent != null ? $"{Parent.FullName}.{Name}" : Name;

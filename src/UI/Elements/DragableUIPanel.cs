@@ -10,7 +10,7 @@ public class DragableUIPanel : UIPanel
 {
 	public bool active = false;
 	public event Action OnCloseBtnClicked;
-	internal UIPanel header;
+	internal readonly UIPanel header;
 
 	public DragableUIPanel(string headingtext)
 	{
