@@ -1,6 +1,6 @@
 displayName = Creative tools
 author = NotLe0n
-version = 5.0
+version = 5.0.0.1
 hideCode = false
 hideResources = false
 includeSource = false
