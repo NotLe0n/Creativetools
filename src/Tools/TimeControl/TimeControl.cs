@@ -15,10 +15,10 @@ class TimeControl : ModSystem
 	{
 		base.Load();
 
-		frameStepKeybind = KeybindLoader.RegisterKeybind(Mod, "Frame Step", Keys.F);
-		freezeKeybind = KeybindLoader.RegisterKeybind(Mod, "Freeze", Keys.P);
-		gameSpeedUpKeybind = KeybindLoader.RegisterKeybind(Mod, "Game Speed Up", Keys.OemPeriod);
-		gameSpeedDownKeybind = KeybindLoader.RegisterKeybind(Mod, "Game Speed Down", Keys.OemComma);
+		frameStepKeybind = KeybindLoader.RegisterKeybind(Mod, "FrameStep", Keys.None);
+		freezeKeybind = KeybindLoader.RegisterKeybind(Mod, "Freeze", Keys.None);
+		gameSpeedUpKeybind = KeybindLoader.RegisterKeybind(Mod, "GameSpeedUp", Keys.None);
+		gameSpeedDownKeybind = KeybindLoader.RegisterKeybind(Mod, "GameSpeedDown", Keys.None);
 		On_Main.DoUpdate += Main_DoUpdate;
 	}
 

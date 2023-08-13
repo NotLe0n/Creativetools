@@ -90,6 +90,9 @@ Thanks to direwolf420, darthmorf and jopojelly for some UIElements.
     Use Hotkeys to Freeze, slow down or frame step the game.
    
 [h1]Latest Changes[/h1]
+v5.1 - 1.4.4 update
+    + updated to 1.4.4
+
 v5.0 - Multiplayer Update
     + made many tools multiplayer compatible
         Note: Assembly Viewer and Modify Item is not compatible

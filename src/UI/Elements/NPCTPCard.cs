@@ -44,7 +44,7 @@ internal class NPCTPCard : UIPanel
 		}
 
 		Texture2D npcTexture = TextureAssets.Npc[_npc.type].Value;
-		Vector2 drawPosition = new(GetDimensions().X + 250 / _npc.width, GetDimensions().Y + 150 / _npc.height);
+		Vector2 drawPosition = new(GetDimensions().X + 250f / _npc.width, GetDimensions().Y + 150f / _npc.height);
 		Rectangle npcDrawRectangle = _npc.frame == default ? new(0, (npcTexture.Height / Main.npcFrameCount[_npc.type]) * frameCounter, npcTexture.Width, npcTexture.Height / Main.npcFrameCount[_npc.type]) : _npc.frame;
 		Color drawColor = _npc.color == default ? Color.White : _npc.color;
 

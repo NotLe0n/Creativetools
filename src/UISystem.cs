@@ -19,39 +19,41 @@ internal class UISystem : ModSystem
 	private UserInterface ButtonUserInterface;
 	private UserInterface ConfirmPanelUserInterface;
 	/////////////////////////////
-	internal GameInfo InfoUI;
-	internal ButtonUI ButtonUI;
-	internal ConfirmPanel ConfirmPanelUI;
+	private GameInfo infoUI;
+	private ButtonUI buttonUI;
+	private ConfirmPanel confirmPanelUI;
 
 	public override void Load()
 	{
-		if (!Main.dedServ) {
-			InfoUI = new GameInfo();
-			InfoUI.Activate();
-			ButtonUI = new ButtonUI();
-			ButtonUI.Activate();
-			ConfirmPanelUI = new ConfirmPanel();
-			ConfirmPanelUI.Activate();
-			///////////////////////////////////////////////////
-			UserInterface = new UserInterface();
-			UserInterface.SetState(null);
-			InfoUserInterface = new UserInterface();
-			InfoUserInterface.SetState(InfoUI);
-			ButtonUserInterface = new UserInterface();
-			ButtonUserInterface.SetState(ButtonUI);
-			ConfirmPanelUserInterface = new UserInterface();
-			ConfirmPanelUserInterface.SetState(ConfirmPanelUI);
-			UserInterface2 = new UserInterface();
-			UserInterface2.SetState(null);
-			//////////////////////////////////////////////////
+		if (Main.dedServ) {
+			return;
 		}
+
+		infoUI = new GameInfo();
+		infoUI.Activate();
+		buttonUI = new ButtonUI();
+		buttonUI.Activate();
+		confirmPanelUI = new ConfirmPanel();
+		confirmPanelUI.Activate();
+		///////////////////////////////////////////////////
+		UserInterface = new UserInterface();
+		UserInterface.SetState(null);
+		InfoUserInterface = new UserInterface();
+		InfoUserInterface.SetState(infoUI);
+		ButtonUserInterface = new UserInterface();
+		ButtonUserInterface.SetState(buttonUI);
+		ConfirmPanelUserInterface = new UserInterface();
+		ConfirmPanelUserInterface.SetState(confirmPanelUI);
+		UserInterface2 = new UserInterface();
+		UserInterface2.SetState(null);
+		//////////////////////////////////////////////////
 	}
 
 	public override void Unload()
 	{
-		InfoUI = null;
-		ButtonUI = null;
-		ConfirmPanelUI = null;
+		infoUI = null;
+		buttonUI = null;
+		confirmPanelUI = null;
 		InfoUserInterface = null;
 		ButtonUserInterface = null;
 		ConfirmPanelUserInterface = null;

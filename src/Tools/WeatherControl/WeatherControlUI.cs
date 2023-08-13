@@ -25,7 +25,7 @@ internal class WeatherControlUI : UIState
 		menu.OnCloseBtnClicked += UISystem.BackToMainMenu;
 		Append(menu);
 
-		var timeSlider = MakeSlider(new UIIntRangedDataValue("Time Control:", 0, 0, 86399), out time, menu, top: 50);
+		MakeSlider(new UIIntRangedDataValue("Time Control:", 0, 0, 86399), out time, menu, top: 50);
 		menu.Append(new UIText(Language.GetTextValue("LegacyInterface.102") + ":", 0.85f) { MarginTop = 105, MarginLeft = 20 });
 
 		float pos = 0.25f;
@@ -55,9 +55,9 @@ internal class WeatherControlUI : UIState
 	}
 }
 
-class MoonPhaseButton : UIHoverImageButton
+internal class MoonPhaseButton : UIHoverImageButton
 {
-	private static readonly string[] moons = new[] { "FullMoon", "WaningGibbous", "ThirdQuarter", "WaningCrescent", "NewMoon", "WaxingCrescent", "FirstQuarter", "WaxingGibbous" };
+	private static readonly string[] moons = { "FullMoon", "WaningGibbous", "ThirdQuarter", "WaningCrescent", "NewMoon", "WaxingCrescent", "FirstQuarter", "WaxingGibbous" };
 	private readonly int moonPhase;
 
 	public MoonPhaseButton(int moonPhase) : base("Creativetools/UI Assets/" + moons[moonPhase], Language.GetTextValue("GameUI." + moons[moonPhase]))

@@ -8,7 +8,7 @@ using Terraria.UI;
 
 namespace Creativetools.UI.Elements;
 
-class UIHorizontalScrollbar : UIElement
+internal class UIHorizontalScrollbar : UIElement
 {
 	private float _viewPosition;
 	private float _viewSize = 1f;

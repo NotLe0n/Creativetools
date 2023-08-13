@@ -1,8 +1,8 @@
 Keybinds: {
-	"Frame Step.DisplayName": Frame  Step
+	FrameStep.DisplayName: Frame Step
 	Freeze.DisplayName: Freeze
-	"Game Speed Up.DisplayName": Game  Speed  Up
-	"Game Speed Down.DisplayName": Game  Speed  Down
+	GameSpeedUp.DisplayName: Game Speed Up
+	GameSpeedDown.DisplayName: Game Speed Down
 }
 
 Configs: {

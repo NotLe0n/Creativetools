@@ -108,7 +108,7 @@ public class DownedBossToggleUI : UIState
 
 		// append toggle
 		var toggle = new UIToggleImage(Main.Assets.Request<Texture2D>("Images\\UI\\Settings_Toggle"), 13, 13, new Point(17, 1), new Point(1, 1));
-		toggle.SetState((bool)field.GetValue(type));
+		toggle.SetState((bool)field?.GetValue(type));
 		toggle.OnLeftClick += (_, _) => SetField(field, toggle.IsOn);
 		toggleList.Add(toggle);
 

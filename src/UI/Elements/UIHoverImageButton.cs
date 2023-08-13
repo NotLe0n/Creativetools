@@ -8,7 +8,7 @@ namespace Creativetools.UI.Elements;
 
 internal class UIHoverImageButton : UIImageButton
 {
-	public string hoverText;
+	private readonly string hoverText;
 
 	public UIHoverImageButton(string texture, string hoverText) : base(ModContent.Request<Texture2D>(texture, ReLogic.Content.AssetRequestMode.ImmediateLoad))
 	{

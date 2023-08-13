@@ -5,9 +5,9 @@ using Terraria.UI;
 
 namespace Creativetools.UI.Elements;
 
-class UISolidColor : UIElement
+internal class UISolidColor : UIElement
 {
-	public Color color;
+	private readonly Color color;
 	public UISolidColor(Color color)
 	{
 		this.color = color;

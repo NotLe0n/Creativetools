@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 
 namespace Creativetools;
 
-class FontSystem : ModSystem
+internal class FontSystem : ModSystem
 {
 	public static DynamicSpriteFont ConsolasFont { get; private set; }
 

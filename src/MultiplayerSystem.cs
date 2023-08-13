@@ -256,18 +256,18 @@ internal class MultiplayerSystem
 				}
 				break;
 			case NPCSync:
-				int NPCID = reader.ReadInt32();
-				Main.npc[NPCID].position = reader.ReadVector2();
-				Main.npc[NPCID].velocity = reader.ReadVector2();
-				Main.npc[NPCID].netUpdate = true;
+				int npcID = reader.ReadInt32();
+				Main.npc[npcID].position = reader.ReadVector2();
+				Main.npc[npcID].velocity = reader.ReadVector2();
+				Main.npc[npcID].netUpdate = true;
 				
 				if (Main.netMode == NetmodeID.Server) {
 					NetMessage.SendData(MessageID.SyncNPC);
 				}
 				break;
 			case ItemPosSync:
-				int ItemID = reader.ReadInt32();
-				Main.item[ItemID].position = reader.ReadVector2();
+				int itemID = reader.ReadInt32();
+				Main.item[itemID].position = reader.ReadVector2();
 				
 				if (Main.netMode == NetmodeID.Server) {
 					NetMessage.SendData(MessageID.SyncItem);
