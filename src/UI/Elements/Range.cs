@@ -109,7 +109,7 @@ internal class UIRange<T> : UIElement
 			Append(slider);
 
 			minus = new UIImageButton(ModContent.Request<Texture2D>("UIElements/ButtonMinus"));
-			minus.OnClick += Minus_OnClick;
+			minus.OnLeftClick += Minus_OnClick;
 			//minus.Height.Set(16, 0f);
 			minus.Width.Set(0, .125f);
 			minus.Left.Set(2, .5f);
@@ -119,7 +119,7 @@ internal class UIRange<T> : UIElement
 			Append(minus);
 
 			plus = new UIImageButton(ModContent.Request<Texture2D>("UIElements/ButtonPlus"));
-			plus.OnClick += Plus_OnClick;
+			plus.OnLeftClick += Plus_OnClick;
 			//plus.Height.Set(16, 0f);
 			plus.Width.Set(0, .125f);
 			plus.Left.Set(2, .625f);

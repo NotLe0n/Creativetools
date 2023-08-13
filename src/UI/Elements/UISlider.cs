@@ -46,9 +46,9 @@ internal class UISlider : UIElement
 		base.MouseOver(evt);
 		SoundEngine.PlaySound(SoundID.MenuTick);
 	}
-	public override void Click(UIMouseEvent evt)
+	public override void LeftClick(UIMouseEvent evt)
 	{
-		base.Click(evt);
+		base.LeftClick(evt);
 		SoundEngine.PlaySound(SoundID.MenuTick);
 	}
 

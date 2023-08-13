@@ -10,16 +10,16 @@ internal class ModifyPlayer : ModPlayer
 
 	public override void Load()
 	{
-		On.Terraria.Player.RecalculateLuck += Player_RecalculateLuck;
-		On.Terraria.Graphics.Renderers.LegacyPlayerRenderer.DrawPlayerInternal += LegacyPlayerRenderer_DrawPlayerInternal;
+		On_Player.RecalculateLuck += Player_RecalculateLuck;
+		Terraria.Graphics.Renderers.On_LegacyPlayerRenderer.DrawPlayerInternal += LegacyPlayerRenderer_DrawPlayerInternal;
 	}
 
-	private void LegacyPlayerRenderer_DrawPlayerInternal(On.Terraria.Graphics.Renderers.LegacyPlayerRenderer.orig_DrawPlayerInternal orig, Terraria.Graphics.Renderers.LegacyPlayerRenderer self, Terraria.Graphics.Camera camera, Terraria.Player drawPlayer, Microsoft.Xna.Framework.Vector2 position, float rotation, Microsoft.Xna.Framework.Vector2 rotationOrigin, float shadow, float alpha, float scale, bool headOnly)
+	private void LegacyPlayerRenderer_DrawPlayerInternal(Terraria.Graphics.Renderers.On_LegacyPlayerRenderer.orig_DrawPlayerInternal orig, Terraria.Graphics.Renderers.LegacyPlayerRenderer self, Terraria.Graphics.Camera camera, Terraria.Player drawPlayer, Microsoft.Xna.Framework.Vector2 position, float rotation, Microsoft.Xna.Framework.Vector2 rotationOrigin, float shadow, float alpha, float scale, bool headOnly)
 	{
 		orig(self, camera, drawPlayer, position, rotation, rotationOrigin, shadow, alpha, scale * playerSize, headOnly);
 	}
 
-	private void Player_RecalculateLuck(On.Terraria.Player.orig_RecalculateLuck orig, Player self)
+	private void Player_RecalculateLuck(Terraria.On_Player.orig_RecalculateLuck orig, Player self)
 	{
 		orig(self);
 

@@ -88,7 +88,7 @@ public class DownedBossToggleUI : UIState
 		resetBtn.Left.Set(0, 0.5f);
 		resetBtn.Top.Set(0, 0.92f);
 		resetBtn.Width.Set(0, 0.3f);
-		resetBtn.OnClick += (_, _) => SetAll2(false);
+		resetBtn.OnLeftClick += (_, _) => SetAll2(false);
 		panel.Append(resetBtn);
 
 		var allTrueBtn = new UITextPanel<string>("Check all");
@@ -96,7 +96,7 @@ public class DownedBossToggleUI : UIState
 		allTrueBtn.Left.Set(0, 0.1f);
 		allTrueBtn.Top.Set(0, 0.92f);
 		allTrueBtn.Width.Set(0, 0.3f);
-		allTrueBtn.OnClick += (_, _) => SetAll2(true);
+		allTrueBtn.OnLeftClick += (_, _) => SetAll2(true);
 		panel.Append(allTrueBtn);
 	}
 
@@ -109,7 +109,7 @@ public class DownedBossToggleUI : UIState
 		// append toggle
 		var toggle = new UIToggleImage(Main.Assets.Request<Texture2D>("Images\\UI\\Settings_Toggle"), 13, 13, new Point(17, 1), new Point(1, 1));
 		toggle.SetState((bool)field.GetValue(type));
-		toggle.OnClick += (_, _) => SetField(field, toggle.IsOn);
+		toggle.OnLeftClick += (_, _) => SetField(field, toggle.IsOn);
 		toggleList.Add(toggle);
 
 		// append text

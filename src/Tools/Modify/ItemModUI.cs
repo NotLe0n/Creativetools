@@ -48,7 +48,7 @@ internal class ItemModUI : UIState
 		autoswingButton.MarginLeft = 10;
 		autoswingButton.MarginTop = 400;
 		autoswingButton.Width.Set(10, 0f);
-		autoswingButton.OnClick += (_, _) =>
+		autoswingButton.OnLeftClick += (_, _) =>
 		{
 			ToggleAutoSwing();
 			SoundEngine.PlaySound(SoundID.MenuTick);
@@ -60,7 +60,7 @@ internal class ItemModUI : UIState
 		turnaroundButton.MarginLeft = 275;
 		turnaroundButton.MarginTop = 400;
 		turnaroundButton.Width.Set(10, 0f);
-		turnaroundButton.OnClick += (_, _) =>
+		turnaroundButton.OnLeftClick += (_, _) =>
 		{
 			ToggleTurnAround();
 			SoundEngine.PlaySound(SoundID.MenuTick);

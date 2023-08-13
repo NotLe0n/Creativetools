@@ -48,7 +48,7 @@ class InspectValue : UIState
 			panel.Append(frozenText);
 
 			frozenToggle = new UIToggleImage(Main.Assets.Request<Texture2D>("Images\\UI\\Settings_Toggle"), 13, 13, new Point(17, 1), new Point(1, 1));
-			frozenToggle.OnClick += FrozenToggle_OnClick;
+			frozenToggle.OnLeftClick += FrozenToggle_OnClick;
 			frozenToggle.Top.Set(47, 0);
 			panel.Append(frozenToggle);
 		}

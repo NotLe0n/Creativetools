@@ -1,0 +1,57 @@
+Keybinds: {
+	"Frame Step.DisplayName": Frame  Step
+	Freeze.DisplayName: Freeze
+	"Game Speed Up.DisplayName": Game  Speed  Up
+	"Game Speed Down.DisplayName": Game  Speed  Down
+}
+
+Configs: {
+	Config: {
+		DisplayName: Config
+
+		HideMouse: {
+			Label: Hide Mouse info
+			Tooltip: ""
+		}
+
+		HidePlayer: {
+			Label: Hide Player info
+			Tooltip: ""
+		}
+
+		HideScreen: {
+			Label: Hide Screen info
+			Tooltip: ""
+		}
+
+		HideNPC: {
+			Label: Hide NPC info
+			Tooltip: ""
+		}
+
+		HideItem: {
+			Label: Hide Item info
+			Tooltip: ""
+		}
+
+		HideProjectile: {
+			Label: Hide Projectile info
+			Tooltip: ""
+		}
+
+		HideGame: {
+			Label: Hide Game info
+			Tooltip: ""
+		}
+
+		Hitboxes: {
+			Label: Hide Hitboxes
+			Tooltip: ""
+		}
+
+		MenuBtnOffset: {
+			Label: Menu button offset
+			Tooltip: ""
+		}
+	}
+}

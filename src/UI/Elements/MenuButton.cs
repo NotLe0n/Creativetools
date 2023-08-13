@@ -15,7 +15,7 @@ internal class MenuButton : UIImage
 
 	public MenuButton(string texture, string hoverText, MouseEvent mouseEvent) : base(ModContent.Request<Texture2D>("Creativetools/UI Assets/" + texture, ReLogic.Content.AssetRequestMode.ImmediateLoad))
 	{
-		OnClick += mouseEvent;
+		OnLeftClick += mouseEvent;
 		HoverText = hoverText;
 	}
 
@@ -29,10 +29,10 @@ internal class MenuButton : UIImage
 		}
 	}
 
-	public override void Click(UIMouseEvent evt)
+	public override void LeftClick(UIMouseEvent evt)
 	{
 		SoundEngine.PlaySound(SoundID.MenuTick);
-		base.Click(evt);
+		base.LeftClick(evt);
 	}
 
 	protected override void DrawSelf(SpriteBatch spriteBatch)

@@ -25,7 +25,7 @@ internal class ConfirmPanel : UIState
 		yepButton.Height.Set(50, 0);
 		yepButton.HAlign = 0.03f;
 		yepButton.Top.Set(35, 0);
-		yepButton.OnClick += YepClicked;
+		yepButton.OnLeftClick += YepClicked;
 		confirmPanel.Append(yepButton);
 
 		UIPanel delFavbutton = new();
@@ -33,7 +33,7 @@ internal class ConfirmPanel : UIState
 		delFavbutton.Height.Set(50, 0);
 		delFavbutton.HAlign = 0.5f;
 		delFavbutton.Top.Set(35, 0);
-		delFavbutton.OnClick += DelFavClicked;
+		delFavbutton.OnLeftClick += DelFavClicked;
 		confirmPanel.Append(delFavbutton);
 
 		UIPanel noButton = new();
@@ -41,7 +41,7 @@ internal class ConfirmPanel : UIState
 		noButton.Height.Set(50, 0);
 		noButton.HAlign = 0.97f;
 		noButton.Top.Set(35, 0);
-		noButton.OnClick += NoClicked;
+		noButton.OnLeftClick += NoClicked;
 		confirmPanel.Append(noButton);
 
 		yepButton.Append(new UIText("Yes") { HAlign = 0.5f, VAlign = 0.5f });

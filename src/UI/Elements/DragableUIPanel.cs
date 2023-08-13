@@ -20,8 +20,8 @@ public class DragableUIPanel : UIPanel
 		header.SetPadding(0);
 		header.Height.Set(30, 0f);
 		header.BackgroundColor.A = 255;
-		header.OnMouseDown += Header_OnMouseDown;
-		header.OnMouseUp += Header_OnMouseUp;
+		header.OnLeftMouseDown += Header_OnMouseDown;
+		header.OnLeftMouseUp += Header_OnMouseUp;
 		Append(header);
 
 		var heading = new UIText(headingtext, 0.9f);
@@ -34,7 +34,7 @@ public class DragableUIPanel : UIPanel
 		closeBtn.Width.Set(40, 0);
 		closeBtn.Left.Set(-40, 1f);
 		closeBtn.BackgroundColor.A = 255;
-		closeBtn.OnClick += (_, _) => OnCloseBtnClicked?.Invoke();
+		closeBtn.OnLeftClick += (_, _) => OnCloseBtnClicked?.Invoke();
 		header.Append(closeBtn);
 	}
 	public override void OnInitialize()
@@ -53,16 +53,16 @@ public class DragableUIPanel : UIPanel
 	private Vector2 offset;
 	public bool dragging;
 	public static Vector2 lastPos = new(600, 200);
-	public void Header_OnMouseDown(UIMouseEvent evt, UIElement elm)
+	private void Header_OnMouseDown(UIMouseEvent evt, UIElement elm)
 	{
-		base.MouseDown(evt);
+		base.LeftMouseDown(evt);
 		offset = new Vector2(evt.MousePosition.X - Left.Pixels, evt.MousePosition.Y - Top.Pixels);
 		dragging = true;
 	}
 
-	public void Header_OnMouseUp(UIMouseEvent evt, UIElement elm)
+	private void Header_OnMouseUp(UIMouseEvent evt, UIElement elm)
 	{
-		base.MouseUp(evt);
+		base.LeftMouseUp(evt);
 		dragging = false;
 
 		Left.Set(evt.MousePosition.X - offset.X, 0f);

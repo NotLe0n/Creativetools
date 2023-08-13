@@ -65,7 +65,7 @@ internal class TPToolUI : UIState
 		var tp2RelativeCoords = new UIToggleImage(Main.Assets.Request<Texture2D>("Images\\UI\\Settings_Toggle"), 13, 13, new Point(17, 1), new Point(1, 1));
 		tp2RelativeCoords.Top.Set(120, 0);
 		tp2RelativeCoords.Left.Set(80, 0);
-		tp2RelativeCoords.OnClick += (_, _) => relative = tp2RelativeCoords.IsOn;
+		tp2RelativeCoords.OnLeftClick += (_, _) => relative = tp2RelativeCoords.IsOn;
 		panel.Append(tp2RelativeCoords);
 
 		var tpBtn = new UITextPanel<string>("Teleport");
@@ -73,7 +73,7 @@ internal class TPToolUI : UIState
 		tpBtn.Height.Set(10, 0);
 		tpBtn.Top.Set(150, 0);
 		tpBtn.Left.Set(20, 0);
-		tpBtn.OnClick += Teleport;
+		tpBtn.OnLeftClick += Teleport;
 		panel.Append(tpBtn);
 
 		var tp2NPCText = new UIText("TP to NPC");

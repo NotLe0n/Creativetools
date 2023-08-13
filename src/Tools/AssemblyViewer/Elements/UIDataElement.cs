@@ -41,7 +41,7 @@ class UIDataElement : UIElement
 		toggle.SetState(data);
 		toggle.Left.Set(50, Left.Precent);
 		toggle.Top.Set(6, 0);
-		toggle.OnClick += (_, _) => OnValueChanged.Invoke(!(bool)this.data);
+		toggle.OnLeftClick += (_, _) => OnValueChanged.Invoke(!(bool)this.data);
 		Append(toggle);
 	}
 	#region numeric

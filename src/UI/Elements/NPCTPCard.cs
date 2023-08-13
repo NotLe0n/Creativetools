@@ -18,9 +18,9 @@ internal class NPCTPCard : UIPanel
 	{
 		_npc = npc;
 
-		var NPCIDText = new UIText("ID: " + _npc.type, 0.8f);
-		NPCIDText.Left.Set(40, 0);
-		Append(NPCIDText);
+		var npcIDText = new UIText("ID: " + _npc.type, 0.8f);
+		npcIDText.Left.Set(40, 0);
+		Append(npcIDText);
 
 		_npcPosText = new UIText(_npc.position.ToPoint().ToString(), 0.8f);
 		_npcPosText.Left.Set(40, 0);
@@ -59,11 +59,11 @@ internal class NPCTPCard : UIPanel
 		_npcPosText.SetText(_npc.position.ToPoint().ToString());
 	}
 
-	public override void Click(UIMouseEvent evt)
+	public override void LeftClick(UIMouseEvent evt)
 	{
 		SoundEngine.PlaySound(SoundID.Item6);
 
 		TPToolUI.SetPosition(_npc.position);
-		base.Click(evt);
+		base.LeftClick(evt);
 	}
 }

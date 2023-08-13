@@ -47,10 +47,10 @@ internal class NewUITextBox : UIPanel
 		TextScale = textScale;
 	}
 
-	public override void Click(UIMouseEvent evt)
+	public override void LeftClick(UIMouseEvent evt)
 	{
 		Focus();
-		base.Click(evt);
+		base.LeftClick(evt);
 	}
 
 	internal void Unfocus()

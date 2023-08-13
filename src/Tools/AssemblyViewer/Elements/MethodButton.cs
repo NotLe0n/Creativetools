@@ -28,9 +28,9 @@ internal class MethodButton : UIFontText
 		Append(new UIImage(texture));
 	}
 
-	public override void Click(UIMouseEvent evt)
+	public override void LeftClick(UIMouseEvent evt)
 	{
-		base.Click(evt);
+		base.LeftClick(evt);
 		var based = _method as MethodBase;
 
 		if (UISystem.UserInterface2.CurrentState == null) {

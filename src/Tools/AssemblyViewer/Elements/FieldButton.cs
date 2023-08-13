@@ -23,9 +23,9 @@ internal class FieldButton : UIFontText
 		Append(new UIImage(texture));
 	}
 
-	public override void Click(UIMouseEvent evt)
+	public override void LeftClick(UIMouseEvent evt)
 	{
-		base.Click(evt);
+		base.LeftClick(evt);
 
 		var userInterface2 = UISystem.UserInterface2;
 

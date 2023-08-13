@@ -29,7 +29,7 @@ internal static class UIHelper
 		button.MarginLeft = 20;
 		button.Width.Set(10, 0f);
 
-		button.OnClick += (_, _) =>
+		button.OnLeftClick += (_, _) =>
 		{
 			if (tick) {
 				SoundEngine.PlaySound(SoundID.MenuTick);

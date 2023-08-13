@@ -19,7 +19,7 @@ class TimeControl : ModSystem
 		freezeKeybind = KeybindLoader.RegisterKeybind(Mod, "Freeze", Keys.P);
 		gameSpeedUpKeybind = KeybindLoader.RegisterKeybind(Mod, "Game Speed Up", Keys.OemPeriod);
 		gameSpeedDownKeybind = KeybindLoader.RegisterKeybind(Mod, "Game Speed Down", Keys.OemComma);
-		On.Terraria.Main.DoUpdate += Main_DoUpdate;
+		On_Main.DoUpdate += Main_DoUpdate;
 	}
 
 	public override void Unload()
@@ -34,7 +34,7 @@ class TimeControl : ModSystem
 	private bool freeze;
 	private bool takeStep;
 
-	private void Main_DoUpdate(On.Terraria.Main.orig_DoUpdate orig, Main self, ref Microsoft.Xna.Framework.GameTime gameTime)
+	private void Main_DoUpdate(On_Main.orig_DoUpdate orig, Main self, ref Microsoft.Xna.Framework.GameTime gameTime)
 	{
 		if (Main.gameMenu || Main.ingameOptionsWindow || Main.inFancyUI || Main.blockInput || Main.drawingPlayerChat || Terraria.GameInput.PlayerInput.WritingText || Main.netMode == NetmodeID.Server) {
 			orig(self, ref gameTime);

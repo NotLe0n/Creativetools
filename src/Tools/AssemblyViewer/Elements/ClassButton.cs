@@ -24,9 +24,9 @@ internal class ClassButton : UIFontText
 		Append(new UIImage(texture));
 	}
 
-	public override void Click(UIMouseEvent evt)
+	public override void LeftClick(UIMouseEvent evt)
 	{
-		base.Click(evt);
+		base.LeftClick(evt);
 
 		UISystem.UserInterface.SetState(new AssemblyViewer(_class.Namespace, _class));
 	}

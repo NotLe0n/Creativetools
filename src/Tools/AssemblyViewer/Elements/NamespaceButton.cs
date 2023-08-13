@@ -12,13 +12,13 @@ internal class NamespaceButton : UIFontText
 	{
 		_namespace = ns;
 
-		var texture = ModContent.Request<Texture2D>("Creativetools/UI Assets/AssemblyViewer/folder", ReLogic.Content.AssetRequestMode.ImmediateLoad);
+		var texture = ModContent.Request<Texture2D>("Creativetools/UI Assets/AssemblyViewer/Folder", ReLogic.Content.AssetRequestMode.ImmediateLoad);
 		Append(new UIImage(texture));
 	}
 
-	public override void Click(UIMouseEvent evt)
+	public override void LeftClick(UIMouseEvent evt)
 	{
-		base.Click(evt);
+		base.LeftClick(evt);
 
 		UISystem.UserInterface.SetState(new AssemblyViewer(_namespace.FullName));
 	}

@@ -39,7 +39,7 @@ class ILWindow : UIState
 			invokeButton.Left.Set(10, 0);
 			invokeButton.Width.Set(100, 0);
 			invokeButton.Height.Set(10, 0);
-			invokeButton.OnClick += (_, _) =>
+			invokeButton.OnLeftClick += (_, _) =>
 			{
 				object ret = method.Invoke(null, null);
 				Main.NewText($"<AssemblyViewer> Invoked method [c/FF0000:{method.Name}()] successfully!");
@@ -78,7 +78,7 @@ class ILWindow : UIState
 		changeViewBtn.Left.Set(10, 0.85f);
 		changeViewBtn.Width.Set(20, 0);
 		changeViewBtn.Height.Set(20, 0);
-		changeViewBtn.OnClick += (_, _) =>
+		changeViewBtn.OnLeftClick += (_, _) =>
 		{
 			list.Clear();
 

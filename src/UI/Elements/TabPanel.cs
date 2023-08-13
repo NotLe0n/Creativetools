@@ -24,7 +24,7 @@ internal class Tab : UITextPanel<string>
 		SetPadding(7);
 		BackgroundColor.A = 255; // solid color
 	}
-	public override void Click(UIMouseEvent evt)
+	public override void LeftClick(UIMouseEvent evt)
 	{
 		// update Last tab
 		TabPanel.lastTab = _changeStateTo;

@@ -23,9 +23,9 @@ internal class PropertyButton : UIFontText
 		Append(new UIImage(texture));
 	}
 
-	public override void Click(UIMouseEvent evt)
+	public override void LeftClick(UIMouseEvent evt)
 	{
-		base.Click(evt);
+		base.LeftClick(evt);
 
 		if (UISystem.UserInterface2.CurrentState == null) {
 			UISystem.UserInterface2.SetState(new InspectValue(_property));

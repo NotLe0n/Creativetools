@@ -14,7 +14,7 @@ internal class ButtonUI : UIState
 	public ButtonUI()
 	{
 		_menuButton = new UIHoverImageButton("Creativetools/UI Assets/MenuButton", "Open Menu");
-		_menuButton.OnClick += MenuButtonClicked;
+		_menuButton.OnLeftClick += MenuButtonClicked;
 		Append(_menuButton);
 	}
 

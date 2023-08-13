@@ -54,7 +54,7 @@ internal class PlaySoundUI : UIState
 		playMusic.SetPadding(4);
 		playMusic.MarginLeft = 20;
 		playMusic.Width.Set(10, 0f);
-		playMusic.OnClick += (_, _) =>
+		playMusic.OnLeftClick += (_, _) =>
 		{
 			playmusic = !playmusic;
 			playMusic.SetText(text: playmusic ? "Stop Music" : "Play Music");

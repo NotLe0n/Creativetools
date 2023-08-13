@@ -43,7 +43,7 @@ internal class WeatherControlUI : UIState
 	public override void Update(GameTime gameTime)
 	{
 		base.Update(gameTime);
-		if (Main.time != time.Data) {
+		if (Math.Abs(Main.time - time.Data) > 0.01f) {
 			if (Main.netMode == NetmodeID.SinglePlayer) {
 				Main.dayTime = time.Data <= 54000;
 				Main.time = !Main.dayTime ? Math.Abs(time.Data - 54000) : time.Data;
@@ -65,9 +65,9 @@ class MoonPhaseButton : UIHoverImageButton
 		this.moonPhase = moonPhase;
 	}
 
-	public override void Click(UIMouseEvent evt)
+	public override void LeftClick(UIMouseEvent evt)
 	{
-		base.Click(evt);
+		base.LeftClick(evt);
 		ChangeMoonPhase(moonPhase);
 	}
 
