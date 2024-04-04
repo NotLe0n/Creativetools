@@ -27,7 +27,7 @@ internal class FieldButton : UIFontText
 	{
 		base.LeftClick(evt);
 
-		var userInterface2 = UISystem.UserInterface2;
+		var userInterface2 = UISystem.userInterface2;
 
 		userInterface2.SetState(
 			userInterface2.CurrentState == null ?

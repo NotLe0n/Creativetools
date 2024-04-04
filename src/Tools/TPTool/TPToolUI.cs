@@ -14,14 +14,14 @@ internal class TPToolUI : UIState
 {
 	private bool relative;
 	private Vector2 coordinates = Vector2.Zero;
-	private readonly UIList _npcList;
+	private readonly UIList npcList;
 
 	public TPToolUI()
 	{
 		var panel = new DragableUIPanel("TP Tool") { VAlign = 0.5f, HAlign = 0.1f };
 		panel.Width.Set(450, 0);
 		panel.Height.Set(300, 0);
-		panel.OnCloseBtnClicked += () => UISystem.UserInterface.SetState(new MainUI());
+		panel.OnCloseBtnClicked += () => UISystem.userInterface.SetState(new MainUI());
 		Append(panel);
 
 		var tp2Coords = new UIText("TP to coordinates:");
@@ -88,20 +88,20 @@ internal class TPToolUI : UIState
 		npcScrollbar.Top.Set(70, 0);
 		panel.Append(npcScrollbar);
 
-		_npcList = new UIList();
-		_npcList.Width.Set(250, 0);
-		_npcList.Height.Set(210, 0);
-		_npcList.Left.Set(200, 0);
-		_npcList.Top.Set(60, 0);
-		_npcList.ListPadding = 8f;
-		_npcList.SetScrollbar(npcScrollbar);
-		panel.Append(_npcList);
+		npcList = new UIList();
+		npcList.Width.Set(250, 0);
+		npcList.Height.Set(210, 0);
+		npcList.Left.Set(200, 0);
+		npcList.Top.Set(60, 0);
+		npcList.ListPadding = 8f;
+		npcList.SetScrollbar(npcScrollbar);
+		panel.Append(npcList);
 
 		foreach (NPC npc in Main.npc.Where(x => x.active)) {
 			var npcCard = new NPCTPCard(npc);
 			npcCard.Width.Set(200, 0);
 			npcCard.Height.Set(50, 0);
-			_npcList.Add(npcCard);
+			npcList.Add(npcCard);
 		}
 	}
 
@@ -120,13 +120,13 @@ internal class TPToolUI : UIState
 	public override void Update(GameTime gameTime)
 	{
 		if (Main.GameUpdateCount % 60 == 0) {
-			_npcList.Clear();
+			npcList.Clear();
 
 			foreach (NPC npc in Main.npc.Where(x => x.active)) {
 				var npcCard = new NPCTPCard(npc);
 				npcCard.Width.Set(200, 0);
 				npcCard.Height.Set(50, 0);
-				_npcList.Add(npcCard);
+				npcList.Add(npcCard);
 			}
 		}
 

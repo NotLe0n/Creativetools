@@ -49,7 +49,7 @@ internal class Header : UIElement
 			// This is in update because the click event doesn't work :))
 			if (ContainsPoint(Main.MouseScreen) && Main.mouseLeft) {
 				string target = string.Join('.', _spliced[0..(_index + 1)]);
-				UISystem.UserInterface.SetState(new AssemblyViewer(target));
+				UISystem.userInterface.SetState(new AssemblyViewer(target));
 			}
 		}
 	}

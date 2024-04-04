@@ -12,10 +12,10 @@ using Terraria.UI;
 
 namespace Creativetools.Tools.AssemblyViewer;
 
-class AssemblyViewer : UIState
+internal class AssemblyViewer : UIState
 {
 	private static float oldViewPosition;
-	private UIScrollbar _scrollbar;
+	private UIScrollbar scrollbar;
 	private Namespace terrariaAssembly = new();
 
 	public AssemblyViewer(string currentNamespace, TypeInfo selectedClass = null)
@@ -25,7 +25,7 @@ class AssemblyViewer : UIState
 		menu.Height.Set(650, 0);
 		menu.VAlign = 0.6f;
 		menu.HAlign = 0.6f;
-		menu.OnCloseBtnClicked += () => UISystem.UserInterface.SetState(new MainUI());
+		menu.OnCloseBtnClicked += () => UISystem.userInterface.SetState(new MainUI());
 		Append(menu);
 
 		CreateNamespaceStructure();
@@ -43,12 +43,12 @@ class AssemblyViewer : UIState
 
 	private void ConstructNamespaceInterface(string currentNamespace, DragableUIPanel menu)
 	{
-		_scrollbar = new UIScrollbar();
-		_scrollbar.Top.Set(0, 0.1f);
-		_scrollbar.Left.Set(0, 0.45f);
-		_scrollbar.Width.Set(20, 0);
-		_scrollbar.Height.Set(0, 0.825f);
-		menu.Append(_scrollbar);
+		scrollbar = new UIScrollbar();
+		scrollbar.Top.Set(0, 0.1f);
+		scrollbar.Left.Set(0, 0.45f);
+		scrollbar.Width.Set(20, 0);
+		scrollbar.Height.Set(0, 0.825f);
+		menu.Append(scrollbar);
 
 		var horizontalScrollbar = new UIHorizontalScrollbar();
 		horizontalScrollbar.Top.Set(0, 0.95f);
@@ -63,7 +63,7 @@ class AssemblyViewer : UIState
 		list.Width.Set(0, 0.43f);
 		list.Height.Set(0, 0.825f);
 		list.ListPadding = 10;
-		list.SetScrollbar(_scrollbar);
+		list.SetScrollbar(scrollbar);
 		list.SetHorizontalScrollbar(horizontalScrollbar);
 		menu.Append(list);
 
@@ -85,7 +85,7 @@ class AssemblyViewer : UIState
 			Width = new(320 - currentNamespace.GetTextSize(FontSystem.ConsolasFont).X, 0),
 			Height = new(20, 0),
 			BackgroundColor = default, // remove background
-			BorderColor = default // renove border
+			BorderColor = default // remove border
 		};
 		namespaceSearchbar.OnTextChanged += () =>
 		{
@@ -156,7 +156,7 @@ class AssemblyViewer : UIState
 			Width = new(320 - selectedClass.Name.GetTextSize().X, 0.2f),
 			Height = new(20, 0),
 			BackgroundColor = default, // remove background
-			BorderColor = default // renove border
+			BorderColor = default // remove border
 		};
 		memberSearchbar.OnTextChanged += () =>
 		{
@@ -189,15 +189,15 @@ class AssemblyViewer : UIState
 	public override void Recalculate()
 	{
 		base.Recalculate();
-		if (_scrollbar != null) {
-			_scrollbar.ViewPosition = oldViewPosition;
+		if (scrollbar != null) {
+			scrollbar.ViewPosition = oldViewPosition;
 		}
 	}
 	public override void Update(GameTime gameTime)
 	{
 		base.Update(gameTime);
-		if (_scrollbar != null) {
-			oldViewPosition = _scrollbar.ViewPosition;
+		if (scrollbar != null) {
+			oldViewPosition = scrollbar.ViewPosition;
 		}
 	}
 
@@ -218,7 +218,7 @@ class AssemblyViewer : UIState
 	private void CreateNamespaceStructure()
 	{
 		Assembly assembly = typeof(Main).Assembly;
-		TypeInfo[] types = assembly.DefinedTypes.Where(x => x.FullName.StartsWith("Terraria") && !x.FullName.Contains("ModLoader")).ToArray();
+		var types = assembly.DefinedTypes.Where(x => x.FullName.StartsWith("Terraria") && !x.FullName.Contains("ModLoader")).ToArray();
 
 		terrariaAssembly = new() {
 			Name = "Terraria"
@@ -267,29 +267,28 @@ class AssemblyViewer : UIState
 			f.Children = new() { CreateNamespaceStructure(childDir, item, f) };
 			return f;
 		}
-		else {
-			// if a folder with the same name already exists
-			if (parent != null && parent.Children.Exists(x => x.Name == name)) {
-				// Add item to Subdirectory
-				parent.Children.Find(x => x.Name == name)?.Items.Add(item);
-				return null;
-			}
 
-			// This only occurs with "Terraria.x"
-			if (parent == null) {
-				// Add Item to "Terraria"
-				terrariaAssembly.Items.Add(item);
-				return null;
-			}
+        // if a folder with the same name already exists
+        if (parent != null && parent.Children.Exists(x => x.Name == name)) {
+            // Add item to Subdirectory
+            parent.Children.Find(x => x.Name == name)?.Items.Add(item);
+            return null;
+        }
 
-			// Add new Folder
-			return new Namespace() {
-				Name = name,
-				Parent = parent,
-				Items = { item }
-			};
-		}
-	}
+        // This only occurs with "Terraria.x"
+        if (parent == null) {
+            // Add Item to "Terraria"
+            terrariaAssembly.Items.Add(item);
+            return null;
+        }
+
+        // Add new Folder
+        return new Namespace {
+            Name = name,
+            Parent = parent,
+            Items = { item }
+        };
+    }
 }
 
 internal class Namespace

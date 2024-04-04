@@ -20,6 +20,6 @@ internal class NamespaceButton : UIFontText
 	{
 		base.LeftClick(evt);
 
-		UISystem.UserInterface.SetState(new AssemblyViewer(_namespace.FullName));
+		UISystem.userInterface.SetState(new AssemblyViewer(_namespace.FullName));
 	}
 }

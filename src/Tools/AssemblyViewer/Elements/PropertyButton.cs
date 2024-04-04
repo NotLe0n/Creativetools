@@ -17,7 +17,7 @@ internal class PropertyButton : UIFontText
 
 		string img = "Property";
 		if (!property.CanWrite) img += "Getter";
-		if (property.GetMethod.IsPrivate) img += "Private";
+		if (property.GetMethod?.IsPrivate ?? false) img += "Private";
 
 		var texture = ModContent.Request<Texture2D>("Creativetools/UI Assets/AssemblyViewer/" + img, ReLogic.Content.AssetRequestMode.ImmediateLoad);
 		Append(new UIImage(texture));
@@ -27,11 +27,11 @@ internal class PropertyButton : UIFontText
 	{
 		base.LeftClick(evt);
 
-		if (UISystem.UserInterface2.CurrentState == null) {
-			UISystem.UserInterface2.SetState(new InspectValue(_property));
+		if (UISystem.userInterface2.CurrentState == null) {
+			UISystem.userInterface2.SetState(new InspectValue(_property));
 		}
 		else {
-			UISystem.UserInterface2.SetState(null);
+			UISystem.userInterface2.SetState(null);
 		}
 	}
 }

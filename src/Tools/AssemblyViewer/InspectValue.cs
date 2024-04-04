@@ -11,9 +11,9 @@ using Terraria.UI;
 
 namespace Creativetools.Tools.AssemblyViewer;
 
-class InspectValue : UIState
+internal class InspectValue : UIState
 {
-	private readonly MemberInfo _member;
+	private readonly MemberInfo member;
 
 	private UIDataElement dataElement;
 	private readonly DragableUIPanel panel;
@@ -23,13 +23,13 @@ class InspectValue : UIState
 
 	public InspectValue(MemberInfo member)
 	{
-		_member = member;
+		this.member = member;
 		frozen = false;
 
 		panel = new DragableUIPanel(member.Name);
 		panel.Top.Set(200, 0);
 		panel.Left.Set(500, 0);
-		panel.OnCloseBtnClicked += () => UISystem.UserInterface2.SetState(null);
+		panel.OnCloseBtnClicked += () => UISystem.userInterface2.SetState(null);
 		Append(panel);
 
 		panel.Append(new UIText("Value:") {
@@ -38,8 +38,8 @@ class InspectValue : UIState
 		});
 
 		// you can only change the value of a field if it is not a const or readonly
-		var field = _member as FieldInfo;
-		var property = _member as PropertyInfo;
+		var field = this.member as FieldInfo;
+		var property = this.member as PropertyInfo;
 
 		if ((!field?.IsLiteral).GetValueOrDefault() && (!field?.IsInitOnly).GetValueOrDefault() || (property?.CanWrite).GetValueOrDefault()) {
 			frozenText = new UIText("frozen:") {
@@ -66,15 +66,15 @@ class InspectValue : UIState
 		base.Update(gameTime);
 
 		if (!frozen || tempUnfreeze) {
-			if (_member is FieldInfo field)
+			if (member is FieldInfo field)
 				UpdateDataElement(field);
-			else if (_member is PropertyInfo property)
+			else if (member is PropertyInfo property)
 				UpdateDataElement(property);
 		}
 		else {
-			if (_member is FieldInfo field)
+			if (member is FieldInfo field)
 				field.SetValue(null, dataElement.data);
-			else if (_member is PropertyInfo property)
+			else if (member is PropertyInfo property)
 				property.SetValue(null, dataElement.data);
 		}
 	}
@@ -143,7 +143,7 @@ class InspectValue : UIState
 			frozenText?.Left.Set(panel.GetDimensions().Width - 100, 0);
 			frozenToggle?.Left.Set(panel.GetDimensions().Width - 30, 0);
 
-			panel.Width.Set(Math.Max(dataElement.Width.Pixels + (frozenText?.GetDimensions().Width).GetValueOrDefault() + 150, _member.Name.GetTextSize().X + 40), 0);
+			panel.Width.Set(Math.Max(dataElement.Width.Pixels + (frozenText?.GetDimensions().Width).GetValueOrDefault() + 150, member.Name.GetTextSize().X + 40), 0);
 			panel.Height.Set(dataElement.Height.Pixels, 0);
 			panel.Recalculate();
 		}

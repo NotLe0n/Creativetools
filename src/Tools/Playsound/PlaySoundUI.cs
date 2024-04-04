@@ -17,13 +17,13 @@ namespace Creativetools.Tools.Playsound;
 internal class PlaySoundUI : UIState
 {
 	private readonly UIText soundName, musicName;
-	private readonly UIIntRangedDataValue ID;
-	public static UIIntRangedDataValue MusicSound;
-	public static bool playmusic;
+	private readonly UIIntRangedDataValue id;
+	public static UIIntRangedDataValue musicSound;
+	public static bool playMusic;
 
-	private static FieldInfo[] sounds => typeof(SoundID).GetFields(BindingFlags.Public | BindingFlags.Static | BindingFlags.SetField).Where(x => x.FieldType == typeof(SoundStyle)).OrderBy(x => x.Name).ToArray();
+	private static FieldInfo[] Sounds => typeof(SoundID).GetFields(BindingFlags.Public | BindingFlags.Static | BindingFlags.SetField).Where(x => x.FieldType == typeof(SoundStyle)).OrderBy(x => x.Name).ToArray();
 
-	private static FieldInfo[] music => typeof(MusicID).GetFields(BindingFlags.Public | BindingFlags.Static | BindingFlags.SetField);
+	private static FieldInfo[] Musics => typeof(MusicID).GetFields(BindingFlags.Public | BindingFlags.Static | BindingFlags.SetField);
 
 	public PlaySoundUI()
 	{
@@ -32,14 +32,14 @@ internal class PlaySoundUI : UIState
 		menu.Height.Set(180, 0);
 		menu.VAlign = 0.6f;
 		menu.HAlign = 0.2f;
-		menu.OnCloseBtnClicked += () => UISystem.UserInterface.SetState(new MainUI());
+		menu.OnCloseBtnClicked += () => UISystem.userInterface.SetState(new MainUI());
 		Append(menu);
 
 		//////////////////Sound/////////////////////
-		var soundSlider = MakeSlider(new UIIntRangedDataValue("", 0, 0, sounds.Length - 1), out ID, menu, top: 50, left: -10);
+		var soundSlider = MakeSlider(new UIIntRangedDataValue("", 0, 0, Sounds.Length - 1), out id, menu, top: 50, left: -10);
 		soundSlider.AppendSliderButton("Play Sound", () =>
 		{
-			if (sounds[ID.Data].GetValue(null) is SoundStyle sound) {
+			if (Sounds[id.Data].GetValue(null) is SoundStyle sound) {
 				SoundEngine.PlaySound(sound);
 			}
 		}, false);
@@ -48,18 +48,18 @@ internal class PlaySoundUI : UIState
 		soundSlider.Append(soundName);
 
 		/////////////////Music////////////////////
-		var musicSlider = MakeSlider(new UIIntRangedDataValue("", 0, 0, music.Length), out MusicSound, menu, top: 100, left: -10);
+		var musicSlider = MakeSlider(new UIIntRangedDataValue("", 0, 0, Musics.Length), out musicSound, menu, top: 100, left: -10);
 
-		UITextPanel<string> playMusic = new(text: playmusic ? "Stop Music" : "Play Music");
-		playMusic.SetPadding(4);
-		playMusic.MarginLeft = 20;
-		playMusic.Width.Set(10, 0f);
-		playMusic.OnLeftClick += (_, _) =>
+		UITextPanel<string> playMusicBtn = new(text: playMusic ? "Stop Music" : "Play Music");
+		playMusicBtn.SetPadding(4);
+		playMusicBtn.MarginLeft = 20;
+		playMusicBtn.Width.Set(10, 0f);
+		playMusicBtn.OnLeftClick += (_, _) =>
 		{
-			playmusic = !playmusic;
-			playMusic.SetText(text: playmusic ? "Stop Music" : "Play Music");
+			playMusic = !playMusic;
+			playMusicBtn.SetText(text: playMusic ? "Stop Music" : "Play Music");
 		};
-		musicSlider.Append(playMusic);
+		musicSlider.Append(playMusicBtn);
 
 		musicName = new UIText("") { HAlign = 0.6f, MarginTop = 20 };
 		musicSlider.Append(musicName);
@@ -68,17 +68,17 @@ internal class PlaySoundUI : UIState
 	public override void Update(GameTime gameTime)
 	{
 		base.Update(gameTime);
-		soundName.SetText("SoundID." + sounds[ID.Data].Name);
+		soundName.SetText("SoundID." + Sounds[id.Data].Name);
 
-		List<string> musicNames = new(music.Length);
+		List<string> musicNames = new(Musics.Length);
 		for (int i = 0; i < musicNames.Capacity; i++) {
-			musicNames.Add("MusicID." + music[i].Name);
+			musicNames.Add("MusicID." + Musics[i].Name);
 		}
 
 		musicNames.Insert(0, "No Music");
 		musicNames.Insert(45, "Unused");
 
-		musicName.SetText(musicNames[MusicSound.Data]);
+		musicName.SetText(musicNames[musicSound.Data]);
 
 	}
 	

@@ -30,7 +30,7 @@ internal class MainUI : UIState
 		var menuPanel = new DragableUIPanel("Creativetools Menu") { VAlign = 0.5f, HAlign = 0.1f };
 		menuPanel.Width.Set(442f, 0);
 		menuPanel.Height.Set(160f, 0);
-		menuPanel.OnCloseBtnClicked += () => { UISystem.UserInterface.SetState(null); SoundEngine.PlaySound(SoundID.MenuClose); };
+		menuPanel.OnCloseBtnClicked += () => { UISystem.userInterface.SetState(null); SoundEngine.PlaySound(SoundID.MenuClose); };
 		Append(menuPanel);
 
 		buttonGrid = new UIGrid(8);
@@ -42,29 +42,29 @@ internal class MainUI : UIState
 		menuPanel.Append(buttonGrid);
 
 		// 1. row
-		AddButton("bloodmoonToggle", "Event Toggle", () => UISystem.UserInterface.SetState(new EventToggleUI()));
-		AddButton("pirateInvasionToggle", "Invasion Toggle", () => UISystem.UserInterface.SetState(new InvasionToggleUI()));
+		AddButton("bloodmoonToggle", "Event Toggle", () => UISystem.userInterface.SetState(new EventToggleUI()));
+		AddButton("pirateInvasionToggle", "Invasion Toggle", () => UISystem.userInterface.SetState(new InvasionToggleUI()));
 		AddButton("hardmodeToggle", "Toggle hardmode", ToggleHardmode);
-		AddButton("expertModeToggle", "Toggle Game Mode", () => UISystem.UserInterface.SetState(new GameModeToggleUI()));
-		AddButton("weatherControl", "Weather Control", () => UISystem.UserInterface.SetState(new WeatherControlUI()));
+		AddButton("expertModeToggle", "Toggle Game Mode", () => UISystem.userInterface.SetState(new GameModeToggleUI()));
+		AddButton("weatherControl", "Weather Control", () => UISystem.userInterface.SetState(new WeatherControlUI()));
 		AddButton("creativeFly", "Creative Fly", () => MovePlayer.creativeFly = !MovePlayer.creativeFly);
-		AddButton("magicCursor", "Magic Cursor", () => MagicCursorNPC.MagicCursor = !MagicCursorNPC.MagicCursor);
-		AddButton("tptool", "TP Tool", () => UISystem.UserInterface.SetState(new TPToolUI()));
+		AddButton("magicCursor", "Magic Cursor", () => MagicCursorNPC.magicCursor = !MagicCursorNPC.magicCursor);
+		AddButton("tptool", "TP Tool", () => UISystem.userInterface.SetState(new TPToolUI()));
 
 		// 2. row
-		AddButton("Info", "Game Info", () => GameInfo.Visible = !GameInfo.Visible);
-		AddButton("Info", "AssemblyViewer", () => UISystem.UserInterface.SetState(new AssemblyViewer("Terraria")));
-		AddButton("playSound", "Play Sound", () => UISystem.UserInterface.SetState(new PlaySoundUI()));
-		AddButton("modifyItem", "Modify Item/Player", () => UISystem.UserInterface.SetState(new ItemModUI()));
-		AddButton("DownedBossToggle", "DownedBoss Toggle", () => UISystem.UserInterface.SetState(new DownedBossToggleUI()));
-		AddButton("clearInventory", "Clear inventory", () => ConfirmPanel.Visible = true);
+		AddButton("Info", "Game Info", () => GameInfo.visible = !GameInfo.visible);
+		AddButton("Info", "AssemblyViewer", () => UISystem.userInterface.SetState(new AssemblyViewer("Terraria")));
+		AddButton("playSound", "Play Sound", () => UISystem.userInterface.SetState(new PlaySoundUI()));
+		AddButton("modifyItem", "Modify Item/Player", () => UISystem.userInterface.SetState(new ItemModUI()));
+		AddButton("DownedBossToggle", "DownedBoss Toggle", () => UISystem.userInterface.SetState(new DownedBossToggleUI()));
+		AddButton("clearInventory", "Clear inventory", () => ConfirmPanel.visible = true);
 		AddButton("killplayer", "Kill Player", KillMe);
 	}
 
 	public override void Update(GameTime gameTime)
 	{
 		base.Update(gameTime); // Don't remove, or else dragging won't be smooth
-		bool[] check = { false, false, Main.hardMode, false, false, MovePlayer.creativeFly, MagicCursorNPC.MagicCursor, false, GameInfo.Visible, false, false, false, false, false, false, false };
+		bool[] check = { false, false, Main.hardMode, false, false, MovePlayer.creativeFly, MagicCursorNPC.magicCursor, false, GameInfo.visible, false, false, false, false, false, false, false };
 
 		for (int i = 0; i < buttonGrid.Count; i++) {
 			((MenuButton)buttonGrid.items[i]).SetState(check[i]);
@@ -76,7 +76,7 @@ internal class MainUI : UIState
 		buttonGrid.Add(new MenuButton(iconName, name, (_, _) => action()));
 	}
 
-	private void ToggleHardmode()
+	private static void ToggleHardmode()
 	{
 		if (Main.netMode == NetmodeID.SinglePlayer) {
 			Main.hardMode = !Main.hardMode;

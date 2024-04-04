@@ -9,7 +9,7 @@ using Terraria.UI;
 
 namespace Creativetools.Tools.AssemblyViewer.Elements;
 
-class UIDataElement : UIElement
+internal class UIDataElement : UIElement
 {
 	public object data;
 
@@ -37,7 +37,7 @@ class UIDataElement : UIElement
 			Top = new(5, 0)
 		});
 
-		var toggle = new UIToggleImage(Main.Assets.Request<Texture2D>("Images\\UI\\Settings_Toggle"), 13, 13, new Point(17, 1), new Point(1, 1));
+		var toggle = new UIToggleImage(Main.Assets.Request<Texture2D>(@"Images\UI\Settings_Toggle"), 13, 13, new Point(17, 1), new Point(1, 1));
 		toggle.SetState(data);
 		toggle.Left.Set(50, Left.Precent);
 		toggle.Top.Set(6, 0);
@@ -125,13 +125,13 @@ class UIDataElement : UIElement
 		this.data = data;
 
 		if (data != null) {
-			Width.Set(data.ToString().GetTextSize().X + 50, 0);
+			Width.Set(data.GetTextSize().X + 50, 0);
 			Height.Set(100, 0);
 
-			var textBox = new NewUITextBox(data.ToString());
-			textBox.Width.Set(data.ToString().GetTextSize().X + 50, 0);
+			var textBox = new NewUITextBox(data);
+			textBox.Width.Set(data.GetTextSize().X + 50, 0);
 			textBox.MinHeight.Set(25, 0);
-			textBox.Height.Set(data.ToString().GetTextSize().Y, 0);
+			textBox.Height.Set(data.GetTextSize().Y, 0);
 			textBox.unfocusOnEnter = true;
 			textBox.OnEnterPressed += () => OnValueChanged.Invoke(textBox.Text);
 			Append(textBox);

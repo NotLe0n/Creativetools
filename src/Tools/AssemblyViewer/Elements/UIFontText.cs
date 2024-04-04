@@ -7,34 +7,34 @@ using Terraria.UI.Chat;
 
 namespace Creativetools.Tools.AssemblyViewer.Elements;
 
-class UIFontText : UIElement
+internal class UIFontText : UIElement
 {
-	private object _text = "";
-	private float _textScale = 1f;
-	private Vector2 _textSize = Vector2.Zero;
-	private bool _isLarge;
-	private Color _color = Color.White;
-	private bool _isWrapped;
-	private string _visibleText;
-	private string _lastTextReference;
+	private object text = "";
+	private float textScale = 1f;
+	private Vector2 textSize = Vector2.Zero;
+	private bool isLarge;
+	private Color color = Color.White;
+	private bool isWrapped;
+	private string visibleText;
+	private string lastTextReference;
 
-	public string Text => _text.ToString();
+	public string Text => text.ToString();
 	public bool DynamicallyScaleDownToWidth;
 	public DynamicSpriteFont Font { get; private set; }
 	public float TextOriginX { get; set; }
 	public float WrappedTextBottomPadding { get; set; }
 
 	public bool IsWrapped {
-		get => _isWrapped;
+		get => isWrapped;
 		set {
-			_isWrapped = value;
-			InternalSetText(_text, _textScale, _isLarge);
+			isWrapped = value;
+			InternalSetText(text, textScale, isLarge);
 		}
 	}
 
 	public Color TextColor {
-		get => _color;
-		set => _color = value;
+		get => color;
+		set => color = value;
 	}
 
 	public event Action OnInternalTextChange;
@@ -50,13 +50,13 @@ class UIFontText : UIElement
 
 	public override void Recalculate()
 	{
-		InternalSetText(_text, _textScale, _isLarge);
+		InternalSetText(text, textScale, isLarge);
 		base.Recalculate();
 	}
 
 	public void SetText(string text)
 	{
-		InternalSetText(text, _textScale, _isLarge);
+		InternalSetText(text, textScale, isLarge);
 	}
 
 	public void SetText(string text, float textScale, bool large)
@@ -71,61 +71,59 @@ class UIFontText : UIElement
 		CalculatedStyle innerDimensions = GetInnerDimensions();
 		Vector2 pos = innerDimensions.Position();
 
-		if (_isLarge) {
-			pos.Y -= 10f * _textScale;
+		if (isLarge) {
+			pos.Y -= 10f * textScale;
 		}
 		else {
-			pos.Y -= 2f * _textScale;
+			pos.Y -= 2f * textScale;
 		}
 
-		pos.X += (innerDimensions.Width - _textSize.X) * TextOriginX;
+		pos.X += (innerDimensions.Width - textSize.X) * TextOriginX;
 
-		float num = _textScale;
-		if (DynamicallyScaleDownToWidth && _textSize.X > innerDimensions.Width) {
-			num *= innerDimensions.Width / _textSize.X;
+		float num = textScale;
+		if (DynamicallyScaleDownToWidth && textSize.X > innerDimensions.Width) {
+			num *= innerDimensions.Width / textSize.X;
 		}
-		if (_isLarge) {
-			DrawStringBig(spriteBatch, Font, _visibleText, pos, _color, num);
+		if (isLarge) {
+			DrawStringBig(spriteBatch, Font, visibleText, pos, color, num);
 		}
 		else {
-			DrawString(spriteBatch, Font, _visibleText, pos, _color, num);
+			DrawString(spriteBatch, Font, visibleText, pos, color, num);
 		}
 	}
 
 	private void VerifyTextState()
 	{
-		if ((object)_lastTextReference != Text) {
-			InternalSetText(_text, _textScale, _isLarge);
+		if ((object)lastTextReference != Text) {
+			InternalSetText(text, textScale, isLarge);
 		}
 	}
 
 	private void InternalSetText(object text, float textScale, bool large)
 	{
-		_text = text;
-		_isLarge = large;
-		_textScale = textScale;
-		_lastTextReference = _text.ToString();
+		this.text = text;
+		isLarge = large;
+		this.textScale = textScale;
+		lastTextReference = this.text.ToString();
 
 		if (IsWrapped) {
-			_visibleText = Font.CreateWrappedText(_lastTextReference, GetInnerDimensions().Width / _textScale);
+			visibleText = Font.CreateWrappedText(lastTextReference, GetInnerDimensions().Width / this.textScale);
 		}
 		else {
-			_visibleText = _lastTextReference;
+			visibleText = lastTextReference;
 		}
-		Vector2 vector = Font.MeasureString(_visibleText);
-		Vector2 vector2 = _textSize = ((!IsWrapped) ? (new Vector2(vector.X, large ? 32f : 16f) * textScale) : (new Vector2(vector.X, vector.Y + WrappedTextBottomPadding) * textScale));
+		Vector2 vector = Font.MeasureString(visibleText);
+		Vector2 vector2 = textSize = ((!IsWrapped) ? (new Vector2(vector.X, large ? 32f : 16f) * textScale) : (new Vector2(vector.X, vector.Y + WrappedTextBottomPadding) * textScale));
 
 		MinWidth.Set(vector2.X + PaddingLeft + PaddingRight, 0f);
 		MinHeight.Set(vector2.Y + PaddingTop + PaddingBottom, 0f);
-		if (OnInternalTextChange != null) {
-			OnInternalTextChange();
-		}
-	}
+        OnInternalTextChange?.Invoke();
+    }
 
 	private static Vector2 DrawString(SpriteBatch sb, DynamicSpriteFont font, string text, Vector2 pos, Color color, float scale = 1f, float anchorx = 0f, float anchory = 0f, int maxCharactersDisplayed = -1)
 	{
 		if (maxCharactersDisplayed != -1 && text.Length > maxCharactersDisplayed) {
-			text.Substring(0, maxCharactersDisplayed);
+			text = text[..maxCharactersDisplayed];
 		}
 		Vector2 vector = font.MeasureString(text);
 		ChatManager.DrawColorCodedStringWithShadow(sb, font, text, pos, color, 0f, new Vector2(anchorx, anchory) * vector, new Vector2(scale), -1f, 1.5f);
@@ -135,7 +133,7 @@ class UIFontText : UIElement
 	private Vector2 DrawStringBig(SpriteBatch spriteBatch, DynamicSpriteFont font, string text, Vector2 pos, Color color, float scale = 1f, float anchorx = 0f, float anchory = 0f, int maxCharactersDisplayed = -1)
 	{
 		if (maxCharactersDisplayed != -1 && text.Length > maxCharactersDisplayed) {
-			text.Substring(0, maxCharactersDisplayed);
+			text = text[..maxCharactersDisplayed];
 		}
 		for (int i = -1; i < 2; i++) {
 			for (int j = -1; j < 2; j++) {

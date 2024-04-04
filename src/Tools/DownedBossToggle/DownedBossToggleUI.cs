@@ -22,7 +22,7 @@ public class DownedBossToggleUI : UIState
 		panel.Height.Set(430, 0);
 		panel.VAlign = 0.6f;
 		panel.HAlign = 0.2f;
-		panel.OnCloseBtnClicked += () => UISystem.UserInterface.SetState(new MainUI());
+		panel.OnCloseBtnClicked += () => UISystem.userInterface.SetState(new MainUI());
 		Append(panel);
 
 		var scrollbar = new UIScrollbar();
@@ -126,8 +126,8 @@ public class DownedBossToggleUI : UIState
 			MultiplayerSystem.SendDownedBossPacket(field.Name, state);
 		}
 
-		if (UISystem.UserInterface.CurrentState is DownedBossToggleUI) {
-			UISystem.UserInterface.SetState(new DownedBossToggleUI(toggleList.ViewPosition));
+		if (UISystem.userInterface.CurrentState is DownedBossToggleUI) {
+			UISystem.userInterface.SetState(new DownedBossToggleUI(toggleList.ViewPosition));
 		}
 	}
 
@@ -140,8 +140,8 @@ public class DownedBossToggleUI : UIState
 			MultiplayerSystem.SendDownedBossPacket("", state, true);
 		}
 
-		if (UISystem.UserInterface.CurrentState is DownedBossToggleUI) {
-			UISystem.UserInterface.SetState(new DownedBossToggleUI(toggleList.ViewPosition));
+		if (UISystem.userInterface.CurrentState is DownedBossToggleUI) {
+			UISystem.userInterface.SetState(new DownedBossToggleUI(toggleList.ViewPosition));
 		}
 	}
 

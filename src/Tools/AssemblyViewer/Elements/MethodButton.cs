@@ -33,11 +33,11 @@ internal class MethodButton : UIFontText
 		base.LeftClick(evt);
 		var based = _method as MethodBase;
 
-		if (UISystem.UserInterface2.CurrentState == null) {
-			UISystem.UserInterface2.SetState(new ILWindow(based));
+		if (UISystem.userInterface2.CurrentState == null) {
+			UISystem.userInterface2.SetState(new ILWindow(based));
 		}
 		else {
-			UISystem.UserInterface2.SetState(null);
+			UISystem.userInterface2.SetState(null);
 		}
 	}
 

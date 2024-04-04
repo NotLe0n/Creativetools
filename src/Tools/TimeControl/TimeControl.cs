@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 
 namespace Creativetools.Tools.TimeControl;
 
-class TimeControl : ModSystem
+internal class TimeControl : ModSystem
 {
 	private ModKeybind freezeKeybind, gameSpeedUpKeybind, gameSpeedDownKeybind, frameStepKeybind;
 	private KeyboardState lastKeyboard;
@@ -29,7 +29,7 @@ class TimeControl : ModSystem
 		frameStepKeybind = freezeKeybind = gameSpeedUpKeybind = gameSpeedDownKeybind = null;
 	}
 
-	private ulong timer = 0;
+	private ulong timer;
 	private uint gameSpeed = 1;
 	private bool freeze;
 	private bool takeStep;

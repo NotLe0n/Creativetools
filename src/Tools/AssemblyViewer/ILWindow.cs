@@ -14,7 +14,7 @@ using Terraria.UI;
 
 namespace Creativetools.Tools.AssemblyViewer;
 
-class ILWindow : UIState
+internal class ILWindow : UIState
 {
 	private readonly BetterUIList list;
 	private readonly UITextPanel<string> changeViewBtn;
@@ -22,14 +22,12 @@ class ILWindow : UIState
 
 	public ILWindow(MethodBase method)
 	{
-		var instructions = Disassembler.GetInstructions(method);
-
 		var panel = new DragableUIPanel(method.Name);
 		panel.Top.Set(200, 0);
 		panel.Left.Set(500, 0);
 		panel.Width.Set(400, 0);
 		panel.Height.Set(550, 0);
-		panel.OnCloseBtnClicked += () => UISystem.UserInterface2.SetState(null);
+		panel.OnCloseBtnClicked += () => UISystem.userInterface2.SetState(null);
 		Append(panel);
 
 		if (method.GetParameters().Length == 0) {
@@ -41,7 +39,7 @@ class ILWindow : UIState
 			invokeButton.Height.Set(10, 0);
 			invokeButton.OnLeftClick += (_, _) =>
 			{
-				object ret = method.Invoke(null, null);
+				object? ret = method.Invoke(null, null);
 				Main.NewText($"<AssemblyViewer> Invoked method [c/FF0000:{method.Name}()] successfully!");
 
 				if (ret is not null)
@@ -110,11 +108,14 @@ class ILWindow : UIState
 	{
 		string loc = typeof(Main).Assembly.Location;
 		// generate Decompiler
-		var decompiler = new CSharpDecompiler(loc, new DecompilerSettings() { ThrowOnAssemblyResolveErrors = false });
+		var decompiler = new CSharpDecompiler(loc, new DecompilerSettings { ThrowOnAssemblyResolveErrors = false });
 
 		// get class data
-		ITypeDefinition typeInfo = decompiler.TypeSystem.MainModule.Compilation.FindType(new FullTypeName(declaringType)).GetDefinition();
-
+		ITypeDefinition? typeInfo = decompiler.TypeSystem.MainModule.Compilation.FindType(new FullTypeName(declaringType)).GetDefinition();
+        if (typeInfo == null) {
+            return;
+        }
+        
 		// get method data
 		var token = typeInfo.Methods.First(x => x.Name == methodName).MetadataToken;
 
@@ -126,14 +127,14 @@ class ILWindow : UIState
 		code = code.Highlight();
 
 		// Add string to list
-		var str = code.Split('\n');
-		foreach (var item in str) {
+		string[] str = code.Split('\n');
+		foreach (string item in str) {
 			list.Add(new UIFontText(FontSystem.ConsolasFont, item, 0.8f));
 		}
 	}
 }
 
-static class SyntaxHighlighting
+internal static class SyntaxHighlighting
 {
 	public static string Highlight(this string code)
 	{

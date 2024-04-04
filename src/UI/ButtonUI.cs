@@ -10,35 +10,35 @@ namespace Creativetools.UI;
 
 internal class ButtonUI : UIState
 {
-	private readonly UIHoverImageButton _menuButton;
+	private readonly UIHoverImageButton menuButton;
 	public ButtonUI()
 	{
-		_menuButton = new UIHoverImageButton("Creativetools/UI Assets/MenuButton", "Open Menu");
-		_menuButton.OnLeftClick += MenuButtonClicked;
-		Append(_menuButton);
+		menuButton = new UIHoverImageButton("Creativetools/UI Assets/MenuButton", "Open Menu");
+		menuButton.OnLeftClick += MenuButtonClicked;
+		Append(menuButton);
 	}
 
 	private static void MenuButtonClicked(UIMouseEvent evt, UIElement listeningElement)
 	{
-		if (UISystem.UserInterface.CurrentState != null) {
-			UISystem.UserInterface.SetState(null);
+		if (UISystem.userInterface.CurrentState != null) {
+			UISystem.userInterface.SetState(null);
 			SoundEngine.PlaySound(SoundID.MenuClose);
 		}
 		else {
-			UISystem.UserInterface.SetState(new MainUI());
+			UISystem.userInterface.SetState(new MainUI());
 			SoundEngine.PlaySound(SoundID.MenuOpen);
 		}
 	}
 
 	public override void Update(GameTime gameTime)
 	{
-		Vector2 offset = ModContent.GetInstance<Config>().MenuBtnOffset * 47.5f;
+		Vector2 offset = ModContent.GetInstance<Config>().menuBtnOffset * 47.5f;
 		if (Main.LocalPlayer.difficulty == 3) {
 			offset.X += 47;
 		}
 
-		_menuButton.Top.Set(260 + offset.Y, 0);
-		_menuButton.Left.Set(20 + System.MathF.Max(offset.X, 0), 0);
+		menuButton.Top.Set(260 + offset.Y, 0);
+		menuButton.Left.Set(20 + System.MathF.Max(offset.X, 0), 0);
 		base.Update(gameTime);
 	}
 }

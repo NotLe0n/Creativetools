@@ -14,12 +14,12 @@ internal class ModifyPlayer : ModPlayer
 		Terraria.Graphics.Renderers.On_LegacyPlayerRenderer.DrawPlayerInternal += LegacyPlayerRenderer_DrawPlayerInternal;
 	}
 
-	private void LegacyPlayerRenderer_DrawPlayerInternal(Terraria.Graphics.Renderers.On_LegacyPlayerRenderer.orig_DrawPlayerInternal orig, Terraria.Graphics.Renderers.LegacyPlayerRenderer self, Terraria.Graphics.Camera camera, Terraria.Player drawPlayer, Microsoft.Xna.Framework.Vector2 position, float rotation, Microsoft.Xna.Framework.Vector2 rotationOrigin, float shadow, float alpha, float scale, bool headOnly)
+	private static void LegacyPlayerRenderer_DrawPlayerInternal(Terraria.Graphics.Renderers.On_LegacyPlayerRenderer.orig_DrawPlayerInternal orig, Terraria.Graphics.Renderers.LegacyPlayerRenderer self, Terraria.Graphics.Camera camera, Terraria.Player drawPlayer, Microsoft.Xna.Framework.Vector2 position, float rotation, Microsoft.Xna.Framework.Vector2 rotationOrigin, float shadow, float alpha, float scale, bool headOnly)
 	{
 		orig(self, camera, drawPlayer, position, rotation, rotationOrigin, shadow, alpha, scale * playerSize, headOnly);
 	}
 
-	private void Player_RecalculateLuck(Terraria.On_Player.orig_RecalculateLuck orig, Player self)
+	private static void Player_RecalculateLuck(Terraria.On_Player.orig_RecalculateLuck orig, Player self)
 	{
 		orig(self);
 

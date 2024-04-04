@@ -28,6 +28,6 @@ internal class ClassButton : UIFontText
 	{
 		base.LeftClick(evt);
 
-		UISystem.UserInterface.SetState(new AssemblyViewer(_class.Namespace, _class));
+		UISystem.userInterface.SetState(new AssemblyViewer(_class.Namespace, _class));
 	}
 }

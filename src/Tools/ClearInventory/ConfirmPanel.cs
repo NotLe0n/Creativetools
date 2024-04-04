@@ -9,7 +9,7 @@ namespace Creativetools.Tools.ClearInventory;
 
 internal class ConfirmPanel : UIState
 {
-	public static bool Visible;
+	public static bool visible;
 	public override void OnInitialize()
 	{
 		DragableUIPanel confirmPanel = new("Are you sure you want to delete all your items?");
@@ -17,7 +17,7 @@ internal class ConfirmPanel : UIState
 		confirmPanel.Width.Set(550, 0);
 		confirmPanel.Height.Set(100, 0);
 		confirmPanel.VAlign = confirmPanel.HAlign = 0.5f;
-		confirmPanel.OnCloseBtnClicked += () => Visible = false;
+		confirmPanel.OnCloseBtnClicked += () => visible = false;
 		Append(confirmPanel);
 
 		UIPanel yepButton = new();
@@ -56,7 +56,7 @@ internal class ConfirmPanel : UIState
 			Main.LocalPlayer.inventory[i].TurnToAir();
 			SoundEngine.PlaySound(SoundID.Grab);
 		}
-		Visible = false; //close
+		visible = false; //close
 		SoundEngine.PlaySound(SoundID.MenuClose);
 	}
 	
@@ -71,13 +71,13 @@ internal class ConfirmPanel : UIState
 			Main.LocalPlayer.inventory[i].TurnToAir();
 			SoundEngine.PlaySound(SoundID.Grab);
 		}
-		Visible = false; //close
+		visible = false; //close
 		SoundEngine.PlaySound(SoundID.MenuClose);
 	}
 	
 	private static void NoClicked(UIMouseEvent evt, UIElement listeningElement)
 	{
-		Visible = false; //close
+		visible = false; //close
 		SoundEngine.PlaySound(SoundID.MenuClose);
 	}
 }

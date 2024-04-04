@@ -57,10 +57,10 @@ internal class WeatherControlUI : UIState
 
 internal class MoonPhaseButton : UIHoverImageButton
 {
-	private static readonly string[] moons = { "FullMoon", "WaningGibbous", "ThirdQuarter", "WaningCrescent", "NewMoon", "WaxingCrescent", "FirstQuarter", "WaxingGibbous" };
+	private static readonly string[] Moons = { "FullMoon", "WaningGibbous", "ThirdQuarter", "WaningCrescent", "NewMoon", "WaxingCrescent", "FirstQuarter", "WaxingGibbous" };
 	private readonly int moonPhase;
 
-	public MoonPhaseButton(int moonPhase) : base("Creativetools/UI Assets/" + moons[moonPhase], Language.GetTextValue("GameUI." + moons[moonPhase]))
+	public MoonPhaseButton(int moonPhase) : base("Creativetools/UI Assets/" + Moons[moonPhase], Language.GetTextValue("GameUI." + Moons[moonPhase]))
 	{
 		this.moonPhase = moonPhase;
 	}

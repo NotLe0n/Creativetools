@@ -8,11 +8,11 @@ namespace Creativetools.Tools.MagicCursor;
 
 internal class MagicCursorNPC : GlobalNPC
 {
-	public static bool MagicCursor;
+	public static bool magicCursor;
 
 	public override void AI(NPC npc)
 	{
-		if (!MagicCursor) {
+		if (!magicCursor) {
 			return;
 		}
 

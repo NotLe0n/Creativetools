@@ -11,26 +11,26 @@ namespace Creativetools.Tools.GameInfo;
 
 internal class GameInfo : UIState
 {
-	public static bool Visible;
-	private readonly UIText Mouseinfo = new("") { TextColor = Color.AntiqueWhite, MarginTop = 20 };
-	private readonly UIText Playerinfo = new("") { TextColor = Color.Firebrick, MarginTop = 50 };
-	private readonly UIText Screeninfo = new("") { TextColor = Color.Goldenrod };
-	private readonly UIText NPCinfo = new("") { TextColor = Color.Salmon };
-	private readonly UIText Iteminfo = new("") { TextColor = Color.DodgerBlue };
-	private readonly UIText Projectileinfo = new("") { TextColor = Color.HotPink };
-	private readonly UIText Gameinfo = new("") { TextColor = Color.DeepSkyBlue, MarginTop = Main.screenHeight - 20 };
+	public static bool visible;
+	private readonly UIText mouseInfo = new("") { TextColor = Color.AntiqueWhite, MarginTop = 20 };
+	private readonly UIText playerInfo = new("") { TextColor = Color.Firebrick, MarginTop = 50 };
+	private readonly UIText screenInfo = new("") { TextColor = Color.Goldenrod };
+	private readonly UIText npcInfo = new("") { TextColor = Color.Salmon };
+	private readonly UIText itemInfo = new("") { TextColor = Color.DodgerBlue };
+	private readonly UIText projectileInfo = new("") { TextColor = Color.HotPink };
+	private readonly UIText gameInfo = new("") { TextColor = Color.DeepSkyBlue, MarginTop = Main.screenHeight - 20 };
 
 	private static Config ConfigInstance => ModContent.GetInstance<Config>();
 
 	public override void OnInitialize()
 	{
-		if (!ConfigInstance.HideMouse) Append(Mouseinfo);
-		if (!ConfigInstance.HidePlayer) Append(Playerinfo);
-		if (!ConfigInstance.HideScreen) Append(Screeninfo);
-		if (!ConfigInstance.HideNPC) Append(NPCinfo);
-		if (!ConfigInstance.HideItem) Append(Iteminfo);
-		if (!ConfigInstance.HideProjectile) Append(Projectileinfo);
-		if (!ConfigInstance.HideGame) Append(Gameinfo);
+		if (!ConfigInstance.hideMouse) Append(mouseInfo);
+		if (!ConfigInstance.hidePlayer) Append(playerInfo);
+		if (!ConfigInstance.hideScreen) Append(screenInfo);
+		if (!ConfigInstance.hideNPC) Append(npcInfo);
+		if (!ConfigInstance.hideItem) Append(itemInfo);
+		if (!ConfigInstance.hideProjectile) Append(projectileInfo);
+		if (!ConfigInstance.hideGame) Append(gameInfo);
 	}
 
 	public override void Update(GameTime gameTime)
@@ -40,20 +40,21 @@ internal class GameInfo : UIState
 		Projectile selectedProjectile = Main.projectile[GetProjectileMouseClosest()];
 
 		//mouse information
-		Mouseinfo.Left.Set(Main.mouseX, 0f);
-		Mouseinfo.Top.Set(Main.mouseY, 0f);
-		Mouseinfo.SetText(!ConfigInstance.HideMouse ?
+		mouseInfo.Left.Set(Main.mouseX, 0f);
+		mouseInfo.Top.Set(Main.mouseY, 0f);
+		mouseInfo.SetText(!ConfigInstance.hideMouse ?
 			$"Mouse position relative to world: {Main.MouseWorld}"
 			+ $"\nMouse position relative to screen: {Main.MouseScreen}"
-			+ "\nLast Mouse position relative to screen: {" + $"{Main.lastMouseX}, {Main.lastMouseY}" + "}"
+			+ $"\nLast Mouse position relative to screen: {{{Main.lastMouseX}, {Main.lastMouseY}}}"
+			+ $"\nMouse Tile position: {Main.MouseWorld.ToTileCoordinates()}"
 			+ $"\nMouse Color: {Main.mouseColor}"
 			+ $"\nBorder Color: {Main.MouseBorderColor}" : "");
 
 		//player information
 		Player player = Main.LocalPlayer;
-		Playerinfo.Left.Set(player.position.X - Main.screenPosition.X, 0f);
-		Playerinfo.Top.Set(player.position.Y - Main.screenPosition.Y, 0f);
-		Playerinfo.SetText(!ConfigInstance.HidePlayer ?
+		playerInfo.Left.Set(player.position.X - Main.screenPosition.X, 0f);
+		playerInfo.Top.Set(player.position.Y - Main.screenPosition.Y, 0f);
+		playerInfo.SetText(!ConfigInstance.hidePlayer ?
 			$"Player name: {player.name}, whoAmI: {player.whoAmI}"
 			+ $"\nPosition: {player.position}, Velocity: {player.velocity}"
 			+ $"\nliferegen: {player.lifeRegen}, liferegen time: {player.lifeRegenTime}, manaregen: {player.manaRegen}, minion number: {player.numMinions}"
@@ -61,35 +62,35 @@ internal class GameInfo : UIState
 			+ $"\nluck: {player.luck}" : "");
 
 		//screen information
-		Screeninfo.SetText(!ConfigInstance.HideScreen ? $"Screen position: {Main.screenPosition}, Screen Zoom:  {Main.GameZoomTarget}" : "");
+		screenInfo.SetText(!ConfigInstance.hideScreen ? $"Screen position: {Main.screenPosition}, Screen Zoom:  {Main.GameZoomTarget}" : "");
 
 		//NPC information
-		NPCinfo.Left.Set(selectedNPC.position.X - Main.screenPosition.X, 0f);
-		NPCinfo.Top.Set(Main.ReverseGravitySupport(selectedNPC.Bottom - Main.screenPosition).Y, 0f);
-		NPCinfo.SetText(!ConfigInstance.HideNPC ?
+		npcInfo.Left.Set(selectedNPC.position.X - Main.screenPosition.X, 0f);
+		npcInfo.Top.Set(Main.ReverseGravitySupport(selectedNPC.Bottom - Main.screenPosition).Y, 0f);
+		npcInfo.SetText(!ConfigInstance.hideNPC ?
 			$"NPC name/type/aiStyle: {selectedNPC.TypeName}/{selectedNPC.type}/{selectedNPC.aiStyle}"
 			+ $"\nPosition: {selectedNPC.position}, Velocity: {selectedNPC.velocity}"
 			+ $"\nDistance to Mouse: {selectedNPC.Hitbox.Distance(Main.MouseWorld)}" : "");
 
 		//item information
-		Iteminfo.Left.Set(selectedItem.position.X - Main.screenPosition.X, 0f);
-		Iteminfo.Top.Set(Main.ReverseGravitySupport(selectedItem.Bottom - Main.screenPosition).Y, 0f);
-		Iteminfo.SetText(!ConfigInstance.HideItem ?
+		itemInfo.Left.Set(selectedItem.position.X - Main.screenPosition.X, 0f);
+		itemInfo.Top.Set(Main.ReverseGravitySupport(selectedItem.Bottom - Main.screenPosition).Y, 0f);
+		itemInfo.SetText(!ConfigInstance.hideItem ?
 			$"Item name/type: {selectedItem.Name} / {selectedItem.type}"
 			+ $"\nPosition: {selectedItem.position}"
 			+ $"\nDistance to Mouse: {selectedItem.Hitbox.Distance(Main.MouseWorld)}" : "");
 
 		//Projectile information
-		Projectileinfo.Left.Set(selectedProjectile.position.X - Main.screenPosition.X, 0f);
-		Projectileinfo.Top.Set(Main.ReverseGravitySupport(selectedProjectile.Bottom - Main.screenPosition).Y, 0f);
-		Projectileinfo.SetText(!ConfigInstance.HideProjectile ?
+		projectileInfo.Left.Set(selectedProjectile.position.X - Main.screenPosition.X, 0f);
+		projectileInfo.Top.Set(Main.ReverseGravitySupport(selectedProjectile.Bottom - Main.screenPosition).Y, 0f);
+		projectileInfo.SetText(!ConfigInstance.hideProjectile ?
 			$"Projectile name/type: {selectedProjectile.Name} / {selectedProjectile.type}"
 			+ $"\nPosition: {selectedProjectile.position}, Velocity: {selectedProjectile.velocity} ({selectedProjectile.direction})"
 			+ $"\nDistance to Mouse: {selectedProjectile.Hitbox.Distance(Main.MouseWorld)}" : "");
 
 		//Game information
-		Gameinfo.MarginTop = Main.screenHeight - 20;
-		Gameinfo.SetText(!ConfigInstance.HideGame ? $"Time: {Main.time}, Global Timer: {Main.GlobalTimeWrappedHourly}, Rain Time: {Main.rainTime}" : "");
+		gameInfo.MarginTop = Main.screenHeight - 20;
+		gameInfo.SetText(!ConfigInstance.hideGame ? $"Time: {Main.time}, Global Timer: {Main.GlobalTimeWrappedHourly}, Rain Time: {Main.rainTime}" : "");
 	}
 
 	public static void WorldDraw()
@@ -110,18 +111,18 @@ internal class GameInfo : UIState
 		itemRect.Offset((int)-Main.screenPosition.X, (int)-Main.screenPosition.Y);
 		itemRect = Main.ReverseGravitySupport(itemRect);
 
-		if (!ConfigInstance.Hitboxes) {
-			if (!ConfigInstance.HidePlayer) Main.spriteBatch.Draw(TextureAssets.MagicPixel.Value, playerRect, Color.Firebrick * 0.5f);
-			if (!ConfigInstance.HideNPC) Main.spriteBatch.Draw(TextureAssets.MagicPixel.Value, npcRect, Color.Salmon * 0.5f);
-			if (!ConfigInstance.HideProjectile) Main.spriteBatch.Draw(TextureAssets.MagicPixel.Value, projRect, Color.HotPink * 0.5f);
-			if (!ConfigInstance.HideItem) Main.spriteBatch.Draw(TextureAssets.MagicPixel.Value, itemRect, Color.DodgerBlue * 0.5f);
+		if (!ConfigInstance.hitboxes) {
+			if (!ConfigInstance.hidePlayer) Main.spriteBatch.Draw(TextureAssets.MagicPixel.Value, playerRect, Color.Firebrick * 0.5f);
+			if (!ConfigInstance.hideNPC) Main.spriteBatch.Draw(TextureAssets.MagicPixel.Value, npcRect, Color.Salmon * 0.5f);
+			if (!ConfigInstance.hideProjectile) Main.spriteBatch.Draw(TextureAssets.MagicPixel.Value, projRect, Color.HotPink * 0.5f);
+			if (!ConfigInstance.hideItem) Main.spriteBatch.Draw(TextureAssets.MagicPixel.Value, itemRect, Color.DodgerBlue * 0.5f);
 		}
 	}
 
 	protected override void DrawSelf(SpriteBatch spriteBatch)
 	{
 		base.DrawSelf(spriteBatch);
-		if (!ConfigInstance.Hitboxes && !ConfigInstance.HideMouse) {
+		if (!ConfigInstance.hitboxes && !ConfigInstance.hideMouse) {
 			Main.spriteBatch.Draw(TextureAssets.MagicPixel.Value,
 				new Rectangle(Main.mouseX,
 					Main.mouseY,

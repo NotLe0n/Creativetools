@@ -30,13 +30,13 @@ internal class Tab : UITextPanel<string>
 		TabPanel.lastTab = _changeStateTo;
 
 		// change UIState and play click sound
-		UISystem.UserInterface.SetState(_changeStateTo);
+		UISystem.userInterface.SetState(_changeStateTo);
 		SoundEngine.PlaySound(SoundID.MenuTick);
 	}
 	public override void Update(GameTime gameTime)
 	{
 		// Highlight
-		if (UISystem.UserInterface.CurrentState == _changeStateTo) {
+		if (UISystem.userInterface.CurrentState == _changeStateTo) {
 			BackgroundColor = new Color(73, 94, 171);
 		}
 	}

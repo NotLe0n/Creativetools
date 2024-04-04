@@ -19,7 +19,7 @@ internal class ItemModUI : UIState
 			Width = new(450, 0),
 			Height = new(450, 0)
 		};
-		itemMenu.OnCloseBtnClicked += () => UISystem.UserInterface.SetState(new MainUI());
+		itemMenu.OnCloseBtnClicked += () => UISystem.userInterface.SetState(new MainUI());
 		Append(itemMenu);
 
 		var damageSlider = MakeSlider(new UIIntRangedDataValue("", 0, 0, 999), out var damageDataProperty, itemMenu, top: 50, left: -10);

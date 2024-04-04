@@ -16,7 +16,7 @@ internal class PlayerModUI : UIState
 			Width = new(450, 0),
 			Height = new(350, 0)
 		};
-		playerMenu.OnCloseBtnClicked += () => UISystem.UserInterface.SetState(new MainUI());
+		playerMenu.OnCloseBtnClicked += () => UISystem.userInterface.SetState(new MainUI());
 		Append(playerMenu);
 
 		var lifeSlider = MakeSlider(new UIIntRangedDataValue("", 0, 0, 999), out var lifeDataProperty, playerMenu, top: 50, left: -10);

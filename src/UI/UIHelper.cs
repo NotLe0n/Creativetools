@@ -52,34 +52,35 @@ internal static class UIHelper
 	public static UIElement MakeSlider(UIIntRangedDataValue inDataValue, out UIIntRangedDataValue outDataValue, UIElement appendTo, float top = 0, float left = -20, float width = 0, float widthPixels = 1)
 	{
 		outDataValue = inDataValue;
-		UIElement Slider = new UIRange<int>(inDataValue);
-		Slider.MarginTop = top;
-		Slider.MarginLeft = left;
-		Slider.Width.Set(width, widthPixels);
-		appendTo.Append(Slider);
+		UIElement slider = new UIRange<int>(inDataValue);
+		slider.MarginTop = top;
+		slider.MarginLeft = left;
+		slider.Width.Set(width, widthPixels);
+		appendTo.Append(slider);
 
-		return Slider;
+		return slider;
 	}
+
 	/// <summary>
 	/// Creates a slider with the type float
 	/// </summary>
 	/// <param name="inDataValue"></param>
 	/// <param name="outDataValue"></param>
 	/// <param name="top">Y Position relative to the UIElement it's appended to (0 is Top most pixel)</param>
-	/// <param name="topPixels">Percentage Y Position relative to the UIElement it's appended to (0 is Top most pixel, 1 is bottom most pixel)</param>
+	/// <param name="left">X Position relative to the UIElement it's appended to</param>
 	/// <param name="width">How wide the slider is</param>
 	/// <param name="widthPixels">How wide (in percent) the slider is</param>
 	/// <param name="appendTo">which UIElement it should append to</param>
 	public static UIElement MakeSlider(UIFloatRangedDataValue inDataValue, out UIFloatRangedDataValue outDataValue, UIElement appendTo, float top = 0, float left = -20, float width = 0, float widthPixels = 1)
 	{
 		outDataValue = inDataValue;
-		UIElement Slider = new UIRange<float>(inDataValue);
-		Slider.MarginTop = top;
-		Slider.MarginLeft = left;
-		Slider.Width.Set(width, widthPixels);
-		appendTo.Append(Slider);
+		UIElement slider = new UIRange<float>(inDataValue);
+		slider.MarginTop = top;
+		slider.MarginLeft = left;
+		slider.Width.Set(width, widthPixels);
+		appendTo.Append(slider);
 
-		return Slider;
+		return slider;
 	}
 
 	public static Vector2 GetTextSize(this string str)

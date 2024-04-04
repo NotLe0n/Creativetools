@@ -53,5 +53,50 @@ Configs: {
 			Label: Menu button offset
 			Tooltip: ""
 		}
+
+		hideMouse: {
+			Label: hide Mouse
+			Tooltip: ""
+		}
+
+		hidePlayer: {
+			Label: hide Player
+			Tooltip: ""
+		}
+
+		hideScreen: {
+			Label: hide Screen
+			Tooltip: ""
+		}
+
+		hideNPC: {
+			Label: hide N P C
+			Tooltip: ""
+		}
+
+		hideItem: {
+			Label: hide Item
+			Tooltip: ""
+		}
+
+		hideProjectile: {
+			Label: hide Projectile
+			Tooltip: ""
+		}
+
+		hideGame: {
+			Label: hide Game
+			Tooltip: ""
+		}
+
+		hitboxes: {
+			Label: hitboxes
+			Tooltip: ""
+		}
+
+		menuBtnOffset: {
+			Label: menu Btn Offset
+			Tooltip: ""
+		}
 	}
 }
