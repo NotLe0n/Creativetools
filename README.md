@@ -1,4 +1,4 @@
-﻿# Creative Tools
+﻿# Creative Tools ![Mod downloads badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fmod-count-badge.notle0n75.workers.dev%2F%3Fmod%3DCreativeTools)
 
 With Creative tools you can toggle different events and game states with a single click of a button, move NPC's and Items with your mouse, display lots of Information on the screen and much more!
 
